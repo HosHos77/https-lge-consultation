@@ -8,32 +8,16 @@
   var PASS = 'LGE@2026';
   function authed(){ try { return localStorage.getItem(KEY) === '1'; } catch(e){ return false; } }
   if (authed()) return;
-  document.addEventListener('DOMContentLoaded', function(){
-    var box = document.createElement('div');
-    box.style.cssText = 'position:fixed;inset:0;background:#111;color:#fff;display:flex;align-items:center;justify-content:center;flex-direction:column;font-family:Tahoma,Arial,sans-serif;z-index:2147483647;';
-    box.innerHTML =
-      '<div style="background:#1c1c1c;padding:32px 40px;border-radius:10px;box-shadow:0 4px 20px rgba(0,0,0,.4);text-align:center;min-width:260px;">' +
-      '<h2 style="margin:0 0 16px;font-size:18px;">تسجيل الدخول</h2>' +
-      '<input id="csu" placeholder="اسم المستخدم" style="display:block;margin:8px auto;padding:9px 10px;width:220px;border-radius:5px;border:1px solid #444;background:#2a2a2a;color:#fff;">' +
-      '<input id="csp" type="password" placeholder="الباسورد" style="display:block;margin:8px auto;padding:9px 10px;width:220px;border-radius:5px;border:1px solid #444;background:#2a2a2a;color:#fff;">' +
-      '<button id="csb" style="margin-top:10px;padding:9px 26px;border:none;border-radius:5px;background:#e11d2e;color:#fff;cursor:pointer;font-size:14px;">دخول</button>' +
-      '<div id="cse" style="color:#ff6b6b;margin-top:10px;font-size:13px;min-height:16px;"></div>' +
-      '</div>';
-    document.documentElement.appendChild(box);
-    function tryLogin(){
-      var u = document.getElementById('csu').value;
-      var p = document.getElementById('csp').value;
-      if (u === USER && p === PASS) {
-        try { localStorage.setItem(KEY, '1'); } catch(e){}
-        box.remove();
-      } else {
-        document.getElementById('cse').textContent = 'بيانات غير صحيحة';
-      }
-    }
-    document.getElementById('csb').onclick = tryLogin;
-    box.addEventListener('keydown', function(ev){ if (ev.key === 'Enter') tryLogin(); });
-    document.getElementById('csu').focus();
-  });
+  var u = window.prompt('اسم المستخدم / Username:');
+  var p = window.prompt('كلمة المرور / Password:');
+  if (u === USER && p === PASS) {
+    try { localStorage.setItem(KEY, '1'); } catch(e){}
+  } else {
+    document.open();
+    document.write('<div style="font-family:Tahoma,Arial,sans-serif;text-align:center;margin-top:80px;font-size:22px;color:#c00;">تم رفض الدخول<br>Access Denied</div>');
+    document.close();
+    throw new Error('Unauthorized');
+  }
 })();
 </script>
 
