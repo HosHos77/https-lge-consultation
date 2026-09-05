@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script>
+(function(){
+  var KEY = 'csGuideAuth_v1';
+  var USER = 'agent';
+  var PASS = 'LGE@2026';
+  function authed(){ try { return localStorage.getItem(KEY) === '1'; } catch(e){ return false; } }
+  if (authed()) return;
+  var u = window.prompt('اسم المستخدم / Username:');
+  var p = window.prompt('كلمة المرور / Password:');
+  if (u === USER && p === PASS) {
+    try { localStorage.setItem(KEY, '1'); } catch(e){}
+  } else {
+    window.stop();
+    document.open();
+    document.write('<div style="font-family:Tahoma,Arial,sans-serif;text-align:center;margin-top:80px;font-size:22px;color:#c00;">تم رفض الدخول<br>Access Denied</div>');
+    document.close();
+  }
+})();
+</script>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<title>دعم فني — التركيب والاتزان</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&family=IBM+Plex+Sans+Arabic:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  body { margin:0; background:#f4f3ef; }
+  a { color:#A50034; }
+  a:hover { color:#7d0027; }
+  @keyframes cardIn { from { opacity:0; transform:translateY(6px); } to { opacity:1; transform:none; } }
+</style>
+</helmet>
+<template id="__bundler_thumbnail"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><rect width="200" height="200" fill="#A50034"/><rect x="62" y="40" width="76" height="112" rx="8" fill="#fff"/><rect x="62" y="82" width="76" height="4" fill="#A50034"/><rect x="66" y="152" width="14" height="10" rx="3" fill="#fff"/><rect x="120" y="152" width="14" height="10" rx="3" fill="#fff"/></svg></template>
+
+<div dir="rtl" style="min-height:100vh;background:#f4f3ef;color:#191a1c;font-family:'IBM Plex Sans Arabic',system-ui,sans-serif;">
+
+  <div style="background:#111314;color:#f4f3ef;padding:16px 28px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;position:sticky;top:0;z-index:20;">
+    <div style="width:9px;height:32px;background:#A50034;border-radius:2px;flex:none;"></div>
+    <div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:18px;">ضبط استواء الثلاجة — Leveling</div>
+    <div style="margin-right:auto;display:flex;flex-wrap:wrap;gap:10px;align-items:center;">
+      <div style="padding:7px 14px;border-radius:999px;background:#1e2224;font-size:12.5px;color:#c8cdd0;white-space:nowrap;flex:none;">{{ stepLabel }}</div>
+      <button type="button" onClick="{{ pageBack }}" style="padding:8px 16px;border-radius:8px;border:1px solid #3a4043;color:#f0a8bd;font-size:13px;background:transparent;cursor:pointer;font-family:'IBM Plex Sans Arabic',sans-serif;white-space:nowrap;flex:none;" style-hover="background:#22282a;">رجوع للصفحة السابقة</button>
+      <a href="Installation Guide Home.dc.html" style="padding:8px 16px;border-radius:8px;border:1px solid #3a4043;color:#f0a8bd;font-size:13px;text-decoration:none;white-space:nowrap;flex:none;" style-hover="background:#22282a;">الرئيسية</a>
+      <a href="Service Fees Table.dc.html#fridge" style="padding:8px 16px;border-radius:8px;border:1px solid #3a4043;color:#f0a8bd;font-size:13px;text-decoration:none;white-space:nowrap;flex:none;" style-hover="background:#22282a;">جدول تكاليف الصيانة</a>
+      <button onClick="{{ restart }}" style="padding:8px 16px;border-radius:8px;border:1px solid #3a4043;background:transparent;color:#e4e7e9;font-family:'IBM Plex Sans Arabic',sans-serif;font-size:13px;cursor:pointer;white-space:nowrap;flex:none;" style-hover="background:#22282a;">من البداية</button>
+    </div>
+  </div>
+
+  <div style="max-width:1080px;margin:0 auto;padding:30px 28px 70px;display:flex;flex-direction:column;gap:18px;">
+
+    <sc-if value="{{ isIntro }}" hint-placeholder-val="{{ true }}">
+      <div style="background:#fff;border:1px solid #e3e0d8;border-radius:14px;padding:32px;border-top:4px solid #A50034;animation:cardIn .25s ease;">
+        <div style="font-size:12.5px;font-weight:600;color:#A50034;letter-spacing:.04em;margin-bottom:10px;">الخطوة ١ — متى يكون الاستواء هو السبب</div>
+        <div style="font-family:'Cairo',sans-serif;font-weight:700;font-size:26px;line-height:1.5;margin-bottom:14px;">الثلاجة غير مستوية — الأعراض</div>
+        <div style="background:#1c1a1b;color:#f6f1f2;border-radius:12px;padding:22px 24px;margin-bottom:20px;">
+          <div style="font-size:12.5px;color:#f0a8bd;margin-bottom:10px;font-weight:600;">افتتاح المكالمة — اقرأ للعميل</div>
+          <div style="font-family:'Cairo',sans-serif;font-size:17.5px;line-height:2.1;">«بعتذرلك عن الإزعاج. قبل ما نلجأ لأي إجراء تاني، أحب أراجع معاك كام خطوة بسيطة ممكن تساعدنا نحدد سبب المشكلة ونحلها في الحال. لو تسمحلي أتابع معاك ده هيوفر عليك الوقت وأي تكاليف أو زيارة غير ضرورية.»</div>
+        </div>
+        <div style="background:#1c1a1b;color:#f6f1f2;border-radius:12px;padding:20px 22px;margin-bottom:20px;">
+          <div style="font-size:12.5px;color:#f0a8bd;margin-bottom:8px;font-weight:600;">اقرأ للعميل</div>
+          <div style="font-family:'Cairo',sans-serif;font-size:17px;line-height:2.05;">«الأعراض اللي حضرتك بتوصفها ممكن تكون بسبب إن الثلاجة مش مستوية على الأرض. الثلاجة لها أرجل قابلة للضبط من تحت من الأمام، وممكن نظبّطها مع بعض في دقايق — تحب نجرب؟»</div>
+        </div>
+        <div style="display:inline-block;padding:6px 14px;border-radius:999px;background:#fff5f7;border:1px solid #f0c2ce;color:#A50034;font-size:12.5px;font-weight:600;margin-bottom:16px;">ينطبق على كل أنواع الثلاجات — تحميل علوي وسايد باي سايد</div>
+
+        <div style="font-size:15px;color:#3f4447;line-height:1.9;margin-bottom:18px;max-width:70ch;text-wrap:pretty;">الثلاجة لازم تكون مستوية ومستقرة على الأرض علشان الأبواب تقفل صح والتبريد يشتغل بكفاءة. لو الجهاز مايل أو مش مستقر بتظهر الأعراض دي:</div>
+
+        <div style="display:grid;gap:10px;margin-bottom:20px;">
+          <div style="padding:15px 18px;border-radius:12px;background:#fbfaf7;border:1px solid #e9e6de;font-size:15px;line-height:1.9;">الأبواب لا تُغلق من نفسها أو تُغلق بصعوبة، أو تفتح لوحدها.</div>
+          <div style="padding:15px 18px;border-radius:12px;background:#fbfaf7;border:1px solid #e9e6de;font-size:15px;line-height:1.9;">الأبواب غير متساوية في الارتفاع — باب أعلى من الآخر في السايد باي سايد.</div>
+          <div style="padding:15px 18px;border-radius:12px;background:#fbfaf7;border:1px solid #e9e6de;font-size:15px;line-height:1.9;">اهتزاز أو أصوات خشنة أو حركة في الجهاز أثناء العمل.</div>
+          <div style="padding:15px 18px;border-radius:12px;background:#fbfaf7;border:1px solid #e9e6de;font-size:15px;line-height:1.9;">ضعف تبريد أو تكوّن ثلج نتيجة تسريب هواء من باب غير محكم الغلق.</div>
+          <div style="padding:15px 18px;border-radius:12px;background:#fbfaf7;border:1px solid #e9e6de;font-size:15px;line-height:1.9;">تجمّع مياه أو تسريب من ناحية واحدة، أو الأدراج والأرفف مش مستقرة.</div>
+        </div>
+
+        <button onClick="{{ toPrep }}" style="padding:14px 22px;border-radius:10px;background:#A50034;color:#fff;font-family:'Cairo',sans-serif;font-weight:700;font-size:15px;cursor:pointer;border:none;" style-hover="background:#7d0027;">التالي — التحضير قبل الضبط</button>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ isPrep }}" hint-placeholder-val="{{ false }}">
+      <div style="background:#fff;border:1px solid #e3e0d8;border-radius:14px;padding:32px;border-top:4px solid #A50034;animation:cardIn .25s ease;">
+        <div style="font-size:12.5px;font-weight:600;color:#A50034;letter-spacing:.04em;margin-bottom:10px;">الخطوة ٢ — التحضير</div>
+        <div style="font-family:'Cairo',sans-serif;font-weight:700;font-size:26px;line-height:1.5;margin-bottom:16px;">قبل ضبط الأرجل</div>
+
+        <div style="display:grid;gap:12px;margin-bottom:22px;">
+          <sc-for list="{{ prepSteps }}" as="t" hint-placeholder-count="5">
+            <div style="display:flex;gap:16px;padding:17px 20px;border-radius:12px;background:#fbfaf7;border:1px solid #e9e6de;">
+              <div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:16px;color:#A50034;min-width:22px;">{{ t.n }}</div>
+              <div style="min-width:0;">
+                <div style="font-size:15.5px;line-height:1.9;color:#3f4447;">{{ t.text }}</div>
+                <sc-if value="{{ t.note }}" hint-placeholder-val="{{ false }}">
+                  <div style="margin-top:10px;padding:12px 16px;border-radius:10px;background:#fdf6e8;border:1px solid #ecd9ae;font-size:14.5px;line-height:1.85;color:#7a5410;"><strong>تنبيه:</strong> {{ t.note }}</div>
+                </sc-if>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+
+        <div style="background:#1c1a1b;color:#f6f1f2;border-radius:12px;padding:20px 22px;margin-bottom:22px;">
+          <div style="font-size:12.5px;color:#f0a8bd;margin-bottom:8px;font-weight:600;">اقرأ للعميل</div>
+          <div style="font-family:'Cairo',sans-serif;font-size:17px;line-height:2.05;">«محتاج حضرتك تفضّي الأبواب من الحاجات التقيلة، وتفتح الباب علشان نشوف الأرجل من تحت من الأمام. لو معاك ميزان استواء (ليڤل) هيسهّل الموضوع، ولو مافيش هنستخدم طريقة تانية بسيطة.»</div>
+        </div>
+
+        <button onClick="{{ toAdjust }}" style="padding:14px 22px;border-radius:10px;background:#A50034;color:#fff;font-family:'Cairo',sans-serif;font-weight:700;font-size:15px;cursor:pointer;border:none;" style-hover="background:#7d0027;">التالي — خطوات ضبط الأرجل</button>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ isAdjust }}" hint-placeholder-val="{{ false }}">
+      <div style="background:#fff;border:1px solid #e3e0d8;border-radius:14px;padding:32px;border-top:4px solid #A50034;animation:cardIn .25s ease;">
+        <div style="font-size:12.5px;font-weight:600;color:#A50034;letter-spacing:.04em;margin-bottom:10px;">الخطوة ٣ — الضبط</div>
+        <div style="font-family:'Cairo',sans-serif;font-weight:700;font-size:26px;line-height:1.5;margin-bottom:16px;">ضبط الأرجل الأمامية</div>
+
+        <div style="display:flex;gap:14px;flex-wrap:wrap;margin-bottom:20px;">
+          <div style="flex:1;min-width:230px;padding:20px 22px;border-radius:12px;background:#1c1a1b;color:#f6f1f2;">
+            <div style="font-size:12.5px;color:#f0a8bd;margin-bottom:8px;font-weight:600;">لرفع الجهة</div>
+            <div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:22px;">لف الرجل عكس عقارب الساعة</div>
+          </div>
+          <div style="flex:1;min-width:230px;padding:20px 22px;border-radius:12px;background:#fff5f7;border:1px solid #f0c2ce;">
+            <div style="font-size:12.5px;color:#A50034;margin-bottom:8px;font-weight:600;">لخفض الجهة</div>
+            <div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:22px;color:#191a1c;">لف الرجل مع عقارب الساعة</div>
+          </div>
+        </div>
+
+        <div style="display:grid;gap:12px;margin-bottom:22px;">
+          <sc-for list="{{ adjustSteps }}" as="t" hint-placeholder-count="6">
+            <div style="display:flex;gap:16px;padding:17px 20px;border-radius:12px;background:#fbfaf7;border:1px solid #e9e6de;">
+              <div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:16px;color:#A50034;min-width:22px;">{{ t.n }}</div>
+              <div style="min-width:0;">
+                <div style="font-size:15.5px;line-height:1.9;color:#3f4447;">{{ t.text }}</div>
+                <sc-if value="{{ t.note }}" hint-placeholder-val="{{ false }}">
+                  <div style="margin-top:10px;padding:12px 16px;border-radius:10px;background:#fdf6e8;border:1px solid #ecd9ae;font-size:14.5px;line-height:1.85;color:#7a5410;"><strong>تنبيه:</strong> {{ t.note }}</div>
+                </sc-if>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+
+        <div style="padding:18px 22px;border-radius:12px;background:#f1f4f6;border:1px solid #dde3e7;font-size:15px;line-height:1.9;color:#3f4447;margin-bottom:22px;">
+          <strong>ميل بسيط للخلف مطلوب:</strong> الثلاجة لازم تكون مستوية من اليمين للشمال، ومائلة ميل بسيط جدًا للخلف — يعني المقدمة أعلى قليلًا من الخلف — علشان الأبواب تقفل من نفسها.
+        </div>
+
+        <div style="background:#1c1a1b;color:#f6f1f2;border-radius:12px;padding:20px 22px;margin-bottom:22px;">
+          <div style="font-size:12.5px;color:#f0a8bd;margin-bottom:8px;font-weight:600;">اقرأ للعميل</div>
+          <div style="font-family:'Cairo',sans-serif;font-size:17px;line-height:2.05;">«لو الجهة اليمين واطية، لف الرجل اليمين عكس عقارب الساعة شوية شوية — ربع لفة كل مرة — وشوف الفرق. ولو عايز تنزّلها لفها مع عقارب الساعة. بعد كل تعديل اقفل الباب وشوف بيقفل من نفسه ولا لأ.»</div>
+        </div>
+
+        <div style="display:grid;gap:12px;">
+          <button onClick="{{ toDone }}" style="text-align:right;padding:20px 22px;border-radius:12px;border:1px solid #c6e0d1;background:#eef6f1;cursor:pointer;font-family:'IBM Plex Sans Arabic',sans-serif;" style-hover="border-color:#0f5132;">
+            <div style="font-family:'Cairo',sans-serif;font-weight:700;font-size:18px;margin-bottom:4px;">الجهاز اتظبط والأبواب بتقفل صح</div>
+            <div style="font-size:14px;color:#6b7075;">إنهاء المكالمة بدون تسجيل طلب صيانة.</div>
+          </button>
+          <button onClick="{{ toEsc }}" style="text-align:right;padding:20px 22px;border-radius:12px;border:1px solid #f0c2ce;background:#fff5f7;cursor:pointer;font-family:'IBM Plex Sans Arabic',sans-serif;" style-hover="border-color:#A50034;">
+            <div style="font-family:'Cairo',sans-serif;font-weight:700;font-size:18px;margin-bottom:4px;">الأرجل لا تُضبط أو المشكلة مستمرة — تسجيل طلب صيانة</div>
+            <div style="font-size:14px;color:#8a5555;">رجل تالفة أو مكسورة، أو الأبواب لسه غير متساوية بعد الضبط.</div>
+          </button>
+        </div>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ isDone }}" hint-placeholder-val="{{ false }}">
+      <div style="background:#fff;border:1px solid #c6e0d1;border-radius:14px;padding:32px;border-top:4px solid #0f5132;animation:cardIn .25s ease;">
+        <div style="font-family:'Cairo',sans-serif;font-weight:700;font-size:26px;line-height:1.5;margin-bottom:18px;">اتحلّت المشكلة — إنهاء المكالمة</div>
+        <div style="padding:18px 22px;border-radius:12px;background:#eef6f1;border:1px solid #c6e0d1;font-size:15.5px;line-height:1.95;margin-bottom:20px;">
+          نبّه العميل: <strong>أي تحريك للثلاجة أو تغيير مكانها يستوجب إعادة ضبط الاستواء</strong>، وإن الأرضية لازم تكون صلبة ومستوية، وإن الأبواب لازم تقفل من نفسها — ثم أنهِ المكالمة بدون تسجيل طلب صيانة.
+        </div>
+        <a href="Fridge Support Topics.dc.html" style="display:inline-block;padding:14px 22px;border-radius:10px;background:#A50034;color:#fff;font-family:'Cairo',sans-serif;font-weight:700;font-size:15px;text-decoration:none;" style-hover="background:#7d0027;">إنهاء المكالمة</a>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ isEsc }}" hint-placeholder-val="{{ false }}">
+      <div style="background:#fff;border:1px solid #f0c2ce;border-radius:14px;padding:32px;border-top:4px solid #A50034;animation:cardIn .25s ease;">
+        <div style="font-size:12.5px;font-weight:600;color:#A50034;letter-spacing:.04em;margin-bottom:10px;">الخطوة الأخيرة — تسجيل طلب صيانة</div>
+        <div style="font-family:'Cairo',sans-serif;font-weight:700;font-size:26px;line-height:1.5;margin-bottom:18px;">الجهاز يحتاج زيارة فني</div>
+        <div style="background:#1c1a1b;color:#f6f1f2;border-radius:12px;padding:20px 22px;margin-bottom:20px;">
+          <div style="font-size:12.5px;color:#f0a8bd;margin-bottom:8px;font-weight:600;">اقرأ للعميل</div>
+          <div style="font-family:'Cairo',sans-serif;font-size:17px;line-height:2.05;">«هسجّل لحضرتك طلب صيانة وزيارة فني علشان يظبّط الاستواء ويفحص الأرجل والأبواب. الصيانة داخل فترة الضمان مجانية تمامًا. ولو ظهر إن السبب مش عطل فني في الجهاز، أو إن العطل خارج نطاق الضمان، بتكون في تكلفة زيارة ومعاينة ١٨٢ جنيه لأول زيارة، وأي زيارة بعدها ٣٠٠ جنيه — وتكلفة الصيانة نفسها بتتحدد بعد ما الفني يعاين الجهاز، وهتُعرض على حضرتك للموافقة قبل أي إصلاح.»</div>
+        </div>
+
+        <a href="Service Fees Table.dc.html#fridge" style="display:flex;align-items:center;gap:14px;padding:18px 22px;border-radius:12px;border:1px solid #f0c2ce;background:#fff5f7;text-decoration:none;margin-bottom:20px;" style-hover="border-color:#A50034;">
+          <div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:17px;color:#A50034;">رسوم الثلاجات</div>
+          <div style="font-size:14px;color:#3f4447;line-height:1.7;">اضغط لعرض رسوم الصيانة والزيارة الخاصة بالمنتج — صباحي ومسائي.</div>
+          <div style="margin-right:auto;color:#A50034;font-size:18px;">←</div>
+        </a>
+
+
+
+        <div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:18px;margin-bottom:12px;">نظام تسجيل الطلب</div>
+        <div style="display:grid;gap:10px;margin-bottom:20px;">
+          <div style="display:flex;gap:14px;padding:15px 18px;border-radius:12px;background:#fbfaf7;border:1px solid #e9e6de;"><div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:16px;color:#A50034;min-width:20px;">١</div><div style="font-size:15px;line-height:1.9;">يتم تسجيل <strong>كل الخطوات اللي تمت مع العميل</strong> و<strong>نوع الثلاجة</strong> و<strong>رقم الموديل</strong> في البلاغ. (لو رقم الموديل مش متوفر يتم تسجيل البلاغ بعد التأكد إن الجهاز إل جي ومشترى من داخل مصر)</div></div>
+          <div style="display:flex;gap:14px;padding:15px 18px;border-radius:12px;background:#fbfaf7;border:1px solid #e9e6de;"><div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:16px;color:#A50034;min-width:20px;">٢</div><div style="font-size:15px;line-height:1.9;">الاسم الثلاثي للعميل كما هو مسجل في فاتورة الشراء (لو مش متوفر يتم السؤال عن اسم صاحب الجهاز).</div></div>
+          <div style="display:flex;gap:14px;padding:15px 18px;border-radius:12px;background:#fbfaf7;border:1px solid #e9e6de;"><div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:16px;color:#A50034;min-width:20px;">٣</div><div style="font-size:15px;line-height:1.9;">رقم الهاتف الأساسي ورقم إضافي إن وجد.</div></div>
+          <div style="display:flex;gap:14px;padding:15px 18px;border-radius:12px;background:#fbfaf7;border:1px solid #e9e6de;"><div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:16px;color:#A50034;min-width:20px;">٤</div><div style="font-size:15px;line-height:1.9;">العنوان بالتفصيل (المحافظة، المنطقة، اسم الشارع، رقم العمارة، الدور، الشقة، علامة مميزة).</div></div>
+          <div style="display:flex;gap:14px;padding:15px 18px;border-radius:12px;background:#fbfaf7;border:1px solid #e9e6de;"><div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:16px;color:#A50034;min-width:20px;">٥</div><div style="font-size:15px;line-height:1.9;">استفسر منه عن الموعد المفضل وسجّله على الأوردر. (لو لم يرد على السؤال يتم اختيار أقرب موعد متاح وإبلاغ العميل به)</div></div>
+        </div>
+
+
+        <a href="Fridge Support Topics.dc.html" style="display:inline-block;padding:14px 22px;border-radius:10px;background:#A50034;color:#fff;font-family:'Cairo',sans-serif;font-weight:700;font-size:15px;text-decoration:none;" style-hover="background:#7d0027;">تم تسجيل البلاغ — إنهاء المكالمة</a>
+      </div>
+    </sc-if>
+
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const AR = ['٠','١','٢','٣','٤','٥','٦','٧','٨','٩','١٠'];
+const PREP = [
+  { text:'تأكد إن الثلاجة واقفة على أرضية صلبة ومستوية — مش على سجادة سميكة أو أرضية غير مستقرة.' },
+  { text:'فرّغ أرفف الأبواب من الزجاجات والحاجات التقيلة، لأن وزنها غير المتوازن ممكن يخلّي الباب مايل أو مش بيقفل.' },
+  { text:'شيل أي شيء مانع لغلق الباب — أكل بارز، أدراج مش مركّبة صح، أو كاوتش باب مطبّق.' },
+  { text:'افتح الباب وشوف الأرجل القابلة للضبط من تحت من مقدمة الجهاز (وفي بعض الموديلات وراء الجريل السفلي).' },
+  { text:'اطلب من العميل تحضير ميزان استواء (ليڤل) لو متوفر.',
+    note:'لو مافيش ميزان: حط كوباية مياه ممتلئة لنص فوق الثلاجة وشوف مستوى المياه، أو راقب هل الباب المفتوح لنص بيتحرك لوحده لجهة معينة.' }
+];
+const ADJUST = [
+  { text:'حدد الجهة الواطية — راقب أي جهة الباب فيها أوطى أو أي جهة الجهاز مايل ناحيتها.' },
+  { text:'لف رجل الجهة الواطية عكس عقارب الساعة لرفعها، أو مع عقارب الساعة لخفض الجهة العالية.' },
+  { text:'اضبط ربع لفة في المرة، وبعد كل تعديل شوف النتيجة قبل ما تكمل.',
+    note:'ممنوع رفع رجل لأقصى مدى فجأة — ده يخلّي الجهاز غير مستقر ويسبب اهتزاز وأصوات.' },
+  { text:'بعد كل تعديل اقفل الباب من نص الفتحة وشوف: الباب المفروض يقفل من نفسه ويلزق تمامًا على الكاوتش.' },
+  { text:'في السايد باي سايد: قارن ارتفاع البابين من فوق — لو باب أعلى من التاني اضبط رجل الجهة الأوطى لحد ما يتساووا.' },
+  { text:'تأكد إن الجهاز مستقر — دفعه بلطف من الأركان الأربعة، مفروض ما يتحركش ولا يخشخش. ثم شغّله وراقب الاهتزاز والصوت.',
+    note:'لو الأبواب لسه غير متساوية بعد الضبط الكامل، أو رجل مكسورة أو لا تلف — يتم تسجيل طلب صيانة.' }
+];
+
+class Component extends DCLogic {
+  state = { node: 'intro', history: [] };
+  go(n) { this.setState(s => ({ node: n, history: [...s.history, s.node] })); window.scrollTo(0, 0); }
+  renderVals() {
+    const n = this.state.node;
+    const labels = { intro:'خطوة ١', prep:'خطوة ٢', adjust:'خطوة ٣', done:'إنهاء', esc:'تسجيل بلاغ' };
+    const num = a => a.map((t, i) => ({ n: AR[i + 1], text: t.text, note: t.note || '' }));
+    return { pageBack: () => { if (history.length > 1) history.back(); else location.href = 'Installation Guide Home.dc.html'; },
+      stepLabel: labels[n] || '',
+      isIntro: n === 'intro', isPrep: n === 'prep', isAdjust: n === 'adjust',
+      isDone: n === 'done', isEsc: n === 'esc',
+      prepSteps: num(PREP),
+      adjustSteps: num(ADJUST),
+      toPrep: () => this.go('prep'),
+      toAdjust: () => this.go('adjust'),
+      toDone: () => this.go('done'),
+      toEsc: () => this.go('esc'),
+      back: () => this.setState(s => s.history.length ? { node: s.history[s.history.length - 1], history: s.history.slice(0, -1) } : {}),
+      restart: () => this.setState({ node: 'intro', history: [] })
+    };
+  }
+}
+</script>
+</body>
+</html>

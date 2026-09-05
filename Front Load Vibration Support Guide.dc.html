@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script>
+(function(){
+  var KEY = 'csGuideAuth_v1';
+  var USER = 'agent';
+  var PASS = 'LGE@2026';
+  function authed(){ try { return localStorage.getItem(KEY) === '1'; } catch(e){ return false; } }
+  if (authed()) return;
+  var u = window.prompt('اسم المستخدم / Username:');
+  var p = window.prompt('كلمة المرور / Password:');
+  if (u === USER && p === PASS) {
+    try { localStorage.setItem(KEY, '1'); } catch(e){}
+  } else {
+    window.stop();
+    document.open();
+    document.write('<div style="font-family:Tahoma,Arial,sans-serif;text-align:center;margin-top:80px;font-size:22px;color:#c00;">تم رفض الدخول<br>Access Denied</div>');
+    document.close();
+  }
+})();
+</script>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<title>دعم فني — اهتزاز الغسالة (سبب التركيب)</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&family=IBM+Plex+Sans+Arabic:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="./image-slot.js"></script>
+<style>
+  body { margin:0; background:#f4f3ef; }
+  a { color:#A50034; }
+  a:hover { color:#7d0027; }
+  @keyframes cardIn { from { opacity:0; transform:translateY(6px); } to { opacity:1; transform:none; } }
+</style>
+</helmet>
+<template id="__bundler_thumbnail"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><rect width="200" height="200" fill="#A50034"/><rect x="56" y="52" width="88" height="96" rx="10" fill="#fff"/><circle cx="100" cy="104" r="26" fill="none" stroke="#A50034" stroke-width="7"/><path d="M34 90 l-14 14 14 14M166 90 l14 14 -14 14" stroke="#fff" stroke-width="7" fill="none"/></svg></template>
+
+<div dir="rtl" style="min-height:100vh;background:#f4f3ef;color:#191a1c;font-family:'IBM Plex Sans Arabic',system-ui,sans-serif;">
+
+  <div style="background:#111314;color:#f4f3ef;padding:16px 28px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;position:sticky;top:0;z-index:20;">
+    <div style="width:9px;height:32px;background:#A50034;border-radius:2px;flex:none;"></div>
+    <div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:18px;">اهتزاز الغسالة — سبب التركيب — غسالة باب أمامي</div>
+    <div style="margin-right:auto;display:flex;flex-wrap:wrap;gap:10px;align-items:center;">
+      <div style="padding:7px 14px;border-radius:999px;background:#1e2224;font-size:12.5px;color:#c8cdd0;white-space:nowrap;flex:none;">{{ stepLabel }}</div>
+      <button type="button" onClick="{{ pageBack }}" style="padding:8px 16px;border-radius:8px;border:1px solid #3a4043;color:#f0a8bd;font-size:13px;background:transparent;cursor:pointer;font-family:'IBM Plex Sans Arabic',sans-serif;white-space:nowrap;flex:none;" style-hover="background:#22282a;">رجوع للصفحة السابقة</button>
+      <a href="Installation Guide Home.dc.html" style="padding:8px 16px;border-radius:8px;border:1px solid #3a4043;color:#f0a8bd;font-size:13px;text-decoration:none;white-space:nowrap;flex:none;" style-hover="background:#22282a;">الرئيسية</a>
+      <a href="Service Fees Table.dc.html#washers" style="padding:8px 16px;border-radius:8px;border:1px solid #3a4043;color:#f0a8bd;font-size:13px;text-decoration:none;white-space:nowrap;flex:none;" style-hover="background:#22282a;">جدول تكاليف الصيانة</a>
+      <button onClick="{{ restart }}" style="padding:8px 16px;border-radius:8px;border:1px solid #3a4043;background:transparent;color:#e4e7e9;font-family:'IBM Plex Sans Arabic',sans-serif;font-size:13px;cursor:pointer;white-space:nowrap;flex:none;" style-hover="background:#22282a;">من البداية</button>
+    </div>
+  </div>
+
+  <div style="max-width:1080px;margin:0 auto;padding:26px 28px 70px;display:flex;flex-direction:column;gap:16px;">
+
+    <div style="display:flex;gap:8px;align-items:center;">
+      <sc-for list="{{ track }}" as="p" hint-placeholder-count="5">
+        <div style="{{ p.style }}"></div>
+      </sc-for>
+    </div>
+
+    <sc-if value="{{ isIntro }}" hint-placeholder-val="{{ true }}">
+      <div style="background:#fff;border:1px solid #e3e0d8;border-radius:14px;padding:32px;border-top:4px solid #A50034;animation:cardIn .25s ease;">
+        <div style="background:#1c1a1b;color:#f6f1f2;border-radius:12px;padding:22px 24px;margin-bottom:20px;">
+          <div style="font-size:12.5px;color:#f0a8bd;margin-bottom:10px;font-weight:600;">افتتاح المكالمة — اقرأ للعميل</div>
+          <div style="font-family:'Cairo',sans-serif;font-size:17.5px;line-height:2.1;">«بعتذرلك عن الإزعاج. قبل ما نلجأ لأي إجراء تاني، أحب أراجع معاك كام خطوة بسيطة ممكن تساعدنا نحدد سبب المشكلة ونحلها في الحال. لو تسمحلي أتابع معاك ده هيوفر عليك الوقت وأي تكاليف أو زيارة غير ضرورية.»</div>
+        </div>
+
+        <div style="display:inline-block;padding:6px 14px;border-radius:999px;background:#fff5f7;border:1px solid #f0c2ce;color:#A50034;font-size:12.5px;font-weight:600;margin-bottom:16px;">غسالة باب أمامي والغسالة بالمجفف — Vibrations / Installation</div>
+
+        <div style="font-size:12.5px;font-weight:600;color:#A50034;letter-spacing:.04em;margin-bottom:10px;">السؤال الأول والأساسي</div>
+        <div style="font-family:'Cairo',sans-serif;font-weight:700;font-size:28px;line-height:1.45;margin-bottom:14px;">«هل تم إزالة مسامير تثبيت الحلة قبل تركيب الغسالة؟»</div>
+        <div style="font-size:15px;color:#3f4447;line-height:1.9;margin-bottom:20px;max-width:70ch;text-wrap:pretty;">مواد التغليف وظيفتها تثبيت الحلة الخارجية أثناء الشحن. لو اتسابت مكانها، الحلة الداخلية هتلف لكن الحلة الخارجية مش هتقدر تتحرك بالشكل المطلوب — وهنا يحدث الاهتزاز.</div>
+
+        <div style="background:#1c1a1b;color:#f6f1f2;border-radius:12px;padding:20px 22px;margin-bottom:22px;">
+          <div style="font-size:12.5px;color:#f0a8bd;margin-bottom:8px;font-weight:600;">اقرأ للعميل</div>
+          <div style="font-family:'Cairo',sans-serif;font-size:17px;line-height:2.05;">«الغسالة بتيجي من المصنع بمسامير نقل ودعامة للحلة من ناحية الضهر — لازم تتشال كلها قبل أول تشغيل. هل اتشالت؟»</div>
+        </div>
+
+        <div style="font-size:12.5px;color:#8a8f94;font-weight:600;margin-bottom:10px;">اختر إجابة العميل</div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;">
+          <button onClick="{{ toRemoval }}" style="text-align:right;padding:24px;border-radius:12px;border:1px solid #e3e0d8;background:#fff;cursor:pointer;font-family:'IBM Plex Sans Arabic',sans-serif;color:#191a1c;" style-hover="border-color:#A50034;background:#fdf5f7;">
+            <div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:22px;margin-bottom:6px;">لا — لم يتم إزالتها أو غير متأكد</div>
+            <div style="font-size:14px;color:#6b7075;line-height:1.7;">ننفّذ خطوات إزالة مسامير النقل ودعامة الحلة.</div>
+          </button>
+          <button onClick="{{ toLevelQ }}" style="text-align:right;padding:24px;border-radius:12px;border:1px solid #e3e0d8;background:#fff;cursor:pointer;font-family:'IBM Plex Sans Arabic',sans-serif;color:#191a1c;" style-hover="border-color:#A50034;background:#fdf5f7;">
+            <div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:22px;margin-bottom:6px;">نعم — تم إزالتها بالكامل</div>
+            <div style="font-size:14px;color:#6b7075;line-height:1.7;">ننتقل لفحص استواء الأرجل وقوة العصر.</div>
+          </button>
+        </div>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ isRemoval }}" hint-placeholder-val="{{ false }}">
+      <div style="background:#fff;border:1px solid #e3e0d8;border-radius:14px;padding:32px;border-top:4px solid #A50034;animation:cardIn .25s ease;">
+        <div style="background:#1c1a1b;color:#f6f1f2;border-radius:12px;padding:20px 22px;margin-bottom:20px;">
+          <div style="font-size:12.5px;color:#f0a8bd;margin-bottom:8px;font-weight:600;">اقرأ للعميل</div>
+          <div style="font-family:'Cairo',sans-serif;font-size:17px;line-height:2.05;">«لو سمحت افصل الغسالة من الكهربا وبُصّ من ورا الجهاز: لو لقيت أربع مسامير كبيرة أو دعامة مثبتة، دي مسامير النقل ولازم تتفك وتتشال كلها.»</div>
+        </div>
+
+        <div style="display:inline-block;padding:7px 16px;border-radius:999px;font-size:13px;font-weight:600;margin-bottom:16px;background:#fff5f7;border:1px solid #f0c2ce;color:#A50034;">الإجابة: مواد النقل موجودة أو غير متأكد</div>
+        <div style="font-family:'Cairo',sans-serif;font-weight:700;font-size:26px;line-height:1.45;margin-bottom:18px;">إزالة مسامير النقل ودعامة الحلة</div>
+
+        <div style="display:flex;gap:20px;align-items:flex-start;flex-wrap:wrap;margin-bottom:22px;">
+          <div style="flex:1;min-width:340px;display:grid;gap:12px;">
+            <sc-for list="{{ removalSteps }}" as="t" hint-placeholder-count="4">
+              <div style="display:flex;gap:16px;padding:17px 20px;border-radius:12px;background:#fbfaf7;border:1px solid #e9e6de;">
+                <div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:16px;color:#A50034;min-width:22px;">{{ t.n }}</div>
+                <div style="min-width:0;">
+                  <div style="font-size:15.5px;line-height:1.9;color:#3f4447;">{{ t.text }}</div>
+                  <sc-if value="{{ t.note }}" hint-placeholder-val="{{ false }}">
+                    <div style="margin-top:10px;padding:12px 16px;border-radius:10px;background:#fdf6e8;border:1px solid #ecd9ae;font-size:14.5px;line-height:1.85;color:#7a5410;"><strong>تنبيه:</strong> {{ t.note }}</div>
+                  </sc-if>
+                </div>
+              </div>
+            </sc-for>
+          </div>
+          <div style="width:250px;flex:none;background:#fbfaf7;border:1px solid #e9e6de;border-radius:12px;padding:14px;">
+            <div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:15px;margin-bottom:12px;">صور توضيحية</div>
+            <div style="display:grid;gap:10px;">
+              <div style="height:130px;"><image-slot id="flvib-1" shape="rounded" radius="10" placeholder="مسامير النقل من ضهر الغسالة"></image-slot></div>
+              <div style="height:130px;"><image-slot id="flvib-2" shape="rounded" radius="10" placeholder="فك المسامير بالمفتاح"></image-slot></div>
+              <div style="height:130px;"><image-slot id="flvib-3" shape="rounded" radius="10" placeholder="دعامة الحلة (tub support)"></image-slot></div>
+            </div>
+          </div>
+        </div>
+
+        <div style="padding:16px 20px;border-radius:12px;background:#f1f4f6;border:1px solid #dde3e7;font-size:14.5px;line-height:1.85;color:#3f4447;margin-bottom:22px;"><strong>Key word:</strong> Vibrations — Installation — shipping bolts — tub support</div>
+
+        <div style="display:grid;gap:12px;">
+          <button onClick="{{ toDone }}" style="text-align:right;padding:20px 22px;border-radius:12px;border:1px solid #c6e0d1;background:#eef6f1;cursor:pointer;font-family:'IBM Plex Sans Arabic',sans-serif;" style-hover="border-color:#0f5132;">
+            <div style="font-family:'Cairo',sans-serif;font-weight:700;font-size:18px;margin-bottom:4px;">اتحلّت المشكلة بعد إزالة مواد النقل</div>
+            <div style="font-size:14px;color:#6b7075;">إنهاء المكالمة بدون تسجيل طلب صيانة.</div>
+          </button>
+          <button onClick="{{ toLevelQ }}" style="text-align:right;padding:20px 22px;border-radius:12px;border:1px solid #d9d5cb;background:#fbfaf7;cursor:pointer;font-family:'IBM Plex Sans Arabic',sans-serif;" style-hover="border-color:#A50034;background:#fdf5f7;">
+            <div style="font-family:'Cairo',sans-serif;font-weight:700;font-size:18px;margin-bottom:4px;">الاهتزاز مستمر بعد إزالتها — التالي</div>
+            <div style="font-size:14px;color:#6b7075;">ننتقل لفحص استواء الأرجل وقوة العصر.</div>
+          </button>
+        </div>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ isLevelQ }}" hint-placeholder-val="{{ false }}">
+      <div style="background:#fff;border:1px solid #e3e0d8;border-radius:14px;padding:32px;border-top:4px solid #A50034;animation:cardIn .25s ease;">
+        <div style="background:#1c1a1b;color:#f6f1f2;border-radius:12px;padding:20px 22px;margin-bottom:20px;">
+          <div style="font-size:12.5px;color:#f0a8bd;margin-bottom:8px;font-weight:600;">اقرأ للعميل</div>
+          <div style="font-family:'Cairo',sans-serif;font-size:17px;line-height:2.05;">«لو سمحت ادفع الغسالة بلطف من الأربع أركان واحد واحد: هي بتتحرك أو غير ثابتة من أي رُكن، ولا ثابتة تمامًا على الأرض؟»</div>
+        </div>
+
+        <div style="font-size:12.5px;font-weight:600;color:#A50034;letter-spacing:.04em;margin-bottom:10px;">السؤال الثاني — استواء الأرجل</div>
+        <div style="font-family:'Cairo',sans-serif;font-weight:700;font-size:28px;line-height:1.45;margin-bottom:14px;">«هل الغسالة ثابتة ومستوية على الأرض؟»</div>
+        <div style="font-size:15px;color:#3f4447;line-height:1.9;margin-bottom:22px;max-width:70ch;text-wrap:pretty;">الأربع أرجل لازمة تلمس الأرض وتكون ثابتة تمامًا بدون أي ارتخاء، والأرضية صلبة ومستوية — ممنوع التركيب على سجادة سميكة أو أرضية خشب مرتخية أو بلاط غير مستقر.</div>
+
+        <div style="font-size:12.5px;color:#8a8f94;font-weight:600;margin-bottom:10px;">اختر إجابة العميل</div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;">
+          <button onClick="{{ toLegs }}" style="text-align:right;padding:24px;border-radius:12px;border:1px solid #e3e0d8;background:#fff;cursor:pointer;font-family:'IBM Plex Sans Arabic',sans-serif;color:#191a1c;" style-hover="border-color:#A50034;background:#fdf5f7;">
+            <div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:22px;margin-bottom:6px;">لا — بتتحرك أو غير ثابتة</div>
+            <div style="font-size:14px;color:#6b7075;line-height:1.7;">ننفّذ طريقة ضبط أرجل الغسالة بالتفصيل.</div>
+          </button>
+          <button onClick="{{ toSpin }}" style="text-align:right;padding:24px;border-radius:12px;border:1px solid #e3e0d8;background:#fff;cursor:pointer;font-family:'IBM Plex Sans Arabic',sans-serif;color:#191a1c;" style-hover="border-color:#A50034;background:#fdf5f7;">
+            <div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:22px;margin-bottom:6px;">نعم — ثابتة ومستوية</div>
+            <div style="font-size:14px;color:#6b7075;line-height:1.7;">ننتقل لفحص قوة العصر وتوزيع الحمولة.</div>
+          </button>
+        </div>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ isLegs }}" hint-placeholder-val="{{ false }}">
+      <div style="background:#fff;border:1px solid #e3e0d8;border-radius:14px;padding:32px;border-top:4px solid #A50034;animation:cardIn .25s ease;">
+        <div style="background:#1c1a1b;color:#f6f1f2;border-radius:12px;padding:20px 22px;margin-bottom:20px;">
+          <div style="font-size:12.5px;color:#f0a8bd;margin-bottom:8px;font-weight:600;">اقرأ للعميل</div>
+          <div style="font-family:'Cairo',sans-serif;font-size:17px;line-height:2.05;">«الغسالة لها أربع أرجل من تحت. حدّد الرُكن اللي الجهاز بيتحرك منه، فُك صامولة التثبيت اللي فوق الرجل، ولف الرجل عكس عقارب الساعة علشان ترفعها — ربع لفة وشوف. لما الجهاز يستقر تمامًا اربط الصامولة لفوق كويس علشان ما ترجعش تلف مع الاهتزاز.»</div>
+        </div>
+
+        <div style="font-size:12.5px;font-weight:600;color:#A50034;letter-spacing:.04em;margin-bottom:10px;">الإجابة: الغسالة غير مستوية — طريقة الضبط</div>
+        <div style="font-family:'Cairo',sans-serif;font-weight:700;font-size:26px;line-height:1.45;margin-bottom:18px;">طريقة ضبط أرجل الغسالة</div>
+
+        <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center;padding:12px 16px;border-radius:10px;background:#fff5f7;border:1px solid #f0c2ce;margin-bottom:18px;font-size:15px;line-height:1.7;">
+          <span style="color:#A50034;font-weight:700;">↺ لرفع الرجل: عكس عقارب الساعة</span>
+          <span style="color:#e0c3ce;">|</span>
+          <span style="color:#A50034;font-weight:700;">↻ لخفض الرجل: مع عقارب الساعة</span>
+        </div>
+
+        <div style="display:flex;gap:20px;align-items:flex-start;flex-wrap:wrap;margin-bottom:22px;">
+          <div style="flex:1;min-width:340px;display:grid;gap:12px;">
+            <sc-for list="{{ legSteps }}" as="t" hint-placeholder-count="8">
+              <div style="display:flex;gap:16px;padding:17px 20px;border-radius:12px;background:#fbfaf7;border:1px solid #e9e6de;">
+                <div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:16px;color:#A50034;min-width:22px;">{{ t.n }}</div>
+                <div style="min-width:0;">
+                  <div style="font-size:15.5px;line-height:1.9;color:#3f4447;">{{ t.text }}</div>
+                  <sc-if value="{{ t.note }}" hint-placeholder-val="{{ false }}">
+                    <div style="margin-top:10px;padding:12px 16px;border-radius:10px;background:#fdf6e8;border:1px solid #ecd9ae;font-size:14.5px;line-height:1.85;color:#7a5410;"><strong>تنبيه:</strong> {{ t.note }}</div>
+                  </sc-if>
+                </div>
+              </div>
+            </sc-for>
+          </div>
+          <div style="width:250px;flex:none;background:#fbfaf7;border:1px solid #e9e6de;border-radius:12px;padding:14px;">
+            <div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:15px;margin-bottom:12px;">صور توضيحية</div>
+            <div style="display:grid;gap:10px;">
+              <div style="height:130px;"><image-slot id="flvib-leg-1" shape="rounded" radius="10" placeholder="رجل الغسالة وصامولة التثبيت"></image-slot></div>
+              <div style="height:130px;"><image-slot id="flvib-leg-2" shape="rounded" radius="10" placeholder="ميزان المياه فوق الغسالة"></image-slot></div>
+            </div>
+          </div>
+        </div>
+
+        <div style="display:grid;gap:12px;">
+          <button onClick="{{ toDone }}" style="text-align:right;padding:20px 22px;border-radius:12px;border:1px solid #c6e0d1;background:#eef6f1;cursor:pointer;font-family:'IBM Plex Sans Arabic',sans-serif;" style-hover="border-color:#0f5132;">
+            <div style="font-family:'Cairo',sans-serif;font-weight:700;font-size:18px;margin-bottom:4px;">اتحلّت المشكلة بعد ضبط الأرجل</div>
+            <div style="font-size:14px;color:#6b7075;">إنهاء المكالمة بدون تسجيل طلب صيانة.</div>
+          </button>
+          <button onClick="{{ toSpin }}" style="text-align:right;padding:20px 22px;border-radius:12px;border:1px solid #d9d5cb;background:#fbfaf7;cursor:pointer;font-family:'IBM Plex Sans Arabic',sans-serif;" style-hover="border-color:#A50034;background:#fdf5f7;">
+            <div style="font-family:'Cairo',sans-serif;font-weight:700;font-size:18px;margin-bottom:4px;">الاهتزاز مستمر — التالي</div>
+            <div style="font-size:14px;color:#6b7075;">فحص قوة العصر وتوزيع الحمولة.</div>
+          </button>
+        </div>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ isSpin }}" hint-placeholder-val="{{ false }}">
+      <div style="background:#fff;border:1px solid #e3e0d8;border-radius:14px;padding:32px;border-top:4px solid #A50034;animation:cardIn .25s ease;">
+        <div style="font-size:12.5px;font-weight:600;color:#A50034;letter-spacing:.04em;margin-bottom:10px;">الخطوة الأخيرة قبل القرار</div>
+        <div style="font-family:'Cairo',sans-serif;font-weight:700;font-size:26px;line-height:1.45;margin-bottom:18px;">قوة العصر وتوزيع الحمولة</div>
+        <div style="background:#1c1a1b;color:#f6f1f2;border-radius:12px;padding:20px 22px;margin-bottom:20px;">
+          <div style="font-size:12.5px;color:#f0a8bd;margin-bottom:8px;font-weight:600;">اقرأ للعميل</div>
+          <div style="font-family:'Cairo',sans-serif;font-size:17px;line-height:2.05;">«الاهتزاز بيزيد لما قوة العصر تكون عالية مع حمولة صغيرة جدًا أو تقيلة زي البطاطين. قلّل قوة العصر من زرار الـ Spin، ووزّع الهدوم جوه الحلة بالتساوي، وشغّل دورة قصيرة ونشوف.»</div>
+        </div>
+
+
+        <div style="display:grid;gap:12px;margin-bottom:22px;">
+          <sc-for list="{{ spinSteps }}" as="t" hint-placeholder-count="4">
+            <div style="display:flex;gap:16px;padding:17px 20px;border-radius:12px;background:#fbfaf7;border:1px solid #e9e6de;">
+              <div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:16px;color:#A50034;min-width:22px;">{{ t.n }}</div>
+              <div style="min-width:0;">
+                <div style="font-size:15.5px;line-height:1.9;color:#3f4447;">{{ t.text }}</div>
+                <sc-if value="{{ t.note }}" hint-placeholder-val="{{ false }}">
+                  <div style="margin-top:10px;padding:12px 16px;border-radius:10px;background:#fdf6e8;border:1px solid #ecd9ae;font-size:14.5px;line-height:1.85;color:#7a5410;"><strong>تنبيه:</strong> {{ t.note }}</div>
+                </sc-if>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+
+        <div style="display:grid;gap:12px;">
+          <button onClick="{{ toDone }}" style="text-align:right;padding:20px 22px;border-radius:12px;border:1px solid #c6e0d1;background:#eef6f1;cursor:pointer;font-family:'IBM Plex Sans Arabic',sans-serif;" style-hover="border-color:#0f5132;">
+            <div style="font-family:'Cairo',sans-serif;font-weight:700;font-size:18px;margin-bottom:4px;">اتحلّت المشكلة بعد تقليل العصر وتوزيع الحمولة</div>
+            <div style="font-size:14px;color:#6b7075;">إنهاء المكالمة بدون تسجيل طلب صيانة.</div>
+          </button>
+          <button onClick="{{ toEsc }}" style="text-align:right;padding:20px 22px;border-radius:12px;border:1px solid #f0c2ce;background:#fff5f7;cursor:pointer;font-family:'IBM Plex Sans Arabic',sans-serif;" style-hover="border-color:#A50034;">
+            <div style="font-family:'Cairo',sans-serif;font-weight:700;font-size:18px;margin-bottom:4px;">الاهتزاز مستمر بعد كل الخطوات — تسجيل طلب صيانة</div>
+          </button>
+        </div>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ isDone }}" hint-placeholder-val="{{ false }}">
+      <div style="background:#fff;border:1px solid #c6e0d1;border-radius:14px;padding:32px;border-top:4px solid #0f5132;animation:cardIn .25s ease;">
+        <div style="font-family:'Cairo',sans-serif;font-weight:700;font-size:26px;line-height:1.5;margin-bottom:18px;">اتحلّت المشكلة — إنهاء المكالمة</div>
+        <div style="padding:18px 22px;border-radius:12px;background:#eef6f1;border:1px solid #c6e0d1;font-size:15.5px;line-height:1.95;margin-bottom:20px;">
+          نبّه العميل يحتفظ بمسامير النقل ودعامة الحلة في مكان آمن، لأنها لازم تتركب تاني <strong>لو الغسالة هتتنقل أو تتشحن</strong>، وإن أي نقل للجهاز يستوجب <strong>إعادة ضبط الأرجل</strong> — ثم أنهِ المكالمة بدون تسجيل طلب صيانة.
+        </div>
+        <a href="Washer Support Topics.dc.html" style="display:inline-block;padding:14px 22px;border-radius:10px;background:#A50034;color:#fff;font-family:'Cairo',sans-serif;font-weight:700;font-size:15px;text-decoration:none;" style-hover="background:#7d0027;">إنهاء المكالمة</a>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ isEsc }}" hint-placeholder-val="{{ false }}">
+      <div style="background:#fff;border:1px solid #f0c2ce;border-radius:14px;padding:32px;border-top:4px solid #A50034;animation:cardIn .25s ease;">
+        <div style="font-family:'Cairo',sans-serif;font-weight:700;font-size:26px;line-height:1.5;margin-bottom:18px;">الجهاز يحتاج زيارة فني</div>
+        <div style="background:#1c1a1b;color:#f6f1f2;border-radius:12px;padding:20px 22px;margin-bottom:20px;">
+          <div style="font-size:12.5px;color:#f0a8bd;margin-bottom:8px;font-weight:600;">اقرأ للعميل</div>
+          <div style="font-family:'Cairo',sans-serif;font-size:17px;line-height:2.05;">«هسجّل لحضرتك طلب صيانة وزيارة فني. الصيانة داخل فترة الضمان مجانية تمامًا. ولو ظهر إن السبب مش عطل فني في الجهاز، أو إن العطل خارج نطاق الضمان، بتكون في تكلفة زيارة ومعاينة ١٨٢ جنيه لأول زيارة، وأي زيارة بعدها ٣٠٠ جنيه — وتكلفة الصيانة نفسها بتتحدد بعد ما الفني يعاين الجهاز، وهتُعرض على حضرتك للموافقة قبل أي إصلاح.»</div>
+        </div>
+
+        <a href="Service Fees Table.dc.html#washers" style="display:flex;align-items:center;gap:14px;padding:18px 22px;border-radius:12px;border:1px solid #f0c2ce;background:#fff5f7;text-decoration:none;margin-bottom:20px;" style-hover="border-color:#A50034;">
+          <div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:17px;color:#A50034;">رسوم الغسالات وغسالات الأطباق</div>
+          <div style="font-size:14px;color:#3f4447;line-height:1.7;">اضغط لعرض رسوم الصيانة والزيارة الخاصة بالمنتج — صباحي ومسائي.</div>
+          <div style="margin-right:auto;color:#A50034;font-size:18px;">←</div>
+        </a>
+
+
+        <div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:18px;margin-bottom:12px;">نظام تسجيل الطلب</div>
+        <div style="display:grid;gap:10px;margin-bottom:20px;">
+          <div style="display:flex;gap:14px;padding:15px 18px;border-radius:12px;background:#fbfaf7;border:1px solid #e9e6de;"><div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:16px;color:#A50034;min-width:20px;">١</div><div style="font-size:15px;line-height:1.9;">يتم تسجيل <strong>كل الخطوات اللي تمت مع العميل</strong> ونوع الغسالة و<strong>رقم الموديل</strong> في البلاغ. (لو رقم الموديل مش متوفر يتم تسجيل البلاغ بعد التأكد إن الجهاز إل جي ومشترى من داخل مصر)</div></div>
+          <div style="display:flex;gap:14px;padding:15px 18px;border-radius:12px;background:#fbfaf7;border:1px solid #e9e6de;"><div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:16px;color:#A50034;min-width:20px;">٢</div><div style="font-size:15px;line-height:1.9;">الاسم الثلاثي للعميل كما هو مسجل في فاتورة الشراء (لو مش متوفر يتم السؤال عن اسم صاحب الجهاز).</div></div>
+          <div style="display:flex;gap:14px;padding:15px 18px;border-radius:12px;background:#fbfaf7;border:1px solid #e9e6de;"><div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:16px;color:#A50034;min-width:20px;">٣</div><div style="font-size:15px;line-height:1.9;">رقم الهاتف الأساسي ورقم إضافي إن وجد.</div></div>
+          <div style="display:flex;gap:14px;padding:15px 18px;border-radius:12px;background:#fbfaf7;border:1px solid #e9e6de;"><div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:16px;color:#A50034;min-width:20px;">٤</div><div style="font-size:15px;line-height:1.9;">العنوان بالتفصيل (المحافظة، المنطقة، اسم الشارع، رقم العمارة، الدور، الشقة، علامة مميزة).</div></div>
+          <div style="display:flex;gap:14px;padding:15px 18px;border-radius:12px;background:#fbfaf7;border:1px solid #e9e6de;"><div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:16px;color:#A50034;min-width:20px;">٥</div><div style="font-size:15px;line-height:1.9;">استفسر منه عن الموعد المفضل وسجّله على الأوردر. (لو لم يرد على السؤال يتم اختيار أقرب موعد متاح وإبلاغ العميل به)</div></div>
+        </div>
+
+        <a href="Washer Support Topics.dc.html" style="display:inline-block;padding:14px 22px;border-radius:10px;background:#A50034;color:#fff;font-family:'Cairo',sans-serif;font-weight:700;font-size:15px;text-decoration:none;" style-hover="background:#7d0027;">تم تسجيل البلاغ — إنهاء المكالمة</a>
+      </div>
+    </sc-if>
+
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const AR = ['٠','١','٢','٣','٤','٥','٦','٧','٨','٩','١٠'];
+
+const REMOVAL = [
+  { text:'اطلب من العميل يفصل الغسالة عن الكهرباء ويبُصّ من ناحية ضهر الجهاز.' },
+  { text:'التأكد من إزالة مسامير النقل الأربعة (shipping bolts) بالكامل — الأربعة مش تلاتة — ويتم إزالتها باستخدام المفتاح المرفق مع الغسالة، مع التأكيد على وضع أغطية فتحات المسامير (الكاوتش) بعد فكها.',
+    note:'مسمار واحد متسايب كفاية يسبب اهتزاز قوي وصوت عالي أثناء العصر.' },
+  { text:'التأكد من إزالة دعامة الحلة (tub support) وأي مواد تغليف أو إسفنج أو كرتون من جوه أو من ناحية الضهر.' },
+  { text:'إعادة توصيل الكهرباء وتشغيل دورة قصيرة بحمولة متوسطة موزعة، ومتابعة الاهتزاز.' }
+];
+
+const LEGS = [
+  { text:'فصل الغسالة عن الكهرباء وقفل محبس المياه قبل أي تعديل.' },
+  { text:'التأكد إن الأرضية صلبة ومستوية — ممنوع التركيب على سجادة سميكة أو أرضية خشب مرتخية أو بلاط غير مستقر.' },
+  { text:'تحديد الرجل الواطية: دفع الجهاز بلطف من كل رُكن على حدة وملاحظة الرُكن اللي بيتحرك أو غير مستقر.' },
+  { text:'فك صامولة التثبيت الموجودة أعلى الرجل بمفتاح مناسب قبل لف الرجل.',
+    note:'لو الصامولة مربوطة مش هتقدر تلف الرجل — ودي أشهر سبب إن العميل يفتكر إن الرجل مش بتتحرك.' },
+  { text:'استخدام ميزان مياه فوق سطح الغسالة من الأمام للخلف ومن اليمين للشمال. لو مافيش ميزان: كوباية مياه ممتلئة لنص فوق الجهاز وملاحظة مستوى المياه.' },
+  { text:'بعد الوصول للاستواء: ربط صامولة التثبيت لأعلى ناحية جسم الغسالة بإحكام علشان الرجل ما ترجعش تلف مع الاهتزاز.' },
+  { text:'التأكد النهائي: الأربع أرجل ملامسة للأرض، الجهاز ما يتحركش عند الدفع، ثم تشغيل دورة عصر قصيرة ومراقبة الاهتزاز.',
+    note:'أي نقل للغسالة أو تغيير مكانها يستوجب إعادة ضبط الأرجل من الأول.' }
+];
+
+const SPIN = [
+  { text:'التأكد إن قوة العصر مناسبة لكمية الملابس — الحمولة القليلة جدًا أو الكبيرة جدًا مع عصر عالي بتسبب عدم توازن واهتزاز قوي.' },
+  { text:'تقليل قوة العصر من زرار الـ Spin مع الحمولات الصغيرة أو الملابس التقيلة (بطاطين، مفارش).' },
+  { text:'توزيع الملابس داخل الحلة بالتساوي وعدم تجميعها في ناحية واحدة.' },
+  { text:'إبلاغ العميل بتشغيل دورة عصر قصيرة بعد التعديل، والاتصال بنا تاني لو الاهتزاز استمر.',
+    note:'لو الاهتزاز لسه موجود بعد إزالة مواد النقل وضبط الأرجل وتقليل العصر — يتم تسجيل بلاغ.' }
+];
+
+const ORDER = ['intro','removal','levelq','legs','spin'];
+
+class Component extends DCLogic {
+  state = { node: 'intro', history: [] };
+  go(n) { this.setState(s => ({ node: n, history: s.history.concat([s.node]) })); window.scrollTo(0, 0); }
+  componentDidMount() {
+    if (typeof location !== 'undefined' && location.hash === '#legs') this.setState({ node: 'legs', history: ['intro'] });
+  }
+  renderVals() {
+    const n = this.state.node;
+    const labels = { intro:'خطوة ١', removal:'إزالة مواد النقل', levelq:'استواء الأرجل', legs:'ضبط الأرجل', spin:'قوة العصر', done:'إنهاء', esc:'تسجيل بلاغ' };
+    const pos = ORDER.indexOf(n);
+    return { pageBack: () => { if (history.length > 1) history.back(); else location.href = 'Installation Guide Home.dc.html'; },
+      stepLabel: labels[n] || '',
+      track: ORDER.map((k, i) => ({
+        style: 'height:5px;border-radius:999px;flex:1;background:' +
+          (pos < 0 ? (n === 'esc' ? '#A50034' : '#0f5132') : (i <= pos ? '#A50034' : '#e3e0d8')) + ';'
+      })),
+      isIntro: n === 'intro', isRemoval: n === 'removal', isLevelQ: n === 'levelq',
+      isLegs: n === 'legs', isSpin: n === 'spin', isDone: n === 'done', isEsc: n === 'esc',
+      removalSteps: REMOVAL.map((t, i) => ({ n: AR[i + 1], text: t.text, note: t.note || '' })),
+      legSteps: LEGS.map((t, i) => ({ n: AR[i + 1], text: t.text, note: t.note || '' })),
+      spinSteps: SPIN.map((t, i) => ({ n: AR[i + 1], text: t.text, note: t.note || '' })),
+      toRemoval: () => this.go('removal'),
+      toLevelQ: () => this.go('levelq'),
+      toLegs: () => this.go('legs'),
+      toSpin: () => this.go('spin'),
+      toDone: () => this.go('done'),
+      toEsc: () => this.go('esc'),
+      back: () => this.setState(s => s.history.length ? { node: s.history[s.history.length - 1], history: s.history.slice(0, -1) } : {}),
+      restart: () => this.setState({ node: 'intro', history: [] })
+    };
+  }
+}
+</script>
+</body>
+</html>
