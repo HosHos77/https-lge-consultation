@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script>
+(function(){
+  var KEY = 'csGuideAuth_v1';
+  var USER = 'agent';
+  var PASS = 'LGE@2026';
+  function authed(){ try { return localStorage.getItem(KEY) === '1'; } catch(e){ return false; } }
+  if (authed()) return;
+  var u = window.prompt('اسم المستخدم / Username:');
+  var p = window.prompt('كلمة المرور / Password:');
+  if (u === USER && p === PASS) {
+    try { localStorage.setItem(KEY, '1'); } catch(e){}
+  } else {
+    window.stop();
+    document.open();
+    document.write('<div style="font-family:Tahoma,Arial,sans-serif;text-align:center;margin-top:80px;font-size:22px;color:#c00;">تم رفض الدخول<br>Access Denied</div>');
+    document.close();
+  }
+})();
+</script>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<title>دعم فني — الثلاجة لا تصنع ثلج</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&family=IBM+Plex+Sans+Arabic:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  body { margin:0; background:#f4f3ef; }
+  a { color:#A50034; }
+  a:hover { color:#7d0027; }
+  @keyframes cardIn { from { opacity:0; transform:translateY(6px); } to { opacity:1; transform:none; } }
+</style>
+</helmet>
+<template id="__bundler_thumbnail"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><rect width="200" height="200" fill="#A50034"/><rect x="62" y="60" width="76" height="80" rx="8" fill="#fff"/><rect x="76" y="78" width="20" height="20" rx="3" fill="#A50034"/><rect x="104" y="78" width="20" height="20" rx="3" fill="#A50034"/><rect x="76" y="106" width="48" height="8" rx="4" fill="#f0a8bd"/></svg></template>
+
+<div dir="rtl" style="min-height:100vh;background:#f4f3ef;color:#191a1c;font-family:'IBM Plex Sans Arabic',system-ui,sans-serif;">
+
+  <div style="background:#111314;color:#f4f3ef;padding:16px 28px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;position:sticky;top:0;z-index:5;">
+    <div style="width:9px;height:32px;background:#A50034;border-radius:2px;flex:none;"></div>
+    <div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:18px;">الثلاجة لا تصنع ثلج</div>
+    <div style="margin-right:auto;display:flex;flex-wrap:wrap;gap:10px;align-items:center;">
+      <div style="padding:7px 14px;border-radius:999px;background:#1e2224;font-size:12.5px;color:#c8cdd0;white-space:nowrap;flex:none;">{{ stepLabel }}</div>
+      <button type="button" onClick="{{ pageBack }}" style="padding:8px 16px;border-radius:8px;border:1px solid #3a4043;color:#f0a8bd;font-size:13px;background:transparent;cursor:pointer;font-family:'IBM Plex Sans Arabic',sans-serif;white-space:nowrap;flex:none;" style-hover="background:#22282a;">رجوع للصفحة السابقة</button>
+      <a href="Installation Guide Home.dc.html" style="padding:8px 16px;border-radius:8px;border:1px solid #3a4043;color:#f0a8bd;font-size:13px;text-decoration:none;white-space:nowrap;flex:none;" style-hover="background:#22282a;">الرئيسية</a>
+      <a href="Service Fees Table.dc.html#fridge" style="padding:8px 16px;border-radius:8px;border:1px solid #3a4043;color:#f0a8bd;font-size:13px;text-decoration:none;white-space:nowrap;flex:none;" style-hover="background:#22282a;">جدول تكاليف الصيانة</a>
+      <button onClick="{{ restart }}" style="padding:8px 16px;border-radius:8px;border:1px solid #3a4043;background:transparent;color:#e4e7e9;font-family:'IBM Plex Sans Arabic',sans-serif;font-size:13px;cursor:pointer;white-space:nowrap;flex:none;" style-hover="background:#22282a;">من البداية</button>
+    </div>
+  </div>
+
+  <div style="max-width:1080px;margin:0 auto;padding:30px 28px 70px;display:flex;flex-direction:column;gap:18px;">
+
+    <sc-if value="{{ isS0 }}" hint-placeholder-val="{{ true }}">
+      <div style="background:#fff;border:1px solid #e3e0d8;border-radius:14px;padding:32px;border-top:4px solid #A50034;animation:cardIn .25s ease;">
+        <div style="background:#1c1a1b;color:#f6f1f2;border-radius:12px;padding:22px 24px;margin-bottom:20px;">
+          <div style="font-size:12.5px;color:#f0a8bd;margin-bottom:10px;font-weight:600;">افتتاح المكالمة — اقرأ للعميل</div>
+          <div style="font-family:'Cairo',sans-serif;font-size:17.5px;line-height:2.1;">«بعتذرلك عن الإزعاج. قبل ما نلجأ لأي إجراء تاني، أحب أراجع معاك كام خطوة بسيطة ممكن تساعدنا نحدد سبب المشكلة ونحلها في الحال. لو تسمحلي أتابع معاك ده هيوفر عليك الوقت وأي تكاليف أو زيارة غير ضرورية.»</div>
+        </div>
+        <div style="font-size:12.5px;font-weight:600;color:#A50034;letter-spacing:.04em;margin-bottom:10px;">نظرة سريعة</div>
+        <div style="font-family:'Cairo',sans-serif;font-weight:700;font-size:26px;line-height:1.5;margin-bottom:14px;">الأسباب: خط المياه · صانع الثلج مطفي · حرارة الفريزر غير كافية</div>
+        <div style="font-size:15.5px;color:#3f4447;line-height:1.95;margin-bottom:20px;max-width:70ch;text-wrap:pretty;">لو الثلاجة بطّلت تعمل ثلج، غالبًا السبب <strong>مشكلة في خط المياه</strong>، أو <strong>صانع الثلج مطفي</strong>، أو <strong>حرارة الفريزر مش باردة كفاية</strong>. اتبع الخطوات بالترتيب مع العميل.</div>
+        <div style="padding:18px 22px;border-radius:12px;background:#fff5f7;border:1px solid #f0c2ce;font-size:15.5px;line-height:1.95;margin-bottom:20px;">
+          <strong>ملاحظة:</strong> لو ظهر أي رمز خطأ على لوحة العرض، يتم التعامل حسب الكود من <a href="Fridge Error Codes Support Guide.dc.html">دليل أكواد أخطاء الثلاجة</a> أولًا.
+        </div>
+        <button onClick="{{ toS1 }}" style="padding:14px 22px;border-radius:10px;background:#A50034;color:#fff;font-family:'Cairo',sans-serif;font-weight:700;font-size:15px;cursor:pointer;border:none;" style-hover="background:#7d0027;">ابدأ — الخطوة الأولى</button>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ isS1 }}" hint-placeholder-val="{{ false }}">
+      <div style="background:#fff;border:1px solid #e3e0d8;border-radius:14px;padding:32px;border-top:4px solid #A50034;animation:cardIn .25s ease;">
+        <div style="font-size:12.5px;font-weight:600;color:#A50034;letter-spacing:.04em;margin-bottom:10px;">الخطوة ١ — مدة التركيب</div>
+        <div style="font-family:'Cairo',sans-serif;font-weight:700;font-size:26px;line-height:1.5;margin-bottom:18px;">هل مرّ على تركيب الثلاجة أكثر من ٢٤ ساعة؟</div>
+        <div style="background:#1c1a1b;color:#f6f1f2;border-radius:12px;padding:20px 22px;margin-bottom:20px;">
+          <div style="font-size:12.5px;color:#f0a8bd;margin-bottom:8px;font-weight:600;">اقرأ للعميل</div>
+          <div style="font-family:'Cairo',sans-serif;font-size:17px;line-height:2.05;">«الثلاجة اتركبت وشغّالة من امتى؟ عدّى عليها أكتر من ٢٤ ساعة ولا لسه؟»</div>
+        </div>
+        <div style="display:grid;gap:12px;">
+          <button onClick="{{ toS2 }}" style="text-align:right;padding:20px 22px;border-radius:12px;border:1px solid #c6e0d1;background:#eef6f1;cursor:pointer;font-family:'IBM Plex Sans Arabic',sans-serif;" style-hover="border-color:#0f5132;">
+            <div style="font-family:'Cairo',sans-serif;font-weight:700;font-size:18px;margin-bottom:4px;">نعم — أكثر من ٢٤ ساعة</div>
+            <div style="font-size:14px;color:#6b7075;">نكمل لفحص سلة الثلج.</div>
+          </button>
+          <button onClick="{{ toWait }}" style="text-align:right;padding:20px 22px;border-radius:12px;border:1px solid #f0c2ce;background:#fff5f7;cursor:pointer;font-family:'IBM Plex Sans Arabic',sans-serif;" style-hover="border-color:#A50034;">
+            <div style="font-family:'Cairo',sans-serif;font-weight:700;font-size:18px;margin-bottom:4px;">لا — أقل من ٢٤ ساعة</div>
+            <div style="font-size:14px;color:#8a5555;">يُطلب من العميل الانتظار ٢٤ ساعة.</div>
+          </button>
+        </div>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ isWait }}" hint-placeholder-val="{{ false }}">
+      <div style="background:#fff;border:1px solid #c6e0d1;border-radius:14px;padding:32px;border-top:4px solid #0f5132;animation:cardIn .25s ease;">
+        <div style="background:#1c1a1b;color:#f6f1f2;border-radius:12px;padding:20px 22px;margin-bottom:20px;">
+          <div style="font-size:12.5px;color:#f0a8bd;margin-bottom:8px;font-weight:600;">اقرأ للعميل</div>
+          <div style="font-family:'Cairo',sans-serif;font-size:17px;line-height:2.05;">«الثلاجة الجديدة بتاخد لحد ٢٤ ساعة لحد ما توصل لدرجة الحرارة المطلوبة ويبدأ صانع الثلج يشتغل. ممكن نتأكد إن صانع الثلج في وضع التشغيل ونستنى ٢٤ ساعة، ولو مفيش ثلج بعدها تواصل معانا.»</div>
+        </div>
+        <div style="font-family:'Cairo',sans-serif;font-weight:700;font-size:26px;line-height:1.5;margin-bottom:18px;">الانتظار ٢٤ ساعة مع التأكد إن صانع الثلج شغّال</div>
+        <div style="padding:18px 22px;border-radius:12px;background:#eef6f1;border:1px solid #c6e0d1;font-size:15.5px;line-height:1.95;margin-bottom:20px;">
+          لو الثلاجة اتركبت حديثًا، كل حجرة بتاخد <strong>لحد ٢٤ ساعة</strong> للوصول لدرجة الحرارة المطلوبة وقبل ما صانع الثلج يبدأ ينتج ثلج. يتم التأكد إن <strong>صانع الثلج في وضع التشغيل</strong> ثم الانتظار ٢٤ ساعة.
+        </div>
+        <div style="display:flex;gap:12px;flex-wrap:wrap;">
+          <button onClick="{{ toS4 }}" style="padding:14px 22px;border-radius:10px;border:1px solid #d9d5cb;background:#fbfaf7;color:#191a1c;font-family:'Cairo',sans-serif;font-weight:700;font-size:15px;cursor:pointer;" style-hover="border-color:#A50034;">التأكد من وضع تشغيل صانع الثلج الآن</button>
+          <a href="Fridge Support Topics.dc.html" style="padding:14px 22px;border-radius:10px;background:#A50034;color:#fff;font-family:'Cairo',sans-serif;font-weight:700;font-size:15px;text-decoration:none;" style-hover="background:#7d0027;">تم إفادة العميل — إنهاء المكالمة</a>
+        </div>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ isS2 }}" hint-placeholder-val="{{ false }}">
+      <div style="background:#fff;border:1px solid #e3e0d8;border-radius:14px;padding:32px;border-top:4px solid #A50034;animation:cardIn .25s ease;">
+        <div style="font-size:12.5px;font-weight:600;color:#A50034;letter-spacing:.04em;margin-bottom:10px;">الخطوة ٢ — سلة الثلج</div>
+        <div style="font-family:'Cairo',sans-serif;font-weight:700;font-size:26px;line-height:1.5;margin-bottom:18px;">هل يوجد ثلج داخل السلة؟</div>
+        <div style="background:#1c1a1b;color:#f6f1f2;border-radius:12px;padding:20px 22px;margin-bottom:20px;">
+          <div style="font-size:12.5px;color:#f0a8bd;margin-bottom:8px;font-weight:600;">اقرأ للعميل</div>
+          <div style="font-family:'Cairo',sans-serif;font-size:17px;line-height:2.05;">«ممكن حضرتك تفتح سلة الثلج وتشوف — فيه ثلج جواها ولا فاضية خالص؟»</div>
+        </div>
+        <div style="font-size:14.5px;color:#6b7075;line-height:1.85;margin-bottom:18px;max-width:70ch;text-wrap:pretty;">لو فيه ثلج في السلة بس مش بيخرج للعميل، فالمشكلة في <strong>خروج الثلج</strong> وليست في تصنيعه — وده مسار مختلف.</div>
+        <div style="display:grid;gap:12px;">
+          <button onClick="{{ toDispense }}" style="text-align:right;padding:20px 22px;border-radius:12px;border:1px solid #ecd9ae;background:#fdf6e8;cursor:pointer;font-family:'IBM Plex Sans Arabic',sans-serif;" style-hover="border-color:#c9982f;">
+            <div style="font-family:'Cairo',sans-serif;font-weight:700;font-size:18px;margin-bottom:4px;">نعم — فيه ثلج بس مش بيخرج</div>
+            <div style="font-size:14px;color:#7a5410;">المشكلة في خروج الثلج مش في تصنيعه.</div>
+          </button>
+          <button onClick="{{ toS3 }}" style="text-align:right;padding:20px 22px;border-radius:12px;border:1px solid #d9d5cb;background:#fbfaf7;cursor:pointer;font-family:'IBM Plex Sans Arabic',sans-serif;" style-hover="border-color:#A50034;background:#fdf5f7;">
+            <div style="font-family:'Cairo',sans-serif;font-weight:700;font-size:18px;margin-bottom:4px;">لا — السلة فاضية</div>
+            <div style="font-size:14px;color:#6b7075;">نكمل لفحص درجة حرارة الفريزر.</div>
+          </button>
+        </div>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ isDispense }}" hint-placeholder-val="{{ false }}">
+      <div style="background:#fff;border:1px solid #ecd9ae;border-radius:14px;padding:32px;border-top:4px solid #c9982f;animation:cardIn .25s ease;">
+        <div style="background:#1c1a1b;color:#f6f1f2;border-radius:12px;padding:20px 22px;margin-bottom:20px;">
+          <div style="font-size:12.5px;color:#f0a8bd;margin-bottom:8px;font-weight:600;">اقرأ للعميل</div>
+          <div style="font-family:'Cairo',sans-serif;font-size:17px;line-height:2.05;">«الثلج موجود يبقى الجهاز بيصنع ثلج فعلًا، والمشكلة في خروجه. ممكن نفرّغ السلة ونكسّر أي تكتل ثلجي، وبعدها نركّبها تاني ونتأكد إنها داخلة بالكامل — وبعد كده نجرّب.»</div>
+        </div>
+        <div style="font-family:'Cairo',sans-serif;font-weight:700;font-size:26px;line-height:1.5;margin-bottom:18px;">الثلج موجود لكن لا يخرج من الدسبنسر</div>
+        <div style="display:grid;gap:12px;margin-bottom:20px;">
+          <div style="display:flex;gap:16px;padding:17px 20px;border-radius:12px;background:#fbfaf7;border:1px solid #e9e6de;"><div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:17px;color:#A50034;min-width:22px;">١</div><div style="font-size:15.5px;line-height:1.9;">يتم التأكد إن مكعبات الثلج <strong>غير متلاصقة أو متكتلة</strong> — التكتل بيمنع خروجها.</div></div>
+          <div style="display:flex;gap:16px;padding:17px 20px;border-radius:12px;background:#fbfaf7;border:1px solid #e9e6de;"><div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:17px;color:#A50034;min-width:22px;">٢</div><div style="font-size:15.5px;line-height:1.9;">يتم <strong>تفريغ السلة بالكامل</strong> وتكسير أي تكتل ثلجي، ثم إعادتها في مكانها بشكل صحيح.</div></div>
+          <div style="display:flex;gap:16px;padding:17px 20px;border-radius:12px;background:#fbfaf7;border:1px solid #e9e6de;"><div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:17px;color:#A50034;min-width:22px;">٣</div><div style="font-size:15.5px;line-height:1.9;">يتم التأكد إن <strong>السلة داخلة بالكامل</strong> — لو مش راكبة صح الثلج مش بينزل.</div></div>
+        </div>
+        <div style="display:flex;gap:12px;flex-wrap:wrap;">
+          <a href="Fridge Support Topics.dc.html" style="padding:14px 22px;border-radius:10px;border:1px solid #c6e0d1;background:#eef6f1;color:#191a1c;font-family:'Cairo',sans-serif;font-weight:700;font-size:15px;text-decoration:none;" style-hover="border-color:#0f5132;">اتحلّت المشكلة — إنهاء المكالمة</a>
+          <button onClick="{{ toEsc }}" style="padding:14px 22px;border-radius:10px;background:#A50034;color:#fff;font-family:'Cairo',sans-serif;font-weight:700;font-size:15px;cursor:pointer;border:none;" style-hover="background:#7d0027;">المشكلة مستمرة — تسجيل طلب صيانة</button>
+        </div>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ isS3 }}" hint-placeholder-val="{{ false }}">
+      <div style="background:#fff;border:1px solid #e3e0d8;border-radius:14px;padding:32px;border-top:4px solid #A50034;animation:cardIn .25s ease;">
+        <div style="font-size:12.5px;font-weight:600;color:#A50034;letter-spacing:.04em;margin-bottom:10px;">الخطوة ٣ — درجة حرارة الفريزر</div>
+        <div style="font-family:'Cairo',sans-serif;font-weight:700;font-size:26px;line-height:1.5;margin-bottom:18px;">هل حرارة الفريزر أبرد أم أدفى من <span dir="ltr" style="unicode-bidi:isolate;">-20</span> درجة مئوية؟</div>
+        <div style="background:#1c1a1b;color:#f6f1f2;border-radius:12px;padding:20px 22px;margin-bottom:20px;">
+          <div style="font-size:12.5px;color:#f0a8bd;margin-bottom:8px;font-weight:600;">اقرأ للعميل</div>
+          <div style="font-family:'Cairo',sans-serif;font-size:17px;line-height:2.05;">«ممكن حضرتك تقولّي درجة حرارة الفريزر المضبوطة على اللوحة كام؟»</div>
+        </div>
+        <div style="display:grid;gap:12px;margin-bottom:18px;">
+          <div style="display:flex;gap:16px;padding:17px 20px;border-radius:12px;background:#fbfaf7;border:1px solid #e9e6de;"><div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:17px;color:#A50034;min-width:22px;">١</div><div style="font-size:15.5px;line-height:1.9;">الفريزر لازم يحافظ على حرارة <strong>أقل من <span dir="ltr" style="unicode-bidi:isolate;">-7</span> درجة مئوية</strong> على الأقل.</div></div>
+          <div style="display:flex;gap:16px;padding:17px 20px;border-radius:12px;background:#fbfaf7;border:1px solid #e9e6de;"><div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:17px;color:#A50034;min-width:22px;">٢</div><div style="font-size:15.5px;line-height:1.9;">الحرارة الموصى بها لإنتاج الثلج هي <strong><span dir="ltr" style="unicode-bidi:isolate;">-20</span> درجة مئوية أو أبرد</strong>.</div></div>
+        </div>
+        <div style="display:grid;gap:12px;">
+          <button onClick="{{ toS4 }}" style="text-align:right;padding:20px 22px;border-radius:12px;border:1px solid #c6e0d1;background:#eef6f1;cursor:pointer;font-family:'IBM Plex Sans Arabic',sans-serif;" style-hover="border-color:#0f5132;">
+            <div style="font-family:'Cairo',sans-serif;font-weight:700;font-size:18px;margin-bottom:4px;">أبرد — <span dir="ltr" style="unicode-bidi:isolate;">-20</span> أو أقل</div>
+            <div style="font-size:14px;color:#6b7075;">نكمل لفحص وضع تشغيل صانع الثلج.</div>
+          </button>
+          <button onClick="{{ toWarm }}" style="text-align:right;padding:20px 22px;border-radius:12px;border:1px solid #f0c2ce;background:#fff5f7;cursor:pointer;font-family:'IBM Plex Sans Arabic',sans-serif;" style-hover="border-color:#A50034;">
+            <div style="font-family:'Cairo',sans-serif;font-weight:700;font-size:18px;margin-bottom:4px;">أدفى من <span dir="ltr" style="unicode-bidi:isolate;">-20</span> درجة</div>
+            <div style="font-size:14px;color:#8a5555;">يتم خفض الحرارة والانتظار ٢٤ ساعة.</div>
+          </button>
+        </div>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ isWarm }}" hint-placeholder-val="{{ false }}">
+      <div style="background:#fff;border:1px solid #e3e0d8;border-radius:14px;padding:32px;border-top:4px solid #A50034;animation:cardIn .25s ease;">
+        <div style="background:#1c1a1b;color:#f6f1f2;border-radius:12px;padding:20px 22px;margin-bottom:20px;">
+          <div style="font-size:12.5px;color:#f0a8bd;margin-bottom:8px;font-weight:600;">اقرأ للعميل</div>
+          <div style="font-family:'Cairo',sans-serif;font-size:17px;line-height:2.05;">«الحرارة المضبوطة أدفى من اللازم، ولذلك الثلج بيتكوّن ببطء. ممكن نخفّضها لـ <span dir="ltr" style="unicode-bidi:isolate;">-20</span> درجة أو أقل، ونستنى ٢٤ ساعة لحد ما إنتاج الثلج يبدأ.»</div>
+        </div>
+        <div style="font-family:'Cairo',sans-serif;font-weight:700;font-size:26px;line-height:1.5;margin-bottom:18px;">خفض حرارة الفريزر إلى <span dir="ltr" style="unicode-bidi:isolate;">-20</span> درجة أو أقل</div>
+        <div style="padding:18px 22px;border-radius:12px;background:#fff5f7;border:1px solid #f0c2ce;font-size:15.5px;line-height:1.95;margin-bottom:20px;">
+          لو حرارة الفريزر مضبوطة على درجة أدفى، إنتاج الثلج بيكون <strong>أبطأ بكثير</strong>. يُنصح بخفضها إلى <strong><span dir="ltr" style="unicode-bidi:isolate;">-20</span> درجة أو أقل</strong> والانتظار <strong>٢٤ ساعة</strong> لبدء إنتاج الثلج.
+        </div>
+        <div style="display:flex;gap:12px;flex-wrap:wrap;">
+          <button onClick="{{ toS4 }}" style="padding:14px 22px;border-radius:10px;border:1px solid #d9d5cb;background:#fbfaf7;color:#191a1c;font-family:'Cairo',sans-serif;font-weight:700;font-size:15px;cursor:pointer;" style-hover="border-color:#A50034;">نكمل — فحص وضع تشغيل صانع الثلج</button>
+          <a href="Fridge Support Topics.dc.html" style="padding:14px 22px;border-radius:10px;background:#A50034;color:#fff;font-family:'Cairo',sans-serif;font-weight:700;font-size:15px;text-decoration:none;" style-hover="background:#7d0027;">تم إفادة العميل — إنهاء المكالمة</a>
+        </div>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ isS4 }}" hint-placeholder-val="{{ false }}">
+      <div style="background:#fff;border:1px solid #e3e0d8;border-radius:14px;padding:32px;border-top:4px solid #A50034;animation:cardIn .25s ease;">
+        <div style="font-size:12.5px;font-weight:600;color:#A50034;letter-spacing:.04em;margin-bottom:10px;">الخطوة ٤ — وضع تشغيل صانع الثلج</div>
+        <div style="font-family:'Cairo',sans-serif;font-weight:700;font-size:26px;line-height:1.5;margin-bottom:18px;">هل صانع الثلج في وضع التشغيل؟</div>
+        <div style="background:#1c1a1b;color:#f6f1f2;border-radius:12px;padding:20px 22px;margin-bottom:20px;">
+          <div style="font-size:12.5px;color:#f0a8bd;margin-bottom:8px;font-weight:600;">اقرأ للعميل</div>
+          <div style="font-family:'Cairo',sans-serif;font-size:17px;line-height:2.05;">«ممكن نتأكد إن صانع الثلج شغّال — فيه مفتاح تشغيل على الجانب الأيسر من صانع الثلج، ولو مفيش مفتاح هنلاقي زر Ice On في لوحة التحكم. لو كلمة ICE ON مش مضيئة نضغط على الزر من ٣ لـ ٥ ثوانٍ لحد ما تضيء.»</div>
+        </div>
+        <div style="display:grid;gap:12px;margin-bottom:18px;">
+          <div style="display:flex;gap:16px;padding:17px 20px;border-radius:12px;background:#fbfaf7;border:1px solid #e9e6de;"><div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:17px;color:#A50034;min-width:22px;">١</div><div style="font-size:15.5px;line-height:1.9;">في معظم الموديلات يوجد <strong>مفتاح تشغيل/إيقاف</strong> على <strong>الجانب الأيسر من صانع الثلج</strong>.</div></div>
+          <div style="display:flex;gap:16px;padding:17px 20px;border-radius:12px;background:#fbfaf7;border:1px solid #e9e6de;"><div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:17px;color:#A50034;min-width:22px;">٢</div><div style="font-size:15.5px;line-height:1.9;">لو مفيش مفتاح، يكون في لوحة التحكم زر <strong>Ice On / Ice Off</strong>.</div></div>
+          <div style="display:flex;gap:16px;padding:17px 20px;border-radius:12px;background:#fdf6e8;border:1px solid #ecd9ae;"><div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:17px;color:#c9982f;min-width:22px;">!</div><div style="font-size:15.5px;line-height:1.9;">لو <strong>ICE ON</strong> غير مضيء، يتم الضغط مع الاستمرار على الزر <strong>من ٣ إلى ٥ ثوانٍ</strong> لحد ما تضيء الكلمة.</div></div>
+        </div>
+        <div style="display:grid;gap:12px;">
+          <button onClick="{{ toS5 }}" style="text-align:right;padding:20px 22px;border-radius:12px;border:1px solid #c6e0d1;background:#eef6f1;cursor:pointer;font-family:'IBM Plex Sans Arabic',sans-serif;" style-hover="border-color:#0f5132;">
+            <div style="font-family:'Cairo',sans-serif;font-weight:700;font-size:18px;margin-bottom:4px;">نعم — صانع الثلج شغّال</div>
+            <div style="font-size:14px;color:#6b7075;">نكمل لإعادة ضبط صانع الثلج.</div>
+          </button>
+          <button onClick="{{ toOff }}" style="text-align:right;padding:20px 22px;border-radius:12px;border:1px solid #f0c2ce;background:#fff5f7;cursor:pointer;font-family:'IBM Plex Sans Arabic',sans-serif;" style-hover="border-color:#A50034;">
+            <div style="font-family:'Cairo',sans-serif;font-weight:700;font-size:18px;margin-bottom:4px;">لا — كان مطفي</div>
+            <div style="font-size:14px;color:#8a5555;">يتم تشغيله والانتظار ٢٤ ساعة.</div>
+          </button>
+        </div>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ isOff }}" hint-placeholder-val="{{ false }}">
+      <div style="background:#fff;border:1px solid #c6e0d1;border-radius:14px;padding:32px;border-top:4px solid #0f5132;animation:cardIn .25s ease;">
+        <div style="background:#1c1a1b;color:#f6f1f2;border-radius:12px;padding:20px 22px;margin-bottom:20px;">
+          <div style="font-size:12.5px;color:#f0a8bd;margin-bottom:8px;font-weight:600;">اقرأ للعميل</div>
+          <div style="font-family:'Cairo',sans-serif;font-size:17px;line-height:2.05;">«ده كان السبب — صانع الثلج كان مطفي. دلوقتي بعد ما شغّلناه بياخد ٢٤ ساعة لحد ما يبدأ ينتج ثلج. ممكن نستنى المدة دي، ولو مفيش ثلج بعدها تواصل معانا.»</div>
+        </div>
+        <div style="font-family:'Cairo',sans-serif;font-weight:700;font-size:26px;line-height:1.5;margin-bottom:18px;">تشغيل صانع الثلج والانتظار ٢٤ ساعة</div>
+        <div style="padding:18px 22px;border-radius:12px;background:#eef6f1;border:1px solid #c6e0d1;font-size:15.5px;line-height:1.95;margin-bottom:20px;">
+          بعد تشغيل صانع الثلج، يحتاج <strong>٢٤ ساعة</strong> لبدء إنتاج الثلج — ولا يتم تسجيل طلب صيانة قبل انتهاء المدة دي.
+        </div>
+        <div style="display:flex;gap:12px;flex-wrap:wrap;">
+          <a href="Fridge Support Topics.dc.html" style="padding:14px 22px;border-radius:10px;background:#A50034;color:#fff;font-family:'Cairo',sans-serif;font-weight:700;font-size:15px;text-decoration:none;" style-hover="background:#7d0027;">تم إفادة العميل — إنهاء المكالمة</a>
+          <button onClick="{{ toS5 }}" style="padding:14px 22px;border-radius:10px;border:1px solid #d9d5cb;background:#fbfaf7;color:#191a1c;font-family:'Cairo',sans-serif;font-weight:700;font-size:15px;cursor:pointer;" style-hover="border-color:#A50034;">عدّت ٢٤ ساعة ولسه مفيش ثلج</button>
+        </div>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ isS5 }}" hint-placeholder-val="{{ false }}">
+      <div style="background:#fff;border:1px solid #e3e0d8;border-radius:14px;padding:32px;border-top:4px solid #A50034;animation:cardIn .25s ease;">
+        <div style="font-size:12.5px;font-weight:600;color:#A50034;letter-spacing:.04em;margin-bottom:10px;">الخطوة ٥ — إعادة ضبط صانع الثلج</div>
+        <div style="font-family:'Cairo',sans-serif;font-weight:700;font-size:26px;line-height:1.5;margin-bottom:18px;">خطوات إعادة ضبط صانع الثلج مع العميل</div>
+        <div style="background:#1c1a1b;color:#f6f1f2;border-radius:12px;padding:20px 22px;margin-bottom:20px;">
+          <div style="font-size:12.5px;color:#f0a8bd;margin-bottom:8px;font-weight:600;">اقرأ للعميل</div>
+          <div style="font-family:'Cairo',sans-serif;font-size:17px;line-height:2.05;">«هنعمل إعادة ضبط لصانع الثلج: نطلّع السلة، ونحرّك صانع الثلج لفوق ولتحت مرتين بهدوء، نرجّع السلة، وبعدين نفصل الثلاجة من الكهرباء ٣٠ ثانية ونوصّلها تاني. بعد ٤ لـ ٦ ساعات لو لسه مفيش ثلج نسجّل زيارة فني.»</div>
+        </div>
+        <div style="display:grid;gap:12px;margin-bottom:18px;">
+          <div style="display:flex;gap:16px;padding:17px 20px;border-radius:12px;background:#fbfaf7;border:1px solid #e9e6de;"><div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:17px;color:#A50034;min-width:22px;">١</div><div style="font-size:15.5px;line-height:1.9;">تحديد مكان صانع الثلج و<strong>إخراج السلة</strong>.</div></div>
+          <div style="display:flex;gap:16px;padding:17px 20px;border-radius:12px;background:#fbfaf7;border:1px solid #e9e6de;"><div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:17px;color:#A50034;min-width:22px;">٢</div><div style="font-size:15.5px;line-height:1.9;">الإمساك بصانع الثلج و<strong>تحريكه لأعلى وأسفل مرتين</strong> — بثبات وبدون عنف.</div></div>
+          <div style="display:flex;gap:16px;padding:17px 20px;border-radius:12px;background:#fbfaf7;border:1px solid #e9e6de;"><div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:17px;color:#A50034;min-width:22px;">٣</div><div style="font-size:15.5px;line-height:1.9;">إعادة السلة، ثم <strong>فصل الكهرباء عن الثلاجة ٣٠ ثانية</strong> (من الفيشة أو القاطع).</div></div>
+          <div style="display:flex;gap:16px;padding:17px 20px;border-radius:12px;background:#fbfaf7;border:1px solid #e9e6de;"><div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:17px;color:#A50034;min-width:22px;">٤</div><div style="font-size:15.5px;line-height:1.9;"><strong>إعادة توصيل الكهرباء</strong> ومتابعة إنتاج الثلج.</div></div>
+          <div style="display:flex;gap:16px;padding:17px 20px;border-radius:12px;background:#fff5f7;border:1px solid #f0c2ce;"><div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:17px;color:#A50034;min-width:22px;">!</div><div style="font-size:15.5px;line-height:1.9;">بعد <strong>٤ إلى ٦ ساعات</strong> — لو الجهاز لسه مش بينتج ثلج أو مش بيخرجه، <strong>يحتاج زيارة فني</strong>.</div></div>
+        </div>
+        <div style="display:grid;gap:12px;">
+          <a href="Fridge Support Topics.dc.html" style="display:block;text-align:right;padding:20px 22px;border-radius:12px;border:1px solid #c6e0d1;background:#eef6f1;text-decoration:none;" style-hover="border-color:#0f5132;">
+            <div style="font-family:'Cairo',sans-serif;font-weight:700;font-size:18px;margin-bottom:4px;color:#191a1c;">صانع الثلج اشتغل بنجاح — إنهاء المكالمة</div>
+            <div style="font-size:14px;color:#6b7075;">يُطلب من العميل متابعة إنتاج الثلج خلال ٤ إلى ٦ ساعات.</div>
+          </a>
+          <button onClick="{{ toEsc }}" style="text-align:right;padding:20px 22px;border-radius:12px;border:1px solid #f0c2ce;background:#fff5f7;cursor:pointer;font-family:'IBM Plex Sans Arabic',sans-serif;" style-hover="border-color:#A50034;">
+            <div style="font-family:'Cairo',sans-serif;font-weight:700;font-size:18px;margin-bottom:4px;">صانع الثلج لم يعمل — تسجيل طلب صيانة</div>
+            <div style="font-size:14px;color:#8a5555;">الجهاز يحتاج زيارة فني.</div>
+          </button>
+        </div>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ isEsc }}" hint-placeholder-val="{{ false }}">
+      <div style="background:#fff;border:1px solid #f0c2ce;border-radius:14px;padding:32px;border-top:4px solid #A50034;animation:cardIn .25s ease;">
+        <div style="font-size:12.5px;font-weight:600;color:#A50034;letter-spacing:.04em;margin-bottom:10px;">تسجيل طلب صيانة</div>
+        <div style="font-family:'Cairo',sans-serif;font-weight:700;font-size:26px;line-height:1.5;margin-bottom:18px;">الجهاز يحتاج زيارة فني</div>
+        <div style="background:#1c1a1b;color:#f6f1f2;border-radius:12px;padding:20px 22px;margin-bottom:20px;">
+          <div style="font-size:12.5px;color:#f0a8bd;margin-bottom:8px;font-weight:600;">اقرأ للعميل — الرسوم</div>
+          <div style="font-family:'Cairo',sans-serif;font-size:17px;line-height:2.05;">«هسجّل لحضرتك طلب صيانة وزيارة فني. الصيانة داخل فترة الضمان مجانية تمامًا. ولو ظهر إن السبب مش عطل فني في الجهاز، أو إن العطل خارج نطاق الضمان، بتكون في تكلفة زيارة ومعاينة ١٨٢ جنيه لأول زيارة، وأي زيارة بعدها ٣٠٠ جنيه — وتكلفة الصيانة نفسها بتتحدد بعد ما الفني يعاين الجهاز، وهتُعرض على حضرتك للموافقة قبل أي إصلاح.»</div>
+        </div>
+        <div style="padding:18px 22px;border-radius:12px;background:#fff5f7;border:1px solid #f0c2ce;font-size:15.5px;line-height:1.95;margin-bottom:20px;">
+          يتم توضيح <strong>درجة حرارة الفريزر المضبوطة</strong> و<strong>كل الخطوات اللي تمت مع العميل</strong> في البلاغ، مع <strong>رقم الموديل</strong>.
+        </div>
+
+        <a href="Service Fees Table.dc.html#fridge" style="display:flex;align-items:center;gap:14px;padding:18px 22px;border-radius:12px;border:1px solid #f0c2ce;background:#fff5f7;text-decoration:none;margin-bottom:20px;" style-hover="border-color:#A50034;">
+          <div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:17px;color:#A50034;">رسوم الثلاجات</div>
+          <div style="font-size:14px;color:#3f4447;line-height:1.7;">اضغط لعرض رسوم الصيانة والزيارة الخاصة بالمنتج — صباحي ومسائي.</div>
+          <div style="margin-right:auto;color:#A50034;font-size:18px;">←</div>
+        </a>
+
+
+
+        <div style="display:grid;gap:12px;margin-bottom:22px;">
+          <div style="display:flex;gap:16px;padding:17px 20px;border-radius:12px;background:#fbfaf7;border:1px solid #e9e6de;"><div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:17px;color:#A50034;min-width:22px;">١</div><div style="font-size:15.5px;line-height:1.9;">الاسم الثلاثي للعميل كما هو مسجل في فاتورة الشراء (لو مش متوفر يتم السؤال عن اسم صاحب الجهاز).</div></div>
+          <div style="display:flex;gap:16px;padding:17px 20px;border-radius:12px;background:#fbfaf7;border:1px solid #e9e6de;"><div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:17px;color:#A50034;min-width:22px;">٢</div><div style="font-size:15.5px;line-height:1.9;">رقم الهاتف الأساسي ورقم إضافي إن وجد.</div></div>
+          <div style="display:flex;gap:16px;padding:17px 20px;border-radius:12px;background:#fbfaf7;border:1px solid #e9e6de;"><div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:17px;color:#A50034;min-width:22px;">٣</div><div style="font-size:15.5px;line-height:1.9;">العنوان بالتفصيل (المحافظة، المنطقة، اسم الشارع، رقم العمارة، الدور، الشقة، علامة مميزة).</div></div>
+        </div>
+        <a href="Fridge Support Topics.dc.html" style="display:inline-block;padding:14px 22px;border-radius:10px;background:#A50034;color:#fff;font-family:'Cairo',sans-serif;font-weight:700;font-size:15px;text-decoration:none;" style-hover="background:#7d0027;">تم تسجيل البلاغ — إنهاء المكالمة</a>
+      </div>
+    </sc-if>
+
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { node: 's0', history: [] };
+  go(n) { this.setState(s => ({ node: n, history: [...s.history, s.node] })); window.scrollTo(0, 0); }
+  renderVals() {
+    const n = this.state.node;
+    const labels = { s0:'نظرة سريعة', s1:'خطوة ١ من ٥', s2:'خطوة ٢ من ٥', s3:'خطوة ٣ من ٥', s4:'خطوة ٤ من ٥', s5:'خطوة ٥ من ٥',
+      wait:'انتظار ٢٤ ساعة', dispense:'خروج الثلج', warm:'خفض الحرارة', off:'تشغيل صانع الثلج', esc:'تسجيل بلاغ' };
+    return { pageBack: () => { if (history.length > 1) history.back(); else location.href = 'Installation Guide Home.dc.html'; },
+      stepLabel: labels[n] || '',
+      isS0: n === 's0', isS1: n === 's1', isS2: n === 's2', isS3: n === 's3', isS4: n === 's4', isS5: n === 's5',
+      isWait: n === 'wait', isDispense: n === 'dispense', isWarm: n === 'warm', isOff: n === 'off', isEsc: n === 'esc',
+      toS1: () => this.go('s1'),
+      toS2: () => this.go('s2'),
+      toS3: () => this.go('s3'),
+      toS4: () => this.go('s4'),
+      toS5: () => this.go('s5'),
+      toWait: () => this.go('wait'),
+      toDispense: () => this.go('dispense'),
+      toWarm: () => this.go('warm'),
+      toOff: () => this.go('off'),
+      toEsc: () => this.go('esc'),
+      back: () => this.setState(s => s.history.length ? { node: s.history[s.history.length - 1], history: s.history.slice(0, -1) } : {}),
+      restart: () => this.setState({ node: 's0', history: [] })
+    };
+  }
+}
+</script>
+</body>
+</html>

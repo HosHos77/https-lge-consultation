@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script>
+(function(){
+  var KEY = 'csGuideAuth_v1';
+  var USER = 'agent';
+  var PASS = 'LGE@2026';
+  function authed(){ try { return localStorage.getItem(KEY) === '1'; } catch(e){ return false; } }
+  if (authed()) return;
+  var u = window.prompt('اسم المستخدم / Username:');
+  var p = window.prompt('كلمة المرور / Password:');
+  if (u === USER && p === PASS) {
+    try { localStorage.setItem(KEY, '1'); } catch(e){}
+  } else {
+    window.stop();
+    document.open();
+    document.write('<div style="font-family:Tahoma,Arial,sans-serif;text-align:center;margin-top:80px;font-size:22px;color:#c00;">تم رفض الدخول<br>Access Denied</div>');
+    document.close();
+  }
+})();
+</script>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<title>الدعم الفني — الثلاجات</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&family=IBM+Plex+Sans+Arabic:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  body { margin:0; background:#f4f3ef; }
+  a { color:#A50034; }
+  a:hover { color:#7d0027; }
+  @keyframes cardIn { from { opacity:0; transform:translateY(6px); } to { opacity:1; transform:none; } }
+</style>
+</helmet>
+<template id="__bundler_thumbnail"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><rect width="200" height="200" fill="#A50034"/><rect x="70" y="52" width="60" height="96" rx="8" fill="#fff"/><rect x="70" y="92" width="60" height="4" fill="#A50034"/><circle cx="120" cy="82" r="3" fill="#A50034"/><circle cx="120" cy="106" r="3" fill="#A50034"/></svg></template>
+
+<div dir="rtl" style="min-height:100vh;background:#f4f3ef;color:#191a1c;font-family:'IBM Plex Sans Arabic',system-ui,sans-serif;">
+
+  <div style="background:#111314;color:#f4f3ef;padding:18px 28px;display:flex;align-items:center;gap:14px;flex-wrap:wrap;">
+    <div style="width:9px;height:34px;background:#A50034;border-radius:2px;flex:none;"></div>
+    <div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:19px;">الدعم الفني — الثلاجات</div>
+    <div style="margin-right:auto;display:flex;gap:10px;">
+      <a href="Installation Guide Home.dc.html" style="padding:8px 16px;border-radius:8px;border:1px solid #3a4043;color:#f0a8bd;font-size:13px;text-decoration:none;white-space:nowrap;flex:none;" style-hover="background:#22282a;">الرئيسية</a>
+      <a href="Service Fees Table.dc.html" style="padding:8px 16px;border-radius:8px;border:1px solid #3a4043;color:#f0a8bd;font-size:13px;text-decoration:none;white-space:nowrap;flex:none;" style-hover="background:#22282a;">جدول تكاليف الصيانة</a>
+      <button type="button" onClick="{{ pageBack }}" style="padding:8px 16px;border-radius:8px;border:1px solid #3a4043;color:#e4e7e9;font-size:13px;background:transparent;cursor:pointer;font-family:'IBM Plex Sans Arabic',sans-serif;white-space:nowrap;flex:none;" style-hover="background:#22282a;">رجوع</button>
+    </div>
+  </div>
+
+  <div style="max-width:1000px;margin:0 auto;padding:34px 28px 60px;">
+    <div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:28px;margin-bottom:8px;">اختر نوع الثلاجة أولًا</div>
+    <div style="font-size:15px;color:#6b7075;line-height:1.8;margin-bottom:22px;max-width:60ch;text-wrap:pretty;">اسأل العميل عن نوع الثلاجة، ثم اختر النوع لتظهر موضوعات الدعم الفني الخاصة به.</div>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px;margin-bottom:28px;">
+      <button onClick="{{ pickTB }}" style="{{ tbStyle }}">
+        <div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:20px;margin-bottom:6px;">ثلاجة Top &amp; Bottom</div>
+        <div style="font-size:14px;line-height:1.7;opacity:.85;">الفريزر أعلى أو أسفل — بدون دسبنسر مياه أو صانع ثلج. {{ tbCount }}</div>
+      </button>
+      <button onClick="{{ pickSBS }}" style="{{ sbsStyle }}">
+        <div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:20px;margin-bottom:6px;">ثلاجة Side by Side</div>
+        <div style="font-size:14px;line-height:1.7;opacity:.85;">بابين جانبيين — بها دسبنسر مياه وصانع ثلج. {{ sbsCount }}</div>
+      </button>
+    </div>
+
+    <sc-if value="{{ hasType }}" hint-placeholder-val="{{ false }}">
+      <div style="animation:cardIn .25s ease;">
+        <div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:22px;margin-bottom:6px;">{{ typeTitle }}</div>
+        <div style="font-size:14.5px;color:#6b7075;line-height:1.8;margin-bottom:18px;">اختر الموضوع لبدء المسار الإرشادي مع العميل.</div>
+
+        <sc-if value="{{ noGroupPicked }}" hint-placeholder-val="{{ true }}">
+          <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px;">
+            <sc-for list="{{ groups }}" as="g" hint-placeholder-count="6">
+              <button onClick="{{ g.open }}" style="text-align:right;background:#fff;border:1px solid #e3e0d8;border-radius:14px;padding:24px 26px;cursor:pointer;font-family:'IBM Plex Sans Arabic',sans-serif;width:100%;" style-hover="border-color:#A50034;background:#fdf5f7;">
+                <div style="display:flex;align-items:center;gap:12px;">
+                  <div style="width:6px;height:24px;background:#A50034;border-radius:2px;flex:none;"></div>
+                  <div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:19px;color:#191a1c;">{{ g.group }}</div>
+                </div>
+                <div style="font-size:13.5px;color:#6b7075;margin-top:10px;">{{ g.count }}</div>
+              </button>
+            </sc-for>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ hasGroup }}" hint-placeholder-val="{{ false }}">
+          <div style="animation:cardIn .25s ease;">
+            <div style="display:flex;align-items:center;gap:14px;margin-bottom:16px;flex-wrap:wrap;">
+              <div style="width:6px;height:26px;background:#A50034;border-radius:2px;flex:none;"></div>
+              <div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:22px;">{{ groupTitle }}</div>
+              <button onClick="{{ clearGroup }}" style="margin-right:auto;padding:9px 18px;border-radius:8px;border:1px solid #d9d5cb;background:#fff;color:#191a1c;font-family:'IBM Plex Sans Arabic',sans-serif;font-size:13.5px;cursor:pointer;" style-hover="border-color:#A50034;background:#fdf5f7;">كل التصنيفات</button>
+            </div>
+            <div style="display:grid;gap:12px;">
+              <sc-for list="{{ groupItems }}" as="t" hint-placeholder-count="3">
+                <a href="{{ t.href }}" style="display:flex;align-items:center;gap:16px;background:#fff;border:1px solid #f0c2ce;border-radius:14px;padding:22px 24px;text-decoration:none;" style-hover="border-color:#A50034;background:#fdf5f7;">
+                  <div style="width:38px;height:38px;border-radius:50%;background:#A50034;color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Cairo',sans-serif;font-weight:900;font-size:17px;flex:none;">{{ t.n }}</div>
+                  <div style="min-width:0;">
+                    <div style="font-family:'Cairo',sans-serif;font-weight:700;font-size:18px;color:#191a1c;margin-bottom:4px;">{{ t.title }}</div>
+                    <div style="font-size:14.5px;color:#6b7075;line-height:1.7;">{{ t.desc }}</div>
+                  </div>
+                </a>
+              </sc-for>
+            </div>
+          </div>
+        </sc-if>
+      </div>
+    </sc-if>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const GROUPS = [
+  { group:'مشاكل التبريد', items:[
+    { href:'Refrigerator Installation Call Guide.dc.html#cool-TYPE', title:'ضعف تبريد الثلاجة',
+      desc:'السؤال الأساسي عن الـ 24 ساعة، ثم قائمة الفحص كاملة قبل تسجيل طلب صيانة.', types:['tb','sbs'] },
+    { href:'Fridge No Cooling Support Guide.dc.html', title:'الثلاجة لا تبرد (تبريد منعدم)',
+      desc:'٧ فحوصات بالترتيب: مفتاح الباب، فتحات الهواء، وضع العرض، ٢٤ ساعة، ظروف التركيب، الأبواب، والاستواء.', types:['tb','sbs'] }
+  ]},
+  { group:'مشاكل تسريب المياه', items:[
+    { href:'Fridge Water Leak Support Guide.dc.html', title:'تسريب مياه من الثلاجة',
+      desc:'تحديد مصدر المياه — من جوه الثلاجة أم من المنطقة المحيطة — والحل لكل حالة.', types:['tb','sbs'] }
+  ]},
+  { group:'مشاكل الضوضاء والأصوات', items:[
+    { href:'Fridge Sounds Support Guide.dc.html', title:'أصوات الثلاجة الطبيعية',
+      desc:'تفسير كل صوت للعميل، ومتى يُسجَّل طلب صيانة بدلًا من الطمأنة.', types:['tb','sbs'] }
+  ]},
+  { group:'مشاكل الدسبنسر وصانع الثلج', items:[
+    { href:'Fridge No Ice Support Guide.dc.html', title:'الثلاجة لا تصنع ثلج',
+      desc:'مسار من ٥ خطوات — مدة التركيب، سلة الثلج، حرارة الفريزر، وضع التشغيل، وإعادة الضبط.', types:['sbs'] },
+    { href:'Ice Maker Support Guide.dc.html', title:'صانع الثلج لا يُنتج ثلج كفاية',
+      desc:'مسار من ١٠ خطوات — من كود الخطأ ودرجة الحرارة حتى فلتر المياه والتصعيد.', types:['sbs'] },
+    { href:'Fridge Slow Water Support Guide.dc.html', title:'بطء خروج المياه من الدسبنسر',
+      desc:'اختبار التعبئة، فحص الفلتر والمحبس وخط المياه، ومتى يُسجَّل طلب صيانة.', types:['sbs'] },
+    { href:'Fridge Water Not Cold Support Guide.dc.html', title:'المياه من الدسبنسر غير باردة',
+      desc:'سعة الخزان ومدة التبريد (٦ ساعات)، وخفض درجة الحرارة (١٢ ساعة).', types:['sbs'] }
+  ]},
+  { group:'التركيب والاتزان', items:[
+    { href:'Fridge Leveling Support Guide.dc.html', title:'التركيب والاتزان',
+      desc:'أعراض الجهاز غير المستوي، التحضير، وضبط الأرجل الأمامية خطوة بخطوة.', types:['tb','sbs'] }
+  ]},
+  { group:'مشاكل الكهرباء والتشغيل', items:[
+    { href:'Fridge No Power Support Guide.dc.html', title:'الثلاجة لا تعمل — لا يوجد كهرباء',
+      desc:'فحص السلك والقاطع، الدائرة الكهربائية المستقلة، واختبار البريزة.', types:['tb','sbs'] }
+  ]},
+  { group:'أكواد الأخطاء على الشاشة', items:[
+    { href:'Fridge Error Codes Top Bottom Support Guide.dc.html', title:'أكواد أخطاء الثلاجة — Top & Bottom',
+      desc:'٩ أكواد للثلاجة ذات الباب العلوي والسفلي — اضغط على الكود ليظهر تعريفه والخطوات المتبعة.', types:['tb'] },
+    { href:'Fridge Error Codes Support Guide.dc.html', title:'أكواد أخطاء الثلاجة — Side by Side',
+      desc:'١٩ كود — اضغط على الكود ليظهر تعريفه والخطوات المتبعة.', types:['sbs'] }
+  ]},
+  { group:'التطبيق والاتصال الذكي', items:[
+    { href:'ThinQ App Setup Support Guide.dc.html', title:'تطبيق LG ThinQ — التحميل والتسجيل',
+      desc:'متطلبات الموبايل، التحميل، إنشاء حساب إل جي، وحل مشكلة تسجيل الدخول.', types:['tb','sbs'] }
+  ]}
+];
+
+const TOPICS = GROUPS.reduce(function (a, g) { return a.concat(g.items); }, []);
+
+const AR = ['٠','١','٢','٣','٤','٥','٦','٧','٨','٩','١٠','١١','١٢'];
+
+class Component extends DCLogic {
+  state = { type: null, group: null };
+  set(t) { this.setState({ type: t, group: null }); }
+  card(active) {
+    return 'text-align:right;padding:24px 26px;border-radius:14px;cursor:pointer;width:100%;' +
+      "font-family:'IBM Plex Sans Arabic',sans-serif;border:1px solid " + (active ? '#A50034' : '#e3e0d8') +
+      ';background:' + (active ? '#111314' : '#fff') + ';color:' + (active ? '#f6f1f2' : '#191a1c') + ';';
+  }
+  renderVals() {
+    const t = this.state.type;
+    const list = t ? TOPICS.filter(x => x.types.indexOf(t) >= 0) : [];
+    const nTB = TOPICS.filter(x => x.types.indexOf('tb') >= 0).length;
+    const nSBS = TOPICS.filter(x => x.types.indexOf('sbs') >= 0).length;
+    return { pageBack: () => { if (history.length > 1) history.back(); else location.href = 'Installation Guide Home.dc.html'; },
+      hasType: !!t,
+      typeTitle: t === 'tb' ? 'موضوعات ثلاجة Top & Bottom' : 'موضوعات ثلاجة Side by Side',
+      tbCount: nTB === 1 ? 'موضوع واحد' : nTB === 2 ? 'موضوعان' : AR[nTB] + (nTB > 10 ? ' موضوعًا' : ' موضوعات'),
+      sbsCount: nSBS === 1 ? 'موضوع واحد' : nSBS === 2 ? 'موضوعان' : AR[nSBS] + (nSBS > 10 ? ' موضوعًا' : ' موضوعات'),
+      tbStyle: this.card(t === 'tb'),
+      sbsStyle: this.card(t === 'sbs'),
+      pickTB: () => this.set('tb'),
+      pickSBS: () => this.set('sbs'),
+      groups: t ? GROUPS.map(g => {
+        const items = g.items.filter(x => x.types.indexOf(t) >= 0);
+        return { group: g.group, count: items.length === 1 ? 'موضوع واحد' : items.length === 2 ? 'موضوعان' : AR[items.length] + (items.length > 10 ? ' موضوعًا' : ' موضوعات'),
+          items: items.map((x, i) => ({ n: AR[i + 1], title: x.title, desc: x.desc, href: x.href.replace('TYPE', t) })),
+          open: () => this.setState({ group: g.group }) };
+      }).filter(g => g.items.length) : [],
+      noGroupPicked: !!t && !this.state.group,
+      hasGroup: !!t && !!this.state.group,
+      groupTitle: this.state.group || '',
+      groupItems: (() => {
+        const g = GROUPS.find(x => x.group === this.state.group);
+        if (!g || !t) return [];
+        return g.items.filter(x => x.types.indexOf(t) >= 0)
+          .map((x, i) => ({ n: AR[i + 1], title: x.title, desc: x.desc, href: x.href.replace('TYPE', t) }));
+      })(),
+      clearGroup: () => this.setState({ group: null })
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script>
+(function(){
+  var KEY = 'csGuideAuth_v1';
+  var USER = 'agent';
+  var PASS = 'LGE@2026';
+  function authed(){ try { return localStorage.getItem(KEY) === '1'; } catch(e){ return false; } }
+  if (authed()) return;
+  var u = window.prompt('اسم المستخدم / Username:');
+  var p = window.prompt('كلمة المرور / Password:');
+  if (u === USER && p === PASS) {
+    try { localStorage.setItem(KEY, '1'); } catch(e){}
+  } else {
+    window.stop();
+    document.open();
+    document.write('<div style="font-family:Tahoma,Arial,sans-serif;text-align:center;margin-top:80px;font-size:22px;color:#c00;">تم رفض الدخول<br>Access Denied</div>');
+    document.close();
+  }
+})();
+</script>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<title>دعم فني — أصوات غسالة الباب الأمامي</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&family=IBM+Plex+Sans+Arabic:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  body { margin:0; background:#f4f3ef; }
+  a { color:#A50034; }
+  a:hover { color:#7d0027; }
+  @keyframes cardIn { from { opacity:0; transform:translateY(6px); } to { opacity:1; transform:none; } }
+</style>
+</helmet>
+<template id="__bundler_thumbnail"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><rect width="200" height="200" fill="#A50034"/><rect x="56" y="52" width="88" height="92" rx="8" fill="#fff"/><circle cx="100" cy="104" r="24" fill="none" stroke="#A50034" stroke-width="6"/><path d="M140 82 q14 18 0 36" stroke="#f0a8bd" stroke-width="6" fill="none"/><path d="M152 72 q22 30 0 56" stroke="#f0a8bd" stroke-width="6" fill="none"/></svg></template>
+
+<div dir="rtl" style="min-height:100vh;background:#f4f3ef;color:#191a1c;font-family:'IBM Plex Sans Arabic',system-ui,sans-serif;">
+
+  <div style="background:#111314;color:#f4f3ef;padding:16px 28px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;position:sticky;top:0;z-index:20;">
+    <div style="width:9px;height:32px;background:#A50034;border-radius:2px;flex:none;"></div>
+    <div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:18px;">أصوات الغسالة — باب أمامي</div>
+    <div style="margin-right:auto;display:flex;flex-wrap:wrap;gap:10px;align-items:center;">
+      <div style="padding:7px 14px;border-radius:999px;background:#1e2224;font-size:12.5px;color:#c8cdd0;white-space:nowrap;flex:none;">{{ stepLabel }}</div>
+      <button type="button" onClick="{{ pageBack }}" style="padding:8px 16px;border-radius:8px;border:1px solid #3a4043;color:#f0a8bd;font-size:13px;background:transparent;cursor:pointer;font-family:'IBM Plex Sans Arabic',sans-serif;white-space:nowrap;flex:none;" style-hover="background:#22282a;">رجوع للصفحة السابقة</button>
+      <a href="Installation Guide Home.dc.html" style="padding:8px 16px;border-radius:8px;border:1px solid #3a4043;color:#f0a8bd;font-size:13px;text-decoration:none;white-space:nowrap;flex:none;" style-hover="background:#22282a;">الرئيسية</a>
+      <a href="Service Fees Table.dc.html#washers" style="padding:8px 16px;border-radius:8px;border:1px solid #3a4043;color:#f0a8bd;font-size:13px;text-decoration:none;white-space:nowrap;flex:none;" style-hover="background:#22282a;">جدول تكاليف الصيانة</a>
+      <button onClick="{{ restart }}" style="padding:8px 16px;border-radius:8px;border:1px solid #3a4043;background:transparent;color:#e4e7e9;font-family:'IBM Plex Sans Arabic',sans-serif;font-size:13px;cursor:pointer;white-space:nowrap;flex:none;" style-hover="background:#22282a;">من البداية</button>
+    </div>
+  </div>
+
+  <div style="max-width:1080px;margin:0 auto;padding:30px 28px 70px;display:flex;flex-direction:column;gap:18px;">
+
+    <sc-if value="{{ isPick }}" hint-placeholder-val="{{ true }}">
+      <div style="background:#fff;border:1px solid #e3e0d8;border-radius:14px;padding:32px;border-top:4px solid #A50034;animation:cardIn .25s ease;">
+        <div style="font-size:12.5px;font-weight:600;color:#A50034;letter-spacing:.04em;margin-bottom:10px;">الخطوة ١ — تحديد نوع الصوت</div>
+        <div style="font-family:'Cairo',sans-serif;font-weight:700;font-size:26px;line-height:1.5;margin-bottom:16px;">اسأل العميل يوصف الصوت وفي أي مرحلة بيحصل (ملء المياه · الطرد · العصر · الغسيل)، واختر نوع الصوت من القائمة.</div>
+        <div style="background:#1c1a1b;color:#f6f1f2;border-radius:12px;padding:22px 24px;margin-bottom:20px;">
+          <div style="font-size:12.5px;color:#f0a8bd;margin-bottom:10px;font-weight:600;">افتتاح المكالمة — اقرأ للعميل</div>
+          <div style="font-family:'Cairo',sans-serif;font-size:17.5px;line-height:2.1;">«بعتذرلك عن الإزعاج. قبل ما نلجأ لأي إجراء تاني، أحب أراجع معاك كام خطوة بسيطة ممكن تساعدنا نحدد سبب المشكلة ونحلها في الحال. لو تسمحلي أتابع معاك ده هيوفر عليك الوقت وأي تكاليف أو زيارة غير ضرورية.»</div>
+        </div>
+
+
+        <div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:20px;margin-bottom:12px;">اختر نوع الصوت</div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:12px;">
+          <sc-for list="{{ sounds }}" as="s" hint-placeholder-count="8">
+            <button onClick="{{ s.open }}" style="{{ s.style }}">
+              <div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:18px;line-height:1.3;">{{ s.title }}</div>
+              <div style="font-size:13.5px;line-height:1.6;margin-top:6px;color:#6b7075;">{{ s.hint }}</div>
+            </button>
+          </sc-for>
+        </div>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ isStage }}" hint-placeholder-val="{{ false }}">
+      <div style="background:#fff;border:1px solid #e3e0d8;border-radius:14px;padding:32px;border-top:4px solid #A50034;animation:cardIn .25s ease;">
+        <div style="font-size:12.5px;font-weight:600;color:#A50034;letter-spacing:.04em;margin-bottom:10px;">الخطوة ٢ — مرحلة حدوث الصوت</div>
+        <div style="font-family:'Cairo',sans-serif;font-weight:700;font-size:26px;line-height:1.45;margin-bottom:20px;">الصوت بيحصل في أي مرحلة؟</div>
+        <div style="background:#1c1a1b;color:#f6f1f2;border-radius:12px;padding:20px 22px;margin-bottom:20px;">
+          <div style="font-size:12.5px;color:#f0a8bd;margin-bottom:8px;font-weight:600;">اقرأ للعميل</div>
+          <div style="font-family:'Cairo',sans-serif;font-size:17px;line-height:2.05;">«الزنّة بتحصل في تلات مراحل — عايز أعرف بالظبط بتحصل امتى: وقت ما الغسالة بتتملّى مياه، ولا وقت ما بتطرد المياه، ولا وقت العصر؟»</div>
+        </div>
+        <div style="display:grid;gap:12px;">
+          <sc-for list="{{ stageBtns }}" as="b" hint-placeholder-count="3">
+            <button onClick="{{ b.open }}" style="text-align:right;width:100%;padding:20px 22px;border-radius:12px;border:1px solid #e3e0d8;background:#fff;cursor:pointer;font-family:'IBM Plex Sans Arabic',sans-serif;color:#191a1c;" style-hover="border-color:#A50034;background:#fdf5f7;">
+              <div style="font-family:'Cairo',sans-serif;font-weight:700;font-size:19px;">{{ b.label }}</div>
+            </button>
+          </sc-for>
+        </div>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ isDetail }}" hint-placeholder-val="{{ false }}">
+      <div style="background:#fff;border:1px solid #e3e0d8;border-radius:14px;padding:32px;border-top:4px solid #A50034;animation:cardIn .25s ease;">
+        <div style="font-size:12.5px;font-weight:600;color:#A50034;letter-spacing:.04em;margin-bottom:10px;">الخطوة ٢ — {{ sel.badge }}</div>
+        <div style="font-family:'Cairo',sans-serif;font-weight:700;font-size:26px;line-height:1.4;margin-bottom:10px;">{{ sel.title }}</div>
+        <div style="background:#1c1a1b;color:#f6f1f2;border-radius:12px;padding:20px 22px;margin-bottom:20px;">
+          <div style="font-size:12.5px;color:#f0a8bd;margin-bottom:8px;font-weight:600;">اقرأ للعميل</div>
+          <div style="font-family:'Cairo',sans-serif;font-size:17px;line-height:2.05;">{{ sel.script }}</div>
+        </div>
+
+        <sc-if value="{{ sel.cause }}" hint-placeholder-val="{{ false }}">
+          <div style="font-size:15px;color:#6b7075;line-height:1.85;margin-bottom:20px;max-width:70ch;text-wrap:pretty;">{{ sel.cause }}</div>
+        </sc-if>
+
+        <div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:18px;margin-bottom:12px;">{{ sel.detailsTitle }}</div>
+        <div style="display:grid;gap:14px;margin-bottom:20px;">
+          <sc-for list="{{ sel.cases }}" as="c" hint-placeholder-count="3">
+            <div style="border:1px solid #e9e6de;border-radius:12px;background:#fbfaf7;overflow:hidden;">
+              <div style="padding:16px 20px;display:flex;gap:16px;align-items:flex-start;">
+                <sc-if value="{{ sel.multi }}" hint-placeholder-val="{{ true }}">
+                  <div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:16px;color:#A50034;min-width:22px;">{{ c.n }}</div>
+                </sc-if>
+                <div style="min-width:0;">
+                  <sc-if value="{{ c.q }}" hint-placeholder-val="{{ true }}">
+                    <div style="font-family:'Cairo',sans-serif;font-weight:700;font-size:17px;margin-bottom:6px;">{{ c.q }}</div>
+                  </sc-if>
+                  <div style="font-size:15.5px;line-height:1.9;color:#3f4447;">{{ c.a }}</div>
+                  <sc-if value="{{ c.link }}" hint-placeholder-val="{{ false }}">
+                    <a href="{{ c.link }}" style="display:inline-block;margin-top:10px;padding:9px 16px;border-radius:9px;border:1px solid #f0c2ce;background:#fff5f7;color:#A50034;font-family:'Cairo',sans-serif;font-weight:700;font-size:14px;text-decoration:none;" style-hover="border-color:#A50034;">{{ c.linkText }}</a>
+                  </sc-if>
+                </div>
+                <sc-if value="{{ c.picSide }}" hint-placeholder-val="{{ false }}">
+                  <div style="margin-right:auto;flex:none;">{{ c.picSide }}</div>
+                </sc-if>
+              </div>
+              <sc-if value="{{ c.picBelow }}" hint-placeholder-val="{{ false }}">
+                <div style="padding:0 20px 18px;">{{ c.picBelow }}</div>
+              </sc-if>
+            </div>
+          </sc-for>
+        </div>
+
+        <div style="display:grid;gap:12px;">
+          <button onClick="{{ toDone }}" style="text-align:right;padding:20px 22px;border-radius:12px;border:1px solid #c6e0d1;background:#eef6f1;cursor:pointer;font-family:'IBM Plex Sans Arabic',sans-serif;" style-hover="border-color:#0f5132;">
+            <div style="font-family:'Cairo',sans-serif;font-weight:700;font-size:18px;margin-bottom:4px;">{{ sel.doneBtn }}</div>
+            <div style="font-size:14px;color:#6b7075;">إنهاء المكالمة بدون تسجيل طلب صيانة.</div>
+          </button>
+          <button onClick="{{ toEsc }}" style="text-align:right;padding:20px 22px;border-radius:12px;border:1px solid #f0c2ce;background:#fff5f7;cursor:pointer;font-family:'IBM Plex Sans Arabic',sans-serif;" style-hover="border-color:#A50034;">
+            <div style="font-family:'Cairo',sans-serif;font-weight:700;font-size:18px;margin-bottom:4px;">الصوت غير طبيعي أو مستمر — تسجيل طلب صيانة</div>
+            <div style="font-size:14px;color:#8a5555;">لو الخطوات مانفعتش أو الصوت عالي وغير مألوف.</div>
+          </button>
+          <button onClick="{{ toPick }}" style="text-align:right;padding:16px 22px;border-radius:12px;border:1px solid #d9d5cb;background:#fbfaf7;cursor:pointer;font-family:'IBM Plex Sans Arabic',sans-serif;font-size:15px;color:#191a1c;" style-hover="border-color:#A50034;">صوت مختلف — رجوع لقائمة الأصوات</button>
+        </div>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ isDone }}" hint-placeholder-val="{{ false }}">
+      <div style="background:#fff;border:1px solid #c6e0d1;border-radius:14px;padding:32px;border-top:4px solid #0f5132;animation:cardIn .25s ease;">
+        <div style="font-family:'Cairo',sans-serif;font-weight:700;font-size:26px;line-height:1.5;margin-bottom:18px;">تم إفادة العميل — إنهاء المكالمة</div>
+        <div style="padding:18px 22px;border-radius:12px;background:#eef6f1;border:1px solid #c6e0d1;font-size:15.5px;line-height:1.95;margin-bottom:20px;">
+          تأكد من فهم العميل إن الصوت <strong>طبيعي</strong> أو إن الخطوات هتحلّه، ونبّهه إنه لو الصوت بقى <strong>عالي وغير مألوف</strong> أو مصحوب بعطل في التشغيل يتواصل معانا لتسجيل زيارة فني — ثم أنهِ المكالمة بدون تسجيل طلب صيانة.
+        </div>
+        <a href="Washer Support Topics.dc.html" style="display:inline-block;padding:14px 22px;border-radius:10px;background:#A50034;color:#fff;font-family:'Cairo',sans-serif;font-weight:700;font-size:15px;text-decoration:none;" style-hover="background:#7d0027;">إنهاء المكالمة</a>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ isEsc }}" hint-placeholder-val="{{ false }}">
+      <div style="background:#fff;border:1px solid #f0c2ce;border-radius:14px;padding:32px;border-top:4px solid #A50034;animation:cardIn .25s ease;">
+        <div style="font-size:12.5px;font-weight:600;color:#A50034;letter-spacing:.04em;margin-bottom:10px;">الخطوة الأخيرة — تسجيل طلب صيانة</div>
+        <div style="font-family:'Cairo',sans-serif;font-weight:700;font-size:26px;line-height:1.5;margin-bottom:18px;">الجهاز يحتاج زيارة فني</div>
+        <div style="background:#1c1a1b;color:#f6f1f2;border-radius:12px;padding:20px 22px;margin-bottom:20px;">
+          <div style="font-size:12.5px;color:#f0a8bd;margin-bottom:8px;font-weight:600;">اقرأ للعميل</div>
+          <div style="font-family:'Cairo',sans-serif;font-size:17px;line-height:2.05;">«هسجّل لحضرتك طلب صيانة وزيارة فني. الصيانة داخل فترة الضمان مجانية تمامًا. ولو ظهر إن السبب مش عطل فني في الجهاز، أو إن العطل خارج نطاق الضمان، بتكون في تكلفة زيارة ومعاينة ١٨٢ جنيه لأول زيارة، وأي زيارة بعدها ٣٠٠ جنيه — وتكلفة الصيانة نفسها بتتحدد بعد ما الفني يعاين الجهاز، وهتُعرض على حضرتك للموافقة قبل أي إصلاح.»</div>
+        </div>
+
+        <a href="Service Fees Table.dc.html#washers" style="display:flex;align-items:center;gap:14px;padding:18px 22px;border-radius:12px;border:1px solid #f0c2ce;background:#fff5f7;text-decoration:none;margin-bottom:20px;" style-hover="border-color:#A50034;">
+          <div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:17px;color:#A50034;">رسوم الغسالات وغسالات الأطباق</div>
+          <div style="font-size:14px;color:#3f4447;line-height:1.7;">اضغط لعرض رسوم الصيانة والزيارة الخاصة بالمنتج — صباحي ومسائي.</div>
+          <div style="margin-right:auto;color:#A50034;font-size:18px;">←</div>
+        </a>
+
+
+        <div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:18px;margin-bottom:12px;">نظام تسجيل الطلب</div>
+        <div style="display:grid;gap:10px;margin-bottom:20px;">
+          <div style="display:flex;gap:14px;padding:15px 18px;border-radius:12px;background:#fbfaf7;border:1px solid #e9e6de;"><div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:16px;color:#A50034;min-width:20px;">١</div><div style="font-size:15px;line-height:1.9;">يتم تسجيل <strong>وصف الصوت ومرحلة البرنامج</strong> اللي بيحصل فيها، و<strong>كل الخطوات اللي تمت مع العميل</strong> في البلاغ، مع <strong>رقم الموديل</strong>. (لو رقم الموديل مش متوفر يتم تسجيل البلاغ بعد التأكد إن الجهاز إل جي ومشترى من داخل مصر)</div></div>
+          <div style="display:flex;gap:14px;padding:15px 18px;border-radius:12px;background:#fbfaf7;border:1px solid #e9e6de;"><div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:16px;color:#A50034;min-width:20px;">٢</div><div style="font-size:15px;line-height:1.9;">الاسم الثلاثي للعميل كما هو مسجل في فاتورة الشراء (لو مش متوفر يتم السؤال عن اسم صاحب الجهاز).</div></div>
+          <div style="display:flex;gap:14px;padding:15px 18px;border-radius:12px;background:#fbfaf7;border:1px solid #e9e6de;"><div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:16px;color:#A50034;min-width:20px;">٣</div><div style="font-size:15px;line-height:1.9;">رقم الهاتف الأساسي ورقم إضافي إن وجد.</div></div>
+          <div style="display:flex;gap:14px;padding:15px 18px;border-radius:12px;background:#fbfaf7;border:1px solid #e9e6de;"><div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:16px;color:#A50034;min-width:20px;">٤</div><div style="font-size:15px;line-height:1.9;">العنوان بالتفصيل (المحافظة، المنطقة، اسم الشارع، رقم العمارة، الدور، الشقة، علامة مميزة).</div></div>
+          <div style="display:flex;gap:14px;padding:15px 18px;border-radius:12px;background:#fbfaf7;border:1px solid #e9e6de;"><div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:16px;color:#A50034;min-width:20px;">٥</div><div style="font-size:15px;line-height:1.9;">استفسر منه عن الموعد المفضل وسجّله على الأوردر. (لو لم يرد على السؤال يتم اختيار أقرب موعد متاح وإبلاغ العميل به)</div></div>
+        </div>
+
+        <a href="Washer Support Topics.dc.html" style="display:inline-block;padding:14px 22px;border-radius:10px;background:#A50034;color:#fff;font-family:'Cairo',sans-serif;font-weight:700;font-size:15px;text-decoration:none;" style-hover="background:#7d0027;">تم تسجيل البلاغ — إنهاء المكالمة</a>
+      </div>
+    </sc-if>
+
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const AR = ['٠','١','٢','٣','٤','٥','٦','٧','٨'];
+const SOUNDS = [
+  { key:'hum', title:'الزنّة أو الطنين (Humming)', hint:'أثناء الملء أو الطرد أو العصر', normal:true, stages:true,
+    stageLabels:['وقت ملء الغسالة بالمياه','وقت طرد المياه من الغسالة','أثناء مرحلة العصر'],
+    cause:'',
+    script:'«الزنّة اللي حضرتك بتسمعها صوت طبيعي تمامًا ومش عطل. هوضّح لحضرتك مصدره حسب المرحلة اللي بيحصل فيها.»',
+    cases:[
+      { q:'الصوت بيحصل وقت ملء الغسالة بالمياه؟', a:'الطنين طبيعي — ده صوت الأجزاء الداخلية وهي بتسحب المياه لجوّه الغسالة.', img:'assets/wm-noise-hum-fill.png' },
+      { q:'الصوت بيحصل وقت طرد المياه من الغسالة؟', a:'الطنين طبيعي — ده صوت الأجزاء الداخلية أثناء الطرد، زي مضخة الصرف (الطرد).', img:'assets/wm-noise-hum-drain.png' },
+      { q:'الصوت بيحصل أثناء مرحلة العصر؟', a:'الطنين أثناء العصر طبيعي كذلك، وله سببين: صوت طرد المياه ومضخة الصرف، وكذلك صوت الموتور وتدفق الهواء أثناء دوران الحلة.', img:'assets/wm-noise-hum-spin.png' }
+    ] },
+
+  { key:'whirr', title:'الهواء والصفير (Whirring)', hint:'أثناء العصر السريع', normal:true,
+    cause:'',
+    script:'«الصوت ده طبيعي — بيحصل لما الحلة توصل لسرعة عصر عالية عشان تطلّع أكبر قدر من المياه من الغسيل.»',
+    cases:[
+      { q:'الصوت بيحصل أثناء مرحلة العصر؟', a:'صوت طبيعي — ده صوت تدفق الهواء داخل وحول الحلة الداخلية وهي بتلف جوّه الحلة الخارجية.', img:'assets/wm-noise-whirring.png' }
+    ] },
+
+  { key:'clank', title:'الطقطقة والخربشة (Clanking)', hint:'أجسام معدنية أو فلتر مسدود', normal:false, side:true,
+    cause:'',
+    script:'«الصوت ده غالبًا سببه حاجة معدنية في الغسيل أو متعلقة في الحلة. هنفحص التلات حالات مع حضرتك.»',
+    cases:[
+      { q:'هل يوجد في الغسيل قطع بها أزرار أو سوست أو أبازيم؟', a:'الأجزاء المعدنية زي الأزرار والمشابك والسوست بتخبط في الحلة وتعمل الصوت ده — وده أشهر سبب للطقطقة والخربشة. لازم كذلك إفراغ الجيوب من العملات والولاعات والمفاتيح قبل الغسيل لأنها بتخرج أثناء الغسيل أو العصر.', img:'assets/wm-noise-clank-items.png' },
+      { q:'هل تم فحص سطح الحلة من أشياء متعلقة في فتحاتها؟', a:'يتم فحص سطح الحلة الداخلية — المشابك والأسلاك الصغيرة ممكن تتعلق في إحدى الفتحات وتبرز منها فتعمل صوت أثناء الاحتكاك بين الحلة والحوض. لو موجودة يتم إزالتها بحذر.', img:'assets/wm-noise-clank-drum.png' },
+      { q:'هل الصوت جاي من مضخة الصرف؟', a:'خرطوم الصرف اليدوي وفلتر الصرف لازم يتم تنظيفهم بشكل دوري لمنع الصوت. يتم تصريف الخرطوم يدويًا، ثم إخراج الفلتر وتنظيفه بمياه دافئة وفرشاة صغيرة لتنظيف الفتحات، وفحص علبة مضخة الصرف من أي أجسام متعلقة.', img:'assets/crop-wm-noise-clank-pump.png' }
+    ] },
+
+  { key:'click', title:'صوت الكليك (Clicking)', hint:'بداية أو منتصف أو نهاية البرنامج', normal:true,
+    cause:'',
+    script:'«صوت الكليك ده طبيعي تمامًا — ده صوت المفاتيح الكهربائية اللي بتشغّل أجزاء الغسالة زي الموتور وصمامات المياه وقفل الباب.»',
+    cases:[
+      { q:'الصوت بيحصل في منتصف أو نهاية البرنامج؟', a:'طبيعي — في المنتصف بيوضّح تغيّر مراحل البرنامج، وفي النهاية بيكون لإطفاء الأجزاء وفتح قفل الباب.', img:'assets/crop-wm-noise-click-mid.png' }
+    ] },
+
+  { key:'knock', title:'الخبط والدق (Knocking)', hint:'اتزان الغسالة أو الخراطيم', normal:false, side:true,
+    cause:'',
+    script:'«الخبط ده غالبًا سببه إن الغسالة مش واقفة مستوية أو فيه حاجة متحركة جوّاها. هنفحص التلات حالات مع حضرتك.»',
+    cases:[
+      { q:'هل الغسالة مستوية؟', link:'Washer Leg Leveling Guide.dc.html', linkText:'طريقة ضبط أرجل الغسالة ←', a:'لو الغسالة مش مستوية، الصوت ده بيحصل في مراحل مختلفة من البرنامج. الخطوات: فحص الأرضية (ممنوع السجاد أو الكرتون تحت الغسالة) · قياس الاستواء بميزان مياه · ثم شدّ صامولة تثبيت الأرجل بحيث لا تكون هناك أي مسافة بين الرجل والأرض.', img:'assets/crop-wm-noise-knock-level.png' },
+      { q:'هل يوجد حاجات متحركة أو أشياء تقيلة داخل الغسالة؟', a:'الحاجات المتحركة داخل الغسالة بتعمل صوت خبط — لازم إفراغ الجيوب قبل الغسيل. والكوتشي يمكن غسله في الغسالة، لكن لتجنّب الصوت العالي وتلف البكرات يتم وضعه في كيس مخدة بسحّاب وغسله مع بعض الفوط — وده كذلك بيسمح للغسالة تعصر المياه الزائدة.', img:'assets/crop-wm-noise-knock-loose.png' },
+      { q:'هل الخراطيم بتخبط في ظهر الغسالة؟', a:'لو خراطيم دخول المياه أو خرطوم الصرف بتخبط في ظهر الغسالة الصوت ده بيحصل أثناء التشغيل. لازم التأكد إن كل الخراطيم مثبّتة بإحكام، وربطها لمنع الحركة الزائدة، وترك مسافة أكبر من ٢ سم بين ظهر الغسالة والحيطة — وده مهم جدًا في مرحلة العصر عند السرعات العالية.', img:'assets/crop-wm-noise-knock-hoses.png' }
+    ] },
+
+  { key:'hammer', title:'خبط مواسير المياه (Water Hammer)', hint:'صوت من مواسير المنزل', normal:false, side:true,
+    cause:'',
+    script:'«الصوت ده اسمه خبط مواسير المياه، ومصدره مواسير المياه في المنزل مش الغسالة. سببه ضغط المياه العالي في المواسير — وهوضّح لحضرتك الحل.»',
+    cases:[
+      { q:'هل الصوت جاي من مواسير المياه في المنزل؟', a:'ده اللي بيُسمّى «خبط مواسير المياه» — انسداد أو توقف مفاجئ في مسار المياه عالية الضغط داخل الماسورة. الصوت مصدره ماسورة المنزل الرئيسية وليس الغسالة، وسببه ضغط المياه العالي. الحل الأسهل: تخفيض ضغط المياه من محبس المياه في المنزل.', img:'assets/crop-wm-noise-hammer1.png' },
+      { q:'هل الصوت بيحصل وقت ملء الغسالة بالمياه؟', a:'صوت خبط مواسير المياه بيحصل من اهتزاز ماسورة المياه عند بداية ملء الغسالة. لو الصوت بيحصل في أماكن معيّنة، فالمواسير مش مثبّتة بشكل سليم في مكانها — ويُنصح بتركيب مانع خبط المواسير (Water Hammer Arrester) عند الغسالة أو عند محبس المياه لتقليل الصوت.', img:'assets/crop-wm-noise-hammer2.png' }
+    ] },
+
+  { key:'wash', title:'صوت الغسيل (Wash Noise)', hint:'أثناء مرحلة الغسيل', normal:true, side:true,
+    cause:'',
+    script:'«الصوت ده طبيعي — الغسالة بتلف الغسيل المبلول فيقع في المياه جوّه الحلة، وده بيعمل صوت. وفي موديلات 6 Motion الصوت بيكون أعلى لأنها بتستخدم قوة ميكانيكية أكبر.»',
+    cases:[
+      { q:'الصوت أثناء مرحلة الغسيل؟', a:'الصوت بيكون أعلى في موديلات 6 Motion بسبب حركات الغسالة المختلفة بقوة. حركات الـ 6 Motion: Scrub (إذابة عميقة) · Stepping (غسيل قوي بأقل تلف للملابس) · Filtration (ترطيب سريع للغسيل ورشّ المنظف) · Tumble (توزيع جيد للغسيل) · Rolling (أداء غسيل أفضل) · Swing (غسيل نـاعم للأقمشة الرقيقة).', img:'assets/crop-wm-noise-wash.png' }
+    ] },
+
+  { key:'other', title:'أصوات أخرى', hint:'أصوات مكنتش موجودة في الغسالة القديمة', normal:true, side:true,
+    cause:'مع أي منتج جديد، العميل بيسمع أصوات مش متعوّد عليها — ومعظمها طبيعي.',
+    script:'«طبيعي إن حضرتك تسمع أصوات مختلفة عن الغسالة القديمة، لأن الغسالة الجديدة بتشتغل بطريقة مختلفة. وأغلب الأصوات دي طبيعية تمامًا.»',
+    cases:[
+      { q:'هل الأصوات مختلفة عن الغسالة السابقة؟', a:'مع أي منتج جديد بيكون فيه أصوات جديدة على العميل — زي صوت قفل الباب، وتوقفات لحظية بين مراحل البرنامج، وصوت رشّ أو تطرطش المياه أثناء الغسيل والشطف، وصوت الهواء والمياه في المضخة أثناء الطرد. كل دي أصوات طبيعية. وكذلك: صوت «كراك» من مفتاح قفل الباب عند بداية ونهاية البرنامج · صوت خبط من حاجات متحركة (لازم إفراغ الجيوب) · وأصوات من مواسير المياه في المنزل بسبب ضغط المياه العالي وليست من الغسالة.', img:'assets/crop-wm-noise-other.png' }
+    ] }
+];
+
+class Component extends DCLogic {
+  state = { node: 'pick', sel: null, caseIdx: null, history: [] };
+  go(n, extra) { this.setState(s => Object.assign({ node: n, history: [...s.history, s.node] }, extra || {})); window.scrollTo(0, 0); }
+  renderVals() {
+    const n = this.state.node;
+    const sel = SOUNDS.find(s => s.key === this.state.sel) || null;
+    const labels = { pick:'خطوة ١', stage:'خطوة ٢', detail:'التفاصيل', done:'إنهاء', esc:'تسجيل بلاغ' };
+    return { pageBack: () => { if (history.length > 1) history.back(); else location.href = 'Installation Guide Home.dc.html'; },
+      stepLabel: labels[n] || '',
+      isPick: n === 'pick', isStage: n === 'stage', isDetail: n === 'detail', isDone: n === 'done', isEsc: n === 'esc',
+      stageBtns: (sel && sel.stageLabels ? sel.stageLabels : []).map((l, i) => ({
+        label: l, open: () => this.go('detail', { caseIdx: i })
+      })),
+      sounds: SOUNDS.map(s => ({
+        title: s.title,
+        hint: s.hint,
+        style: "text-align:right;padding:18px 20px;border-radius:12px;cursor:pointer;width:100%;font-family:'IBM Plex Sans Arabic',sans-serif;border:1px solid " +
+          (s.normal ? '#e3e0d8' : '#f0c2ce') + ';background:' + (s.normal ? '#fff' : '#fff5f7') + ';color:#191a1c;',
+        open: () => this.go(s.stages ? 'stage' : 'detail', { sel: s.key, caseIdx: null })
+      })),
+      sel: sel ? {
+        title: sel.title,
+        cause: sel.cause,
+        script: sel.script,
+        multi: (this.state.caseIdx === null ? sel.cases.length : 1) > 1,
+        detailsTitle: sel.normal ? 'التفاصيل' : 'التفاصيل والخطوات',
+        badge: sel.normal ? 'صوت طبيعي — طمأنة العميل' : 'الخطوات الإرشادية',
+        doneBtn: sel.normal ? 'تم طمأنة العميل — إنهاء المكالمة' : 'اتحلّت المشكلة أو سيجرب العميل الحل',
+        cases: (this.state.caseIdx === null ? sel.cases : [sel.cases[this.state.caseIdx]]).map((c, i) => ({
+          n: AR[i + 1], q: c.q, a: c.a, link: c.link || '', linkText: c.linkText || '',
+          picSide: (c.img && sel.side) ? React.createElement('img', { src: c.img, alt: c.q,
+            style: { display:'block', width: (i === 1 ? '260px' : '420px'), height:'auto', borderRadius:'10px', border:'1px solid #e3e0d8', background:'#fff' } }) : null,
+          picBelow: (c.img && !sel.side) ? React.createElement('img', { src: c.img, alt: c.q,
+            style: { display:'block', width:'100%', maxWidth:'100px', height:'auto', borderRadius:'10px', border:'1px solid #e3e0d8', background:'#fff' } }) : null
+        }))
+      } : { title:'', cause:'', script:'', badge:'', doneBtn:'', multi:false, detailsTitle:'', cases:[] },
+      toPick: () => this.go('pick', { caseIdx: null }),
+      toDone: () => this.go('done'),
+      toEsc: () => this.go('esc'),
+      back: () => this.setState(s => s.history.length ? { node: s.history[s.history.length - 1], history: s.history.slice(0, -1) } : {}),
+      restart: () => this.setState({ node: 'pick', sel: null, history: [] })
+    };
+  }
+}
+</script>
+</body>
+</html>

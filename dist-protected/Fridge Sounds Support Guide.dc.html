@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script>
+(function(){
+  var KEY = 'csGuideAuth_v1';
+  var USER = 'agent';
+  var PASS = 'LGE@2026';
+  function authed(){ try { return localStorage.getItem(KEY) === '1'; } catch(e){ return false; } }
+  if (authed()) return;
+  var u = window.prompt('اسم المستخدم / Username:');
+  var p = window.prompt('كلمة المرور / Password:');
+  if (u === USER && p === PASS) {
+    try { localStorage.setItem(KEY, '1'); } catch(e){}
+  } else {
+    window.stop();
+    document.open();
+    document.write('<div style="font-family:Tahoma,Arial,sans-serif;text-align:center;margin-top:80px;font-size:22px;color:#c00;">تم رفض الدخول<br>Access Denied</div>');
+    document.close();
+  }
+})();
+</script>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<title>دعم فني — أصوات الثلاجة الطبيعية</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&family=IBM+Plex+Sans+Arabic:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  body { margin:0; background:#f4f3ef; }
+  a { color:#A50034; }
+  a:hover { color:#7d0027; }
+  @keyframes cardIn { from { opacity:0; transform:translateY(6px); } to { opacity:1; transform:none; } }
+</style>
+</helmet>
+<template id="__bundler_thumbnail"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><rect width="200" height="200" fill="#A50034"/><rect x="70" y="52" width="60" height="96" rx="8" fill="#fff"/><rect x="70" y="92" width="60" height="4" fill="#A50034"/><circle cx="120" cy="82" r="3" fill="#A50034"/><circle cx="120" cy="106" r="3" fill="#A50034"/></svg></template>
+
+
+<div dir="rtl" style="min-height:100vh;background:#f4f3ef;color:#191a1c;font-family:'IBM Plex Sans Arabic',system-ui,sans-serif;">
+
+  <div style="background:#111314;color:#f4f3ef;padding:16px 28px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;position:sticky;top:0;z-index:5;">
+    <div style="width:9px;height:32px;background:#A50034;border-radius:2px;flex:none;"></div>
+    <div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:18px;">أصوات الثلاجة الطبيعية</div>
+    <div style="margin-right:auto;display:flex;flex-wrap:wrap;gap:10px;align-items:center;">
+      <button type="button" onClick="{{ pageBack }}" style="padding:8px 16px;border-radius:8px;border:1px solid #3a4043;color:#f0a8bd;font-size:13px;background:transparent;cursor:pointer;font-family:'IBM Plex Sans Arabic',sans-serif;white-space:nowrap;flex:none;" style-hover="background:#22282a;">رجوع للصفحة السابقة</button>
+      <a href="Installation Guide Home.dc.html" style="padding:8px 16px;border-radius:8px;border:1px solid #3a4043;color:#f0a8bd;font-size:13px;text-decoration:none;white-space:nowrap;flex:none;" style-hover="background:#22282a;">الرئيسية</a>
+      <a href="Service Fees Table.dc.html#fridge" style="padding:8px 16px;border-radius:8px;border:1px solid #3a4043;color:#f0a8bd;font-size:13px;text-decoration:none;white-space:nowrap;flex:none;" style-hover="background:#22282a;">جدول تكاليف الصيانة</a>
+      <a href="Fridge Support Topics.dc.html" style="padding:8px 16px;border-radius:8px;border:1px solid #3a4043;color:#e4e7e9;font-size:13px;text-decoration:none;white-space:nowrap;flex:none;" style-hover="background:#22282a;">رجوع</a>
+    </div>
+  </div>
+
+  <div style="max-width:1080px;margin:0 auto;padding:30px 28px 70px;display:flex;flex-direction:column;gap:18px;">
+
+    <div style="background:#fff;border:1px solid #e3e0d8;border-radius:14px;padding:28px;border-top:4px solid #A50034;animation:cardIn .25s ease;">
+        <div style="background:#1c1a1b;color:#f6f1f2;border-radius:12px;padding:22px 24px;margin-bottom:20px;">
+          <div style="font-size:12.5px;color:#f0a8bd;margin-bottom:10px;font-weight:600;">افتتاح المكالمة — اقرأ للعميل</div>
+          <div style="font-family:'Cairo',sans-serif;font-size:17.5px;line-height:2.1;">«بعتذرلك عن الإزعاج. قبل ما نلجأ لأي إجراء تاني، أحب أراجع معاك كام خطوة بسيطة ممكن تساعدنا نحدد سبب المشكلة ونحلها في الحال. لو تسمحلي أتابع معاك ده هيوفر عليك الوقت وأي تكاليف أو زيارة غير ضرورية.»</div>
+        </div>
+      <div style="background:#1c1a1b;color:#f6f1f2;border-radius:12px;padding:20px 22px;">
+        <div style="font-size:12.5px;color:#f0a8bd;margin-bottom:8px;font-weight:600;">اقرأ للعميل</div>
+        <div style="font-family:'Cairo',sans-serif;font-size:17px;line-height:2.05;">«الثلاجة زي جسم الإنسان — بتصدر أصوات وهي شغالة بكامل طاقتها، ومعظم الأصوات دي جزء طبيعي من التشغيل اليومي ومش دليل على عطل. لو حضرتك توصفلي الصوت اللي بتسمعه هوضحلك مصدره.»</div>
+      </div>
+      <div style="font-size:12.5px;font-weight:600;color:#A50034;letter-spacing:.04em;margin-bottom:10px;">الخطوة ١ — افتح المكالمة بالطمأنة</div>
+      <div style="font-family:'Cairo',sans-serif;font-weight:700;font-size:25px;line-height:1.5;margin-bottom:16px;">اطمئن العميل أولًا: الصوت لا يعني وجود عطل</div>
+    </div>
+
+    <div style="background:#fff;border:1px solid #e3e0d8;border-radius:14px;padding:28px;animation:cardIn .25s ease;">
+      <div style="font-size:12.5px;font-weight:600;color:#A50034;letter-spacing:.04em;margin-bottom:10px;">الخطوة ٢ — اسأل عن وصف الصوت</div>
+      <div style="font-family:'Cairo',sans-serif;font-weight:700;font-size:25px;line-height:1.5;margin-bottom:8px;">حدّد الصوت من الجدول ثم اشرح مصدره للعميل</div>
+      <div style="font-size:14.5px;color:#6b7075;line-height:1.85;margin-bottom:18px;max-width:70ch;text-wrap:pretty;">كل صوت له تفسير ميكانيكي واضح — ولا واحد منهم يعني وجود عيب في المنتج.</div>
+
+      <div style="overflow-x:auto;">
+        <table style="width:100%;border-collapse:collapse;font-size:14.5px;">
+          <thead>
+            <tr style="background:#111314;color:#f4f3ef;font-family:'Cairo',sans-serif;">
+              <th style="padding:12px 14px;text-align:right;font-weight:700;">الصوت</th>
+              <th style="padding:12px 14px;text-align:right;font-weight:700;">المصدر</th>
+              <th style="padding:12px 14px;text-align:right;font-weight:700;">التفسير الذي يُقال للعميل</th>
+              <th style="padding:12px 10px;text-align:center;font-weight:700;">تشغيل</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="background:#fbfaf7;"><td style="padding:12px 14px;border-bottom:1px solid #e9e6de;font-family:'Cairo',sans-serif;font-weight:700;">الأزيز</td><td style="padding:12px 14px;border-bottom:1px solid #e9e6de;">إذابة الصقيع</td><td style="padding:12px 14px;border-bottom:1px solid #e9e6de;line-height:1.75;">الماء المتقطر يسقط على سخان الإذابة فيتبخر فورًا — دليل على كفاءة التشغيل.</td><td style="padding:12px 10px;border-bottom:1px solid #e9e6de;text-align:center;"><button onClick="{{ play_hiss }}" title="تشغيل الصوت" style="padding:8px 16px;border-radius:999px;border:1px solid #f0c2ce;background:#fff5f7;color:#A50034;font-family:'Cairo',sans-serif;font-weight:700;font-size:13.5px;cursor:pointer;white-space:nowrap;white-space:nowrap;flex:none;" style-hover="background:#A50034;color:#fff;border-color:#A50034;">▶ استمع</button></td></tr>
+            <tr><td style="padding:12px 14px;border-bottom:1px solid #e9e6de;font-family:'Cairo',sans-serif;font-weight:700;">الغرغرة</td><td style="padding:12px 14px;border-bottom:1px solid #e9e6de;">تدفق المبرد والزيت</td><td style="padding:12px 14px;border-bottom:1px solid #e9e6de;line-height:1.75;">المبرد والزيت يتدفقان في الملفات عند عمل الضاغط — صوت يشبه تصريف الماء.</td><td style="padding:12px 10px;border-bottom:1px solid #e9e6de;text-align:center;"><button onClick="{{ play_gurgle }}" title="تشغيل الصوت" style="padding:8px 16px;border-radius:999px;border:1px solid #f0c2ce;background:#fff5f7;color:#A50034;font-family:'Cairo',sans-serif;font-weight:700;font-size:13.5px;cursor:pointer;white-space:nowrap;white-space:nowrap;flex:none;" style-hover="background:#A50034;color:#fff;border-color:#A50034;">▶ استمع</button></td></tr>
+            <tr style="background:#fbfaf7;"><td style="padding:12px 14px;border-bottom:1px solid #e9e6de;font-family:'Cairo',sans-serif;font-weight:700;">الطقطقة</td><td style="padding:12px 14px;border-bottom:1px solid #e9e6de;">تمدد البلاستيك</td><td style="padding:12px 14px;border-bottom:1px solid #e9e6de;line-height:1.75;">الألواح والأدراج البلاستيكية تتمدد مع ارتفاع الحرارة الداخلية — مؤقت تمامًا.</td><td style="padding:12px 10px;border-bottom:1px solid #e9e6de;text-align:center;"><button onClick="{{ play_crack }}" title="تشغيل الصوت" style="padding:8px 16px;border-radius:999px;border:1px solid #f0c2ce;background:#fff5f7;color:#A50034;font-family:'Cairo',sans-serif;font-weight:700;font-size:13.5px;cursor:pointer;white-space:nowrap;white-space:nowrap;flex:none;" style-hover="background:#A50034;color:#fff;border-color:#A50034;">▶ استمع</button></td></tr>
+            <tr><td style="padding:12px 14px;border-bottom:1px solid #e9e6de;font-family:'Cairo',sans-serif;font-weight:700;">النقر</td><td style="padding:12px 14px;border-bottom:1px solid #e9e6de;">انكماش البلاستيك</td><td style="padding:12px 14px;border-bottom:1px solid #e9e6de;line-height:1.75;">انكماش البلاستيك مع انخفاض الحرارة، أو تقطير ماء الإذابة على الأسطح.</td><td style="padding:12px 10px;border-bottom:1px solid #e9e6de;text-align:center;"><button onClick="{{ play_click }}" title="تشغيل الصوت" style="padding:8px 16px;border-radius:999px;border:1px solid #f0c2ce;background:#fff5f7;color:#A50034;font-family:'Cairo',sans-serif;font-weight:700;font-size:13.5px;cursor:pointer;white-space:nowrap;white-space:nowrap;flex:none;" style-hover="background:#A50034;color:#fff;border-color:#A50034;">▶ استمع</button></td></tr>
+            <tr style="background:#fbfaf7;"><td style="padding:12px 14px;border-bottom:1px solid #e9e6de;font-family:'Cairo',sans-serif;font-weight:700;">الطرطشة</td><td style="padding:12px 14px;border-bottom:1px solid #e9e6de;">بدء تشغيل الضاغط</td><td style="padding:12px 14px;border-bottom:1px solid #e9e6de;line-height:1.75;">بدء عمل الضاغط أو المروحة فجأة — يتلاشى مع استقرار الحرارة.</td><td style="padding:12px 10px;border-bottom:1px solid #e9e6de;text-align:center;"><button onClick="{{ play_splash }}" title="تشغيل الصوت" style="padding:8px 16px;border-radius:999px;border:1px solid #f0c2ce;background:#fff5f7;color:#A50034;font-family:'Cairo',sans-serif;font-weight:700;font-size:13.5px;cursor:pointer;white-space:nowrap;white-space:nowrap;flex:none;" style-hover="background:#A50034;color:#fff;border-color:#A50034;">▶ استمع</button></td></tr>
+            <tr><td style="padding:12px 14px;border-bottom:1px solid #e9e6de;font-family:'Cairo',sans-serif;font-weight:700;">الدق</td><td style="padding:12px 14px;border-bottom:1px solid #e9e6de;">استئناف الضاغط</td><td style="padding:12px 14px;border-bottom:1px solid #e9e6de;line-height:1.75;">استئناف عمل الضاغط بعد توقفه الدوري — جزء من دورة التشغيل.</td><td style="padding:12px 10px;border-bottom:1px solid #e9e6de;text-align:center;"><button onClick="{{ play_knock }}" title="تشغيل الصوت" style="padding:8px 16px;border-radius:999px;border:1px solid #f0c2ce;background:#fff5f7;color:#A50034;font-family:'Cairo',sans-serif;font-weight:700;font-size:13.5px;cursor:pointer;white-space:nowrap;white-space:nowrap;flex:none;" style-hover="background:#A50034;color:#fff;border-color:#A50034;">▶ استمع</button></td></tr>
+            <tr style="background:#fbfaf7;"><td style="padding:12px 14px;font-family:'Cairo',sans-serif;font-weight:700;">الطنين</td><td style="padding:12px 14px;">توليد الهواء البارد</td><td style="padding:12px 14px;line-height:1.75;">صوت توليد الهواء البارد أثناء عمل الضاغط — وقد يُسمع كدوي أو صفير.</td><td style="padding:12px 10px;text-align:center;"><button onClick="{{ play_hum }}" title="تشغيل الصوت" style="padding:8px 16px;border-radius:999px;border:1px solid #f0c2ce;background:#fff5f7;color:#A50034;font-family:'Cairo',sans-serif;font-weight:700;font-size:13.5px;cursor:pointer;white-space:nowrap;white-space:nowrap;flex:none;" style-hover="background:#A50034;color:#fff;border-color:#A50034;">▶ استمع</button></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div style="margin-top:14px;padding:14px 18px;border-radius:10px;background:#fbfaf7;border:1px solid #e9e6de;font-size:13.5px;color:#6b7075;line-height:1.75;">أصوات تقريبية للتوضيح فقط — يستخدمها موظف خدمة العملاء للتعرّف على الصوت الذي يصفه العميل، وليست تسجيلات فعلية من الجهاز.</div>
+    </div>
+
+    <div style="background:#fff;border:1px solid #e3e0d8;border-radius:14px;padding:28px;animation:cardIn .25s ease;">
+      <div style="font-size:12.5px;font-weight:600;color:#A50034;letter-spacing:.04em;margin-bottom:10px;">الخطوة ٣ — حالة خاصة</div>
+      <div style="font-family:'Cairo',sans-serif;font-weight:700;font-size:25px;line-height:1.5;margin-bottom:16px;">أزيز عند فتح الباب</div>
+      <div style="display:grid;gap:12px;">
+        <div style="display:flex;gap:16px;padding:17px 20px;border-radius:12px;background:#fbfaf7;border:1px solid #e9e6de;"><div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:17px;color:#A50034;min-width:20px;">١</div><div style="font-size:15.5px;line-height:1.9;">عند فتح الباب يدخل الهواء الدافئ ويبدأ الهواء البارد بالخروج، فيهرب من الحجرة مُصدرًا صوت أزيز لحظي.</div></div>
+        <div style="display:flex;gap:16px;padding:17px 20px;border-radius:12px;background:#fbfaf7;border:1px solid #e9e6de;"><div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:17px;color:#A50034;min-width:20px;">٢</div><div style="font-size:15.5px;line-height:1.9;">بمجرد إغلاق الباب واستقرار الضغط يختفي الصوت فورًا — ويحدث في كل مرة يُفتح فيها الباب.</div></div>
+      </div>
+    </div>
+
+    <div style="background:#fff;border:1px solid #f0c2ce;border-radius:14px;padding:28px;border-top:4px solid #A50034;animation:cardIn .25s ease;">
+      <div style="font-size:12.5px;font-weight:600;color:#A50034;letter-spacing:.04em;margin-bottom:10px;">الخطوة ٤ — متى يتم تسجيل طلب صيانة</div>
+      <div style="font-family:'Cairo',sans-serif;font-weight:700;font-size:25px;line-height:1.5;margin-bottom:16px;">حالات الخروج عن الأصوات الطبيعية</div>
+      <div style="background:#1c1a1b;color:#f6f1f2;border-radius:12px;padding:20px 22px;margin-bottom:20px;">
+        <div style="font-size:12.5px;color:#f0a8bd;margin-bottom:8px;font-weight:600;">اقرأ للعميل عند الطمأنة</div>
+        <div style="font-family:'Cairo',sans-serif;font-size:17px;line-height:2.05;">«اطمئن يا فندم، الصوت اللي حضرتك بتسمعه صوت طبيعي تمامًا ومش عيب في المنتج — الثلاجة شغالة زي ما المفروض. ولو لاحظت صوت حاد غير مألوف أو مصحوب بضعف في التبريد، تواصل معانا وهنسجل لحضرتك زيارة فني.»</div>
+      </div>
+      <div style="display:flex;gap:12px;flex-wrap:wrap;">
+        <a href="Refrigerator Installation Call Guide.dc.html#cool" style="padding:14px 22px;border-radius:10px;background:#A50034;color:#fff;font-family:'Cairo',sans-serif;font-weight:700;font-size:15px;text-decoration:none;" style-hover="background:#7d0027;">هناك ضعف في التبريد — انتقل لمسار ضعف التبريد</a>
+        <a href="Fridge Support Topics.dc.html" style="padding:14px 22px;border-radius:10px;border:1px solid #d9d5cb;background:#fbfaf7;color:#191a1c;font-family:'Cairo',sans-serif;font-weight:700;font-size:15px;text-decoration:none;" style-hover="border-color:#A50034;">تم طمأنة العميل — إنهاء المكالمة</a>
+      </div>
+    </div>
+
+
+
+    <div style="background:#fff;border:1px solid #f0c2ce;border-radius:14px;padding:28px;border-top:4px solid #A50034;">
+      <div style="background:#1c1a1b;color:#f6f1f2;border-radius:12px;padding:20px 22px;margin-bottom:16px;">
+        <div style="font-size:12.5px;color:#f0a8bd;margin-bottom:8px;font-weight:600;">اقرأ للعميل — الرسوم</div>
+        <div style="font-family:'Cairo',sans-serif;font-size:17px;line-height:2.05;">«الصيانة داخل فترة الضمان مجانية تمامًا. ولو ظهر إن السبب مش عطل فني في الجهاز، أو إن العطل خارج نطاق الضمان، بتكون في تكلفة زيارة ومعاينة ١٨٢ جنيه لأول زيارة، وأي زيارة بعدها ٣٠٠ جنيه — وتكلفة الصيانة نفسها بتتحدد بعد ما الفني يعاين الجهاز، وهتُعرض على حضرتك للموافقة قبل أي إصلاح.»</div>
+      </div>
+      <div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:19px;margin-bottom:14px;">رسوم الصيانة عند تسجيل بلاغ</div>
+      <a href="Service Fees Table.dc.html#fridge" style="display:flex;align-items:center;gap:14px;padding:18px 22px;border-radius:12px;border:1px solid #f0c2ce;background:#fff5f7;text-decoration:none;" style-hover="border-color:#A50034;">
+        <div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:17px;color:#A50034;">رسوم الثلاجات</div>
+        <div style="font-size:14px;color:#3f4447;line-height:1.7;">اضغط لعرض رسوم الصيانة والزيارة الخاصة بالمنتج — صباحي ومسائي.</div>
+        <div style="margin-right:auto;color:#A50034;font-size:18px;">←</div>
+      </a>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  ctx() {
+    if (!this._ctx) {
+      const AC = window.AudioContext || window.webkitAudioContext;
+      this._ctx = new AC();
+    }
+    if (this._ctx.state === 'suspended') this._ctx.resume();
+    return this._ctx;
+  }
+  noise(ctx, dur) {
+    const sr = ctx.sampleRate, len = Math.floor(sr * dur);
+    const buf = ctx.createBuffer(1, len, sr), d = buf.getChannelData(0);
+    for (let i = 0; i < len; i++) d[i] = Math.random() * 2 - 1;
+    const src = ctx.createBufferSource(); src.buffer = buf; return src;
+  }
+  env(ctx, node, peak, dur, attack) {
+    const g = ctx.createGain(), t = ctx.currentTime;
+    g.gain.setValueAtTime(0.0001, t);
+    g.gain.exponentialRampToValueAtTime(peak, t + (attack || 0.01));
+    g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
+    node.connect(g); g.connect(ctx.destination);
+    return g;
+  }
+  // steady filtered noise — hiss / gurgle / splash
+  play_hiss = () => {
+    const ctx = this.ctx(), n = this.noise(ctx, 2.2), f = ctx.createBiquadFilter();
+    f.type = 'bandpass'; f.frequency.value = 5200; f.Q.value = 0.8;
+    n.connect(f); this.env(ctx, f, 0.14, 2.2, 0.25); n.start(); n.stop(ctx.currentTime + 2.2);
+  };
+  play_gurgle = () => {
+    const ctx = this.ctx(), t = ctx.currentTime;
+    for (let i = 0; i < 14; i++) {
+      const o = ctx.createOscillator(), g = ctx.createGain();
+      o.type = 'sine';
+      const st = t + i * 0.13 + Math.random() * 0.05;
+      o.frequency.setValueAtTime(180 + Math.random() * 260, st);
+      o.frequency.exponentialRampToValueAtTime(70 + Math.random() * 60, st + 0.14);
+      g.gain.setValueAtTime(0.0001, st);
+      g.gain.exponentialRampToValueAtTime(0.10, st + 0.02);
+      g.gain.exponentialRampToValueAtTime(0.0001, st + 0.16);
+      o.connect(g); g.connect(ctx.destination); o.start(st); o.stop(st + 0.18);
+    }
+  };
+  play_splash = () => {
+    const ctx = this.ctx(), n = this.noise(ctx, 0.9), f = ctx.createBiquadFilter();
+    f.type = 'bandpass'; f.frequency.setValueAtTime(2600, ctx.currentTime);
+    f.frequency.exponentialRampToValueAtTime(700, ctx.currentTime + 0.9); f.Q.value = 1.1;
+    n.connect(f); this.env(ctx, f, 0.26, 0.9, 0.015); n.start(); n.stop(ctx.currentTime + 0.9);
+  };
+  // short transients — crack / click / knock
+  tick(off, freq, dur, peak, type) {
+    const ctx = this.ctx(), t = ctx.currentTime + off;
+    const o = ctx.createOscillator(), g = ctx.createGain();
+    o.type = type || 'triangle';
+    o.frequency.setValueAtTime(freq, t);
+    o.frequency.exponentialRampToValueAtTime(Math.max(40, freq * 0.35), t + dur);
+    g.gain.setValueAtTime(0.0001, t);
+    g.gain.exponentialRampToValueAtTime(peak, t + 0.004);
+    g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
+    o.connect(g); g.connect(ctx.destination); o.start(t); o.stop(t + dur + 0.02);
+  }
+  play_crack = () => { [0, 0.19, 0.34, 0.62, 0.78].forEach((d, i) => this.tick(d, 900 + i * 140, 0.09, 0.3, 'square')); };
+  play_click = () => { [0, 0.42, 0.86].forEach(d => this.tick(d, 1500, 0.045, 0.34, 'square')); };
+  play_knock = () => { [0, 0.3, 0.62].forEach(d => this.tick(d, 130, 0.22, 0.42, 'sine')); };
+  play_hum = () => {
+    const ctx = this.ctx(), t = ctx.currentTime, dur = 2.6;
+    const o = ctx.createOscillator(), o2 = ctx.createOscillator(), g = ctx.createGain();
+    o.type = 'sawtooth'; o.frequency.value = 100;
+    o2.type = 'sine'; o2.frequency.value = 50;
+    const f = ctx.createBiquadFilter(); f.type = 'lowpass'; f.frequency.value = 420;
+    g.gain.setValueAtTime(0.0001, t);
+    g.gain.exponentialRampToValueAtTime(0.18, t + 0.3);
+    g.gain.setValueAtTime(0.18, t + dur - 0.4);
+    g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
+    o.connect(f); o2.connect(f); f.connect(g); g.connect(ctx.destination);
+    o.start(t); o2.start(t); o.stop(t + dur); o2.stop(t + dur);
+  };
+  componentWillUnmount() { if (this._ctx) this._ctx.close(); }
+  renderVals() {
+    return { pageBack: () => { if (history.length > 1) history.back(); else location.href = 'Installation Guide Home.dc.html'; },
+      play_hiss: this.play_hiss, play_gurgle: this.play_gurgle, play_crack: this.play_crack,
+      play_click: this.play_click, play_splash: this.play_splash, play_knock: this.play_knock,
+      play_hum: this.play_hum
+    };
+  }
+}
+</script>
+</body>
+</html>

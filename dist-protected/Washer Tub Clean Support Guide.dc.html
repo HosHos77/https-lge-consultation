@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script>
+(function(){
+  var KEY = 'csGuideAuth_v1';
+  var USER = 'agent';
+  var PASS = 'LGE@2026';
+  function authed(){ try { return localStorage.getItem(KEY) === '1'; } catch(e){ return false; } }
+  if (authed()) return;
+  var u = window.prompt('اسم المستخدم / Username:');
+  var p = window.prompt('كلمة المرور / Password:');
+  if (u === USER && p === PASS) {
+    try { localStorage.setItem(KEY, '1'); } catch(e){}
+  } else {
+    window.stop();
+    document.open();
+    document.write('<div style="font-family:Tahoma,Arial,sans-serif;text-align:center;margin-top:80px;font-size:22px;color:#c00;">تم رفض الدخول<br>Access Denied</div>');
+    document.close();
+  }
+})();
+</script>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<title>دعم فني — الرائحة الكريهة وخطوات التنظيف</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&family=IBM+Plex+Sans+Arabic:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  body { margin:0; background:#f4f3ef; }
+  a { color:#A50034; }
+  a:hover { color:#7d0027; }
+  @keyframes cardIn { from { opacity:0; transform:translateY(6px); } to { opacity:1; transform:none; } }
+</style>
+</helmet>
+<template id="__bundler_thumbnail"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><rect width="200" height="200" fill="#A50034"/><rect x="56" y="56" width="88" height="88" rx="8" fill="#fff"/><circle cx="100" cy="104" r="24" fill="none" stroke="#A50034" stroke-width="6"/><circle cx="100" cy="104" r="9" fill="#f0a8bd"/></svg></template>
+
+<div dir="rtl" style="min-height:100vh;background:#f4f3ef;color:#191a1c;font-family:'IBM Plex Sans Arabic',system-ui,sans-serif;">
+
+  <div style="background:#111314;color:#f4f3ef;padding:16px 28px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;position:sticky;top:0;z-index:20;">
+    <div style="width:9px;height:32px;background:#A50034;border-radius:2px;flex:none;"></div>
+    <div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:18px;">الرائحة الكريهة وخطوات التنظيف — {{ typeLabel }}</div>
+    <div style="margin-right:auto;display:flex;flex-wrap:wrap;gap:10px;align-items:center;">
+      <div style="padding:7px 14px;border-radius:999px;background:#1e2224;font-size:12.5px;color:#c8cdd0;white-space:nowrap;flex:none;">{{ stepLabel }}</div>
+      <button type="button" onClick="{{ pageBack }}" style="padding:8px 16px;border-radius:8px;border:1px solid #3a4043;color:#f0a8bd;font-size:13px;background:transparent;cursor:pointer;font-family:'IBM Plex Sans Arabic',sans-serif;white-space:nowrap;flex:none;" style-hover="background:#22282a;">رجوع للصفحة السابقة</button>
+      <a href="Installation Guide Home.dc.html" style="padding:8px 16px;border-radius:8px;border:1px solid #3a4043;color:#f0a8bd;font-size:13px;text-decoration:none;white-space:nowrap;flex:none;" style-hover="background:#22282a;">الرئيسية</a>
+      <a href="Service Fees Table.dc.html#washers" style="padding:8px 16px;border-radius:8px;border:1px solid #3a4043;color:#f0a8bd;font-size:13px;text-decoration:none;white-space:nowrap;flex:none;" style-hover="background:#22282a;">جدول تكاليف الصيانة</a>
+      <button onClick="{{ restart }}" style="padding:8px 16px;border-radius:8px;border:1px solid #3a4043;background:transparent;color:#e4e7e9;font-family:'IBM Plex Sans Arabic',sans-serif;font-size:13px;cursor:pointer;white-space:nowrap;flex:none;" style-hover="background:#22282a;">من البداية</button>
+    </div>
+  </div>
+
+  <div style="max-width:1080px;margin:0 auto;padding:30px 28px 70px;display:flex;flex-direction:column;gap:18px;">
+
+    <sc-if value="{{ isPick }}" hint-placeholder-val="{{ true }}">
+      <div style="background:#fff;border:1px solid #e3e0d8;border-radius:14px;padding:32px;border-top:4px solid #A50034;animation:cardIn .25s ease;">
+        <div style="font-size:12.5px;font-weight:600;color:#A50034;letter-spacing:.04em;margin-bottom:10px;">الخطوة ١ — اختر مهمة الصيانة</div>
+        <div style="font-family:'Cairo',sans-serif;font-weight:700;font-size:26px;line-height:1.5;margin-bottom:12px;">برنامج تنظيف الحلة يحافظ على أداء الغسالة</div>
+        <div style="background:#1c1a1b;color:#f6f1f2;border-radius:12px;padding:22px 24px;margin-bottom:20px;">
+          <div style="font-size:12.5px;color:#f0a8bd;margin-bottom:10px;font-weight:600;">افتتاح المكالمة — اقرأ للعميل</div>
+          <div style="font-family:'Cairo',sans-serif;font-size:17.5px;line-height:2.1;">«بعتذرلك عن الإزعاج. قبل ما نلجأ لأي إجراء تاني، أحب أراجع معاك كام خطوة بسيطة ممكن تساعدنا نحدد سبب المشكلة ونحلها في الحال. لو تسمحلي أتابع معاك ده هيوفر عليك الوقت وأي تكاليف أو زيارة غير ضرورية.»</div>
+        </div>
+
+        <div style="padding:18px 22px;border-radius:12px;background:#fdecef;border:1px solid #f0a8bd;border-right:5px solid #A50034;font-size:15px;line-height:1.9;color:#7d0027;margin-bottom:20px;"><strong>تنبيه مهم:</strong> رائحة «الشياط» في أول مرات تشغيل الغسالة الجديدة تُعد <strong>طبيعية</strong> — ما دام العميل لا يرى أي تصاعد للأدخنة. الرائحة ناتجة عن الأجزاء الداخلية ومطاط الأسلاك، ويتم إبلاغ العميل إنها هتختفي تدريجيًا مع الاستخدام.</div>
+
+        <div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:20px;margin-bottom:14px;">الخطوات مع العميل بالترتيب</div>
+        <div style="display:flex;flex-direction:column;gap:22px;">
+          <sc-for list="{{ tasks }}" as="t" hint-placeholder-count="6">
+            <div style="border:1px solid #e9e6de;border-radius:12px;padding:20px 22px;background:#fff;">
+              <button onClick="{{ t.toggle }}" style="display:flex;align-items:center;gap:12px;width:100%;background:none;border:none;padding:0;cursor:pointer;text-align:right;font-family:'IBM Plex Sans Arabic',sans-serif;color:#191a1c;">
+                <div style="width:30px;height:30px;border-radius:50%;background:#A50034;color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Cairo',sans-serif;font-weight:900;font-size:15px;flex:none;">{{ t.num }}</div>
+                <div style="min-width:0;flex:1;">
+                  <div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:19px;line-height:1.3;">{{ t.title }}</div>
+                  <div style="font-size:13.5px;color:#6b7075;line-height:1.7;margin-top:4px;">{{ t.hint }}</div>
+                </div>
+                <div style="color:#A50034;font-size:20px;flex:none;">{{ t.chevron }}</div>
+              </button>
+              <sc-if value="{{ t.isOpen }}" hint-placeholder-val="{{ false }}">
+              <div style="background:#1c1a1b;color:#f6f1f2;border-radius:12px;padding:18px 20px;margin:14px 0;">
+                <div style="font-size:12.5px;color:#f0a8bd;margin-bottom:8px;font-weight:600;">اقرأ للعميل</div>
+                <div style="font-family:'Cairo',sans-serif;font-size:16.5px;line-height:2.05;">{{ t.script }}</div>
+              </div>
+              <div style="display:grid;gap:10px;">
+                <sc-for list="{{ t.steps }}" as="s" hint-placeholder-count="3">
+                  <div style="display:flex;gap:14px;padding:15px 18px;border-radius:12px;background:#fbfaf7;border:1px solid #e9e6de;">
+                    <div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:15px;color:#A50034;min-width:20px;">{{ s.n }}</div>
+                    <div style="min-width:0;">
+                      <div style="font-size:15.5px;line-height:1.9;color:#3f4447;">{{ s.text }}</div>
+                      <sc-if value="{{ s.note }}" hint-placeholder-val="{{ false }}">
+                        <div style="margin-top:10px;padding:12px 16px;border-radius:10px;background:#fdf6e8;border:1px solid #ecd9ae;font-size:14.5px;line-height:1.85;color:#7a5410;"><strong>تنبيه:</strong> {{ s.note }}</div>
+                      </sc-if>
+                    </div>
+                  </div>
+                </sc-for>
+              </div>
+              </sc-if>
+            </div>
+          </sc-for>
+        </div>
+
+        <div style="display:grid;gap:12px;margin-top:24px;">
+          <button onClick="{{ toDone }}" style="text-align:right;padding:20px 22px;border-radius:12px;border:1px solid #c6e0d1;background:#eef6f1;cursor:pointer;font-family:'IBM Plex Sans Arabic',sans-serif;" style-hover="border-color:#0f5132;">
+            <div style="font-family:'Cairo',sans-serif;font-weight:700;font-size:18px;margin-bottom:4px;">اتحلّت المشكلة أو سيجرب العميل الحل</div>
+            <div style="font-size:14px;color:#6b7075;">إنهاء المكالمة بدون تسجيل طلب صيانة.</div>
+          </button>
+          <button onClick="{{ toEsc }}" style="text-align:right;padding:20px 22px;border-radius:12px;border:1px solid #ecd9ae;background:#fdf6e8;cursor:pointer;font-family:'IBM Plex Sans Arabic',sans-serif;" style-hover="border-color:#c9982f;">
+            <div style="font-family:'Cairo',sans-serif;font-weight:700;font-size:18px;margin-bottom:4px;">الرائحة مستمرة — عرض صيانة وقائية بتكلفة</div>
+            <div style="font-size:14px;color:#7a5410;">لو الريحة استمرت بعد ٣ أسابيع من Tub Clean الأسبوعي.</div>
+          </button>
+        </div>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ isDetail }}" hint-placeholder-val="{{ false }}">
+      <div style="background:#fff;border:1px solid #e3e0d8;border-radius:14px;padding:32px;border-top:4px solid #A50034;animation:cardIn .25s ease;">
+        <div style="font-size:12.5px;font-weight:600;color:#A50034;letter-spacing:.04em;margin-bottom:10px;">الخطوة ٢ — الخطوات الإرشادية</div>
+        <div style="font-family:'Cairo',sans-serif;font-weight:700;font-size:26px;line-height:1.4;margin-bottom:10px;">{{ sel.title }}</div>
+        <div style="background:#1c1a1b;color:#f6f1f2;border-radius:12px;padding:20px 22px;margin-bottom:20px;">
+          <div style="font-size:12.5px;color:#f0a8bd;margin-bottom:8px;font-weight:600;">اقرأ للعميل</div>
+          <div style="font-family:'Cairo',sans-serif;font-size:17px;line-height:2.05;">{{ sel.script }}</div>
+        </div>
+
+        <div style="font-size:15px;color:#6b7075;line-height:1.85;margin-bottom:20px;max-width:70ch;text-wrap:pretty;">{{ sel.intro }}</div>
+
+        <div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:18px;margin-bottom:12px;">الخطوات</div>
+        <div style="display:grid;gap:12px;margin-bottom:20px;">
+          <sc-for list="{{ sel.steps }}" as="t" hint-placeholder-count="4">
+            <div style="display:flex;gap:16px;padding:17px 20px;border-radius:12px;background:#fbfaf7;border:1px solid #e9e6de;">
+              <div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:16px;color:#A50034;min-width:22px;">{{ t.n }}</div>
+              <div style="min-width:0;">
+                <div style="font-size:15.5px;line-height:1.9;color:#3f4447;">{{ t.text }}</div>
+                <sc-if value="{{ t.note }}" hint-placeholder-val="{{ false }}">
+                  <div style="margin-top:10px;padding:12px 16px;border-radius:10px;background:#fdf6e8;border:1px solid #ecd9ae;font-size:14.5px;line-height:1.85;color:#7a5410;"><strong>تنبيه:</strong> {{ t.note }}</div>
+                </sc-if>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+
+        <div style="display:grid;gap:12px;">
+          <button onClick="{{ toDone }}" style="text-align:right;padding:20px 22px;border-radius:12px;border:1px solid #c6e0d1;background:#eef6f1;cursor:pointer;font-family:'IBM Plex Sans Arabic',sans-serif;" style-hover="border-color:#0f5132;">
+            <div style="font-family:'Cairo',sans-serif;font-weight:700;font-size:18px;margin-bottom:4px;">اتحلّت المشكلة أو سيجرب العميل الحل</div>
+            <div style="font-size:14px;color:#6b7075;">إنهاء المكالمة بدون تسجيل طلب صيانة.</div>
+          </button>
+          <button onClick="{{ toEsc }}" style="text-align:right;padding:20px 22px;border-radius:12px;border:1px solid #ecd9ae;background:#fdf6e8;cursor:pointer;font-family:'IBM Plex Sans Arabic',sans-serif;" style-hover="border-color:#c9982f;">
+            <div style="font-family:'Cairo',sans-serif;font-weight:700;font-size:18px;margin-bottom:4px;">الرائحة مستمرة — عرض صيانة وقائية بتكلفة</div>
+            <div style="font-size:14px;color:#7a5410;">لو الريحة استمرت بعد ٣ أسابيع من Tub Clean الأسبوعي.</div>
+          </button>
+          <button onClick="{{ toPick }}" style="text-align:right;padding:16px 22px;border-radius:12px;border:1px solid #d9d5cb;background:#fbfaf7;cursor:pointer;font-family:'IBM Plex Sans Arabic',sans-serif;font-size:15px;color:#191a1c;" style-hover="border-color:#A50034;">مهمة مختلفة — رجوع لقائمة المهام</button>
+        </div>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ isDone }}" hint-placeholder-val="{{ false }}">
+      <div style="background:#fff;border:1px solid #c6e0d1;border-radius:14px;padding:32px;border-top:4px solid #0f5132;animation:cardIn .25s ease;">
+        <div style="font-family:'Cairo',sans-serif;font-weight:700;font-size:26px;line-height:1.5;margin-bottom:18px;">اتحلّت المشكلة أو سيجرب العميل الحل — إنهاء المكالمة</div>
+        <div style="padding:18px 22px;border-radius:12px;background:#eef6f1;border:1px solid #c6e0d1;font-size:15.5px;line-height:1.95;margin-bottom:20px;">
+          تأكد من فهم العميل للخطوات وأنه سيجربها، ونبّهه إن تنظيف الحلة يُعمَل <strong>مرة شهريًا</strong> للحفاظ على أداء الغسالة — ثم أنهِ المكالمة بدون تسجيل طلب صيانة.
+        </div>
+        <a href="Washer Support Topics.dc.html" style="display:inline-block;padding:14px 22px;border-radius:10px;background:#A50034;color:#fff;font-family:'Cairo',sans-serif;font-weight:700;font-size:15px;text-decoration:none;" style-hover="background:#7d0027;">إنهاء المكالمة</a>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ isEsc }}" hint-placeholder-val="{{ false }}">
+      <div style="background:#fff;border:1px solid #ecd9ae;border-radius:14px;padding:32px;border-top:4px solid #c9982f;animation:cardIn .25s ease;">
+        <div style="background:#1c1a1b;color:#f6f1f2;border-radius:12px;padding:20px 22px;margin-bottom:20px;">
+          <div style="font-size:12.5px;color:#f0a8bd;margin-bottom:8px;font-weight:600;">اقرأ للعميل</div>
+          <div style="font-family:'Cairo',sans-serif;font-size:17px;line-height:2.05;">«موضوع الريحة مش عطل في الجهاز، فمش بيتسجّل عليه طلب صيانة. اللي نقدر نعمله لحضرتك إننا نسجّل <strong>صيانة وقائية</strong> — الفني بييجي وينظّف الجهاز من الداخل تنظيف عميق. بس لازم أوضّح لحضرتك إن الصيانة الوقائية بتكلفة ومالهاش علاقة بالضمان، يعني بتكون بمصاريف حتى لو الجهاز لسه في الضمان. حضرتك موافق نسجّلها؟»</div>
+        </div>
+        <div style="font-size:12.5px;font-weight:600;color:#c9982f;letter-spacing:.04em;margin-bottom:10px;">الخطوة الأخيرة — صيانة وقائية بتكلفة</div>
+        <div style="font-family:'Cairo',sans-serif;font-weight:700;font-size:26px;line-height:1.5;margin-bottom:18px;">مشكلة الروائح ليست عطلًا يحتاج صيانة</div>
+        <div style="padding:18px 22px;border-radius:12px;background:#fdf6e8;border:1px solid #ecd9ae;font-size:15.5px;line-height:1.95;margin-bottom:14px;">
+          العميل نفّذ خطوات التنظيف والرائحة مستمرة — <strong>لا يتم تسجيل طلب صيانة عادي</strong>، لأن مشاكل الروائح ليست عطلًا في الجهاز. يتم <strong>عرض صيانة وقائية على العميل بتكلفة</strong>.
+        </div>
+        <div style="padding:18px 22px;border-radius:12px;background:#fff5f7;border:1px solid #f0c2ce;font-size:15.5px;line-height:1.95;margin-bottom:18px;">
+          <strong>مهم:</strong> الصيانة الوقائية <strong>بتكلفة ولا علاقة لها بالضمان</strong> — يعني بتكون بمصاريف حتى لو الجهاز داخل فترة الضمان، ويجب توضيح ذلك للعميل قبل تسجيل الطلب.
+        </div>
+
+        <div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:18px;margin-bottom:12px;">نظام تسجيل طلب الصيانة الوقائية</div>
+        <div style="display:grid;gap:10px;margin-bottom:20px;">
+          <div style="display:flex;gap:14px;padding:15px 18px;border-radius:12px;background:#fbfaf7;border:1px solid #e9e6de;"><div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:16px;color:#A50034;min-width:20px;">١</div><div style="font-size:15px;line-height:1.9;">يتم توضيح <strong>تكلفة الصيانة الوقائية</strong> للعميل والحصول على موافقته قبل تسجيل الطلب.</div></div>
+          <div style="display:flex;gap:14px;padding:15px 18px;border-radius:12px;background:#fbfaf7;border:1px solid #e9e6de;"><div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:16px;color:#A50034;min-width:20px;">٢</div><div style="font-size:15px;line-height:1.9;">يتم تسجيل الطلب كـ <strong>صيانة وقائية</strong> مع توضيح <strong>كل خطوات التنظيف اللي تمت مع العميل</strong>، ورقم الموديل.</div></div>
+          <div style="display:flex;gap:14px;padding:15px 18px;border-radius:12px;background:#fbfaf7;border:1px solid #e9e6de;"><div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:16px;color:#A50034;min-width:20px;">٣</div><div style="font-size:15px;line-height:1.9;">الاسم الثلاثي للعميل كما هو مسجل في فاتورة الشراء (لو مش متوفر يتم السؤال عن اسم صاحب الجهاز).</div></div>
+          <div style="display:flex;gap:14px;padding:15px 18px;border-radius:12px;background:#fbfaf7;border:1px solid #e9e6de;"><div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:16px;color:#A50034;min-width:20px;">٤</div><div style="font-size:15px;line-height:1.9;">رقم الهاتف الأساسي ورقم إضافي إن وجد.</div></div>
+          <div style="display:flex;gap:14px;padding:15px 18px;border-radius:12px;background:#fbfaf7;border:1px solid #e9e6de;"><div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:16px;color:#A50034;min-width:20px;">٥</div><div style="font-size:15px;line-height:1.9;">العنوان بالتفصيل (المحافظة، المنطقة، اسم الشارع، رقم العمارة، الدور، الشقة، علامة مميزة).</div></div>
+          <div style="display:flex;gap:14px;padding:15px 18px;border-radius:12px;background:#fbfaf7;border:1px solid #e9e6de;"><div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:16px;color:#A50034;min-width:20px;">٦</div><div style="font-size:15px;line-height:1.9;">استفسر منه عن الموعد المفضل وسجّله على الأوردر. (لو لم يرد على السؤال يتم اختيار أقرب موعد متاح وإبلاغ العميل به)</div></div>
+        </div>
+
+
+        <a href="Service Fees Table.dc.html#washers" style="display:flex;align-items:center;gap:14px;padding:18px 22px;border-radius:12px;border:1px solid #f0c2ce;background:#fff5f7;text-decoration:none;margin-bottom:20px;" style-hover="border-color:#A50034;">
+          <div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:17px;color:#A50034;">رسوم الغسالات وغسالات الأطباق</div>
+          <div style="font-size:14px;color:#3f4447;line-height:1.7;">اضغط لعرض رسوم الصيانة والزيارة الخاصة بالمنتج — صباحي ومسائي.</div>
+          <div style="margin-right:auto;color:#A50034;font-size:18px;">←</div>
+        </a>
+
+
+        <a href="Washer Support Topics.dc.html" style="display:inline-block;padding:14px 22px;border-radius:10px;background:#A50034;color:#fff;font-family:'Cairo',sans-serif;font-weight:700;font-size:15px;text-decoration:none;" style-hover="background:#7d0027;">تم تسجيل طلب الصيانة الوقائية — إنهاء المكالمة</a>
+      </div>
+    </sc-if>
+
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const AR = ['٠','١','٢','٣','٤','٥','٦','٧','٨','٩'];
+
+const TUB = { key:'tub', title:'تشغيل برنامج Tub Clean', hint:'تنظيف الحلة شهريًا',
+  intro:'برنامج تنظيف الحلة يشيل تراكم بواقي المنظف والرواسب من داخل الحلة.',
+  script:'«هنشغّل مع حضرتك برنامج تنظيف الحلة Tub Clean — بيشيل بواقي المنظف والرواسب من جوه الحلة.»',
+  steps:[
+    { text:'تفريغ الحلة تمامًا من الملابس وأي أجسام غريبة ظاهرة.' },
+    { text:'وضع معلقة كبيرة من ملح الليمون في مكان المسحوق في الدرج، أو كوب صغير من الخل داخل الحلة.',
+      note:'يُفضَّل استخدام منظف مخصص لحلة الغسالة واتباع تعليمات العبوة.' },
+    { text:'غلق درج المنظف وباب الغسالة، ثم اختيار برنامج TUB CLEAN والضغط على START/PAUSE.' },
+    { text:'بعد انتهاء البرنامج، فتح الباب ودرج المنظف لتهوية وتجفيف أي رطوبة متبقية داخل الغسالة.' },
+    { text:'التأكد من تركيب خرطوم الصرف بشكل سليم في ماسورة الصرف.',
+      note:'يجب عدم وضع خرطوم الصرف داخل ماسورة الصرف أكثر من ١٠ سنتيمتر.' },
+    { text:'لو فيه ريحة عفن بالفعل: تشغيل TUB CLEAN مرة كل أسبوع لمدة ٣ أسابيع متتالية.',
+      note:'لو الريحة استمرت بعد الـ ٣ أسابيع يتم تسجيل طلب صيانة.' }
+  ] };
+
+const DISP = { key:'disp', title:'تنظيف درج المنظف', hint:'إزالة البواقي من الدرج',
+  intro:'الرواسب المتراكمة في الدرج بتتعفن ومنها تطلع ريحة كريهة داخل الغسالة.',
+  script:'«هننظّف درج المنظف مع حضرتك — الرواسب المتراكمة فيه بتتعفن وبتسبب ريحة في الغسالة.»',
+  steps:[
+    { text:'اسحب الدرج للخارج حتى يتوقف، وحدد اللسان الغائر بين حجرة المبيّض وحجرة المنعّم.' },
+    { text:'مع الضغط على اللسان لأسفل، اسحب درج المنظف بالكامل من الغسالة.' },
+    { text:'انظر داخل التجويف للتأكد إن مفيش أي شيء يعيق تدفق المياه إلى الحلة.' },
+    { text:'فكّ ملحقات الدرج ونظّف كل جزء بمياه دافئة وفرشاة ناعمة — والدرج نفسها من أعلى ومن أسفل.' },
+    { text:'نظّف داخل تجويف الدرج في الغسالة تمامًا بعد إخراج الدرج.' },
+    { text:'بعد التنظيف والشطف، أعد تجميع الملحقات وركّب الدرج في مكانه.' }
+  ] };
+
+const INLET = { key:'inlet', title:'تنظيف فلتر دخول المياه', hint:'فلتر الخرطوم الخلفي',
+  intro:'فلتر دخول المياه يتسد مع الوقت — خصوصًا في مناطق المياه العسرة — فتظهر رسالة خطأ على الشاشة.',
+  script:'«هننظّف فلتر دخول المياه في ظهر الغسالة — بيتسد مع الوقت وبيسبب رسالة خطأ.»',
+  steps:[
+    { text:'اضغط زر POWER لإطفاء الغسالة وافصلها من الكهرباء، ثم اقفل حنفية المياه تمامًا.' },
+    { text:'فكّ خرطوم المياه من ظهر الغسالة.',
+      note:'هيفضل بعض المياه داخل الخراطيم — حضّر جردل تحتها لتصريفها.' },
+    { text:'اسحب الفلتر من صمام الدخول باستخدام بنسة أو أداة برأس رقيق.' },
+    { text:'اشطف الفلتر جيدًا وأعد تركيبه في مكانه، ثم أعد توصيل خرطوم المياه.' }
+  ] };
+
+const GASKET = { key:'gasket', title:'تنظيف جوان الباب', hint:'جوان الباب والزجاج',
+  intro:'تنظيف جوان الباب بيمنع تراكم الشعر والوبر والبواقي والرطوبة اللي بتسبب الريحة.',
+  script:'«هننظّف جوان باب الغسالة مع حضرتك — تراكم الوبر والبواقي والرطوبة فيه هو أكبر مصدر للريحة.»',
+  steps:[
+    { text:'أزل أي أجسام غريبة من الأخدود داخل جوان الباب — خاصة عند موضع الساعة السادسة (أسفل الجوان).' },
+    { text:'خفّف ٣/٤ كوب (١٧٧ مل) خل أو ديتول مع ٤ لتر (٣.٨ لتر) مياه دافئة أو ساخنة.',
+      note:'ممنوع استخدام الديتول أو الخل مركّز بدون تخفيف على الجوان لأنه بيتلفه مع الوقت، وممنوع خلط أكتر من منظف مع بعض.' },
+    { text:'نظّف سطح الجوان بفوطة والمحلول، ثم اسحب حرف الجوان للخلف ونظّف تحته كذلك.' },
+    { text:'امسح زجاج الباب من الداخل بلطف من أعلى لأسفل وحتى الحافة الدائرية.' }
+  ] };
+
+const EXT = { key:'ext', title:'تنظيف السطح الخارجي', hint:'إزالة البقع من الجسم',
+  intro:'تنظيف جسم الغسالة من البقع والانسكابات.',
+  script:'«ننظّف جسم الغسالة من الخارج بفوطة ناعمة مبلولة بكمية بسيطة من منظف خفيف.»',
+  steps:[
+    { text:'امسح البقع والانسكابات بفوطة ناعمة مبلولة بكمية بسيطة من منظف خفيف.' }
+  ] };
+
+const PUMP = { key:'pump', title:'تنظيف فلتر مضخة الصرف', hint:'غسالات الباب الأمامي فقط',
+  intro:'تنظيف فلتر مضخة الصرف مهم جدًا لإزالة المياه الراكدة والبواقي المتعفنة اللي بتسبب الريحة — وهو خاص بغسالات الباب الأمامي فقط.',
+  script:'«هننظّف فلتر مضخة الصرف — ده مهم جدًا لمنع الرائحة. بس لازم نطفي الغسالة ونفصلها من الكهربا الأول.»',
+  steps:[
+    { text:'اضغط زر POWER لإطفاء الغسالة وافصل الفيشة من الكهرباء.' },
+    { text:'حدّد الغطاء السفلي (منطقة فلتر الصرف) في الرُكن السفلي الأيسر من الغسالة وافتحها.' },
+    { text:'خرطوم الصرف موجود بجانب مضخة الصرف — فكّ مشبكه واخرج الغطاء لتصريف المياه المتبقية داخل الحلة، وافحص الخرطوم من أي شقوق أو تلف.',
+      note:'لا تسحب الخرطوم لمسافة كبيرة لأنه بيلتوي ويمنع تصريف المياه. ويجب عدم وضع خرطوم الصرف داخل ماسورة الصرف أكثر من ١٠ سنتيمتر.' },
+    { text:'صرّف المياه الزائدة في جردل أو طشت واطي، وبعد تصريفها بالكامل لُف فلتر المضخة عكس عقارب الساعة لخروجه.',
+      note:'كمية المياه تختلف حسب مرحلة البرنامج.' },
+    { text:'نظّف فلتر المضخة بفرشاة ناعمة ومياه دافئة.', note:'ممنوع غسل فلتر المضخة في غسالة الأطباق.' },
+    { text:'نظّف فتحة الفلتر وقاعدتها على الغسالة بفرشاة ناعمة لإزالة الرواسب.' },
+    { text:'أعد الغطاء إلى خرطوم الصرف وثبّت الخرطوم في الغسالة، وتأكد إنه داخل بالكامل وسليم بدون شقوق.' },
+    { text:'أعد تركيب فلتر المضخة بإحكام مع التأكد من صحة القلاووظ حتى يتوقف عن الدوران، ثم اغلق غطاء الفلتر.',
+      note:'ممنوع الشدّ الزائد على الفلتر لأنه بيتلفه.' }
+  ] };
+
+const FRONT = [TUB, PUMP, DISP, INLET, GASKET, EXT];
+const TOP = [TUB, DISP, INLET, EXT];
+
+class Component extends DCLogic {
+  state = (() => {
+    const h = typeof location !== 'undefined' ? location.hash : '';
+    return { node: 'pick', task: null, history: [], type: h === '#top' ? 'top' : 'front' };
+  })();
+  go(n, extra) { this.setState(s => Object.assign({ node: n, history: [...s.history, s.node] }, extra || {})); window.scrollTo(0, 0); }
+  renderVals() {
+    const n = this.state.node;
+    const list = this.state.type === 'top' ? TOP : FRONT;
+    const sel = list.find(t => t.key === this.state.task) || null;
+    const labels = { pick:'خطوة ١', detail:'خطوة ٢', done:'إنهاء', esc:'تسجيل بلاغ' };
+    return { pageBack: () => { if (history.length > 1) history.back(); else location.href = 'Installation Guide Home.dc.html'; },
+      typeLabel: this.state.type === 'top' ? 'باب علوي' : 'باب أمامي',
+      stepLabel: labels[n] || '',
+      isPick: n === 'pick', isDetail: n === 'detail', isDone: n === 'done', isEsc: n === 'esc',
+      tasks: list.map((t, ti) => {
+        const isOpen = !!(this.state.open || {})[t.key];
+        return {
+          num: AR[ti + 1],
+          title: t.title,
+          hint: t.hint,
+          script: t.script,
+          intro: t.intro || '',
+          isOpen: isOpen,
+          chevron: isOpen ? '⌃' : '⌄',
+          toggle: () => this.setState(s => ({ open: Object.assign({}, s.open, { [t.key]: !(s.open || {})[t.key] }) })),
+          steps: t.steps.map((s, i) => ({ n: AR[i + 1], text: s.text, note: s.note || '' }))
+        };
+      }),
+      sel: sel ? {
+        title: sel.title,
+        intro: sel.intro,
+        script: sel.script,
+        steps: sel.steps.map((s, i) => ({ n: AR[i + 1], text: s.text, note: s.note || '' }))
+      } : { title:'', intro:'', script:'', steps:[] },
+      toPick: () => this.go('pick'),
+      toDone: () => this.go('done'),
+      toEsc: () => this.go('esc'),
+      back: () => this.setState(s => s.history.length ? { node: s.history[s.history.length - 1], history: s.history.slice(0, -1) } : {}),
+      restart: () => this.setState({ node: 'pick', task: null, history: [] })
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script>
+(function(){
+  var KEY = 'csGuideAuth_v1';
+  var USER = 'agent';
+  var PASS = 'LGE@2026';
+  function authed(){ try { return localStorage.getItem(KEY) === '1'; } catch(e){ return false; } }
+  if (authed()) return;
+  var u = window.prompt('اسم المستخدم / Username:');
+  var p = window.prompt('كلمة المرور / Password:');
+  if (u === USER && p === PASS) {
+    try { localStorage.setItem(KEY, '1'); } catch(e){}
+  } else {
+    window.stop();
+    document.open();
+    document.write('<div style="font-family:Tahoma,Arial,sans-serif;text-align:center;margin-top:80px;font-size:22px;color:#c00;">تم رفض الدخول<br>Access Denied</div>');
+    document.close();
+  }
+})();
+</script>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<title>دعم فني — تسريب مياه من غسالة الأطباق</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&family=IBM+Plex+Sans+Arabic:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  body { margin:0; background:#f4f3ef; }
+  a { color:#A50034; }
+  a:hover { color:#7d0027; }
+  @keyframes cardIn { from { opacity:0; transform:translateY(6px); } to { opacity:1; transform:none; } }
+</style>
+</helmet>
+<template id="__bundler_thumbnail"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><rect width="200" height="200" fill="#A50034"/><rect x="54" y="52" width="92" height="88" rx="8" fill="#fff"/><rect x="66" y="64" width="68" height="14" rx="6" fill="#1c1a1b"/><rect x="70" y="94" width="60" height="6" rx="3" fill="#f0a8bd"/><path d="M100 146 l7 12 a7 7 0 0 1-14 0z" fill="#f0a8bd"/></svg></template>
+
+<div dir="rtl" style="min-height:100vh;background:#f4f3ef;color:#191a1c;font-family:'IBM Plex Sans Arabic',system-ui,sans-serif;">
+
+  <div style="background:#111314;color:#f4f3ef;padding:16px 28px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;position:sticky;top:0;z-index:20;">
+    <div style="width:9px;height:32px;background:#A50034;border-radius:2px;flex:none;"></div>
+    <div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:18px;">تسريب مياه — غسالة الأطباق</div>
+    <div style="margin-right:auto;display:flex;flex-wrap:wrap;gap:10px;align-items:center;">
+      <div style="padding:7px 14px;border-radius:999px;background:#1e2224;font-size:12.5px;color:#c8cdd0;white-space:nowrap;flex:none;">{{ stepLabel }}</div>
+      <button type="button" onClick="{{ pageBack }}" style="padding:8px 16px;border-radius:8px;border:1px solid #3a4043;color:#f0a8bd;font-size:13px;background:transparent;cursor:pointer;font-family:'IBM Plex Sans Arabic',sans-serif;white-space:nowrap;flex:none;" style-hover="background:#22282a;">رجوع للصفحة السابقة</button>
+      <a href="Installation Guide Home.dc.html" style="padding:8px 16px;border-radius:8px;border:1px solid #3a4043;color:#f0a8bd;font-size:13px;text-decoration:none;white-space:nowrap;flex:none;" style-hover="background:#22282a;">الرئيسية</a>
+      <a href="Service Fees Table.dc.html#washers" style="padding:8px 16px;border-radius:8px;border:1px solid #3a4043;color:#f0a8bd;font-size:13px;text-decoration:none;white-space:nowrap;flex:none;" style-hover="background:#22282a;">جدول تكاليف الصيانة</a>
+      <button onClick="{{ restart }}" style="padding:8px 16px;border-radius:8px;border:1px solid #3a4043;background:transparent;color:#e4e7e9;font-family:'IBM Plex Sans Arabic',sans-serif;font-size:13px;cursor:pointer;white-space:nowrap;flex:none;" style-hover="background:#22282a;">من البداية</button>
+    </div>
+  </div>
+
+  <div style="max-width:1080px;margin:0 auto;padding:30px 28px 70px;display:flex;flex-direction:column;gap:18px;">
+
+    <sc-if value="{{ isStart }}" hint-placeholder-val="{{ true }}">
+      <div style="background:#fff;border:1px solid #e3e0d8;border-radius:14px;padding:32px;border-top:4px solid #A50034;animation:cardIn .25s ease;">
+        <div style="font-size:12.5px;font-weight:600;color:#A50034;letter-spacing:.04em;margin-bottom:10px;">الخطوة ١ — السؤال الأساسي</div>
+        <div style="font-family:'Cairo',sans-serif;font-weight:700;font-size:26px;line-height:1.5;margin-bottom:12px;">هل يوجد رمز خطأ على لوحة التحكم؟</div>
+        <div style="background:#1c1a1b;color:#f6f1f2;border-radius:12px;padding:22px 24px;margin-bottom:20px;">
+          <div style="font-size:12.5px;color:#f0a8bd;margin-bottom:10px;font-weight:600;">افتتاح المكالمة — اقرأ للعميل</div>
+          <div style="font-family:'Cairo',sans-serif;font-size:17.5px;line-height:2.1;">«بعتذرلك عن الإزعاج. قبل ما نلجأ لأي إجراء تاني، أحب أراجع معاك كام خطوة بسيطة ممكن تساعدنا نحدد سبب المشكلة ونحلها في الحال. لو تسمحلي أتابع معاك ده هيوفر عليك الوقت وأي تكاليف أو زيارة غير ضرورية.»</div>
+        </div>
+
+        <div style="font-size:15px;color:#3f4447;line-height:1.9;margin-bottom:20px;max-width:70ch;text-wrap:pretty;">أغلب حالات التسريب في غسالة الأطباق سببها <strong>التركيب</strong> أو <strong>المنظف</strong> أو <strong>الصيانة والنظافة</strong>. لكن لو فيه رمز خطأ على اللوحة، يتم التعامل حسب الرمز أولًا.</div>
+        <div style="display:grid;gap:12px;">
+          <button onClick="{{ toErr }}" style="text-align:right;padding:20px 22px;border-radius:12px;border:1px solid #f0c2ce;background:#fff5f7;cursor:pointer;font-family:'IBM Plex Sans Arabic',sans-serif;" style-hover="border-color:#A50034;">
+            <div style="font-family:'Cairo',sans-serif;font-weight:700;font-size:18px;margin-bottom:4px;">أيوه — فيه رمز خطأ</div>
+            <div style="font-size:14px;color:#8a5555;">يتم التعامل حسب رمز الخطأ وينتهي هذا المسار.</div>
+          </button>
+          <button onClick="{{ toPick }}" style="text-align:right;padding:20px 22px;border-radius:12px;border:1px solid #d9d5cb;background:#fbfaf7;cursor:pointer;font-family:'IBM Plex Sans Arabic',sans-serif;" style-hover="border-color:#A50034;background:#fdf5f7;">
+            <div style="font-family:'Cairo',sans-serif;font-weight:700;font-size:18px;margin-bottom:4px;">لأ — مفيش رمز خطأ</div>
+            <div style="font-size:14px;color:#6b7075;">نكمل لفحص أسباب التسريب.</div>
+          </button>
+        </div>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ isErr }}" hint-placeholder-val="{{ false }}">
+      <div style="background:#fff;border:1px solid #f0c2ce;border-radius:14px;padding:32px;border-top:4px solid #A50034;animation:cardIn .25s ease;">
+        <div style="font-family:'Cairo',sans-serif;font-weight:700;font-size:26px;line-height:1.5;margin-bottom:18px;">التعامل حسب رمز الخطأ</div>
+        <div style="padding:18px 22px;border-radius:12px;background:#fff5f7;border:1px solid #f0c2ce;font-size:15.5px;line-height:1.95;margin-bottom:20px;">
+          يتم الرجوع إلى قائمة أكواد أخطاء غسالة الأطباق والتعامل حسب الكود الظاهر — <strong>وينتهي مسار التسريب هنا</strong>.
+        </div>
+        <div style="display:flex;gap:12px;flex-wrap:wrap;">
+          <a href="Dishwasher Error Codes Support Guide.dc.html" style="padding:14px 22px;border-radius:10px;background:#A50034;color:#fff;font-family:'Cairo',sans-serif;font-weight:700;font-size:15px;text-decoration:none;" style-hover="background:#7d0027;">فتح دليل أكواد أخطاء غسالة الأطباق</a>
+          <button onClick="{{ toPick }}" style="padding:14px 22px;border-radius:10px;border:1px solid #d9d5cb;background:#fbfaf7;color:#191a1c;font-family:'Cairo',sans-serif;font-weight:700;font-size:15px;cursor:pointer;" style-hover="border-color:#A50034;">مفيش كود فعلًا — نكمل فحص التسريب</button>
+        </div>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ isPick }}" hint-placeholder-val="{{ false }}">
+      <div style="background:#fff;border:1px solid #e3e0d8;border-radius:14px;padding:32px;border-top:4px solid #A50034;animation:cardIn .25s ease;">
+        <div style="font-size:12.5px;font-weight:600;color:#A50034;letter-spacing:.04em;margin-bottom:10px;">الخطوة ٢ — اختر الفحص</div>
+        <div style="font-family:'Cairo',sans-serif;font-weight:700;font-size:26px;line-height:1.5;margin-bottom:12px;">راجع الأسباب مع العميل بالترتيب</div>
+        <div style="font-size:14.5px;color:#6b7075;line-height:1.8;margin-bottom:20px;">٥ فحوصات — ابدأ باستواء الجهاز لأنه أشهر سبب للتسريب من جوانب الباب.</div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:12px;">
+          <sc-for list="{{ checks }}" as="c" hint-placeholder-count="5">
+            <button onClick="{{ c.open }}" style="{{ c.style }}">
+              <div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:18px;line-height:1.3;">{{ c.title }}</div>
+              <div style="font-size:13.5px;line-height:1.6;margin-top:6px;color:#6b7075;">{{ c.hint }}</div>
+            </button>
+          </sc-for>
+        </div>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ isDetail }}" hint-placeholder-val="{{ false }}">
+      <div style="background:#fff;border:1px solid #e3e0d8;border-radius:14px;padding:32px;border-top:4px solid #A50034;animation:cardIn .25s ease;">
+        <div style="font-size:12.5px;font-weight:600;color:#A50034;letter-spacing:.04em;margin-bottom:10px;">الخطوة ٣ — الخطوات الإرشادية</div>
+        <div style="font-family:'Cairo',sans-serif;font-weight:700;font-size:26px;line-height:1.4;margin-bottom:10px;">{{ sel.title }}</div>
+        <div style="background:#1c1a1b;color:#f6f1f2;border-radius:12px;padding:20px 22px;margin-bottom:20px;">
+          <div style="font-size:12.5px;color:#f0a8bd;margin-bottom:8px;font-weight:600;">اقرأ للعميل</div>
+          <div style="font-family:'Cairo',sans-serif;font-size:17px;line-height:2.05;">{{ sel.script }}</div>
+        </div>
+
+        <div style="font-size:15px;color:#6b7075;line-height:1.85;margin-bottom:20px;max-width:70ch;text-wrap:pretty;">{{ sel.cause }}</div>
+
+        <div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:18px;margin-bottom:12px;">الخطوات</div>
+        <div style="display:grid;gap:12px;margin-bottom:20px;">
+          <sc-for list="{{ sel.steps }}" as="t" hint-placeholder-count="4">
+            <div style="display:flex;gap:16px;padding:17px 20px;border-radius:12px;background:#fbfaf7;border:1px solid #e9e6de;">
+              <div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:16px;color:#A50034;min-width:22px;">{{ t.n }}</div>
+              <div style="min-width:0;">
+                <div style="font-size:15.5px;line-height:1.9;color:#3f4447;">{{ t.text }}</div>
+                <sc-if value="{{ t.note }}" hint-placeholder-val="{{ false }}">
+                  <div style="margin-top:10px;padding:12px 16px;border-radius:10px;background:#fdf6e8;border:1px solid #ecd9ae;font-size:14.5px;line-height:1.85;color:#7a5410;"><strong>تنبيه:</strong> {{ t.note }}</div>
+                </sc-if>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+
+        <div style="display:grid;gap:12px;">
+          <button onClick="{{ toDone }}" style="text-align:right;padding:20px 22px;border-radius:12px;border:1px solid #c6e0d1;background:#eef6f1;cursor:pointer;font-family:'IBM Plex Sans Arabic',sans-serif;" style-hover="border-color:#0f5132;">
+            <div style="font-family:'Cairo',sans-serif;font-weight:700;font-size:18px;margin-bottom:4px;">اتحلّت المشكلة أو سيجرب العميل الحل</div>
+            <div style="font-size:14px;color:#6b7075;">إنهاء المكالمة بدون تسجيل طلب صيانة.</div>
+          </button>
+          <button onClick="{{ toEsc }}" style="text-align:right;padding:20px 22px;border-radius:12px;border:1px solid #f0c2ce;background:#fff5f7;cursor:pointer;font-family:'IBM Plex Sans Arabic',sans-serif;" style-hover="border-color:#A50034;">
+            <div style="font-family:'Cairo',sans-serif;font-weight:700;font-size:18px;margin-bottom:4px;">التسريب مستمر — تسجيل طلب صيانة</div>
+            <div style="font-size:14px;color:#8a5555;">لو الخطوات مانفعتش أو فيه تلف في الجوان أو ذراع الرشّ.</div>
+          </button>
+          <button onClick="{{ toPick }}" style="text-align:right;padding:16px 22px;border-radius:12px;border:1px solid #d9d5cb;background:#fbfaf7;cursor:pointer;font-family:'IBM Plex Sans Arabic',sans-serif;font-size:15px;color:#191a1c;" style-hover="border-color:#A50034;">فحص مختلف — رجوع لقائمة الفحوصات</button>
+        </div>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ isDone }}" hint-placeholder-val="{{ false }}">
+      <div style="background:#fff;border:1px solid #c6e0d1;border-radius:14px;padding:32px;border-top:4px solid #0f5132;animation:cardIn .25s ease;">
+        <div style="font-family:'Cairo',sans-serif;font-weight:700;font-size:26px;line-height:1.5;margin-bottom:18px;">اتحلّت المشكلة أو سيجرب العميل الحل — إنهاء المكالمة</div>
+        <div style="padding:18px 22px;border-radius:12px;background:#eef6f1;border:1px solid #c6e0d1;font-size:15.5px;line-height:1.95;margin-bottom:20px;">
+          تأكد من فهم العميل للخطوات وأنه سيجربها، ونبّهه إنه لو التسريب رجع تاني يتواصل معانا لتسجيل زيارة فني — ثم أنهِ المكالمة بدون تسجيل طلب صيانة.
+        </div>
+        <a href="Washer Support Topics.dc.html" style="display:inline-block;padding:14px 22px;border-radius:10px;background:#A50034;color:#fff;font-family:'Cairo',sans-serif;font-weight:700;font-size:15px;text-decoration:none;" style-hover="background:#7d0027;">إنهاء المكالمة</a>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ isEsc }}" hint-placeholder-val="{{ false }}">
+      <div style="background:#fff;border:1px solid #f0c2ce;border-radius:14px;padding:32px;border-top:4px solid #A50034;animation:cardIn .25s ease;">
+        <div style="font-size:12.5px;font-weight:600;color:#A50034;letter-spacing:.04em;margin-bottom:10px;">الخطوة الأخيرة — تسجيل طلب صيانة</div>
+        <div style="font-family:'Cairo',sans-serif;font-weight:700;font-size:26px;line-height:1.5;margin-bottom:18px;">الجهاز يحتاج زيارة فني</div>
+        <div style="background:#1c1a1b;color:#f6f1f2;border-radius:12px;padding:20px 22px;margin-bottom:20px;">
+          <div style="font-size:12.5px;color:#f0a8bd;margin-bottom:8px;font-weight:600;">اقرأ للعميل</div>
+          <div style="font-family:'Cairo',sans-serif;font-size:17px;line-height:2.05;">«هسجّل لحضرتك طلب صيانة وزيارة فني. الصيانة داخل فترة الضمان مجانية تمامًا. ولو ظهر إن السبب مش عطل فني في الجهاز، أو إن العطل خارج نطاق الضمان، بتكون في تكلفة زيارة ومعاينة ١٨٢ جنيه لأول زيارة، وأي زيارة بعدها ٣٠٠ جنيه — وتكلفة الصيانة نفسها بتتحدد بعد ما الفني يعاين الجهاز، وهتُعرض على حضرتك للموافقة قبل أي إصلاح.»</div>
+        </div>
+
+        <a href="Service Fees Table.dc.html#washers" style="display:flex;align-items:center;gap:14px;padding:18px 22px;border-radius:12px;border:1px solid #f0c2ce;background:#fff5f7;text-decoration:none;margin-bottom:20px;" style-hover="border-color:#A50034;">
+          <div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:17px;color:#A50034;">رسوم الغسالات وغسالات الأطباق</div>
+          <div style="font-size:14px;color:#3f4447;line-height:1.7;">اضغط لعرض رسوم الصيانة والزيارة الخاصة بالمنتج — صباحي ومسائي.</div>
+          <div style="margin-right:auto;color:#A50034;font-size:18px;">←</div>
+        </a>
+
+
+        <div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:18px;margin-bottom:12px;">نظام تسجيل الطلب</div>
+        <div style="display:grid;gap:10px;margin-bottom:20px;">
+          <div style="display:flex;gap:14px;padding:15px 18px;border-radius:12px;background:#fbfaf7;border:1px solid #e9e6de;"><div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:16px;color:#A50034;min-width:20px;">١</div><div style="font-size:15px;line-height:1.9;">يتم تسجيل <strong>مكان التسريب</strong> و<strong>كل الخطوات اللي تمت مع العميل</strong> في البلاغ، مع <strong>رقم الموديل</strong>. (لو رقم الموديل مش متوفر يتم تسجيل البلاغ بعد التأكد إن الجهاز إل جي ومشترى من داخل مصر)</div></div>
+          <div style="display:flex;gap:14px;padding:15px 18px;border-radius:12px;background:#fbfaf7;border:1px solid #e9e6de;"><div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:16px;color:#A50034;min-width:20px;">٢</div><div style="font-size:15px;line-height:1.9;">الاسم الثلاثي للعميل كما هو مسجل في فاتورة الشراء (لو مش متوفر يتم السؤال عن اسم صاحب الجهاز).</div></div>
+          <div style="display:flex;gap:14px;padding:15px 18px;border-radius:12px;background:#fbfaf7;border:1px solid #e9e6de;"><div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:16px;color:#A50034;min-width:20px;">٣</div><div style="font-size:15px;line-height:1.9;">رقم الهاتف الأساسي ورقم إضافي إن وجد.</div></div>
+          <div style="display:flex;gap:14px;padding:15px 18px;border-radius:12px;background:#fbfaf7;border:1px solid #e9e6de;"><div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:16px;color:#A50034;min-width:20px;">٤</div><div style="font-size:15px;line-height:1.9;">العنوان بالتفصيل (المحافظة، المنطقة، اسم الشارع، رقم العمارة، الدور، الشقة، علامة مميزة).</div></div>
+          <div style="display:flex;gap:14px;padding:15px 18px;border-radius:12px;background:#fbfaf7;border:1px solid #e9e6de;"><div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:16px;color:#A50034;min-width:20px;">٥</div><div style="font-size:15px;line-height:1.9;">استفسر منه عن الموعد المفضل وسجّله على الأوردر. (لو لم يرد على السؤال يتم اختيار أقرب موعد متاح وإبلاغ العميل به)</div></div>
+        </div>
+
+        <a href="Washer Support Topics.dc.html" style="display:inline-block;padding:14px 22px;border-radius:10px;background:#A50034;color:#fff;font-family:'Cairo',sans-serif;font-weight:700;font-size:15px;text-decoration:none;" style-hover="background:#7d0027;">تم تسجيل البلاغ — إنهاء المكالمة</a>
+      </div>
+    </sc-if>
+
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const AR = ['٠','١','٢','٣','٤','٥','٦','٧','٨'];
+const CHECKS = [
+  { key:'level', title:'استواء الجهاز', hint:'أشهر سبب للتسريب من الباب',
+    cause:'التسريب من جوانب الباب غالبًا سببه إن غسالة الأطباق مش مستوية — سواء من التركيب أو فقدت اتزانها مع الوقت فمالت في اتجاه.',
+    script:'«التسريب من جناب الباب غالبًا سببه إن الجهاز مش واقف مستوي. هنعمل اختبار بسيط نتأكد بيه.»',
+    steps:[
+      { text:'فتح غسالة الأطباق ووضع ميزان استواء (Level) من جوّه على السطح العلوي والجوانب والأرضية للتأكد إن الجهاز مستوي.' },
+      { text:'اختبار المياه: إخراج الرف السفلي وصبّ حوالي ٤ لتر مياه في أرضية الجهاز، ومتابعة اتجاه تجمّع المياه.' },
+      { text:'لو مستوى المياه مايل لأي جهة من جهات الحوض، الجهاز مش مستوي صح ومحتاج ضبط.',
+        note:'ضبط الاستواء بيتم من أرجل الجهاز الخلفية والأمامية — وده إجراء تركيب يحتاج فني.' }
+    ] },
+
+  { key:'gasket', title:'جوان الباب', hint:'تراكم أو تلف',
+    cause:'تراكم بواقي الأكل أو الدهون على جوان الباب أو على منطقة الحوض اللي الجوان بيقفل عليها بيمنع الباب من الغلق المحكم فبيسرّب.',
+    script:'«هنفحص جوان الباب — تراكم دهون أو بواقي أكل عليه بيمنع الباب من الغلق المحكم فالمياه بتخرج.»',
+    steps:[
+      { text:'فحص الجوان ومنطقة الحوض اللي بيقفل عليها من أي تراكم أكل أو دهون.' },
+      { text:'لو فيه تراكم يتم تنظيفه — لأنه بيمنع الباب من الغلق المحكم ويسبب التسريب.' },
+      { text:'فحص الجوان من أي قطع أو تلف.',
+        note:'الجوان المقطوع أو التالف لا يُنظَّف — يحتاج زيارة فني.' }
+    ] },
+
+  { key:'spray', title:'أذرع الرشّ', hint:'انسداد أو تلف',
+    cause:'انسداد أذرع الرشّ ببواقي الأكل بيغيّر مسار المياه ويسبب التسريب.',
+    script:'«هنفحص أذرع الرشّ جوّه الجهاز — لو مسدودة ببواقي أكل بتغيّر مسار المياه وتسبب تسريب.»',
+    steps:[
+      { text:'فحص أذرع الرشّ من أي تراكم أو انسداد في فتحات الرشّ.' },
+      { text:'لو فيه انسداد: إخراج ذراع الرشّ وتنظيفه بفرشاة ناعمة ومياه دافئة بصابون، ثم إعادة تركيبه.' },
+      { text:'فحص ذراع الرشّ من أي تلف أو كسر.',
+        note:'ذراع الرشّ التالف أو المكسور يحتاج زيارة فني.' }
+    ] },
+
+  { key:'water', title:'وصلات المياه', hint:'الكوع والخرطوم',
+    cause:'وصلة مفكوكة حوالين كوع المياه (٩٠ درجة) أو خرطوم تغذية المياه بتسبب التسريب من أسفل الجهاز.',
+    script:'«التسريب من أسفل الجهاز غالبًا سببه وصلة مفكوكة في كوع المياه أو خرطوم التغذية. هنفحصهم مع حضرتك.»',
+    steps:[
+      { text:'لو مفيش أثر تسريب ظاهر: تمرير منديل ورقي جاف حوالين خرطوم المياه وكوع الـ ٩٠ درجة — البلل على المنديل معناه وجود تسريب.' },
+      { text:'التأكد إن القلاووظ داخل الكوع وحوالين صمام الدخول مش مستهلك أو تالف.' },
+      { text:'ربط الكوع على صمام الدخول باليد أولًا، ثم شدّه بإحكام بمفتاح إنجليزي قابل للضبط.',
+        note:'قفل حنفية المياه أسفل الحوض قبل أي فك أو ربط، وتحضير فوطة لتصريف المياه المتبقية.' },
+      { text:'فحص خرطوم تغذية المياه من أي تلف أو قلاووظ مستهلك — ويحتاج استبدال لو تالف.' }
+    ] },
+
+  { key:'detergent', title:'المنظف وكميته', hint:'الرغوة الزائدة',
+    cause:'كمية المنظف الزائدة أو النوع الغلط بيعملوا رغوة زائدة فمستوى المياه بيزيد ويفيض من الجهاز.',
+    script:'«ممكن حضرتك تقولّي بتستخدم إيه في غسالة الأطباق وبأي كمية؟ لأن المنظف الزايد أو النوع الغلط بيعمل رغوة كتير والمياه بتفيض.»',
+    steps:[
+      { text:'الأقراص أو التابلت: القرص فيه الكمية الصحيحة من المنظف — لكن استخدام أكثر من قرص بيعمل رغوة زائدة وفيضان مياه.' },
+      { text:'المنظف السائل أو البودرة: الدرج فيه علامتين لمستوى المنظف — تعبئة الدرج بالكامل فوق العلامات بتعمل رغوة زائدة وفيضان.' },
+      { text:'المستويات الموصى بها: علامة 15 للأطباق قليلة الوسخ أو المياه الخفيفة، وعلامة 25 للأطباق شديدة الوسخ أو المياه العسرة.' },
+      { text:'سائل غسل الأطباق اليدوي: ممنوع استخدامه نهائيًا داخل غسالة الأطباق.',
+        note:'سائل الغسيل اليدوي مركّز جدًا مقارنة بمنظف غسالة الأطباق وبيعمل فقاعات كتير جدًا فمستوى المياه بيفيض.' }
+    ] }
+];
+
+class Component extends DCLogic {
+  state = { node: 'start', sel: null, history: [] };
+  go(n, extra) { this.setState(s => Object.assign({ node: n, history: [...s.history, s.node] }, extra || {})); window.scrollTo(0, 0); }
+  renderVals() {
+    const n = this.state.node;
+    const sel = CHECKS.find(c => c.key === this.state.sel) || null;
+    const labels = { start:'خطوة ١', err:'رمز خطأ', pick:'خطوة ٢', detail:'خطوة ٣', done:'إنهاء', esc:'تسجيل بلاغ' };
+    return { pageBack: () => { if (history.length > 1) history.back(); else location.href = 'Installation Guide Home.dc.html'; },
+      stepLabel: labels[n] || '',
+      isStart: n === 'start', isErr: n === 'err', isPick: n === 'pick',
+      isDetail: n === 'detail', isDone: n === 'done', isEsc: n === 'esc',
+      checks: CHECKS.map(c => ({
+        title: c.title,
+        hint: c.hint,
+        style: "text-align:right;padding:18px 20px;border-radius:12px;cursor:pointer;width:100%;font-family:'IBM Plex Sans Arabic',sans-serif;border:1px solid #e3e0d8;background:#fff;color:#191a1c;",
+        open: () => this.go('detail', { sel: c.key })
+      })),
+      sel: sel ? {
+        title: sel.title,
+        cause: sel.cause,
+        script: sel.script,
+        steps: sel.steps.map((t, i) => ({ n: AR[i + 1], text: t.text, note: t.note || '' }))
+      } : { title:'', cause:'', script:'', steps:[] },
+      toErr: () => this.go('err'),
+      toPick: () => this.go('pick'),
+      toDone: () => this.go('done'),
+      toEsc: () => this.go('esc'),
+      back: () => this.setState(s => s.history.length ? { node: s.history[s.history.length - 1], history: s.history.slice(0, -1) } : {}),
+      restart: () => this.setState({ node: 'start', sel: null, history: [] })
+    };
+  }
+}
+</script>
+</body>
+</html>

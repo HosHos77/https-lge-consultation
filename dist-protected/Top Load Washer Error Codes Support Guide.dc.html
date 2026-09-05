@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script>
+(function(){
+  var KEY = 'csGuideAuth_v1';
+  var USER = 'agent';
+  var PASS = 'LGE@2026';
+  function authed(){ try { return localStorage.getItem(KEY) === '1'; } catch(e){ return false; } }
+  if (authed()) return;
+  var u = window.prompt('اسم المستخدم / Username:');
+  var p = window.prompt('كلمة المرور / Password:');
+  if (u === USER && p === PASS) {
+    try { localStorage.setItem(KEY, '1'); } catch(e){}
+  } else {
+    window.stop();
+    document.open();
+    document.write('<div style="font-family:Tahoma,Arial,sans-serif;text-align:center;margin-top:80px;font-size:22px;color:#c00;">تم رفض الدخول<br>Access Denied</div>');
+    document.close();
+  }
+})();
+</script>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<title>دعم فني — أكواد أخطاء غسالة باب علوي</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&family=IBM+Plex+Sans+Arabic:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  body { margin:0; background:#f4f3ef; }
+  a { color:#A50034; }
+  a:hover { color:#7d0027; }
+  @keyframes cardIn { from { opacity:0; transform:translateY(6px); } to { opacity:1; transform:none; } }
+</style>
+</helmet>
+<template id="__bundler_thumbnail"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><rect width="200" height="200" fill="#A50034"/><rect x="56" y="58" width="88" height="84" rx="8" fill="#fff"/><circle cx="100" cy="106" r="22" fill="none" stroke="#A50034" stroke-width="6"/><rect x="70" y="70" width="34" height="8" rx="4" fill="#f0a8bd"/></svg></template>
+
+<div dir="rtl" style="min-height:100vh;background:#f4f3ef;color:#191a1c;font-family:'IBM Plex Sans Arabic',system-ui,sans-serif;">
+
+  <div style="background:#111314;color:#f4f3ef;padding:16px 28px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;position:sticky;top:0;z-index:20;">
+    <div style="width:9px;height:32px;background:#A50034;border-radius:2px;flex:none;"></div>
+    <div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:18px;">أكواد الخطأ — غسالة باب علوي</div>
+    <div style="margin-right:auto;display:flex;flex-wrap:wrap;gap:10px;align-items:center;">
+      <div style="padding:7px 14px;border-radius:999px;background:#1e2224;font-size:12.5px;color:#c8cdd0;white-space:nowrap;flex:none;">{{ stepLabel }}</div>
+      <button type="button" onClick="{{ pageBack }}" style="padding:8px 16px;border-radius:8px;border:1px solid #3a4043;color:#f0a8bd;font-size:13px;background:transparent;cursor:pointer;font-family:'IBM Plex Sans Arabic',sans-serif;white-space:nowrap;flex:none;" style-hover="background:#22282a;">رجوع للصفحة السابقة</button>
+      <a href="Installation Guide Home.dc.html" style="padding:8px 16px;border-radius:8px;border:1px solid #3a4043;color:#f0a8bd;font-size:13px;text-decoration:none;white-space:nowrap;flex:none;" style-hover="background:#22282a;">الرئيسية</a>
+      <a href="Service Fees Table.dc.html#washers" style="padding:8px 16px;border-radius:8px;border:1px solid #3a4043;color:#f0a8bd;font-size:13px;text-decoration:none;white-space:nowrap;flex:none;" style-hover="background:#22282a;">جدول تكاليف الصيانة</a>
+      <button onClick="{{ restart }}" style="padding:8px 16px;border-radius:8px;border:1px solid #3a4043;background:transparent;color:#e4e7e9;font-family:'IBM Plex Sans Arabic',sans-serif;font-size:13px;cursor:pointer;white-space:nowrap;flex:none;" style-hover="background:#22282a;">من البداية</button>
+    </div>
+  </div>
+
+  <div style="max-width:1080px;margin:0 auto;padding:30px 28px 70px;display:flex;flex-direction:column;gap:18px;">
+
+    <sc-if value="{{ isPick }}" hint-placeholder-val="{{ true }}">
+      <div style="background:#fff;border:1px solid #e3e0d8;border-radius:14px;padding:32px;border-top:4px solid #A50034;animation:cardIn .25s ease;">
+        <div style="font-size:12.5px;font-weight:600;color:#A50034;letter-spacing:.04em;margin-bottom:10px;">الخطوة ١ — اختر الكود</div>
+        <div style="font-family:'Cairo',sans-serif;font-weight:700;font-size:26px;line-height:1.5;margin-bottom:12px;">الغسالة بها نظام مراقبة أخطاء تلقائي</div>
+        <div style="background:#1c1a1b;color:#f6f1f2;border-radius:12px;padding:22px 24px;margin-bottom:20px;">
+          <div style="font-size:12.5px;color:#f0a8bd;margin-bottom:10px;font-weight:600;">افتتاح المكالمة — اقرأ للعميل</div>
+          <div style="font-family:'Cairo',sans-serif;font-size:17.5px;line-height:2.1;">«بعتذرلك عن الإزعاج. قبل ما نلجأ لأي إجراء تاني، أحب أراجع معاك كام خطوة بسيطة ممكن تساعدنا نحدد سبب المشكلة ونحلها في الحال. لو تسمحلي أتابع معاك ده هيوفر عليك الوقت وأي تكاليف أو زيارة غير ضرورية.»</div>
+        </div>
+        <div style="font-size:15px;color:#3f4447;line-height:1.9;margin-bottom:16px;max-width:70ch;text-wrap:pretty;">الجهاز مزوّد بنظام يكتشف الأعطال ويشخّصها في مرحلة مبكرة ويعرضها كرمز على الشاشة. لو الغسالة مش شغّالة بشكل سليم أو مش شغّالة خالص، <strong>راجع الكود أولًا قبل تسجيل طلب صيانة</strong>.</div>
+        <div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:20px;margin-bottom:8px;">ممكن تقولي لو في كود ظاهر على الغسالة؟</div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:12px;">
+          <sc-for list="{{ codes }}" as="c" hint-placeholder-count="11">
+            <button onClick="{{ c.open }}" style="{{ c.style }}">
+              <div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:22px;line-height:1.2;" dir="ltr">{{ c.code }}</div>
+              <div style="font-size:13.5px;line-height:1.6;margin-top:6px;">{{ c.name }}</div>
+            </button>
+          </sc-for>
+        </div>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ isCode }}" hint-placeholder-val="{{ false }}">
+      <div style="background:#fff;border:1px solid #e3e0d8;border-radius:14px;padding:32px;border-top:4px solid #A50034;animation:cardIn .25s ease;">
+        <div style="font-size:12.5px;font-weight:600;color:#A50034;letter-spacing:.04em;margin-bottom:10px;">الخطوة ٢ — الخطوات الإرشادية للكود</div>
+        <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:8px;">
+          <div style="padding:8px 18px;border-radius:10px;background:#A50034;color:#fff;font-family:'Cairo',sans-serif;font-weight:900;font-size:22px;" dir="ltr">{{ sel.code }}</div>
+          <div style="font-family:'Cairo',sans-serif;font-weight:700;font-size:26px;line-height:1.4;">{{ sel.name }}</div>
+        </div>
+        <div style="font-size:15px;color:#6b7075;line-height:1.85;margin-bottom:20px;max-width:70ch;text-wrap:pretty;">{{ sel.meaning }}</div>
+        <div style="background:#1c1a1b;color:#f6f1f2;border-radius:12px;padding:20px 22px;margin-bottom:22px;">
+          <div style="font-size:12.5px;color:#f0a8bd;margin-bottom:8px;font-weight:600;">اقرأ للعميل</div>
+          <div style="font-family:'Cairo',sans-serif;font-size:17px;line-height:2.05;">{{ sel.script }}</div>
+        </div>
+
+        <div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:18px;margin-bottom:12px;">الأسباب المحتملة والخطوات</div>
+        <div style="display:grid;gap:12px;margin-bottom:20px;">
+          <sc-for list="{{ sel.steps }}" as="s" hint-placeholder-count="3">
+            <div style="padding:17px 20px;border-radius:12px;background:#fbfaf7;border:1px solid #e9e6de;">
+              <div style="font-family:'Cairo',sans-serif;font-weight:700;font-size:16px;margin-bottom:6px;">{{ s.cause }}</div>
+              <div style="font-size:15.5px;line-height:1.9;color:#3f4447;">{{ s.fix }}</div>
+              <sc-if value="{{ s.note }}" hint-placeholder-val="{{ false }}">
+                <div style="margin-top:10px;padding:12px 16px;border-radius:10px;background:#fdf6e8;border:1px solid #ecd9ae;font-size:14.5px;line-height:1.85;color:#7a5410;"><strong>ملحوظة:</strong> {{ s.note }}</div>
+              </sc-if>
+              <sc-if value="{{ s.pic }}" hint-placeholder-val="{{ false }}">
+                <div style="margin-top:12px;">{{ s.pic }}</div>
+              </sc-if>
+              <sc-if value="{{ s.linkHref }}" hint-placeholder-val="{{ false }}">
+                <a href="{{ s.linkHref }}" style="margin-top:12px;display:flex;align-items:center;gap:10px;padding:12px 16px;border-radius:10px;border:1px solid #f0c2ce;background:#fff5f7;text-decoration:none;color:#A50034;font-family:'Cairo',sans-serif;font-weight:700;font-size:14.5px;" style-hover="background:#ffe9ef;">{{ s.linkText }}</a>
+              </sc-if>
+            </div>
+          </sc-for>
+        </div>
+
+        <div style="display:grid;gap:12px;">
+          <sc-if value="{{ sel.canResolve }}" hint-placeholder-val="{{ false }}">
+            <button onClick="{{ toDone }}" style="text-align:right;padding:20px 22px;border-radius:12px;border:1px solid #c6e0d1;background:#eef6f1;cursor:pointer;font-family:'IBM Plex Sans Arabic',sans-serif;width:100%;" style-hover="border-color:#0f5132;">
+              <div style="font-family:'Cairo',sans-serif;font-weight:700;font-size:18px;margin-bottom:4px;">اتحلّت المشكلة أو سيجرب العميل الحل</div>
+              <div style="font-size:14px;color:#6b7075;">إنهاء المكالمة بدون تسجيل طلب صيانة.</div>
+            </button>
+          </sc-if>
+          <button onClick="{{ toEsc }}" style="text-align:right;padding:20px 22px;border-radius:12px;border:1px solid #f0c2ce;background:#fff5f7;cursor:pointer;font-family:'IBM Plex Sans Arabic',sans-serif;" style-hover="border-color:#A50034;">
+            <div style="font-family:'Cairo',sans-serif;font-weight:700;font-size:18px;margin-bottom:4px;">{{ sel.escBtn }}</div>
+            <div style="font-size:14px;color:#8a5555;">{{ sel.escalateHint }}</div>
+          </button>
+          <button onClick="{{ toPick }}" style="text-align:right;padding:16px 22px;border-radius:12px;border:1px solid #d9d5cb;background:#fbfaf7;cursor:pointer;font-family:'IBM Plex Sans Arabic',sans-serif;font-size:15px;color:#191a1c;" style-hover="border-color:#A50034;">كود مختلف — رجوع لقائمة الأكواد</button>
+        </div>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ isDone }}" hint-placeholder-val="{{ false }}">
+      <div style="background:#fff;border:1px solid #c6e0d1;border-radius:14px;padding:32px;border-top:4px solid #0f5132;animation:cardIn .25s ease;">
+        <div style="font-family:'Cairo',sans-serif;font-weight:700;font-size:26px;line-height:1.5;margin-bottom:18px;">اتحلّت المشكلة أو سيجرب العميل الحل — إنهاء المكالمة</div>
+        <div style="padding:18px 22px;border-radius:12px;background:#eef6f1;border:1px solid #c6e0d1;font-size:15.5px;line-height:1.95;margin-bottom:20px;">
+          تأكد من فهم العميل للخطوات وأنه سيجربها، ونبّهه إنه لو الكود ظهر تاني يتواصل معانا لتسجيل زيارة فني — ثم أنهِ المكالمة بدون تسجيل طلب صيانة.
+        </div>
+        <a href="Washer Support Topics.dc.html" style="display:inline-block;padding:14px 22px;border-radius:10px;background:#A50034;color:#fff;font-family:'Cairo',sans-serif;font-weight:700;font-size:15px;text-decoration:none;" style-hover="background:#7d0027;">إنهاء المكالمة</a>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ isEsc }}" hint-placeholder-val="{{ false }}">
+      <div style="background:#fff;border:1px solid #f0c2ce;border-radius:14px;padding:32px;border-top:4px solid #A50034;animation:cardIn .25s ease;">
+        <div style="font-size:12.5px;font-weight:600;color:#A50034;letter-spacing:.04em;margin-bottom:10px;">الخطوة الأخيرة — تسجيل طلب صيانة</div>
+        <div style="font-family:'Cairo',sans-serif;font-weight:700;font-size:26px;line-height:1.5;margin-bottom:18px;">الجهاز يحتاج زيارة فني</div>
+        <div style="background:#1c1a1b;color:#f6f1f2;border-radius:12px;padding:20px 22px;margin-bottom:20px;">
+          <div style="font-size:12.5px;color:#f0a8bd;margin-bottom:8px;font-weight:600;">اقرأ للعميل</div>
+          <div style="font-family:'Cairo',sans-serif;font-size:17px;line-height:2.05;">«هسجّل لحضرتك طلب صيانة وزيارة فني. الصيانة داخل فترة الضمان مجانية تمامًا. ولو ظهر إن السبب مش عطل فني في الجهاز، أو إن العطل خارج نطاق الضمان، بتكون في تكلفة زيارة ومعاينة ١٨٢ جنيه لأول زيارة، وأي زيارة بعدها ٣٠٠ جنيه — وتكلفة الصيانة نفسها بتتحدد بعد ما الفني يعاين الجهاز، وهتُعرض على حضرتك للموافقة قبل أي إصلاح.»</div>
+        </div>
+
+
+        <a href="Service Fees Table.dc.html#washers" style="display:flex;align-items:center;gap:14px;padding:18px 22px;border-radius:12px;border:1px solid #f0c2ce;background:#fff5f7;text-decoration:none;margin-bottom:20px;" style-hover="border-color:#A50034;">
+          <div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:17px;color:#A50034;">رسوم الغسالات وغسالات الأطباق</div>
+          <div style="font-size:14px;color:#3f4447;line-height:1.7;">اضغط لعرض رسوم الصيانة والزيارة الخاصة بالمنتج — صباحي ومسائي.</div>
+          <div style="margin-right:auto;color:#A50034;font-size:18px;">←</div>
+        </a>
+
+
+        <div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:18px;margin-bottom:12px;">نظام تسجيل الطلب</div>
+        <div style="display:grid;gap:10px;margin-bottom:20px;">
+          <div style="display:flex;gap:14px;padding:15px 18px;border-radius:12px;background:#fbfaf7;border:1px solid #e9e6de;"><div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:16px;color:#A50034;min-width:20px;">١</div><div style="font-size:15px;line-height:1.9;">يتم تسجيل <strong>الكود الظاهر على الشاشة</strong> و<strong>كل الخطوات اللي تمت مع العميل</strong> في البلاغ، مع <strong>رقم الموديل</strong>. (لو رقم الموديل مش متوفر يتم تسجيل البلاغ بعد التأكد إن الجهاز إل جي ومشترى من داخل مصر)</div></div>
+          <div style="display:flex;gap:14px;padding:15px 18px;border-radius:12px;background:#fbfaf7;border:1px solid #e9e6de;"><div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:16px;color:#A50034;min-width:20px;">٢</div><div style="font-size:15px;line-height:1.9;">الاسم الثلاثي للعميل كما هو مسجل في فاتورة الشراء (لو مش متوفر يتم السؤال عن اسم صاحب الجهاز).</div></div>
+          <div style="display:flex;gap:14px;padding:15px 18px;border-radius:12px;background:#fbfaf7;border:1px solid #e9e6de;"><div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:16px;color:#A50034;min-width:20px;">٣</div><div style="font-size:15px;line-height:1.9;">رقم الهاتف الأساسي ورقم إضافي إن وجد.</div></div>
+          <div style="display:flex;gap:14px;padding:15px 18px;border-radius:12px;background:#fbfaf7;border:1px solid #e9e6de;"><div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:16px;color:#A50034;min-width:20px;">٤</div><div style="font-size:15px;line-height:1.9;">العنوان بالتفصيل (المحافظة، المنطقة، اسم الشارع، رقم العمارة، الدور، الشقة، علامة مميزة).</div></div>
+          <div style="display:flex;gap:14px;padding:15px 18px;border-radius:12px;background:#fbfaf7;border:1px solid #e9e6de;"><div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:16px;color:#A50034;min-width:20px;">٥</div><div style="font-size:15px;line-height:1.9;">استفسر منه عن الموعد المفضل وسجّله على الأوردر. (لو لم يرد على السؤال يتم اختيار أقرب موعد متاح وإبلاغ العميل به)</div></div>
+        </div>
+
+
+        <a href="Washer Support Topics.dc.html" style="display:inline-block;padding:14px 22px;border-radius:10px;background:#A50034;color:#fff;font-family:'Cairo',sans-serif;font-weight:700;font-size:15px;text-decoration:none;" style-hover="background:#7d0027;">تم تسجيل البلاغ — إنهاء المكالمة</a>
+      </div>
+    </sc-if>
+
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const CODES = [
+  { code:'OE', name:'خطأ تصريف المياه', service:false,
+    meaning:'المياه لا تُصرَّف من الغسالة — خرطوم الصرف مثني أو مضغوط أو مسدود.',
+    steps:[
+      { cause:'خرطوم الصرف مثني أو مضغوط أو مسدود', fix:'التأكد إن خرطوم الصرف خالي من أي انسداد أو لفّات، ومش مضغوط ورا الغسالة أو تحتها.' },
+      { cause:'مستوى خرطوم الصرف غير مضبوط', fix:'التأكد إن ارتفاع خرطوم الصرف لا يقل عن ٩٠ سم ولا يزيد عن ١٢٠ سم.',
+        img:'img/washer/drain-hose-height.png' },
+      { cause:'تنظيف فلتر الصرف', fix:'فلتر الصرف موجود أسفل ظهر الغسالة بجوار خرطوم الصرف — يتم فصل الغسالة من الكهرباء، ثم فك الفلتر وتنظيفه بالمياه وإزالة أي بواقي، ثم إعادة تركيبه بإحكام.',
+        img:'img/washer/top-load-drain-filter.png' }
+    ],
+    script:'«الرمز ده معناه إن المياه مش بتتصرّف. ممكن نتأكد إن خرطوم الصرف مفرود ومش مسدود ولا مضغوط ورا الغسالة، وإن ارتفاعه بين ٩٠ و١٢٠ سم. وكمان ننظّف فلتر الصرف الموجود أسفل ظهر الغسالة بجوار خرطوم الصرف.»' },
+
+  { code:'IE', name:'خطأ دخول المياه', service:false,
+    meaning:'المياه لا تدخل الغسالة أو تدخل ببطء شديد.',
+    steps:[
+      { cause:'ارتفاع خرطوم الصرف غير مظبوط', fix:'التأكد إن ارتفاع خرطوم الصرف من الأرض يكون من ٩٠ إلى ١٢٠ سم. لو أقل من ٩٠ سم المياه بتسحب وتصرف أثناء ملء الغسالة فمش بتوصل للمنسوب المطلوب ويظهر الكود.',
+        img:'img/washer/drain-hose-height.png' },
+      { cause:'محابس المياه غير مفتوحة بالكامل', fix:'التأكد إن محابس (حنفيات) المياه مفتوحة بالكامل.' },
+      { cause:'خراطيم المياه مثنية أو مضغوطة', fix:'التأكد إن الخراطيم غير مثنية أو مضغوطة — والحذر عند تحريك الغسالة.' },
+      { cause:'فلاتر دخول المياه مسدودة', fix:'تنظيف فلاتر دخول المياه.',
+        img:'img/washer/inlet-filters.png' },
+      { cause:'ضغط المياه في المحبس أو المنزل منخفض', fix:'فحص حنفية أخرى في المنزل للتأكد إن ضغط المياه كافٍ.' }
+    ],
+    script:'«الرمز ده معناه إن المياه مش داخلة للغسالة أو داخلة ببطء. ممكن نتأكد إن الحنفية مفتوحة بالكامل، وإن الخرطوم مش مثني، ونظّف فلتر دخول المياه، ونشوف ضغط المياه في حنفية تانية في البيت. وكمان نتأكد إن ارتفاع خرطوم الصرف من الأرض من ٩٠ لـ ١٢٠ سم، لأنه لو أقل من كده المياه بتسحب وتصرف أثناء الملء.»' },
+
+  { code:'DE', name:'خطأ باب الغسالة (الباب العلوي)', service:false,
+    meaning:'باب الغسالة غير مقفول بشكل سليم — والغسالة لا تعصر إلا إذا كان باب الغسالة مقفولًا ومؤمَّنًا (تظهر LID LOCK على الشاشة).',
+    steps:[
+      { cause:'باب الغسالة غير مقفول بشكل سليم', fix:'التأكد من غلق باب الغسالة بشكل سليم والضغط على زر START/PAUSE. بعد بداية الدورة قد يستغرق الأمر لحظات قبل أن تبدأ الحلة في اللف أو العصر.' },
+      { cause:'الضغط على START وباب الغسالة مفتوح', fix:'التنبيه على العميل إن الضغط على زر START وباب الغسالة مفتوح يظهر رمز DE.' },
+      { cause:'باب الغسالة مقفول ومؤمَّن والرمز لسه ظاهر', fix:'في هذه الحالة يتم تسجيل طلب صيانة وزيارة فني.' }
+    ],
+    script:'«الرمز ده معناه إن الغسالة مش حاسّة إن باب الغسالة مقفول. ممكن نقفل باب الغسالة كويس وندوس START/PAUSE — وممكن تاخد لحظات قبل ما الحلة تبدأ تلف. لو باب الغسالة مقفول ومتأمّن والرمز لسه ظاهر هسجّل لحضرتك زيارة فني.»' },
+
+  { code:'DL', name:'خطأ مفتاح قفل باب الغسالة — Lid lock switch', service:false,
+    meaning:'خطأ في مفتاح قفل باب الغسالة — الغسالة لا تعصر إلا إذا كان باب الغسالة مؤمَّنًا (تظهر LID LOCK على الشاشة).',
+    steps:[
+      { cause:'باب الغسالة غير مقفول بشكل سليم', fix:'التأكد من غلق باب الغسالة بشكل سليم والضغط على زر START/PAUSE.' },
+      { cause:'باب الغسالة مقفول والرمز لسه ظاهر', fix:'في هذه الحالة يتم تسجيل طلب صيانة وزيارة فني.' }
+    ],
+    script:'«الرمز ده خاص بقفل باب الغسالة. ممكن نقفل باب الغسالة كويس وندوس START/PAUSE. لو باب الغسالة مقفول والرمز لسه ظاهر هسجّل لحضرتك زيارة فني.»' },
+
+  { code:'FE', name:'خطأ زيادة منسوب المياه', service:true,
+    meaning:'منسوب المياه عالٍ جدًا بسبب عطل محتمل في صمام المياه.',
+    steps:[ { cause:'عطل في صمام المياه', fix:'غلق محابس المياه وفصل الغسالة من الكهرباء، ثم تسجيل طلب صيانة.' } ],
+    script:'«الرمز ده معناه إن منسوب المياه عالي جدًا. ممكن نقفل حنفيات المياه ونفصل الغسالة من الكهربا فورًا، وهسجّل لحضرتك زيارة فني.»' },
+
+  { code:'E6', name:'خطأ الكلتش — Clutch error', service:false,
+    meaning:'خطأ في الكلتش.',
+    steps:[
+      { cause:'عملة معدنية أو شيء معدني عالق بين المروحة والحلة', fix:'خطوة فحص هامة قبل البلاغ: يتم الطلب من العميل فحص وجود أي عملات معدنية أو أجسام صغيرة داخل الغسالة عالقة بين الحلة والمروحة، وإزالتها إن وُجدت، ثم إعادة تشغيل الدورة.' },
+      { cause:'الرمز لسه ظاهر بعد الفحص', fix:'خطأ في الكلتش — فصل الغسالة من الكهرباء وتسجيل طلب صيانة.' }
+    ],
+    script:'«قبل ما نسجّل بلاغ، ممكن نتأكد من حاجة مهمة: فيه فكة أو حاجة معدنية صغيرة عالقة بين الحلة والمروحة؟ لو لقيت حاجة شيلها وشغّل الدورة تاني. لو الرمز لسه ظاهر هنفصل الغسالة من الكهربا وهسجّل لحضرتك زيارة فني.»' },
+
+  { code:'UE', name:'خطأ عدم توازن الحمل', service:false,
+    meaning:'الحمولة صغيرة جدًا أو غير متوازنة. الغسالة بها نظام يكتشف عدم التوازن ويصححه — ولو تم تحميل قطع تقيلة منفردة (بساط حمام، برنس) وكان عدم التوازن كبيرًا، تحاول الغسالة إعادة العصر عدة مرات، ولو استمر عدم التوازن تتوقف ويظهر رمز الخطأ.',
+    steps:[
+      { cause:'الحمولة صغيرة جدًا', fix:'إضافة قطعة أو قطعتين مشابهتين للمساعدة في توازن الحمولة.' },
+      { cause:'الحمولة غير متوازنة', fix:'إعادة ترتيب وتوزيع الملابس داخل الحلة للمساعدة في توازن الحمولة.' }
+    ],
+    script:'«الرمز ده معناه إن الحمولة مش متوازنة أو قليلة جدًا. ممكن نضيف قطعة أو اتنين شبه اللي جوه، ونعيد توزيع الملابس جوه الحلة.»' },
+
+  { code:'TE', name:'خطأ الثرمستور — Thermistor', service:true,
+    meaning:'خطأ في الثرمستور (حساس الحرارة).',
+    steps:[ { cause:'خطأ في الثرمستور', fix:'فصل الغسالة من الكهرباء وتسجيل طلب صيانة.' } ],
+    script:'«الرمز ده خاص بحساس الحرارة. ممكن نفصل الغسالة من الكهربا، وهسجّل لحضرتك زيارة فني.»' },
+
+  { code:'PE', name:'خطأ حساس منسوب المياه', service:true,
+    meaning:'حساس منسوب المياه لا يعمل بشكل سليم.',
+    steps:[ { cause:'حساس منسوب المياه لا يعمل بشكل سليم', fix:'غلق محابس المياه وفصل الغسالة من الكهرباء، ثم تسجيل طلب صيانة.' } ],
+    script:'«الرمز ده خاص بحساس منسوب المياه. ممكن نقفل الحنفيات ونفصل الكهربا، وهسجّل لحضرتك زيارة فني.»' },
+
+  { code:'LE', name:'خطأ الحماية الحرارية للموتور', service:false,
+    meaning:'دائرة الحماية من الحمل الحراري الزائد في الموتور تم تشغيلها.',
+    steps:[
+      { cause:'حمل حراري زائد على الموتور', fix:'ترك الغسالة ٣٠ دقيقة حتى يبرد الموتور، ثم إعادة تشغيل الدورة.' },
+      { cause:'الرمز لسه ظاهر بعد الـ ٣٠ دقيقة', fix:'فصل الغسالة من الكهرباء وتسجيل طلب صيانة.' }
+    ],
+    script:'«الرمز ده معناه إن الموتور سخن وفصل للحماية. ممكن نسيب الغسالة ٣٠ دقيقة لحد ما تبرد وبعدها نشغّل الدورة تاني. لو الرمز لسه ظاهر هسجّل لحضرتك زيارة فني.»' },
+
+  { code:'LE1', name:'عملة معدنية أو شيء معدني عالق بين المروحة والحلة', service:false,
+    meaning:'عملة معدنية أو شيء معدني — فكة، دبابيس، مشابك — عالق بين المروحة (لوح الغسل) والحلة الداخلية.',
+    steps:[
+      { cause:'شيء معدني عالق بين المروحة والحلة', fix:'إطفاء الغسالة ثم الضغط على زر Power، والضغط على زر سرعة العصر (Spin Speed) بدون اختيار برنامج لتصريف المياه وعصر الحمولة.' },
+      { cause:'بعد انتهاء العصر', fix:'إخراج الملابس، ثم البحث عن أي شيء معدني عالق في المروحة وإزالته.' },
+      { cause:'الوقاية', fix:'التنبيه على العميل بفحص جيوب الملابس دائمًا قبل الغسل لمنع أكواد الخطأ أو تلف الغسالة أو الملابس.' }
+    ],
+    script:'«الرمز ده معناه إن فيه عملة معدنية أو حاجة معدنية — فكة أو دبوس — عالقة بين المروحة والحلة. نقفل الغسالة وندوس Power، وبعدين ندوس زر سرعة العصر بدون اختيار برنامج علشان تصرّف وتعصر. بعد كده نطلع الهدوم ونشوف الحاجة المحتجزة ونشيلها. ودايمًا نفحص الجيوب قبل الغسل.»' }
+];
+
+class Component extends DCLogic {
+  state = { node: 'pick', code: null, history: [] };
+  go(n, extra) { this.setState(s => Object.assign({ node: n, history: [...s.history, s.node] }, extra || {})); window.scrollTo(0, 0); }
+  renderVals() {
+    const n = this.state.node;
+    const sel = CODES.find(c => c.code === this.state.code) || null;
+    const labels = { pick:'خطوة ١', code:'خطوة ٢', done:'إنهاء', esc:'تسجيل بلاغ' };
+    return { pageBack: () => { if (history.length > 1) history.back(); else location.href = 'Installation Guide Home.dc.html'; },
+      stepLabel: labels[n] || '',
+      isPick: n === 'pick', isCode: n === 'code', isDone: n === 'done', isEsc: n === 'esc',
+      codes: CODES.map(c => ({
+        code: c.code,
+        name: c.name,
+        style: "text-align:right;padding:16px 18px;border-radius:12px;cursor:pointer;width:100%;font-family:'IBM Plex Sans Arabic',sans-serif;border:1px solid " +
+          (c.service ? '#f0c2ce' : '#e3e0d8') + ';background:' + (c.service ? '#fff5f7' : '#fff') + ';color:#191a1c;',
+        open: () => this.go('code', { code: c.code })
+      })),
+      sel: sel ? Object.assign({}, sel, {
+        steps: sel.steps.map(s => Object.assign({}, s, {
+          pic: s.img ? React.createElement('img', { src: s.img, alt: s.cause,
+            style: { display:'block', width:'100%', maxWidth:'320px', height:'auto', borderRadius:'10px', border:'1px solid #e3e0d8', background:'#fff' } }) : null
+        })),
+        canResolve: !sel.service,
+        escBtn: sel.service ? 'التالي — تسجيل طلب صيانة' : 'المشكلة مستمرة — تسجيل طلب صيانة',
+        escalateHint: sel.service ? 'الكود ده يحتاج زيارة فني.' : 'لو الخطوات مانفعتش والكود لسه ظاهر.',
+        escalate: sel.service
+          ? 'الكود ده يحتاج زيارة فني — يتم التنبيه على العميل بالخطوات الإرشادية الخاصة بالرمز ثم تسجيل طلب صيانة.'
+          : 'العميل نفّذ الخطوات الإرشادية والكود لسه ظاهر — يتم تسجيل طلب صيانة وزيارة فني.'
+      }) : { code:'', name:'', meaning:'', steps:[], script:'', service:false, escalate:'', escalateHint:'', escBtn:'', canResolve:false },
+      toPick: () => this.go('pick'),
+      toDone: () => this.go('done'),
+      toEsc: () => this.go('esc'),
+      back: () => this.setState(s => s.history.length ? { node: s.history[s.history.length - 1], history: s.history.slice(0, -1) } : {}),
+      restart: () => this.setState({ node: 'pick', code: null, history: [] })
+    };
+  }
+}
+</script>
+</body>
+</html>
