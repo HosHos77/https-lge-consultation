@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script>
+(function(){
+  var KEY = 'csGuideAuth_v1';
+  var USER = 'agent';
+  var PASS = 'LGE@2026';
+  function authed(){ try { return localStorage.getItem(KEY) === '1'; } catch(e){ return false; } }
+  if (authed()) return;
+  var u = window.prompt('اسم المستخدم / Username:');
+  var p = window.prompt('كلمة المرور / Password:');
+  if (u === USER && p === PASS) {
+    try { localStorage.setItem(KEY, '1'); } catch(e){}
+  } else {
+    window.stop();
+    document.open();
+    document.write('<div style="font-family:Tahoma,Arial,sans-serif;text-align:center;margin-top:80px;font-size:22px;color:#c00;">تم رفض الدخول<br>Access Denied</div>');
+    document.close();
+  }
+})();
+</script>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<template id="__bundler_thumbnail"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><rect width="200" height="200" fill="#111314"/><rect x="30" y="66" width="36" height="80" rx="6" fill="#A50034"/><rect x="134" y="66" width="36" height="80" rx="6" fill="#A50034"/><rect x="74" y="96" width="52" height="34" rx="5" fill="#f0a8bd"/><circle cx="48" cy="90" r="8" fill="#111314"/><circle cx="152" cy="90" r="8" fill="#111314"/><circle cx="48" cy="122" r="11" fill="#111314"/><circle cx="152" cy="122" r="11" fill="#111314"/></svg></template>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  body { margin: 0; background: #f4f3ef; }
+  a { color: #A50034; text-decoration: none; }
+  a:hover { color: #7A0027; }
+  @keyframes cardIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+</style>
+</helmet>
+<div dir="rtl" style="min-height:100vh;background:#f4f3ef;color:#191a1c;font-family:'IBM Plex Sans Arabic',system-ui,sans-serif;">
+
+  <div style="position:sticky;top:0;z-index:20;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 28px;background:#111314;color:#f4f3ef;flex-wrap:wrap;">
+    <div style="display:flex;align-items:center;gap:14px;">
+      <div style="width:10px;height:34px;border-radius:2px;background:#A50034;"></div>
+      <div style="display:flex;flex-direction:column;gap:2px;">
+        <div style="font-family:'Cairo',sans-serif;font-weight:700;font-size:19px;line-height:1.2;">دليل مكالمة المسرح المنزلي</div>
+        <div style="font-size:12.5px;color:#9ea4a8;">مسار إرشادي خطوة بخطوة أثناء المكالمة</div>
+      </div>
+    </div>
+    <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
+      <button onClick="{{ openNoCap }}" style="padding:8px 14px;border-radius:8px;border:1px solid #3a4043;background:transparent;color:#f0a8bd;font-family:'IBM Plex Sans Arabic',sans-serif;font-size:13px;cursor:pointer;white-space:nowrap;flex:none;" style-hover="background:#22282a;">لا يوجد كباستي؟</button>
+      <button type="button" onClick="{{ pageBack }}" style="padding:8px 16px;border-radius:8px;border:1px solid #3a4043;color:#f0a8bd;font-size:13px;background:transparent;cursor:pointer;font-family:'IBM Plex Sans Arabic',sans-serif;white-space:nowrap;flex:none;" style-hover="background:#22282a;">رجوع للصفحة السابقة</button>
+      <a href="Installation Guide Home.dc.html" style="padding:8px 16px;border-radius:8px;border:1px solid #3a4043;color:#f0a8bd;font-size:13px;text-decoration:none;white-space:nowrap;flex:none;" style-hover="background:#22282a;">الرئيسية</a>
+      <a href="Service Fees Table.dc.html" style="padding:8px 16px;border-radius:8px;border:1px solid #3a4043;color:#f0a8bd;font-size:13px;text-decoration:none;white-space:nowrap;flex:none;" style-hover="background:#22282a;">جدول تكاليف الصيانة</a>
+      <div style="padding:7px 14px;border-radius:999px;background:#1e2224;font-size:12.5px;color:#c8cdd0;white-space:nowrap;flex:none;">خطوة {{ stepNo }}</div>
+      <button onClick="{{ restart }}" style="padding:8px 16px;border-radius:8px;border:none;background:#A50034;color:#fff;font-family:'IBM Plex Sans Arabic',sans-serif;font-weight:600;font-size:13px;cursor:pointer;white-space:nowrap;flex:none;" style-hover="background:#C4004A;">من البداية</button>
+    </div>
+  </div>
+
+  <div style="max-width:900px;margin:0 auto;padding:26px 28px 70px;display:flex;flex-direction:column;gap:18px;">
+
+    <div style="display:flex;flex-wrap:wrap;gap:8px;align-items:center;">
+      <sc-for list="{{ crumbs }}" as="c" hint-placeholder-count="1">
+        <div style="padding:6px 13px;border-radius:999px;background:#e6e4de;color:#4c5155;font-size:12.5px;">{{ c }}</div>
+      </sc-for>
+    </div>
+
+    <sc-if value="{{ atStart }}" hint-placeholder-val="{{ true }}">
+      <div style="background:#fff;border:1px solid #e3e0d8;border-radius:14px;padding:32px;animation:cardIn .25s ease;">
+        <div style="font-size:12.5px;font-weight:600;color:#A50034;margin-bottom:10px;">الخطوة ١ — وصول المنتج</div>
+        <div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:26px;margin-bottom:8px;">هل وصل الجهاز إلى منزل العميل؟</div>
+        <div style="font-size:15px;color:#6b7075;line-height:1.9;margin-bottom:20px;">يرجى التأكد أن الجهاز إل جي وصل المنزل قبل تسجيل البلاغ.</div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;">
+          <button onClick="{{ goModel }}" style="text-align:right;padding:20px;border-radius:12px;border:1px solid #d9d5cb;background:#fbfaf7;cursor:pointer;font-family:'IBM Plex Sans Arabic',sans-serif;font-size:14px;color:#6b7075;line-height:1.7;" style-hover="border-color:#A50034;background:#fdf5f7;"><strong style="font-family:'Cairo',sans-serif;font-size:17px;color:#191a1c;display:block;margin-bottom:4px;">نعم — وصل</strong>نكمل بسؤال الموديل</button>
+          <button onClick="{{ goNotArrived }}" style="text-align:right;padding:20px;border-radius:12px;border:1px solid #f0c2ce;background:#fff5f7;cursor:pointer;font-family:'IBM Plex Sans Arabic',sans-serif;font-size:14px;color:#8a5555;line-height:1.7;" style-hover="border-color:#A50034;background:#fdeef2;"><strong style="font-family:'Cairo',sans-serif;font-size:17px;color:#A50034;display:block;margin-bottom:4px;">لا — لم يصل بعد</strong>انصح العميل بتأجيل التسجيل</button>
+        </div>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ atNotArrived }}" hint-placeholder-val="{{ false }}">
+      <div style="background:#fff;border:1px solid #e3e0d8;border-radius:14px;padding:32px;border-top:4px solid #A50034;animation:cardIn .25s ease;">
+        <div style="background:#1c1a1b;color:#f6f1f2;border-radius:12px;padding:22px 24px;margin-bottom:20px;">
+          <div style="font-size:12.5px;color:#f0a8bd;margin-bottom:10px;font-weight:600;">اقرأ للعميل</div>
+          <div style="font-family:'Cairo',sans-serif;font-size:17.5px;line-height:2.1;">«من الأفضل تسجيل الطلب <strong>بعد وصول المنتج</strong>، للاستفادة بأول زيارة مجانية ليتم التركيب فيها.»</div>
+        </div>
+        <div style="font-size:12.5px;font-weight:600;color:#A50034;margin-bottom:10px;">المنتج لم يصل بعد</div>
+        <div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:24px;margin-bottom:20px;">انصح العميل بتأجيل تسجيل الطلب</div>
+        <div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:18px;margin-bottom:12px;">ماذا قرر العميل؟</div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;">
+          <button onClick="{{ goDeferred }}" style="text-align:right;padding:20px;border-radius:12px;border:1px solid #c6e0d1;background:#eef6f1;cursor:pointer;font-family:'IBM Plex Sans Arabic',sans-serif;font-size:14px;color:#6b7075;line-height:1.7;" style-hover="border-color:#0f5132;"><strong style="font-family:'Cairo',sans-serif;font-size:17px;color:#0f5132;display:block;margin-bottom:4px;">وافق على التأجيل</strong>يتصل بنا بعد وصول المنتج</button>
+          <button onClick="{{ goInsist }}" style="text-align:right;padding:20px;border-radius:12px;border:1px solid #f0c2ce;background:#fff5f7;cursor:pointer;font-family:'IBM Plex Sans Arabic',sans-serif;font-size:14px;color:#6b7075;line-height:1.7;" style-hover="border-color:#A50034;"><strong style="font-family:'Cairo',sans-serif;font-size:17px;color:#A50034;display:block;margin-bottom:4px;">أصرّ على التسجيل</strong>قال إن المنتج هيوصل قبل الزيارة</button>
+        </div>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ atInsist }}" hint-placeholder-val="{{ false }}">
+      <div style="background:#fff;border:1px solid #e3e0d8;border-radius:14px;padding:32px;border-top:4px solid #A50034;animation:cardIn .25s ease;">
+        <div style="background:#1c1a1b;color:#f6f1f2;border-radius:12px;padding:22px 24px;margin-bottom:20px;">
+          <div style="font-size:12.5px;color:#f0a8bd;margin-bottom:10px;font-weight:600;">اقرأ للعميل</div>
+          <div style="font-family:'Cairo',sans-serif;font-size:17.5px;line-height:2.1;">«حضرتك، <strong>الزيارة الأولى للتركيب فقط</strong> هي اللي بتكون مجانًا — لو الفني حضر والمنتج لسه ما وصلش، الزيارة تتحسب وأي زيارة تانية بتكون بتكلفة.»</div>
+        </div>
+        <div style="font-size:12.5px;font-weight:600;color:#A50034;margin-bottom:10px;">العميل أصرّ على التسجيل</div>
+        <div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:24px;margin-bottom:20px;">أكّد على العميل قبل الاستكمال</div>
+        <div style="padding:18px 22px;border-radius:12px;background:#fff5f7;border:1px solid #f0c2ce;font-size:15.5px;line-height:1.95;">يتم تسجيل تأكيد العميل داخل البلاغ قبل الاستكمال.</div>
+        <button onClick="{{ goModel }}" style="margin-top:22px;padding:15px 32px;border-radius:10px;border:none;background:#111314;color:#fff;font-family:'Cairo',sans-serif;font-weight:700;font-size:15.5px;cursor:pointer;" style-hover="background:#A50034;">التالي — الموديل وحالة الضمان</button>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ atDeferred }}" hint-placeholder-val="{{ false }}">
+      <div style="background:#0f5132;color:#eaf6ef;border-radius:14px;padding:34px 32px;animation:cardIn .25s ease;">
+        <div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:26px;margin-bottom:12px;">تم تأجيل التسجيل — انتهت المكالمة</div>
+        <div style="font-size:15.5px;line-height:1.95;opacity:.9;margin-bottom:24px;">العميل سيتصل بنا بعد وصول المنتج لتسجيل بلاغ التركيب والاستفادة بأول زيارة مجانية.</div>
+        <button onClick="{{ restart }}" style="padding:14px 30px;border-radius:10px;border:none;background:#fff;color:#0f5132;font-family:'Cairo',sans-serif;font-weight:700;font-size:15px;cursor:pointer;">مكالمة جديدة</button>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ atModel }}" hint-placeholder-val="{{ false }}">
+      <div style="background:#fff;border:1px solid #e3e0d8;border-radius:14px;padding:32px;animation:cardIn .25s ease;">
+        <div style="font-size:12.5px;font-weight:600;color:#A50034;margin-bottom:10px;">الخطوة ٢ — رقم الموديل</div>
+        <div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:26px;margin-bottom:8px;">اسأل العميل عن موديل الجهاز</div>
+        <div style="font-size:15px;color:#6b7075;line-height:1.9;margin-bottom:20px;">التركيب المجاني مشروط بالموديل <span dir="ltr" style="unicode-bidi:isolate;">LHD677</span> + الشراء من مصر + داخل الضمان + أول مرة.</div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:12px;">
+          <button onClick="{{ goFree }}" style="text-align:right;padding:20px;border-radius:12px;border:1px solid #d9d5cb;background:#fbfaf7;cursor:pointer;font-family:'IBM Plex Sans Arabic',sans-serif;font-size:14px;color:#6b7075;line-height:1.7;" style-hover="border-color:#A50034;background:#fdf5f7;"><strong style="font-family:'Cairo',sans-serif;font-size:17px;color:#191a1c;display:block;margin-bottom:4px;"><span dir="ltr" style="unicode-bidi:isolate;">LHD677</span> — مستوفي الشروط</strong>مشترى من مصر · داخل الضمان · أول مرة</button>
+          <button onClick="{{ goPaid }}" style="text-align:right;padding:20px;border-radius:12px;border:1px solid #d9d5cb;background:#fbfaf7;cursor:pointer;font-family:'IBM Plex Sans Arabic',sans-serif;font-size:14px;color:#6b7075;line-height:1.7;" style-hover="border-color:#A50034;background:#fdf5f7;"><strong style="font-family:'Cairo',sans-serif;font-size:17px;color:#191a1c;display:block;margin-bottom:4px;">ما عدا ذلك</strong>موديل آخر · خارج الضمان · مرة ثانية</button>
+        </div>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ atFree }}" hint-placeholder-val="{{ false }}">
+      <div style="display:flex;flex-direction:column;gap:18px;animation:cardIn .25s ease;">
+        <div style="background:#0f5132;color:#eaf6ef;border-radius:14px;padding:20px 26px;font-family:'Cairo',sans-serif;font-weight:700;font-size:18px;line-height:1.8;">النتيجة: التركيب مجانًا — يتم تسجيل بلاغ تركيب.</div>
+        <div style="background:#fff;border:1px solid #e3e0d8;border-radius:14px;padding:32px;">
+          <div style="font-size:12.5px;font-weight:600;color:#A50034;margin-bottom:10px;">شروط التركيب المجاني</div>
+          <div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:22px;margin-bottom:18px;">يتم تركيب الهوم ثيتر موديل <span dir="ltr" style="unicode-bidi:isolate;">LHD677</span> مجانًا</div>
+          <div style="display:grid;gap:12px;">
+            <div style="display:flex;gap:16px;padding:16px 20px;border-radius:12px;background:#fbfaf7;border:1px solid #e9e6de;"><div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:17px;color:#A50034;min-width:20px;">١</div><div style="font-size:15.5px;line-height:1.9;">يُشترط أن يتم <strong>شراء الموديل من مصر</strong>.</div></div>
+            <div style="display:flex;gap:16px;padding:16px 20px;border-radius:12px;background:#fbfaf7;border:1px solid #e9e6de;"><div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:17px;color:#A50034;min-width:20px;">٢</div><div style="font-size:15.5px;line-height:1.9;">أن يكون <strong>داخل الضمان</strong> والتركيب <strong>أول مرة</strong> مجانًا.</div></div>
+          </div>
+          <button onClick="{{ goData }}" style="margin-top:22px;padding:15px 32px;border-radius:10px;border:none;background:#111314;color:#fff;font-family:'Cairo',sans-serif;font-weight:700;font-size:15.5px;cursor:pointer;" style-hover="background:#A50034;">التالي — بيانات البلاغ</button>
+        </div>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ atPaid }}" hint-placeholder-val="{{ false }}">
+      <div style="background:#fff;border:1px solid #e3e0d8;border-radius:14px;padding:32px;animation:cardIn .25s ease;">
+        <div style="font-size:12.5px;font-weight:600;color:#A50034;margin-bottom:10px;">الرسوم</div>
+        <div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:24px;margin-bottom:18px;">التركيب بتكلفة</div>
+        <div style="padding:24px;border-radius:12px;background:#fbfaf7;border:1px solid #e9e6de;">
+          <div style="font-size:14px;color:#6b7075;margin-bottom:6px;line-height:1.7;">موديل غير <span dir="ltr" style="unicode-bidi:isolate;">LHD677</span>، أو خارج فترة الضمان، أو التركيب للمرة الثانية</div>
+          <div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:32px;">285 <span style="font-size:15px;font-weight:600;color:#6b7075;">جنيهًا</span></div>
+        </div>
+        <div style="margin-top:14px;padding:14px 18px;border-radius:10px;background:#fff;border:1px solid #A50034;color:#A50034;font-size:15px;line-height:1.85;font-weight:600;">لو العميل اشترى من موقع إل جي (<span dir="ltr" style="unicode-bidi:isolate;">OBS</span>): التركيب <strong>مجاني</strong> حتى لو الموديل رسومه مدفوعة.</div>
+        <button onClick="{{ goData }}" style="margin-top:22px;padding:15px 32px;border-radius:10px;border:none;background:#111314;color:#fff;font-family:'Cairo',sans-serif;font-weight:700;font-size:15.5px;cursor:pointer;" style-hover="background:#A50034;">التالي — بيانات البلاغ</button>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ atData }}" hint-placeholder-val="{{ false }}">
+      <div style="background:#fff;border:1px solid #e3e0d8;border-radius:14px;padding:32px;animation:cardIn .25s ease;">
+        <div style="font-size:12.5px;font-weight:600;color:#A50034;margin-bottom:10px;">بيانات البلاغ</div>
+        <div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:24px;margin-bottom:8px;">لتسجيل بلاغ تركيب يرجى إرسال التالي</div>
+        <div style="font-size:15px;color:#6b7075;line-height:1.9;margin-bottom:20px;">اطلب البيانات من العميل قبل إنهاء المكالمة.</div>
+        <div style="display:grid;gap:12px;">
+          <div style="display:flex;gap:16px;padding:16px 20px;border-radius:12px;background:#fbfaf7;border:1px solid #e9e6de;"><div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:17px;color:#A50034;">١</div><div style="font-size:15.5px;line-height:1.85;">الاسم الثلاثي المسجل على فاتورة الشراء. <span style="color:#A50034;">(لو غير متوفر يتم السؤال عن اسم صاحب الجهاز)</span></div></div>
+          <div style="display:flex;gap:16px;padding:16px 20px;border-radius:12px;background:#fbfaf7;border:1px solid #e9e6de;"><div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:17px;color:#A50034;">٢</div><div style="font-size:15.5px;line-height:1.85;">رقم موبايل أو أكثر للتواصل.</div></div>
+          <div style="display:flex;gap:16px;padding:16px 20px;border-radius:12px;background:#fbfaf7;border:1px solid #e9e6de;"><div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:17px;color:#A50034;">٣</div><div style="font-size:15.5px;line-height:1.85;">العنوان بالتفصيل: المحافظة، المنطقة، اسم الشارع، رقم العمارة، الدور، الشقة، علامة مميزة.</div></div>
+        </div>
+
+        <div style="margin-top:24px;padding-top:22px;border-top:1px solid #eeebe4;">
+          <div style="font-size:12.5px;font-weight:600;color:#A50034;margin-bottom:8px;">تسجيل البلاغ على السيستم</div>
+          <div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:19px;margin-bottom:14px;">مصدر الشراء — اختيار الـ Symptom الصحيح</div>
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px;">
+            <div style="padding:20px;border-radius:12px;background:#fff5f7;border:1px solid #f0c2ce;">
+              <div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:17px;color:#A50034;margin-bottom:10px;">العميل اشترى من <span dir="ltr" style="unicode-bidi:isolate;">OBS</span></div>
+              <div style="display:grid;gap:9px;font-size:15px;line-height:1.85;">
+                <div>١ — يُطلب من العميل <strong>رقم أوردر الشراء</strong>.</div>
+                <div>٢ — يوضع في خانة <strong dir="ltr" style="unicode-bidi:isolate;">OBS Order No</strong> على السيستم.</div>
+                <div>٣ — يتم اختيار <strong dir="ltr" style="unicode-bidi:isolate;">Symptom: OBS</strong>.</div>
+                <div>٤ — والـ <strong dir="ltr" style="unicode-bidi:isolate;">Sub Symptom: Product Installation</strong>.</div>
+                <div style="margin-top:12px;padding:12px 14px;border-radius:10px;background:#fff;border:1px solid #A50034;color:#A50034;font-size:14.5px;line-height:1.8;font-weight:600;">لو العميل ليس معه رقم أوردر الشراء: يتم تسجيل البلاغ عادي واختيار <span dir="ltr" style="unicode-bidi:isolate;">Symptom: Installation/Connection</span> — نفس الموزع العادي.</div>
+              </div>
+            </div>
+            <div style="padding:20px;border-radius:12px;background:#fbfaf7;border:1px solid #e9e6de;">
+              <div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:17px;margin-bottom:10px;">العميل اشترى من <strong>موزع عادي</strong></div>
+              <div style="font-size:15px;line-height:1.85;">يتم اختيار <strong dir="ltr" style="unicode-bidi:isolate;">Symptom: Installation/Connection</strong> — ولا يوجد رقم أوردر <span dir="ltr" style="unicode-bidi:isolate;">OBS</span>.</div>
+            </div>
+          </div>
+          <div style="margin-top:14px;padding:14px;border-radius:12px;background:#fbfaf7;border:1px solid #e9e6de;">
+            <div style="font-size:13px;color:#6b7075;margin-bottom:10px;">شاشة السيستم — مكان الحقول</div>
+            <img src="uploads/pasted-1786280779819-0.png" alt="OBS Order No و Symptom على السيستم" style="width:100%;max-width:460px;border-radius:8px;display:block;">
+          </div>
+        </div>
+
+        <button onClick="{{ goSched }}" style="margin-top:22px;padding:15px 32px;border-radius:10px;border:none;background:#111314;color:#fff;font-family:'Cairo',sans-serif;font-weight:700;font-size:15.5px;cursor:pointer;" style-hover="background:#A50034;">التالي — تحديد الموعد</button>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ atSched }}" hint-placeholder-val="{{ false }}">
+      <div style="background:#fff;border:1px solid #e3e0d8;border-radius:14px;padding:32px;animation:cardIn .25s ease;">
+        <div style="font-size:12.5px;font-weight:600;color:#A50034;margin-bottom:10px;">تحديد الموعد</div>
+        <div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:24px;margin-bottom:20px;">التأكد من الكباستي المتاحة وتحديد الموعد</div>
+        <div style="display:grid;gap:12px;">
+          <div style="display:flex;gap:16px;padding:16px 20px;border-radius:12px;background:#fbfaf7;border:1px solid #e9e6de;"><div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:17px;color:#A50034;min-width:20px;">١</div><div style="font-size:15.5px;line-height:1.9;">تأكد من <strong>الكباستي المتاحة</strong> على السيستم قبل الوعد بأي موعد.</div></div>
+          <div style="display:flex;gap:16px;padding:16px 20px;border-radius:12px;background:#fbfaf7;border:1px solid #e9e6de;"><div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:17px;color:#A50034;min-width:20px;">٢</div><div style="font-size:15.5px;line-height:1.9;">أبلغ العميل <strong>بخيارات مواعيد الزيارة</strong> المتاحة.</div></div>
+          <div style="display:flex;gap:16px;padding:16px 20px;border-radius:12px;background:#fbfaf7;border:1px solid #e9e6de;"><div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:17px;color:#A50034;min-width:20px;">٣</div><div style="font-size:15.5px;line-height:1.9;">استفسر منه عن <strong>الموعد المفضل</strong> وسجّله على الأوردر. <span style="color:#A50034;">(لو لم يرد على السؤال يتم اختيار أقرب موعد متاح وإبلاغ العميل به)</span></div></div>
+        </div>
+        <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:22px;">
+          <button onClick="{{ goDone }}" style="padding:15px 32px;border-radius:10px;border:none;background:#111314;color:#fff;font-family:'Cairo',sans-serif;font-weight:700;font-size:15.5px;cursor:pointer;" style-hover="background:#A50034;">تم — إنهاء المكالمة</button>
+          
+        </div>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ atDone }}" hint-placeholder-val="{{ false }}">
+      <div style="background:#0f5132;color:#eaf6ef;border-radius:14px;padding:34px 32px;animation:cardIn .25s ease;">
+        <div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:26px;margin-bottom:12px;">تم تسجيل البلاغ — انتهت المكالمة</div>
+        <div style="font-size:15.5px;line-height:1.95;opacity:.9;margin-bottom:24px;">تأكد من مراجعة بيانات العميل والرسوم قبل إغلاق الأوردر.</div>
+        <button onClick="{{ restart }}" style="padding:14px 30px;border-radius:10px;border:none;background:#fff;color:#0f5132;font-family:'Cairo',sans-serif;font-weight:700;font-size:15px;cursor:pointer;">مكالمة جديدة</button>
+      </div>
+    </sc-if>
+
+  </div>
+</div>
+
+
+<sc-if value="{{ showNoCap }}" hint-placeholder-val="{{ false }}">
+  <div dir="rtl" style="position:fixed;inset:0;z-index:80;background:rgba(17,19,20,.6);display:flex;align-items:flex-start;justify-content:center;padding:32px 20px;overflow:auto;font-family:'IBM Plex Sans Arabic',system-ui,sans-serif;">
+    <div style="width:100%;max-width:880px;background:#f4f3ef;border-radius:16px;overflow:hidden;box-shadow:0 24px 60px rgba(0,0,0,.35);">
+      <div style="position:sticky;top:0;padding:16px 26px;background:#111314;color:#f4f3ef;display:flex;align-items:center;justify-content:space-between;gap:14px;">
+        <div style="display:flex;align-items:center;gap:14px;">
+          <div style="width:8px;height:30px;border-radius:2px;background:#A50034;"></div>
+          <div>
+            <div style="font-family:'Cairo',sans-serif;font-weight:700;font-size:18px;">لا يوجد كباستي — <span dir="ltr" style="unicode-bidi:isolate;">No Capacity Process</span></div>
+            <div style="font-size:12px;color:#9ea4a8;">خاص ببلاغات التركيب</div>
+          </div>
+        </div>
+        <button onClick="{{ closeNoCap }}" style="padding:9px 18px;border-radius:8px;border:1px solid #3a4043;background:transparent;color:#e4e7e9;font-family:'IBM Plex Sans Arabic',sans-serif;font-size:13px;cursor:pointer;" style-hover="background:#22282a;">إغلاق</button>
+      </div>
+      <div style="padding:26px;display:flex;flex-direction:column;gap:18px;color:#191a1c;">
+
+        <div style="background:#fff5f7;border:1px solid #f0c2ce;border-radius:14px;padding:22px 24px;">
+          <div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:17px;color:#A50034;margin-bottom:12px;">متى نتبع هذا المسار؟</div>
+          <div style="font-size:15.5px;line-height:1.95;margin-bottom:12px;">إذا تواصل معك العميل بخصوص تسجيل بلاغ تركيب واعتذرنا له لأحد الأسباب التالية:</div>
+          <div style="display:grid;gap:10px;">
+            <div style="padding:13px 17px;border-radius:10px;background:#fff;border:1px solid #f0c2ce;font-size:15px;line-height:1.85;">لا يوجد مواعيد متاحة على السيستم.</div>
+            <div style="padding:13px 17px;border-radius:10px;background:#fff;border:1px solid #f0c2ce;font-size:15px;line-height:1.85;">أو لا توجد مراكز متاحة.</div>
+            <div style="padding:13px 17px;border-radius:10px;background:#fff;border:1px solid #f0c2ce;font-size:15px;line-height:1.85;">أو في حالة وجود طلب <strong dir="ltr" style="unicode-bidi:isolate;">Reclaim</strong> والمركز غير ظاهر على السيستم.</div>
+          </div>
+        </div>
+
+        <div style="background:#fff;border:1px solid #e3e0d8;border-radius:14px;padding:24px;">
+          <div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:19px;margin-bottom:16px;">يتم اتباع الآتي</div>
+          <div style="display:grid;gap:12px;">
+            <div style="display:flex;gap:14px;padding:16px 18px;border-radius:12px;background:#fbfaf7;border:1px solid #e9e6de;"><div style="width:26px;height:26px;flex:none;border-radius:8px;background:#A50034;color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Cairo',sans-serif;font-weight:900;font-size:13px;">١</div><div style="font-size:15px;line-height:1.95;">يتم <strong>تسجيل بيانات العميل بالكامل</strong> والكتابة داخل الاستفسار عن سبب عدم إمكانية تسجيل بلاغ التركيب.</div></div>
+            <div style="display:flex;gap:14px;padding:16px 18px;border-radius:12px;background:#fbfaf7;border:1px solid #e9e6de;"><div style="width:26px;height:26px;flex:none;border-radius:8px;background:#A50034;color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Cairo',sans-serif;font-weight:900;font-size:13px;">٢</div><div style="font-size:15px;line-height:1.95;">يتم اختيار <strong dir="ltr" style="unicode-bidi:isolate;">Symptom</strong> الذي كان من المفترض تسجيله داخل البلاغ.</div></div>
+            <div style="display:flex;gap:14px;padding:16px 18px;border-radius:12px;background:#fbfaf7;border:1px solid #e9e6de;"><div style="width:26px;height:26px;flex:none;border-radius:8px;background:#A50034;color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Cairo',sans-serif;font-weight:900;font-size:13px;">٣</div><div style="display:flex;flex-direction:column;gap:9px;font-size:15px;line-height:1.95;"><div>يتم عمل تعيين <strong dir="ltr" style="unicode-bidi:isolate;">(Assign)</strong> في خانة <strong dir="ltr" style="unicode-bidi:isolate;">Call Back Agent</strong> على <strong dir="ltr" style="unicode-bidi:isolate;">Capacity Availability</strong>.</div><div style="padding:11px 15px;border-radius:10px;background:#fff;border:1px solid #e9e6de;">يقوم فريق الـ <strong dir="ltr" style="unicode-bidi:isolate;">Service Network</strong> بمراجعة الاستفسارات ومحاولة فتح المواعيد وإظهار المركز.</div><div style="padding:11px 15px;border-radius:10px;background:#fff;border:1px solid #e9e6de;">ثم بعد ذلك يقوم بتحويل الاستفسار من <strong dir="ltr" style="unicode-bidi:isolate;">No Capacity Process</strong> إلى <strong>Alshaima</strong>.</div></div></div>
+            <div style="display:flex;gap:14px;padding:16px 18px;border-radius:12px;background:#fff5f7;border:1px solid #f0c2ce;"><div style="width:26px;height:26px;flex:none;border-radius:8px;background:#A50034;color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Cairo',sans-serif;font-weight:900;font-size:13px;">٤</div><div style="display:flex;flex-direction:column;gap:9px;font-size:15px;line-height:1.95;"><div>سيتم الاتصال بالعميل من خلال قسم الـ <strong dir="ltr" style="unicode-bidi:isolate;">Schedule Complain</strong> <strong style="color:#A50034;">خلال اليوم</strong>.</div><div style="padding:11px 15px;border-radius:10px;background:#fff;border:1px solid #f0c2ce;">إذا كان البلاغ تركيب يتم اختيار <strong dir="ltr" style="unicode-bidi:isolate;">Delivery/Installation : Installation schedule Check and Change visit time</strong>.</div></div></div>
+          </div>
+        </div>
+
+        <div style="background:#1c1a1b;color:#f6f1f2;border-radius:14px;padding:24px;">
+          <div style="font-size:12.5px;color:#f0a8bd;margin-bottom:14px;font-weight:600;">الاسكربت — اقرأ للعميل</div>
+          <div style="display:grid;gap:11px;">
+            <div style="padding:15px 18px;border-radius:12px;background:#282526;"><div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:13.5px;color:#f0a8bd;margin-bottom:7px;">الموظف</div><div style="font-size:15.5px;line-height:2;">تمام يافندم، أنا بعتذر لحضرتك هو للأسف غير متاح مواعيد لتسجيل الطلب، وأنا سجلت لحضرتك طلب للقسم المختص لتوفير الميعاد لحضرتك، وأستأذن حضرتك انتظار من القسم المختص لتأكيد موعد الزيارة مع حضرتك.</div></div>
+            <div style="padding:15px 18px;border-radius:12px;background:#22201f;"><div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:13.5px;color:#9ea4a8;margin-bottom:7px;">العميل</div><div style="font-size:15.5px;line-height:2;">طيب هيكلموني إمتى؟</div></div>
+            <div style="padding:15px 18px;border-radius:12px;background:#282526;"><div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:13.5px;color:#f0a8bd;margin-bottom:7px;">الموظف</div><div style="font-size:15.5px;line-height:2;">خلال اليوم يافندم.</div></div>
+            <div style="padding:15px 18px;border-radius:12px;background:#22201f;"><div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:13.5px;color:#9ea4a8;margin-bottom:7px;">العميل</div><div style="font-size:15.5px;line-height:2;">خلاص تمام، شكرًا.</div></div>
+          </div>
+        </div>
+
+        <div style="background:#fff;border:1px solid #e3e0d8;border-radius:14px;padding:24px;">
+          <div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:19px;margin-bottom:16px;">ملحوظات هامة</div>
+          <div style="display:grid;gap:11px;">
+            <div style="padding:15px 18px;border-radius:12px;background:#fbfaf7;border:1px solid #e9e6de;font-size:15px;line-height:1.95;">في حالة تواصل العميل بعد تسجيل الطلب وأفاد بأنه يريد إضافة موديل <strong dir="ltr" style="unicode-bidi:isolate;">(Model)</strong> أو رقم إضافي — يتم إضافة ذلك في السيستم ويتم عمل تحديث داخل الاستفسار المفتوح.</div>
+            <div style="padding:15px 18px;border-radius:12px;background:#fbfaf7;border:1px solid #e9e6de;font-size:15px;line-height:1.95;">في حالة تواصل العميل ويريد إلغاء البلاغ — يتم غلق الاستفسار وتحديث ذلك داخل الاستفسار قبل غلقه.</div>
+            <div style="padding:15px 18px;border-radius:12px;background:#fff5f7;border:1px solid #f0c2ce;font-size:15px;line-height:1.95;">في حال تواصل العميل معنا بعد الساعة <strong dir="ltr" style="unicode-bidi:isolate;">5:30</strong> مساءً أو يوم الجمعة — سوف نقوم بإبلاغ العميل بأننا سنتابع معه غدًا للتأكد من موعد الزيارة.</div>
+          </div>
+        </div>
+
+        <div style="background:#fff;border:1px solid #e3e0d8;border-radius:14px;padding:24px;border-top:4px solid #A50034;">
+          <div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:18px;color:#A50034;margin-bottom:10px;">ملحوظة خاصة بتيم الاسكادول وكوميبلين</div>
+          <div style="font-size:15px;line-height:1.95;">عند غلق الاستفسار يتم اختيار <strong dir="ltr" style="unicode-bidi:isolate;">Call code : Call back</strong>.</div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</sc-if>
+
+
+
+
+<div dir="rtl" style="background:#f4f3ef;padding:8px 28px 48px;display:flex;justify-content:center;font-family:'IBM Plex Sans Arabic',system-ui,sans-serif;">
+  <a href="Installation Guide Home.dc.html" style="display:inline-flex;align-items:center;gap:10px;padding:14px 30px;border-radius:12px;background:#111314;color:#f4f3ef;font-family:'Cairo',sans-serif;font-weight:700;font-size:15px;" style-hover="background:#A50034;color:#fff;">← العودة للصفحة الرئيسية</a>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const LABELS = { start: 'وصول المنتج', notArrived: 'لم يصل بعد', insist: 'إصرار العميل', deferred: 'تأجيل التسجيل', model: 'الموديل والضمان', free: 'تركيب مجاني', paid: 'تركيب برسوم', data: 'بيانات البلاغ', sched: 'تحديد الموعد', done: 'انتهت المكالمة' };
+
+class Component extends DCLogic {
+  state = { node: 'start', history: [] };
+  go(node) {
+    this.setState(s => ({ node, history: s.history.concat([s.node]) }));
+    window.scrollTo(0, 0);
+  }
+  renderVals() {
+    const n = this.state.node;
+    return { pageBack: () => { if (history.length > 1) history.back(); else location.href = 'Installation Guide Home.dc.html'; },
+      atSched: this.state.node === 'sched',
+      goSched: () => this.go('sched'),
+      showNoCap: !!this.state.noCap,
+      openNoCap: () => this.setState({ noCap: true }),
+      closeNoCap: () => this.setState({ noCap: false }),
+      stepNo: this.state.history.length + 1,
+      crumbs: this.state.history.concat([n]).map(id => LABELS[id] || id),
+      atStart: n === 'start',
+      atModel: n === 'model',
+      atNotArrived: n === 'notArrived',
+      atInsist: n === 'insist',
+      atDeferred: n === 'deferred',
+      goModel: () => this.go('model'),
+      goNotArrived: () => this.go('notArrived'),
+      goInsist: () => this.go('insist'),
+      goDeferred: () => this.go('deferred'),
+      atFree: n === 'free',
+      atPaid: n === 'paid',
+      atData: n === 'data',
+      atDone: n === 'done',
+      goFree: () => this.go('free'),
+      goPaid: () => this.go('paid'),
+      goData: () => this.go('data'),
+      goDone: () => this.go('done'),
+      back: () => this.setState(s => s.history.length ? { node: s.history[s.history.length - 1], history: s.history.slice(0, -1) } : s),
+      restart: () => this.setState({ node: 'start', history: [] })
+    };
+  }
+}
+</script>
+</body>
+</html>

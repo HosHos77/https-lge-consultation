@@ -1,0 +1,1643 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script>
+(function(){
+  var KEY = 'csGuideAuth_v1';
+  var USER = 'agent';
+  var PASS = 'LGE@2026';
+  function authed(){ try { return localStorage.getItem(KEY) === '1'; } catch(e){ return false; } }
+  if (authed()) return;
+  var u = window.prompt('اسم المستخدم / Username:');
+  var p = window.prompt('كلمة المرور / Password:');
+  if (u === USER && p === PASS) {
+    try { localStorage.setItem(KEY, '1'); } catch(e){}
+  } else {
+    window.stop();
+    document.open();
+    document.write('<div style="font-family:Tahoma,Arial,sans-serif;text-align:center;margin-top:80px;font-size:22px;color:#c00;">تم رفض الدخول<br>Access Denied</div>');
+    document.close();
+  }
+})();
+</script>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<title>دعم فني — إعدادات الشاشة</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&family=IBM+Plex+Sans+Arabic:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  body { margin:0; background:#f4f3ef; }
+  a { color:#A50034; }
+  a:hover { color:#7d0027; }
+  @keyframes cardIn { from { opacity:0; transform:translateY(6px); } to { opacity:1; transform:none; } }
+  @keyframes pulseRing { 0%,100% { box-shadow:0 0 0 0 rgba(165,0,52,.55); } 50% { box-shadow:0 0 0 9px rgba(165,0,52,0); } }
+</style>
+</helmet>
+
+<div dir="rtl" style="min-height:100vh;background:#f4f3ef;color:#191a1c;font-family:'IBM Plex Sans Arabic',system-ui,sans-serif;">
+
+  <div style="background:#111314;color:#f4f3ef;padding:16px 28px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;position:sticky;top:0;z-index:20;">
+    <div style="width:9px;height:32px;background:#A50034;border-radius:2px;flex:none;"></div>
+    <div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:18px;">إعدادات الشاشة — لوحة الإعدادات السريعة</div>
+    <div style="margin-right:auto;display:flex;flex-wrap:wrap;gap:10px;align-items:center;">
+      <button type="button" onClick="{{ pageBack }}" style="padding:8px 16px;border-radius:8px;border:1px solid #3a4043;color:#f0a8bd;font-size:13px;background:transparent;cursor:pointer;font-family:'IBM Plex Sans Arabic',sans-serif;white-space:nowrap;flex:none;" style-hover="background:#22282a;">رجوع للصفحة السابقة</button>
+      <a href="Installation Guide Home.dc.html" style="padding:8px 16px;border-radius:8px;border:1px solid #3a4043;color:#f0a8bd;font-size:13px;text-decoration:none;white-space:nowrap;flex:none;" style-hover="background:#22282a;">الرئيسية</a>
+      <a href="Service Fees Table.dc.html#tv" style="padding:8px 16px;border-radius:8px;border:1px solid #3a4043;color:#f0a8bd;font-size:13px;text-decoration:none;white-space:nowrap;flex:none;" style-hover="background:#22282a;">جدول تكاليف الصيانة</a>
+      <a href="TV Support Topics.dc.html" style="padding:8px 16px;border-radius:8px;border:1px solid #3a4043;color:#e4e7e9;font-size:13px;text-decoration:none;white-space:nowrap;flex:none;" style-hover="background:#22282a;">رجوع</a>
+    </div>
+  </div>
+
+  <div style="max-width:1180px;margin:0 auto;padding:30px 28px 70px;display:flex;flex-direction:column;gap:18px;">
+
+    <div style="background:#fff;border:1px solid #e3e0d8;border-radius:14px;padding:28px;border-top:4px solid #A50034;">
+      <div style="font-size:12.5px;font-weight:600;color:#A50034;letter-spacing:.04em;margin-bottom:10px;">كيف يفتح العميل اللوحة</div>
+      <div style="font-family:'Cairo',sans-serif;font-weight:700;font-size:25px;line-height:1.5;margin-bottom:14px;">لوحة الإعدادات السريعة في نظام webOS</div>
+      <div style="font-size:15px;color:#3f4447;line-height:1.9;margin-bottom:18px;max-width:70ch;text-wrap:pretty;">يتم الضغط على زر <strong>الإعدادات (⚙)</strong> في الريموت مرة واحدة لتظهر اللوحة السريعة على يمين الشاشة، أو الضغط مع الاستمرار للدخول لكل الإعدادات. اضغط على أي رقم في الصورة لمعرفة وظيفة الأيقونة وما يُقال للعميل.</div>
+      <div style="background:#1c1a1b;color:#f6f1f2;border-radius:12px;padding:20px 22px;">
+        <div style="font-size:12.5px;color:#f0a8bd;margin-bottom:8px;font-weight:600;">اقرأ للعميل</div>
+        <div style="font-family:'Cairo',sans-serif;font-size:17px;line-height:2.05;">«ممكن حضرتك تضغط على زر الإعدادات في الريموت — شكل ترس — هتظهر لوحة إعدادات سريعة، وهوجّه حضرتك خطوة بخطوة.»</div>
+      </div>
+    </div>
+
+    <div style="background:#fff;border:1px solid #e3e0d8;border-radius:14px;padding:28px;">
+      <div style="font-family:'Cairo',sans-serif;font-weight:700;font-size:22px;margin-bottom:6px;">خريطة اللوحة — اضغط على أي علامة</div>
+      <div style="font-size:14.5px;color:#6b7075;line-height:1.8;margin-bottom:18px;">١١ عنصر معلّم على الصورة. الضغط على العلامة يعرض تفاصيلها أسفل الصورة.</div>
+
+      <div style="width:100%;max-width:1100px;margin:0 auto;padding:14px;box-sizing:border-box;border-radius:12px;border:1px solid #e3e0d8;background:#fbfaf7;">
+        <div style="position:relative;">
+          <img src="assets/tv-settings-panel.png" alt="لوحة الإعدادات السريعة في نظام webOS" style="display:block;width:100%;height:auto;border-radius:6px;">
+          <sc-for list="{{ hotspots }}" as="h" hint-placeholder-count="11">
+            <button onClick="{{ h.open }}" title="{{ h.title }}" style="{{ h.style }}">{{ h.n }}</button>
+          </sc-for>
+        </div>
+      </div>
+      <div style="font-family:'Cairo',sans-serif;font-weight:700;font-size:17px;margin:20px 0 10px;">كل عناصر اللوحة السريعة</div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:10px;">
+        <sc-for list="{{ hotspots }}" as="h" hint-placeholder-count="11">
+          <button onClick="{{ h.open }}" style="{{ h.listStyle }}">
+            <div style="display:flex;align-items:center;gap:12px;">
+              <div style="width:28px;height:28px;border-radius:50%;background:#A50034;color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Cairo',sans-serif;font-weight:900;font-size:14px;flex:none;">{{ h.n }}</div>
+              <div style="font-size:14.5px;line-height:1.5;text-align:right;">{{ h.title }}</div>
+            </div>
+          </button>
+        </sc-for>
+      </div>
+    </div>
+
+    <sc-if value="{{ hasSelPanel }}" hint-placeholder-val="{{ false }}">
+      <div style="background:#fff;border:1px solid #f0c2ce;border-radius:14px;padding:32px;border-top:4px solid #A50034;animation:cardIn .25s ease;">
+        <div style="background:#1c1a1b;color:#f6f1f2;border-radius:12px;padding:20px 22px;margin-bottom:20px;">
+          <div style="font-size:12.5px;color:#f0a8bd;margin-bottom:8px;font-weight:600;">اقرأ للعميل</div>
+          <div style="font-family:'Cairo',sans-serif;font-size:17px;line-height:2.05;">{{ selPanelItem.script }}</div>
+        </div>
+        <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:18px;">
+          <div style="width:46px;height:46px;border-radius:50%;background:#A50034;color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Cairo',sans-serif;font-weight:900;font-size:21px;flex:none;">{{ selPanelItem.n }}</div>
+          <div style="font-family:'Cairo',sans-serif;font-weight:700;font-size:26px;line-height:1.4;">{{ selPanelItem.title }}</div>
+        </div>
+
+        <div style="display:flex;gap:18px;align-items:flex-start;flex-wrap:wrap;margin-bottom:18px;">
+          <div style="flex:none;">
+            <div style="font-size:12.5px;color:#8a8f94;font-weight:600;margin-bottom:6px;">شكل الزر على الشاشة</div>
+            {{ panelCrop }}
+          </div>
+          <div style="flex:1;min-width:240px;font-size:15px;line-height:1.9;color:#5a5553;padding-top:22px;">هذا هو الزر كما يظهر للعميل على الشاشة — وجّهه للوصول إليه بالريموت ثم الضغط عليه.</div>
+        </div>
+
+        <div style="display:grid;gap:12px;margin-bottom:20px;">
+          <div style="padding:17px 20px;border-radius:12px;background:#fbfaf7;border:1px solid #e9e6de;">
+            <div style="font-size:12.5px;color:#8a8f94;font-weight:600;margin-bottom:6px;">وظيفة العنصر</div>
+            <div style="font-size:15.5px;line-height:1.9;">{{ selPanelItem.what }}</div>
+          </div>
+          <div style="padding:17px 20px;border-radius:12px;background:#fff5f7;border:1px solid #f0c2ce;">
+            <div style="font-size:12.5px;color:#A50034;font-weight:600;margin-bottom:6px;">متى يستخدمه موظف خدمة العملاء</div>
+            <div style="font-size:15.5px;line-height:1.9;">{{ selPanelItem.when }}</div>
+          </div>
+        </div>
+
+        <button onClick="{{ clearPanel }}" style="padding:14px 22px;border-radius:10px;border:1px solid #d9d5cb;background:#fbfaf7;color:#191a1c;font-family:'Cairo',sans-serif;font-weight:700;font-size:15px;cursor:pointer;" style-hover="border-color:#A50034;">إغلاق التفاصيل</button>
+      </div>
+    </sc-if>
+
+    <div style="background:#fff;border:1px solid #e3e0d8;border-radius:14px;padding:28px;">
+      <div style="font-family:'Cairo',sans-serif;font-weight:700;font-size:22px;margin-bottom:6px;">قائمة كل الإعدادات — بعد الضغط على زر الترس</div>
+      <div style="font-size:14.5px;color:#6b7075;line-height:1.8;margin-bottom:18px;max-width:70ch;text-wrap:pretty;">بالضغط على زر الترس تظهر القائمة الكاملة على شكل ٤ أقسام رئيسية. اضغط على أي علامة لمعرفة محتوى القسم وما يُقال للعميل.</div>
+
+      <div style="width:100%;max-width:1100px;margin:0 auto;padding:14px;box-sizing:border-box;border-radius:12px;border:1px solid #e3e0d8;background:#fbfaf7;">
+        <div style="position:relative;">
+          <img src="assets/tv-all-settings.png" alt="قائمة كل الإعدادات في نظام webOS" style="display:block;width:100%;height:auto;border-radius:6px;">
+          <sc-for list="{{ menuSpots }}" as="m" hint-placeholder-count="7">
+            <button onClick="{{ m.open }}" title="{{ m.title }}" style="{{ m.style }}">{{ m.n }}</button>
+          </sc-for>
+        </div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:10px;margin-top:18px;">
+        <sc-for list="{{ menuSpots }}" as="m" hint-placeholder-count="7">
+          <button onClick="{{ m.open }}" style="{{ m.listStyle }}">
+            <div style="display:flex;align-items:center;gap:12px;">
+              <div style="width:28px;height:28px;border-radius:50%;background:#A50034;color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Cairo',sans-serif;font-weight:900;font-size:14px;flex:none;">{{ m.n }}</div>
+              <div style="font-size:14.5px;line-height:1.5;text-align:right;">{{ m.title }}</div>
+            </div>
+          </button>
+        </sc-for>
+      </div>
+    </div>
+
+
+    <sc-if value="{{ hasSelMenu }}" hint-placeholder-val="{{ false }}">
+      <div style="background:#fff;border:1px solid #f0c2ce;border-radius:14px;padding:32px;border-top:4px solid #A50034;animation:cardIn .25s ease;">
+        <div style="background:#1c1a1b;color:#f6f1f2;border-radius:12px;padding:20px 22px;margin-bottom:20px;">
+          <div style="font-size:12.5px;color:#f0a8bd;margin-bottom:8px;font-weight:600;">اقرأ للعميل</div>
+          <div style="font-family:'Cairo',sans-serif;font-size:17px;line-height:2.05;">{{ selMenuItem.script }}</div>
+        </div>
+        <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:18px;">
+          <div style="width:46px;height:46px;border-radius:50%;background:#A50034;color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Cairo',sans-serif;font-weight:900;font-size:21px;flex:none;">{{ selMenuItem.n }}</div>
+          <div style="font-family:'Cairo',sans-serif;font-weight:700;font-size:26px;line-height:1.4;">{{ selMenuItem.title }}</div>
+        </div>
+
+        <div style="display:flex;gap:18px;align-items:flex-start;flex-wrap:wrap;margin-bottom:18px;">
+          <div style="flex:none;">
+            <div style="font-size:12.5px;color:#8a8f94;font-weight:600;margin-bottom:6px;">شكل الزر على الشاشة</div>
+            {{ menuCrop }}
+          </div>
+          <div style="flex:1;min-width:240px;font-size:15px;line-height:1.9;color:#5a5553;padding-top:22px;">هذا هو الزر كما يظهر للعميل على الشاشة — وجّهه للوصول إليه بالريموت ثم الضغط عليه.</div>
+        </div>
+
+        <div style="display:grid;gap:12px;margin-bottom:20px;">
+          <div style="padding:17px 20px;border-radius:12px;background:#fbfaf7;border:1px solid #e9e6de;">
+            <div style="font-size:12.5px;color:#8a8f94;font-weight:600;margin-bottom:6px;">وظيفة العنصر</div>
+            <div style="font-size:15.5px;line-height:1.9;">{{ selMenuItem.what }}</div>
+          </div>
+          <div style="padding:17px 20px;border-radius:12px;background:#fff5f7;border:1px solid #f0c2ce;">
+            <div style="font-size:12.5px;color:#A50034;font-weight:600;margin-bottom:6px;">متى يستخدمه موظف خدمة العملاء</div>
+            <div style="font-size:15.5px;line-height:1.9;">{{ selMenuItem.when }}</div>
+          </div>
+        </div>
+
+        <button onClick="{{ clearMenu }}" style="padding:14px 22px;border-radius:10px;border:1px solid #d9d5cb;background:#fbfaf7;color:#191a1c;font-family:'Cairo',sans-serif;font-weight:700;font-size:15px;cursor:pointer;" style-hover="border-color:#A50034;">إغلاق التفاصيل</button>
+      </div>
+    </sc-if>
+
+    <div style="background:#fff;border:1px solid #e3e0d8;border-radius:14px;padding:28px;">
+      <div style="font-family:'Cairo',sans-serif;font-weight:700;font-size:22px;margin-bottom:6px;">قائمة وضع الاختيار — أوضاع الصورة</div>
+      <div style="font-size:14.5px;color:#6b7075;line-height:1.8;margin-bottom:18px;max-width:70ch;text-wrap:pretty;">بعد اختيار «وضع الاختيار» تظهر كل أوضاع الصورة المتاحة، والنقطة الخضراء توضح الوضع المختار حاليًا. اضغط على أي علامة لمعرفة الوضع ومتى يُستخدم.</div>
+
+      <div style="width:100%;max-width:1100px;margin:0 auto;padding:14px;box-sizing:border-box;border-radius:12px;border:1px solid #e3e0d8;background:#fbfaf7;">
+        <div style="position:relative;">
+          <img src="assets/tv-picture-mode.png" alt="قائمة وضع الاختيار — أوضاع الصورة" style="display:block;width:100%;height:auto;border-radius:6px;">
+          <sc-for list="{{ modeSpots }}" as="m" hint-placeholder-count="9">
+            <button onClick="{{ m.open }}" title="{{ m.title }}" style="{{ m.style }}">{{ m.n }}</button>
+          </sc-for>
+        </div>
+      </div>
+
+      <div style="font-family:'Cairo',sans-serif;font-weight:700;font-size:17px;margin:20px 0 10px;">كل أوضاع الصورة</div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:10px;">
+        <sc-for list="{{ modeSpots }}" as="m" hint-placeholder-count="9">
+          <button onClick="{{ m.open }}" style="{{ m.listStyle }}">
+            <div style="display:flex;align-items:center;gap:12px;">
+              <div style="width:28px;height:28px;border-radius:50%;background:#A50034;color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Cairo',sans-serif;font-weight:900;font-size:14px;flex:none;">{{ m.n }}</div>
+              <div style="font-size:14.5px;line-height:1.5;text-align:right;">{{ m.title }}</div>
+            </div>
+          </button>
+        </sc-for>
+      </div>
+    </div>
+    <sc-if value="{{ hasSelMode }}" hint-placeholder-val="{{ false }}">
+      <div style="background:#fff;border:1px solid #f0c2ce;border-radius:14px;padding:32px;border-top:4px solid #A50034;animation:cardIn .25s ease;">
+        <div style="background:#1c1a1b;color:#f6f1f2;border-radius:12px;padding:20px 22px;margin-bottom:20px;">
+          <div style="font-size:12.5px;color:#f0a8bd;margin-bottom:8px;font-weight:600;">اقرأ للعميل</div>
+          <div style="font-family:'Cairo',sans-serif;font-size:17px;line-height:2.05;">{{ selModeItem.script }}</div>
+        </div>
+        <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:18px;">
+          <div style="width:46px;height:46px;border-radius:50%;background:#A50034;color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Cairo',sans-serif;font-weight:900;font-size:21px;flex:none;">{{ selModeItem.n }}</div>
+          <div style="font-family:'Cairo',sans-serif;font-weight:700;font-size:26px;line-height:1.4;">{{ selModeItem.title }}</div>
+        </div>
+
+        <div style="display:flex;gap:18px;align-items:flex-start;flex-wrap:wrap;margin-bottom:18px;">
+          <div style="flex:none;">
+            <div style="font-size:12.5px;color:#8a8f94;font-weight:600;margin-bottom:6px;">شكل الزر على الشاشة</div>
+            {{ modeCrop }}
+          </div>
+          <div style="flex:1;min-width:240px;font-size:15px;line-height:1.9;color:#5a5553;padding-top:22px;">هذا هو الزر كما يظهر للعميل على الشاشة — وجّهه للوصول إليه بالريموت ثم الضغط عليه.</div>
+        </div>
+
+        <div style="display:grid;gap:12px;margin-bottom:20px;">
+          <div style="padding:17px 20px;border-radius:12px;background:#fbfaf7;border:1px solid #e9e6de;">
+            <div style="font-size:12.5px;color:#8a8f94;font-weight:600;margin-bottom:6px;">وظيفة العنصر</div>
+            <div style="font-size:15.5px;line-height:1.9;">{{ selModeItem.what }}</div>
+          </div>
+          <div style="padding:17px 20px;border-radius:12px;background:#fff5f7;border:1px solid #f0c2ce;">
+            <div style="font-size:12.5px;color:#A50034;font-weight:600;margin-bottom:6px;">متى يستخدمه موظف خدمة العملاء</div>
+            <div style="font-size:15.5px;line-height:1.9;">{{ selModeItem.when }}</div>
+          </div>
+        </div>
+
+        <button onClick="{{ clearMode }}" style="padding:14px 22px;border-radius:10px;border:1px solid #d9d5cb;background:#fbfaf7;color:#191a1c;font-family:'Cairo',sans-serif;font-weight:700;font-size:15px;cursor:pointer;" style-hover="border-color:#A50034;">إغلاق التفاصيل</button>
+      </div>
+    </sc-if>
+
+    <div style="background:#fff;border:1px solid #e3e0d8;border-radius:14px;padding:28px;">
+      <div style="font-family:'Cairo',sans-serif;font-weight:700;font-size:22px;margin-bottom:6px;">قائمة الإعدادات المتقدمة — الضبط الدقيق للصورة</div>
+      <div style="font-size:14.5px;color:#6b7075;line-height:1.8;margin-bottom:18px;max-width:70ch;text-wrap:pretty;">من داخل قسم الصورة نختار «الإعدادات المتقدمة» لضبط السطوع واللون والوضوح، وتطبيق الإعدادات على كل المدخلات. اضغط على أي علامة لمعرفة وظيفتها وما يُقال للعميل.</div>
+
+      <div style="width:100%;max-width:1100px;margin:0 auto;padding:14px;box-sizing:border-box;border-radius:12px;border:1px solid #e3e0d8;background:#fbfaf7;">
+        <div style="position:relative;">
+          <img src="assets/tv-advanced-settings.png" alt="قائمة الإعدادات المتقدمة للصورة" style="display:block;width:100%;height:auto;border-radius:6px;">
+          <sc-for list="{{ advSpots }}" as="m" hint-placeholder-count="8">
+            <button onClick="{{ m.open }}" title="{{ m.title }}" style="{{ m.style }}">{{ m.n }}</button>
+          </sc-for>
+        </div>
+      </div>
+
+      <div style="font-family:'Cairo',sans-serif;font-weight:700;font-size:17px;margin:20px 0 10px;">كل عناصر الإعدادات المتقدمة</div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:10px;">
+        <sc-for list="{{ advSpots }}" as="m" hint-placeholder-count="8">
+          <button onClick="{{ m.open }}" style="{{ m.listStyle }}">
+            <div style="display:flex;align-items:center;gap:12px;">
+              <div style="width:32px;height:32px;border-radius:50%;background:#A50034;color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Cairo',sans-serif;font-weight:900;font-size:13px;flex:none;">{{ m.n }}</div>
+              <div style="font-size:14.5px;line-height:1.5;text-align:right;">{{ m.title }}</div>
+            </div>
+          </button>
+        </sc-for>
+      </div>
+    </div>
+    <sc-if value="{{ hasSelAdv }}" hint-placeholder-val="{{ false }}">
+      <div style="background:#fff;border:1px solid #f0c2ce;border-radius:14px;padding:32px;border-top:4px solid #A50034;animation:cardIn .25s ease;">
+        <div style="background:#1c1a1b;color:#f6f1f2;border-radius:12px;padding:20px 22px;margin-bottom:20px;">
+          <div style="font-size:12.5px;color:#f0a8bd;margin-bottom:8px;font-weight:600;">اقرأ للعميل</div>
+          <div style="font-family:'Cairo',sans-serif;font-size:17px;line-height:2.05;">{{ selAdvItem.script }}</div>
+        </div>
+        <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:18px;">
+          <div style="width:46px;height:46px;border-radius:50%;background:#A50034;color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Cairo',sans-serif;font-weight:900;font-size:21px;flex:none;">{{ selAdvItem.n }}</div>
+          <div style="font-family:'Cairo',sans-serif;font-weight:700;font-size:26px;line-height:1.4;">{{ selAdvItem.title }}</div>
+        </div>
+
+        <div style="display:flex;gap:18px;align-items:flex-start;flex-wrap:wrap;margin-bottom:18px;">
+          <div style="flex:none;">
+            <div style="font-size:12.5px;color:#8a8f94;font-weight:600;margin-bottom:6px;">شكل الزر على الشاشة</div>
+            {{ advCrop }}
+          </div>
+          <div style="flex:1;min-width:240px;font-size:15px;line-height:1.9;color:#5a5553;padding-top:22px;">هذا هو الزر كما يظهر للعميل على الشاشة — وجّهه للوصول إليه بالريموت ثم الضغط عليه.</div>
+        </div>
+
+        <div style="display:grid;gap:12px;margin-bottom:20px;">
+          <div style="padding:17px 20px;border-radius:12px;background:#fbfaf7;border:1px solid #e9e6de;">
+            <div style="font-size:12.5px;color:#8a8f94;font-weight:600;margin-bottom:6px;">وظيفة العنصر</div>
+            <div style="font-size:15.5px;line-height:1.9;">{{ selAdvItem.what }}</div>
+          </div>
+          <div style="padding:17px 20px;border-radius:12px;background:#fff5f7;border:1px solid #f0c2ce;">
+            <div style="font-size:12.5px;color:#A50034;font-weight:600;margin-bottom:6px;">متى يستخدمه موظف خدمة العملاء</div>
+            <div style="font-size:15.5px;line-height:1.9;">{{ selAdvItem.when }}</div>
+          </div>
+        </div>
+
+        <button onClick="{{ clearAdv }}" style="padding:14px 22px;border-radius:10px;border:1px solid #d9d5cb;background:#fbfaf7;color:#191a1c;font-family:'Cairo',sans-serif;font-weight:700;font-size:15px;cursor:pointer;" style-hover="border-color:#A50034;">إغلاق التفاصيل</button>
+      </div>
+    </sc-if>
+
+    <div style="background:#fff;border:1px solid #e3e0d8;border-radius:14px;padding:28px;">
+      <div style="font-family:'Cairo',sans-serif;font-weight:700;font-size:22px;margin-bottom:6px;">قسم الصوت — وضع الصوت ومخرج الصوت</div>
+      <div style="font-size:14.5px;color:#6b7075;line-height:1.8;margin-bottom:18px;max-width:70ch;text-wrap:pretty;">من قائمة الإعدادات نختار قسم «صوت» لضبط وضع الصوت ومخرج الصوت. اضغط على أي علامة لمعرفة وظيفتها وما يُقال للعميل.</div>
+
+      <div style="width:100%;max-width:1100px;margin:0 auto;padding:14px;box-sizing:border-box;border-radius:12px;border:1px solid #e3e0d8;background:#fbfaf7;">
+        <div style="position:relative;">
+          <img src="assets/tv-sound-settings.png" alt="قسم إعدادات الصوت" style="display:block;width:100%;height:auto;border-radius:6px;">
+          <sc-for list="{{ sndSpots }}" as="m" hint-placeholder-count="4">
+            <button onClick="{{ m.open }}" title="{{ m.title }}" style="{{ m.style }}">{{ m.n }}</button>
+          </sc-for>
+        </div>
+      </div>
+
+      <div style="font-family:'Cairo',sans-serif;font-weight:700;font-size:17px;margin:20px 0 10px;">كل عناصر قسم الصوت</div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:10px;">
+        <sc-for list="{{ sndSpots }}" as="m" hint-placeholder-count="4">
+          <button onClick="{{ m.open }}" style="{{ m.listStyle }}">
+            <div style="display:flex;align-items:center;gap:12px;">
+              <div style="width:32px;height:32px;border-radius:50%;background:#A50034;color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Cairo',sans-serif;font-weight:900;font-size:13px;flex:none;">{{ m.n }}</div>
+              <div style="font-size:14.5px;line-height:1.5;text-align:right;">{{ m.title }}</div>
+            </div>
+          </button>
+        </sc-for>
+      </div>
+    </div>
+    <sc-if value="{{ hasSelSnd }}" hint-placeholder-val="{{ false }}">
+      <div style="background:#fff;border:1px solid #f0c2ce;border-radius:14px;padding:32px;border-top:4px solid #A50034;animation:cardIn .25s ease;">
+        <div style="background:#1c1a1b;color:#f6f1f2;border-radius:12px;padding:20px 22px;margin-bottom:20px;">
+          <div style="font-size:12.5px;color:#f0a8bd;margin-bottom:8px;font-weight:600;">اقرأ للعميل</div>
+          <div style="font-family:'Cairo',sans-serif;font-size:17px;line-height:2.05;">{{ selSndItem.script }}</div>
+        </div>
+        <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:18px;">
+          <div style="width:46px;height:46px;border-radius:50%;background:#A50034;color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Cairo',sans-serif;font-weight:900;font-size:21px;flex:none;">{{ selSndItem.n }}</div>
+          <div style="font-family:'Cairo',sans-serif;font-weight:700;font-size:26px;line-height:1.4;">{{ selSndItem.title }}</div>
+        </div>
+
+        <div style="display:flex;gap:18px;align-items:flex-start;flex-wrap:wrap;margin-bottom:18px;">
+          <div style="flex:none;">
+            <div style="font-size:12.5px;color:#8a8f94;font-weight:600;margin-bottom:6px;">شكل الزر على الشاشة</div>
+            {{ sndCrop }}
+          </div>
+          <div style="flex:1;min-width:240px;font-size:15px;line-height:1.9;color:#5a5553;padding-top:22px;">هذا هو الزر كما يظهر للعميل على الشاشة — وجّهه للوصول إليه بالريموت ثم الضغط عليه.</div>
+        </div>
+
+        <div style="display:grid;gap:12px;margin-bottom:20px;">
+          <div style="padding:17px 20px;border-radius:12px;background:#fbfaf7;border:1px solid #e9e6de;">
+            <div style="font-size:12.5px;color:#8a8f94;font-weight:600;margin-bottom:6px;">وظيفة العنصر</div>
+            <div style="font-size:15.5px;line-height:1.9;">{{ selSndItem.what }}</div>
+          </div>
+          <div style="padding:17px 20px;border-radius:12px;background:#fff5f7;border:1px solid #f0c2ce;">
+            <div style="font-size:12.5px;color:#A50034;font-weight:600;margin-bottom:6px;">متى يستخدمه موظف خدمة العملاء</div>
+            <div style="font-size:15.5px;line-height:1.9;">{{ selSndItem.when }}</div>
+          </div>
+        </div>
+
+        <button onClick="{{ clearSnd }}" style="padding:14px 22px;border-radius:10px;border:1px solid #d9d5cb;background:#fbfaf7;color:#191a1c;font-family:'Cairo',sans-serif;font-weight:700;font-size:15px;cursor:pointer;" style-hover="border-color:#A50034;">إغلاق التفاصيل</button>
+      </div>
+    </sc-if>
+
+    <div style="background:#fff;border:1px solid #e3e0d8;border-radius:14px;padding:28px;">
+      <div style="font-family:'Cairo',sans-serif;font-weight:700;font-size:22px;margin-bottom:6px;">قائمة وضع الصوت — كل الأوضاع المتاحة</div>
+      <div style="font-size:14.5px;color:#6b7075;line-height:1.8;margin-bottom:18px;max-width:70ch;text-wrap:pretty;">من قسم «صوت» نضغط على «وضع الاختيار» فتفتح القائمة دي. الوضع المختار حاليًا عليه نقطة خضراء. اضغط على أي علامة لمعرفة وظيفة الوضع ومتى يُرشَّح للعميل.</div>
+
+      <div style="width:100%;max-width:1100px;margin:0 auto;padding:14px;box-sizing:border-box;border-radius:12px;border:1px solid #e3e0d8;background:#fbfaf7;">
+        <div style="position:relative;">
+          <img src="assets/tv-sound-mode.png" alt="قائمة وضع الصوت" style="display:block;width:100%;height:auto;border-radius:6px;">
+          <sc-for list="{{ smodeSpots }}" as="m" hint-placeholder-count="8">
+            <button onClick="{{ m.open }}" title="{{ m.title }}" style="{{ m.style }}">{{ m.n }}</button>
+          </sc-for>
+        </div>
+      </div>
+
+      <div style="font-family:'Cairo',sans-serif;font-weight:700;font-size:17px;margin:20px 0 10px;">كل أوضاع الصوت</div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:10px;">
+        <sc-for list="{{ smodeSpots }}" as="m" hint-placeholder-count="8">
+          <button onClick="{{ m.open }}" style="{{ m.listStyle }}">
+            <div style="display:flex;align-items:center;gap:12px;">
+              <div style="width:32px;height:32px;border-radius:50%;background:#A50034;color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Cairo',sans-serif;font-weight:900;font-size:13px;flex:none;">{{ m.n }}</div>
+              <div style="font-size:14.5px;line-height:1.5;text-align:right;">{{ m.title }}</div>
+            </div>
+          </button>
+        </sc-for>
+      </div>
+    </div>
+    <sc-if value="{{ hasSelSmode }}" hint-placeholder-val="{{ false }}">
+      <div style="background:#fff;border:1px solid #f0c2ce;border-radius:14px;padding:32px;border-top:4px solid #A50034;animation:cardIn .25s ease;">
+        <div style="background:#1c1a1b;color:#f6f1f2;border-radius:12px;padding:20px 22px;margin-bottom:20px;">
+          <div style="font-size:12.5px;color:#f0a8bd;margin-bottom:8px;font-weight:600;">اقرأ للعميل</div>
+          <div style="font-family:'Cairo',sans-serif;font-size:17px;line-height:2.05;">{{ selSmodeItem.script }}</div>
+        </div>
+        <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:18px;">
+          <div style="width:46px;height:46px;border-radius:50%;background:#A50034;color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Cairo',sans-serif;font-weight:900;font-size:19px;flex:none;">{{ selSmodeItem.n }}</div>
+          <div style="font-family:'Cairo',sans-serif;font-weight:700;font-size:26px;line-height:1.4;">{{ selSmodeItem.title }}</div>
+        </div>
+
+        <div style="display:flex;gap:18px;align-items:flex-start;flex-wrap:wrap;margin-bottom:18px;">
+          <div style="flex:none;">
+            <div style="font-size:12.5px;color:#8a8f94;font-weight:600;margin-bottom:6px;">شكل الخيار على الشاشة</div>
+            {{ smodeCrop }}
+          </div>
+          <div style="flex:1;min-width:240px;font-size:15px;line-height:1.9;color:#5a5553;padding-top:22px;">هذا هو الخيار كما يظهر للعميل على الشاشة — وجّهه للوصول إليه بنفس الشكل والمكان.</div>
+        </div>
+
+        <div style="display:grid;gap:12px;margin-bottom:18px;">
+          <div style="padding:17px 20px;border-radius:12px;background:#fbfaf7;border:1px solid #e9e6de;">
+            <div style="font-size:12.5px;color:#8a8f94;font-weight:600;margin-bottom:6px;">وظيفة الوضع</div>
+            <div style="font-size:15.5px;line-height:1.9;">{{ selSmodeItem.what }}</div>
+          </div>
+          <div style="padding:17px 20px;border-radius:12px;background:#fff5f7;border:1px solid #f0c2ce;">
+            <div style="font-size:12.5px;color:#A50034;font-weight:600;margin-bottom:6px;">متى يستخدمه موظف خدمة العملاء</div>
+            <div style="font-size:15.5px;line-height:1.9;">{{ selSmodeItem.when }}</div>
+          </div>
+        </div>
+
+        <button onClick="{{ clearSmode }}" style="padding:14px 22px;border-radius:10px;border:1px solid #d9d5cb;background:#fbfaf7;color:#191a1c;font-family:'Cairo',sans-serif;font-weight:700;font-size:15px;cursor:pointer;" style-hover="border-color:#A50034;">إغلاق التفاصيل</button>
+      </div>
+    </sc-if>
+
+    <div style="background:#fff;border:1px solid #e3e0d8;border-radius:14px;padding:28px;">
+      <div style="font-family:'Cairo',sans-serif;font-weight:700;font-size:22px;margin-bottom:6px;">قائمة مخرج الصوت — من أين يخرج الصوت</div>
+      <div style="font-size:14.5px;color:#6b7075;line-height:1.8;margin-bottom:18px;max-width:70ch;text-wrap:pretty;">من قسم «صوت» نضغط على «مخرج الصوت» فتفتح القائمة دي. أعلى القائمة يظهر <strong>السماعة المحددة</strong> حاليًا. أغلب شكاوى «مفيش صوت» بعد توصيل ساوند بار أو سماعة بلوتوث سببها إن المخرج مضبوط غلط.</div>
+
+      <div style="width:100%;max-width:1100px;margin:0 auto;padding:14px;box-sizing:border-box;border-radius:12px;border:1px solid #e3e0d8;background:#fbfaf7;">
+        <div style="position:relative;">
+          <img src="assets/tv-sound-output.png" alt="قائمة مخرج الصوت" style="display:block;width:100%;height:auto;border-radius:6px;">
+          <sc-for list="{{ soutSpots }}" as="m" hint-placeholder-count="6">
+            <button onClick="{{ m.open }}" title="{{ m.title }}" style="{{ m.style }}">{{ m.n }}</button>
+          </sc-for>
+        </div>
+      </div>
+
+      <div style="font-family:'Cairo',sans-serif;font-weight:700;font-size:17px;margin:20px 0 10px;">كل خيارات مخرج الصوت</div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:10px;">
+        <sc-for list="{{ soutSpots }}" as="m" hint-placeholder-count="6">
+          <button onClick="{{ m.open }}" style="{{ m.listStyle }}">
+            <div style="display:flex;align-items:center;gap:12px;">
+              <div style="width:32px;height:32px;border-radius:50%;background:#A50034;color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Cairo',sans-serif;font-weight:900;font-size:13px;flex:none;">{{ m.n }}</div>
+              <div style="font-size:14.5px;line-height:1.5;text-align:right;">{{ m.title }}</div>
+            </div>
+          </button>
+        </sc-for>
+      </div>
+    </div>
+    <sc-if value="{{ hasSelSout }}" hint-placeholder-val="{{ false }}">
+      <div style="background:#fff;border:1px solid #f0c2ce;border-radius:14px;padding:32px;border-top:4px solid #A50034;animation:cardIn .25s ease;">
+        <div style="background:#1c1a1b;color:#f6f1f2;border-radius:12px;padding:20px 22px;margin-bottom:20px;">
+          <div style="font-size:12.5px;color:#f0a8bd;margin-bottom:8px;font-weight:600;">اقرأ للعميل</div>
+          <div style="font-family:'Cairo',sans-serif;font-size:17px;line-height:2.05;">{{ selSoutItem.script }}</div>
+        </div>
+        <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:18px;">
+          <div style="width:46px;height:46px;border-radius:50%;background:#A50034;color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Cairo',sans-serif;font-weight:900;font-size:19px;flex:none;">{{ selSoutItem.n }}</div>
+          <div style="font-family:'Cairo',sans-serif;font-weight:700;font-size:26px;line-height:1.4;">{{ selSoutItem.title }}</div>
+        </div>
+
+        <div style="display:flex;gap:18px;align-items:flex-start;flex-wrap:wrap;margin-bottom:18px;">
+          <div style="flex:none;">
+            <div style="font-size:12.5px;color:#8a8f94;font-weight:600;margin-bottom:6px;">شكل الخيار على الشاشة</div>
+            {{ soutCrop }}
+          </div>
+          <div style="flex:1;min-width:240px;font-size:15px;line-height:1.9;color:#5a5553;padding-top:22px;">هذا هو الخيار كما يظهر للعميل على الشاشة — وجّهه للوصول إليه بنفس الشكل والمكان.</div>
+        </div>
+
+        <div style="display:grid;gap:12px;margin-bottom:18px;">
+          <div style="padding:17px 20px;border-radius:12px;background:#fbfaf7;border:1px solid #e9e6de;">
+            <div style="font-size:12.5px;color:#8a8f94;font-weight:600;margin-bottom:6px;">وظيفة الخيار</div>
+            <div style="font-size:15.5px;line-height:1.9;">{{ selSoutItem.what }}</div>
+          </div>
+          <div style="padding:17px 20px;border-radius:12px;background:#fff5f7;border:1px solid #f0c2ce;">
+            <div style="font-size:12.5px;color:#A50034;font-weight:600;margin-bottom:6px;">متى يستخدمه موظف خدمة العملاء</div>
+            <div style="font-size:15.5px;line-height:1.9;">{{ selSoutItem.when }}</div>
+          </div>
+        </div>
+
+        <button onClick="{{ clearSout }}" style="padding:14px 22px;border-radius:10px;border:1px solid #d9d5cb;background:#fbfaf7;color:#191a1c;font-family:'Cairo',sans-serif;font-weight:700;font-size:15px;cursor:pointer;" style-hover="border-color:#A50034;">إغلاق التفاصيل</button>
+      </div>
+    </sc-if>
+
+    <div style="background:#fff;border:1px solid #e3e0d8;border-radius:14px;padding:28px;">
+      <div style="font-family:'Cairo',sans-serif;font-weight:700;font-size:22px;margin-bottom:6px;">الإعدادات المتقدمة للصوت — الجزء الأول</div>
+      <div style="font-size:14.5px;color:#6b7075;line-height:1.8;margin-bottom:18px;max-width:70ch;text-wrap:pretty;">من قسم «صوت» نضغط على «الإعدادات المتقدمة». هنا الاتزان والمعادل ونوع التركيب وضبط الصوت التلقائي. اضغط على أي علامة لمعرفة وظيفتها وما يُقال للعميل.</div>
+
+      <div style="width:100%;max-width:1100px;margin:0 auto;padding:14px;box-sizing:border-box;border-radius:12px;border:1px solid #e3e0d8;background:#fbfaf7;">
+        <div style="position:relative;">
+          <img src="assets/tv-sound-adv1.png" alt="الإعدادات المتقدمة للصوت — الجزء الأول" style="display:block;width:100%;height:auto;border-radius:6px;">
+          <sc-for list="{{ a1Spots }}" as="m" hint-placeholder-count="8">
+            <button onClick="{{ m.open }}" title="{{ m.title }}" style="{{ m.style }}">{{ m.n }}</button>
+          </sc-for>
+        </div>
+      </div>
+
+      <div style="font-family:'Cairo',sans-serif;font-weight:700;font-size:17px;margin:20px 0 10px;">كل عناصر الجزء الأول</div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:10px;">
+        <sc-for list="{{ a1Spots }}" as="m" hint-placeholder-count="8">
+          <button onClick="{{ m.open }}" style="{{ m.listStyle }}">
+            <div style="display:flex;align-items:center;gap:12px;">
+              <div style="width:32px;height:32px;border-radius:50%;background:#A50034;color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Cairo',sans-serif;font-weight:900;font-size:13px;flex:none;">{{ m.n }}</div>
+              <div style="font-size:14.5px;line-height:1.5;text-align:right;">{{ m.title }}</div>
+            </div>
+          </button>
+        </sc-for>
+      </div>
+    </div>
+    <sc-if value="{{ hasSelA1 }}" hint-placeholder-val="{{ false }}">
+      <div style="background:#fff;border:1px solid #f0c2ce;border-radius:14px;padding:32px;border-top:4px solid #A50034;animation:cardIn .25s ease;">
+        <div style="background:#1c1a1b;color:#f6f1f2;border-radius:12px;padding:20px 22px;margin-bottom:20px;">
+          <div style="font-size:12.5px;color:#f0a8bd;margin-bottom:8px;font-weight:600;">اقرأ للعميل</div>
+          <div style="font-family:'Cairo',sans-serif;font-size:17px;line-height:2.05;">{{ selA1Item.script }}</div>
+        </div>
+        <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:18px;">
+          <div style="width:46px;height:46px;border-radius:50%;background:#A50034;color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Cairo',sans-serif;font-weight:900;font-size:19px;flex:none;">{{ selA1Item.n }}</div>
+          <div style="font-family:'Cairo',sans-serif;font-weight:700;font-size:26px;line-height:1.4;">{{ selA1Item.title }}</div>
+        </div>
+
+        <div style="display:flex;gap:18px;align-items:flex-start;flex-wrap:wrap;margin-bottom:18px;">
+          <div style="flex:none;">
+            <div style="font-size:12.5px;color:#8a8f94;font-weight:600;margin-bottom:6px;">شكل الخيار على الشاشة</div>
+            {{ a1Crop }}
+          </div>
+          <div style="flex:1;min-width:240px;font-size:15px;line-height:1.9;color:#5a5553;padding-top:22px;">هذا هو الخيار كما يظهر للعميل على الشاشة — وجّهه للوصول إليه بنفس الشكل والمكان.</div>
+        </div>
+
+        <div style="display:grid;gap:12px;margin-bottom:18px;">
+          <div style="padding:17px 20px;border-radius:12px;background:#fbfaf7;border:1px solid #e9e6de;">
+            <div style="font-size:12.5px;color:#8a8f94;font-weight:600;margin-bottom:6px;">وظيفة الخيار</div>
+            <div style="font-size:15.5px;line-height:1.9;">{{ selA1Item.what }}</div>
+          </div>
+          <div style="padding:17px 20px;border-radius:12px;background:#fff5f7;border:1px solid #f0c2ce;">
+            <div style="font-size:12.5px;color:#A50034;font-weight:600;margin-bottom:6px;">متى يستخدمه موظف خدمة العملاء</div>
+            <div style="font-size:15.5px;line-height:1.9;">{{ selA1Item.when }}</div>
+          </div>
+        </div>
+
+        <button onClick="{{ clearA1 }}" style="padding:14px 22px;border-radius:10px;border:1px solid #d9d5cb;background:#fbfaf7;color:#191a1c;font-family:'Cairo',sans-serif;font-weight:700;font-size:15px;cursor:pointer;" style-hover="border-color:#A50034;">إغلاق التفاصيل</button>
+      </div>
+    </sc-if>
+
+    <div style="background:#fff;border:1px solid #e3e0d8;border-radius:14px;padding:28px;">
+      <div style="font-family:'Cairo',sans-serif;font-weight:700;font-size:22px;margin-bottom:6px;">الإعدادات المتقدمة للصوت — الجزء الثاني</div>
+      <div style="font-size:14.5px;color:#6b7075;line-height:1.8;margin-bottom:18px;max-width:70ch;text-wrap:pretty;">تكملة نفس القائمة بعد التمرير لأسفل: مزامنة الصوت مع الصورة، تهيئة صوت HDMI، مزامن صوت LG، إخراج الصوت الرقمي، ودعم eARC.</div>
+
+      <div style="width:100%;max-width:1100px;margin:0 auto;padding:14px;box-sizing:border-box;border-radius:12px;border:1px solid #e3e0d8;background:#fbfaf7;">
+        <div style="position:relative;">
+          <img src="assets/tv-sound-adv2.png" alt="الإعدادات المتقدمة للصوت — الجزء الثاني" style="display:block;width:100%;height:auto;border-radius:6px;">
+          <sc-for list="{{ a2Spots }}" as="m" hint-placeholder-count="8">
+            <button onClick="{{ m.open }}" title="{{ m.title }}" style="{{ m.style }}">{{ m.n }}</button>
+          </sc-for>
+        </div>
+      </div>
+
+      <div style="font-family:'Cairo',sans-serif;font-weight:700;font-size:17px;margin:20px 0 10px;">كل عناصر الجزء الثاني</div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:10px;">
+        <sc-for list="{{ a2Spots }}" as="m" hint-placeholder-count="8">
+          <button onClick="{{ m.open }}" style="{{ m.listStyle }}">
+            <div style="display:flex;align-items:center;gap:12px;">
+              <div style="width:32px;height:32px;border-radius:50%;background:#A50034;color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Cairo',sans-serif;font-weight:900;font-size:13px;flex:none;">{{ m.n }}</div>
+              <div style="font-size:14.5px;line-height:1.5;text-align:right;">{{ m.title }}</div>
+            </div>
+          </button>
+        </sc-for>
+      </div>
+    </div>
+    <sc-if value="{{ hasSelA2 }}" hint-placeholder-val="{{ false }}">
+      <div style="background:#fff;border:1px solid #f0c2ce;border-radius:14px;padding:32px;border-top:4px solid #A50034;animation:cardIn .25s ease;">
+        <div style="background:#1c1a1b;color:#f6f1f2;border-radius:12px;padding:20px 22px;margin-bottom:20px;">
+          <div style="font-size:12.5px;color:#f0a8bd;margin-bottom:8px;font-weight:600;">اقرأ للعميل</div>
+          <div style="font-family:'Cairo',sans-serif;font-size:17px;line-height:2.05;">{{ selA2Item.script }}</div>
+        </div>
+        <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:18px;">
+          <div style="width:46px;height:46px;border-radius:50%;background:#A50034;color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Cairo',sans-serif;font-weight:900;font-size:19px;flex:none;">{{ selA2Item.n }}</div>
+          <div style="font-family:'Cairo',sans-serif;font-weight:700;font-size:26px;line-height:1.4;">{{ selA2Item.title }}</div>
+        </div>
+
+        <div style="display:flex;gap:18px;align-items:flex-start;flex-wrap:wrap;margin-bottom:18px;">
+          <div style="flex:none;">
+            <div style="font-size:12.5px;color:#8a8f94;font-weight:600;margin-bottom:6px;">شكل الخيار على الشاشة</div>
+            {{ a2Crop }}
+          </div>
+          <div style="flex:1;min-width:240px;font-size:15px;line-height:1.9;color:#5a5553;padding-top:22px;">هذا هو الخيار كما يظهر للعميل على الشاشة — وجّهه للوصول إليه بنفس الشكل والمكان.</div>
+        </div>
+
+        <div style="display:grid;gap:12px;margin-bottom:18px;">
+          <div style="padding:17px 20px;border-radius:12px;background:#fbfaf7;border:1px solid #e9e6de;">
+            <div style="font-size:12.5px;color:#8a8f94;font-weight:600;margin-bottom:6px;">وظيفة الخيار</div>
+            <div style="font-size:15.5px;line-height:1.9;">{{ selA2Item.what }}</div>
+          </div>
+          <div style="padding:17px 20px;border-radius:12px;background:#fff5f7;border:1px solid #f0c2ce;">
+            <div style="font-size:12.5px;color:#A50034;font-weight:600;margin-bottom:6px;">متى يستخدمه موظف خدمة العملاء</div>
+            <div style="font-size:15.5px;line-height:1.9;">{{ selA2Item.when }}</div>
+          </div>
+        </div>
+
+        <button onClick="{{ clearA2 }}" style="padding:14px 22px;border-radius:10px;border:1px solid #d9d5cb;background:#fbfaf7;color:#191a1c;font-family:'Cairo',sans-serif;font-weight:700;font-size:15px;cursor:pointer;" style-hover="border-color:#A50034;">إغلاق التفاصيل</button>
+      </div>
+    </sc-if>
+
+    <div style="background:#fff;border:1px solid #e3e0d8;border-radius:14px;padding:28px;">
+      <div style="font-family:'Cairo',sans-serif;font-weight:700;font-size:22px;margin-bottom:6px;">قسم «عام» — إعدادات النظام والقنوات والشبكة</div>
+      <div style="font-size:14.5px;color:#6b7075;line-height:1.8;margin-bottom:18px;max-width:70ch;text-wrap:pretty;">كل ما هو خارج الصورة والصوت موجود في قسم «عام»: خدمة AI، الإعدادات العائلية، القنوات، الشبكة، الأجهزة الخارجية، والنظام. شكاوى «الشاشة بتقفل لوحدها» و«الألوان مايلة للأصفر» غالبًا من الإعدادات العائلية.</div>
+
+      <div style="width:100%;max-width:1100px;margin:0 auto;padding:14px;box-sizing:border-box;border-radius:12px;border:1px solid #e3e0d8;background:#fbfaf7;">
+        <div style="position:relative;">
+          <img src="assets/tv-general.png" alt="قسم عام" style="display:block;width:100%;height:auto;border-radius:6px;">
+          <sc-for list="{{ genSpots }}" as="m" hint-placeholder-count="9">
+            <button onClick="{{ m.open }}" title="{{ m.title }}" style="{{ m.style }}">{{ m.n }}</button>
+          </sc-for>
+        </div>
+      </div>
+
+      <div style="font-family:'Cairo',sans-serif;font-weight:700;font-size:17px;margin:20px 0 10px;">كل عناصر قسم عام</div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:10px;">
+        <sc-for list="{{ genSpots }}" as="m" hint-placeholder-count="9">
+          <button onClick="{{ m.open }}" style="{{ m.listStyle }}">
+            <div style="display:flex;align-items:center;gap:12px;">
+              <div style="width:32px;height:32px;border-radius:50%;background:#A50034;color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Cairo',sans-serif;font-weight:900;font-size:13px;flex:none;">{{ m.n }}</div>
+              <div style="font-size:14.5px;line-height:1.5;text-align:right;">{{ m.title }}</div>
+            </div>
+          </button>
+        </sc-for>
+      </div>
+    </div>
+    <sc-if value="{{ hasSelGen }}" hint-placeholder-val="{{ false }}">
+      <div style="background:#fff;border:1px solid #f0c2ce;border-radius:14px;padding:32px;border-top:4px solid #A50034;animation:cardIn .25s ease;">
+        <div style="background:#1c1a1b;color:#f6f1f2;border-radius:12px;padding:20px 22px;margin-bottom:20px;">
+          <div style="font-size:12.5px;color:#f0a8bd;margin-bottom:8px;font-weight:600;">اقرأ للعميل</div>
+          <div style="font-family:'Cairo',sans-serif;font-size:17px;line-height:2.05;">{{ selGenItem.script }}</div>
+        </div>
+        <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:18px;">
+          <div style="width:46px;height:46px;border-radius:50%;background:#A50034;color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Cairo',sans-serif;font-weight:900;font-size:19px;flex:none;">{{ selGenItem.n }}</div>
+          <div style="font-family:'Cairo',sans-serif;font-weight:700;font-size:26px;line-height:1.4;">{{ selGenItem.title }}</div>
+        </div>
+
+        <div style="display:flex;gap:18px;align-items:flex-start;flex-wrap:wrap;margin-bottom:18px;">
+          <div style="flex:none;">
+            <div style="font-size:12.5px;color:#8a8f94;font-weight:600;margin-bottom:6px;">شكل الخيار على الشاشة</div>
+            {{ genCrop }}
+          </div>
+          <div style="flex:1;min-width:240px;font-size:15px;line-height:1.9;color:#5a5553;padding-top:22px;">هذا هو الخيار كما يظهر للعميل على الشاشة — وجّهه للوصول إليه بنفس الشكل والمكان.</div>
+        </div>
+
+        <div style="display:grid;gap:12px;margin-bottom:18px;">
+          <div style="padding:17px 20px;border-radius:12px;background:#fbfaf7;border:1px solid #e9e6de;">
+            <div style="font-size:12.5px;color:#8a8f94;font-weight:600;margin-bottom:6px;">وظيفة الخيار</div>
+            <div style="font-size:15.5px;line-height:1.9;">{{ selGenItem.what }}</div>
+          </div>
+          <div style="padding:17px 20px;border-radius:12px;background:#fff5f7;border:1px solid #f0c2ce;">
+            <div style="font-size:12.5px;color:#A50034;font-weight:600;margin-bottom:6px;">متى يستخدمه موظف خدمة العملاء</div>
+            <div style="font-size:15.5px;line-height:1.9;">{{ selGenItem.when }}</div>
+          </div>
+        </div>
+
+        <button onClick="{{ clearGen }}" style="padding:14px 22px;border-radius:10px;border:1px solid #d9d5cb;background:#fbfaf7;color:#191a1c;font-family:'Cairo',sans-serif;font-weight:700;font-size:15px;cursor:pointer;" style-hover="border-color:#A50034;">إغلاق التفاصيل</button>
+      </div>
+    </sc-if>
+
+    <div style="background:#fff;border:1px solid #e3e0d8;border-radius:14px;padding:28px;">
+      <div style="font-family:'Cairo',sans-serif;font-weight:700;font-size:22px;margin-bottom:6px;">قائمة «النظام» — اللغة والوقت والسلامة وإعادة الضبط</div>
+      <div style="font-size:14.5px;color:#6b7075;line-height:1.8;margin-bottom:18px;max-width:70ch;text-wrap:pretty;">من «عام» نختار «النظام». هنا اللغة والموقع والوقت والمؤقت والسلامة وإعادة الضبط إلى الإعدادات المبدئية — آخر خطوة قبل تسجيل بلاغ في الشكاوى البرمجية.</div>
+
+      <div style="width:100%;max-width:1100px;margin:0 auto;padding:14px;box-sizing:border-box;border-radius:12px;border:1px solid #e3e0d8;background:#fbfaf7;">
+        <div style="position:relative;">
+          <img src="assets/tv-system.png" alt="قائمة النظام" style="display:block;width:100%;height:auto;border-radius:6px;">
+          <sc-for list="{{ sysSpots }}" as="m" hint-placeholder-count="7">
+            <button onClick="{{ m.open }}" title="{{ m.title }}" style="{{ m.style }}">{{ m.n }}</button>
+          </sc-for>
+        </div>
+      </div>
+
+      <div style="font-family:'Cairo',sans-serif;font-weight:700;font-size:17px;margin:20px 0 10px;">كل عناصر قائمة النظام</div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:10px;">
+        <sc-for list="{{ sysSpots }}" as="m" hint-placeholder-count="7">
+          <button onClick="{{ m.open }}" style="{{ m.listStyle }}">
+            <div style="display:flex;align-items:center;gap:12px;">
+              <div style="width:32px;height:32px;border-radius:50%;background:#A50034;color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Cairo',sans-serif;font-weight:900;font-size:13px;flex:none;">{{ m.n }}</div>
+              <div style="font-size:14.5px;line-height:1.5;text-align:right;">{{ m.title }}</div>
+            </div>
+          </button>
+        </sc-for>
+      </div>
+    </div>
+    <sc-if value="{{ hasSelSys }}" hint-placeholder-val="{{ false }}">
+      <div style="background:#fff;border:1px solid #f0c2ce;border-radius:14px;padding:32px;border-top:4px solid #A50034;animation:cardIn .25s ease;">
+        <div style="background:#1c1a1b;color:#f6f1f2;border-radius:12px;padding:20px 22px;margin-bottom:20px;">
+          <div style="font-size:12.5px;color:#f0a8bd;margin-bottom:8px;font-weight:600;">اقرأ للعميل</div>
+          <div style="font-family:'Cairo',sans-serif;font-size:17px;line-height:2.05;">{{ selSysItem.script }}</div>
+        </div>
+        <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:18px;">
+          <div style="width:46px;height:46px;border-radius:50%;background:#A50034;color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Cairo',sans-serif;font-weight:900;font-size:19px;flex:none;">{{ selSysItem.n }}</div>
+          <div style="font-family:'Cairo',sans-serif;font-weight:700;font-size:26px;line-height:1.4;">{{ selSysItem.title }}</div>
+        </div>
+
+        <div style="display:flex;gap:18px;align-items:flex-start;flex-wrap:wrap;margin-bottom:18px;">
+          <div style="flex:none;">
+            <div style="font-size:12.5px;color:#8a8f94;font-weight:600;margin-bottom:6px;">شكل الخيار على الشاشة</div>
+            {{ sysCrop }}
+          </div>
+          <div style="flex:1;min-width:240px;font-size:15px;line-height:1.9;color:#5a5553;padding-top:22px;">هذا هو الخيار كما يظهر للعميل على الشاشة — وجّهه للوصول إليه بنفس الشكل والمكان.</div>
+        </div>
+
+        <div style="display:grid;gap:12px;margin-bottom:18px;">
+          <div style="padding:17px 20px;border-radius:12px;background:#fbfaf7;border:1px solid #e9e6de;">
+            <div style="font-size:12.5px;color:#8a8f94;font-weight:600;margin-bottom:6px;">وظيفة الخيار</div>
+            <div style="font-size:15.5px;line-height:1.9;">{{ selSysItem.what }}</div>
+          </div>
+          <div style="padding:17px 20px;border-radius:12px;background:#fff5f7;border:1px solid #f0c2ce;">
+            <div style="font-size:12.5px;color:#A50034;font-weight:600;margin-bottom:6px;">متى يستخدمه موظف خدمة العملاء</div>
+            <div style="font-size:15.5px;line-height:1.9;">{{ selSysItem.when }}</div>
+          </div>
+        </div>
+
+        <button onClick="{{ clearSys }}" style="padding:14px 22px;border-radius:10px;border:1px solid #d9d5cb;background:#fbfaf7;color:#191a1c;font-family:'Cairo',sans-serif;font-weight:700;font-size:15px;cursor:pointer;" style-hover="border-color:#A50034;">إغلاق التفاصيل</button>
+      </div>
+    </sc-if>
+
+    <div style="background:#fff;border:1px solid #e3e0d8;border-radius:14px;padding:28px;">
+      <div style="font-family:'Cairo',sans-serif;font-weight:700;font-size:22px;margin-bottom:6px;">إعدادات إضافية — البدء السريع والإعلانات والمؤشر</div>
+      <div style="font-size:14.5px;color:#6b7075;line-height:1.8;margin-bottom:18px;max-width:70ch;text-wrap:pretty;">من «النظام» نختار «إعدادات إضافية». أهم عنصر هنا: <strong>العروض الترويجية على شاشة التوقف</strong> — سبب شكوى «الشاشة بتعرض إعلانات لوحدها».</div>
+
+      <div style="width:100%;max-width:1100px;margin:0 auto;padding:14px;box-sizing:border-box;border-radius:12px;border:1px solid #e3e0d8;background:#fbfaf7;">
+        <div style="position:relative;">
+          <img src="assets/tv-extra.png" alt="إعدادات إضافية" style="display:block;width:100%;height:auto;border-radius:6px;">
+          <sc-for list="{{ exSpots }}" as="m" hint-placeholder-count="9">
+            <button onClick="{{ m.open }}" title="{{ m.title }}" style="{{ m.style }}">{{ m.n }}</button>
+          </sc-for>
+        </div>
+      </div>
+
+      <div style="font-family:'Cairo',sans-serif;font-weight:700;font-size:17px;margin:20px 0 10px;">كل عناصر الإعدادات الإضافية</div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:10px;">
+        <sc-for list="{{ exSpots }}" as="m" hint-placeholder-count="9">
+          <button onClick="{{ m.open }}" style="{{ m.listStyle }}">
+            <div style="display:flex;align-items:center;gap:12px;">
+              <div style="width:32px;height:32px;border-radius:50%;background:#A50034;color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Cairo',sans-serif;font-weight:900;font-size:13px;flex:none;">{{ m.n }}</div>
+              <div style="font-size:14.5px;line-height:1.5;text-align:right;">{{ m.title }}</div>
+            </div>
+          </button>
+        </sc-for>
+      </div>
+    </div>
+    <sc-if value="{{ hasSelEx }}" hint-placeholder-val="{{ false }}">
+      <div style="background:#fff;border:1px solid #f0c2ce;border-radius:14px;padding:32px;border-top:4px solid #A50034;animation:cardIn .25s ease;">
+        <div style="background:#1c1a1b;color:#f6f1f2;border-radius:12px;padding:20px 22px;margin-bottom:20px;">
+          <div style="font-size:12.5px;color:#f0a8bd;margin-bottom:8px;font-weight:600;">اقرأ للعميل</div>
+          <div style="font-family:'Cairo',sans-serif;font-size:17px;line-height:2.05;">{{ selExItem.script }}</div>
+        </div>
+        <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:18px;">
+          <div style="width:46px;height:46px;border-radius:50%;background:#A50034;color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Cairo',sans-serif;font-weight:900;font-size:19px;flex:none;">{{ selExItem.n }}</div>
+          <div style="font-family:'Cairo',sans-serif;font-weight:700;font-size:26px;line-height:1.4;">{{ selExItem.title }}</div>
+        </div>
+
+        <div style="display:flex;gap:18px;align-items:flex-start;flex-wrap:wrap;margin-bottom:18px;">
+          <div style="flex:none;">
+            <div style="font-size:12.5px;color:#8a8f94;font-weight:600;margin-bottom:6px;">شكل الخيار على الشاشة</div>
+            {{ exCrop }}
+          </div>
+          <div style="flex:1;min-width:240px;font-size:15px;line-height:1.9;color:#5a5553;padding-top:22px;">هذا هو الخيار كما يظهر للعميل على الشاشة — وجّهه للوصول إليه بنفس الشكل والمكان.</div>
+        </div>
+
+        <div style="display:grid;gap:12px;margin-bottom:18px;">
+          <div style="padding:17px 20px;border-radius:12px;background:#fbfaf7;border:1px solid #e9e6de;">
+            <div style="font-size:12.5px;color:#8a8f94;font-weight:600;margin-bottom:6px;">وظيفة الخيار</div>
+            <div style="font-size:15.5px;line-height:1.9;">{{ selExItem.what }}</div>
+          </div>
+          <div style="padding:17px 20px;border-radius:12px;background:#fff5f7;border:1px solid #f0c2ce;">
+            <div style="font-size:12.5px;color:#A50034;font-weight:600;margin-bottom:6px;">متى يستخدمه موظف خدمة العملاء</div>
+            <div style="font-size:15.5px;line-height:1.9;">{{ selExItem.when }}</div>
+          </div>
+        </div>
+
+        <button onClick="{{ clearEx }}" style="padding:14px 22px;border-radius:10px;border:1px solid #d9d5cb;background:#fbfaf7;color:#191a1c;font-family:'Cairo',sans-serif;font-weight:700;font-size:15px;cursor:pointer;" style-hover="border-color:#A50034;">إغلاق التفاصيل</button>
+      </div>
+    </sc-if>
+
+    <div style="background:#fff;border:1px solid #e3e0d8;border-radius:14px;padding:28px;">
+      <div style="font-family:'Cairo',sans-serif;font-weight:700;font-size:22px;margin-bottom:6px;">قسم «الدعم» — التحديث والتشخيص الذاتي</div>
+      <div style="font-size:14.5px;color:#6b7075;line-height:1.8;margin-bottom:18px;max-width:70ch;text-wrap:pretty;">قسم الدعم فيه أهم أدوات الفحص: <strong>تحديث البرامج</strong>، و<strong>التشخيص الذاتي للشاشة والصوت</strong> اللي بيفرّق بين عيب الجهاز وعيب المصدر قبل تسجيل أي بلاغ.</div>
+
+      <div style="width:100%;max-width:1100px;margin:0 auto;padding:14px;box-sizing:border-box;border-radius:12px;border:1px solid #e3e0d8;background:#fbfaf7;">
+        <div style="position:relative;">
+          <img src="assets/tv-support.png" alt="قسم الدعم" style="display:block;width:100%;height:auto;border-radius:6px;">
+          <sc-for list="{{ supSpots }}" as="m" hint-placeholder-count="9">
+            <button onClick="{{ m.open }}" title="{{ m.title }}" style="{{ m.style }}">{{ m.n }}</button>
+          </sc-for>
+        </div>
+      </div>
+
+      <div style="font-family:'Cairo',sans-serif;font-weight:700;font-size:17px;margin:20px 0 10px;">كل عناصر قسم الدعم</div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:10px;">
+        <sc-for list="{{ supSpots }}" as="m" hint-placeholder-count="9">
+          <button onClick="{{ m.open }}" style="{{ m.listStyle }}">
+            <div style="display:flex;align-items:center;gap:12px;">
+              <div style="width:32px;height:32px;border-radius:50%;background:#A50034;color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Cairo',sans-serif;font-weight:900;font-size:13px;flex:none;">{{ m.n }}</div>
+              <div style="font-size:14.5px;line-height:1.5;text-align:right;">{{ m.title }}</div>
+            </div>
+          </button>
+        </sc-for>
+      </div>
+    </div>
+    <sc-if value="{{ hasSelSup }}" hint-placeholder-val="{{ false }}">
+      <div style="background:#fff;border:1px solid #f0c2ce;border-radius:14px;padding:32px;border-top:4px solid #A50034;animation:cardIn .25s ease;">
+        <div style="background:#1c1a1b;color:#f6f1f2;border-radius:12px;padding:20px 22px;margin-bottom:20px;">
+          <div style="font-size:12.5px;color:#f0a8bd;margin-bottom:8px;font-weight:600;">اقرأ للعميل</div>
+          <div style="font-family:'Cairo',sans-serif;font-size:17px;line-height:2.05;">{{ selSupItem.script }}</div>
+        </div>
+        <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:18px;">
+          <div style="width:46px;height:46px;border-radius:50%;background:#A50034;color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Cairo',sans-serif;font-weight:900;font-size:19px;flex:none;">{{ selSupItem.n }}</div>
+          <div style="font-family:'Cairo',sans-serif;font-weight:700;font-size:26px;line-height:1.4;">{{ selSupItem.title }}</div>
+        </div>
+
+        <div style="display:flex;gap:18px;align-items:flex-start;flex-wrap:wrap;margin-bottom:18px;">
+          <div style="flex:none;">
+            <div style="font-size:12.5px;color:#8a8f94;font-weight:600;margin-bottom:6px;">شكل الخيار على الشاشة</div>
+            {{ supCrop }}
+          </div>
+          <div style="flex:1;min-width:240px;font-size:15px;line-height:1.9;color:#5a5553;padding-top:22px;">هذا هو الخيار كما يظهر للعميل على الشاشة — وجّهه للوصول إليه بنفس الشكل والمكان.</div>
+        </div>
+
+        <div style="display:grid;gap:12px;margin-bottom:18px;">
+          <div style="padding:17px 20px;border-radius:12px;background:#fbfaf7;border:1px solid #e9e6de;">
+            <div style="font-size:12.5px;color:#8a8f94;font-weight:600;margin-bottom:6px;">وظيفة الخيار</div>
+            <div style="font-size:15.5px;line-height:1.9;">{{ selSupItem.what }}</div>
+          </div>
+          <div style="padding:17px 20px;border-radius:12px;background:#fff5f7;border:1px solid #f0c2ce;">
+            <div style="font-size:12.5px;color:#A50034;font-weight:600;margin-bottom:6px;">متى يستخدمه موظف خدمة العملاء</div>
+            <div style="font-size:15.5px;line-height:1.9;">{{ selSupItem.when }}</div>
+          </div>
+        </div>
+
+        <button onClick="{{ clearSup }}" style="padding:14px 22px;border-radius:10px;border:1px solid #d9d5cb;background:#fbfaf7;color:#191a1c;font-family:'Cairo',sans-serif;font-weight:700;font-size:15px;cursor:pointer;" style-hover="border-color:#A50034;">إغلاق التفاصيل</button>
+      </div>
+    </sc-if>
+
+    <div style="background:#fff;border:1px solid #e3e0d8;border-radius:14px;padding:28px;">
+      <div style="font-family:'Cairo',sans-serif;font-weight:700;font-size:22px;margin-bottom:6px;">قسم «الدعم» — تكملة القائمة</div>
+      <div style="font-size:14.5px;color:#6b7075;line-height:1.8;margin-bottom:18px;max-width:70ch;text-wrap:pretty;">نفس القائمة بعد التمرير لأسفل — فيها <strong>معلومات التلفاز</strong> (رقم الموديل والسيريال المطلوبين في البلاغ) و<strong>خصوصية والشروط</strong>.</div>
+
+      <div style="width:100%;max-width:1100px;margin:0 auto;padding:14px;box-sizing:border-box;border-radius:12px;border:1px solid #e3e0d8;background:#fbfaf7;">
+        <div style="position:relative;">
+          <img src="assets/tv-support2.png" alt="قسم الدعم — تكملة" style="display:block;width:100%;height:auto;border-radius:6px;">
+          <sc-for list="{{ sup2Spots }}" as="m" hint-placeholder-count="2">
+            <button onClick="{{ m.open }}" title="{{ m.title }}" style="{{ m.style }}">{{ m.n }}</button>
+          </sc-for>
+        </div>
+      </div>
+
+      <div style="font-family:'Cairo',sans-serif;font-weight:700;font-size:17px;margin:20px 0 10px;">عناصر تكملة قسم الدعم</div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:10px;">
+        <sc-for list="{{ sup2Spots }}" as="m" hint-placeholder-count="2">
+          <button onClick="{{ m.open }}" style="{{ m.listStyle }}">
+            <div style="display:flex;align-items:center;gap:12px;">
+              <div style="width:32px;height:32px;border-radius:50%;background:#A50034;color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Cairo',sans-serif;font-weight:900;font-size:13px;flex:none;">{{ m.n }}</div>
+              <div style="font-size:14.5px;line-height:1.5;text-align:right;">{{ m.title }}</div>
+            </div>
+          </button>
+        </sc-for>
+      </div>
+    </div>
+    <sc-if value="{{ hasSelSup2 }}" hint-placeholder-val="{{ false }}">
+      <div style="background:#fff;border:1px solid #f0c2ce;border-radius:14px;padding:32px;border-top:4px solid #A50034;animation:cardIn .25s ease;">
+        <div style="background:#1c1a1b;color:#f6f1f2;border-radius:12px;padding:20px 22px;margin-bottom:20px;">
+          <div style="font-size:12.5px;color:#f0a8bd;margin-bottom:8px;font-weight:600;">اقرأ للعميل</div>
+          <div style="font-family:'Cairo',sans-serif;font-size:17px;line-height:2.05;">{{ selSup2Item.script }}</div>
+        </div>
+        <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:18px;">
+          <div style="width:46px;height:46px;border-radius:50%;background:#A50034;color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Cairo',sans-serif;font-weight:900;font-size:19px;flex:none;">{{ selSup2Item.n }}</div>
+          <div style="font-family:'Cairo',sans-serif;font-weight:700;font-size:26px;line-height:1.4;">{{ selSup2Item.title }}</div>
+        </div>
+
+        <div style="display:flex;gap:18px;align-items:flex-start;flex-wrap:wrap;margin-bottom:18px;">
+          <div style="flex:none;">
+            <div style="font-size:12.5px;color:#8a8f94;font-weight:600;margin-bottom:6px;">شكل الخيار على الشاشة</div>
+            {{ sup2Crop }}
+          </div>
+          <div style="flex:1;min-width:240px;font-size:15px;line-height:1.9;color:#5a5553;padding-top:22px;">هذا هو الخيار كما يظهر للعميل على الشاشة — وجّهه للوصول إليه بنفس الشكل والمكان.</div>
+        </div>
+
+        <div style="display:grid;gap:12px;margin-bottom:18px;">
+          <div style="padding:17px 20px;border-radius:12px;background:#fbfaf7;border:1px solid #e9e6de;">
+            <div style="font-size:12.5px;color:#8a8f94;font-weight:600;margin-bottom:6px;">وظيفة الخيار</div>
+            <div style="font-size:15.5px;line-height:1.9;">{{ selSup2Item.what }}</div>
+          </div>
+          <div style="padding:17px 20px;border-radius:12px;background:#fff5f7;border:1px solid #f0c2ce;">
+            <div style="font-size:12.5px;color:#A50034;font-weight:600;margin-bottom:6px;">متى يستخدمه موظف خدمة العملاء</div>
+            <div style="font-size:15.5px;line-height:1.9;">{{ selSup2Item.when }}</div>
+          </div>
+        </div>
+
+        <button onClick="{{ clearSup2 }}" style="padding:14px 22px;border-radius:10px;border:1px solid #d9d5cb;background:#fbfaf7;color:#191a1c;font-family:'Cairo',sans-serif;font-weight:700;font-size:15px;cursor:pointer;" style-hover="border-color:#A50034;">إغلاق التفاصيل</button>
+      </div>
+    </sc-if>
+
+
+
+    <div style="background:#fff;border:1px solid #f0c2ce;border-radius:14px;padding:28px;border-top:4px solid #A50034;">
+      <div style="background:#1c1a1b;color:#f6f1f2;border-radius:12px;padding:20px 22px;margin-bottom:16px;">
+        <div style="font-size:12.5px;color:#f0a8bd;margin-bottom:8px;font-weight:600;">اقرأ للعميل — الرسوم</div>
+        <div style="font-family:'Cairo',sans-serif;font-size:17px;line-height:2.05;">«الصيانة داخل فترة الضمان مجانية تمامًا. ولو ظهر إن السبب مش عطل فني في الجهاز، أو إن العطل خارج نطاق الضمان، بتكون في تكلفة زيارة ومعاينة ١٨٢ جنيه لأول زيارة، وأي زيارة بعدها ٣٠٠ جنيه — وتكلفة الصيانة نفسها بتتحدد بعد ما الفني يعاين الجهاز، وهتُعرض على حضرتك للموافقة قبل أي إصلاح.»</div>
+      </div>
+      <div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:19px;margin-bottom:14px;">رسوم الصيانة عند تسجيل بلاغ</div>
+      <a href="Service Fees Table.dc.html#tv" style="display:flex;align-items:center;gap:14px;padding:18px 22px;border-radius:12px;border:1px solid #f0c2ce;background:#fff5f7;text-decoration:none;" style-hover="border-color:#A50034;">
+        <div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:17px;color:#A50034;">رسوم الشاشات</div>
+        <div style="font-size:14px;color:#3f4447;line-height:1.7;">اضغط لعرض رسوم الصيانة والزيارة الخاصة بالمنتج — صباحي ومسائي.</div>
+        <div style="margin-right:auto;color:#A50034;font-size:18px;">←</div>
+      </a>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+// left / top in % of the image, measured on the 1380×816 screenshot
+const SPOTS = [
+  { n:'١', x:4.1, y:7, title:'تعديل اللوحة (قلم)',
+    what:'يسمح بإعادة ترتيب أيقونات اللوحة السريعة أو إضافة وإخفاء عناصر منها حسب استخدام العميل.',
+    when:'عند شكوى العميل إن أيقونة مش ظاهرة في اللوحة أو عايز يرتّبها.',
+    script:'«الأيقونة اللي شكلها قلم بتخلي حضرتك تعدّل ترتيب عناصر اللوحة وتضيف أو تخفي اللي مش محتاجه.»' },
+  { n:'٢', x:8.5, y:7, title:'شبكة الواي فاي',
+    what:'يعرض حالة الاتصال بالشبكة ويسمح بالاتصال بشبكة واي فاي أو تغييرها.',
+    when:'في كل شكوى خاصة بالتطبيقات أو البث أو تحديث النظام — أول خطوة التأكد من الاتصال.',
+    script:'«ممكن نتأكد من الاتصال بالإنترنت — نضغط على أيقونة الواي فاي ونشوف الشاشة متصلة بالشبكة ولا لأ.»' },
+  { n:'٣', x:11.8, y:7, title:'إمكانية الوصول',
+    what:'إعدادات المساعدة: التعليق الصوتي، وضوح الصوت، حجم الخط، وتباين عالي.',
+    when:'عند طلب العميل تكبير الخط أو تشغيل التعليق الصوتي، أو عند شكوى «الشاشة بتتكلم» لإيقافه.',
+    script:'«الأيقونة دي خاصة بإعدادات إمكانية الوصول — منها بنكبّر الخط أو نشغّل ونوقف التعليق الصوتي.»' },
+  { n:'٤', x:15.1, y:7, title:'المساعد الصوتي',
+    what:'يشغّل المساعد الصوتي للتحكم في الشاشة بالأوامر الصوتية.',
+    when:'عند استفسار العميل عن التحكم الصوتي أو لو المساعد بيفتح من غير قصد.',
+    script:'«الأيقونة دي خاصة بالمساعد الصوتي — منها بنشغّله أو نوقفه.»' },
+  { n:'٥', x:18.5, y:7, title:'كل الإعدادات (ترس)',
+    what:'يفتح قائمة الإعدادات الكاملة: الصورة، الصوت، القنوات، الشبكة، والدعم.',
+    when:'عند أي إعداد مش موجود في اللوحة السريعة — زي البحث عن القنوات أو تحديث النظام.',
+    script:'«لو الإعداد مش موجود في اللوحة السريعة، نضغط على الترس ده وهيفتح كل الإعدادات.»' },
+  { n:'٦', x:10.4, y:26.6, title:'سطوع اللوحة',
+    what:'يتحكم في سطوع الشاشة بالأرقام (القيمة في الصورة ٩٥).',
+    when:'عند شكوى العميل إن الصورة غامقة أو نور الشاشة عالي.',
+    script:'«ممكن نبص على سطوع اللوحة — القيمة كام دلوقتي؟ ممكن نزوّدها لو الصورة غامقة على حضرتك.»' },
+  { n:'٧', x:22.3, y:26.6, title:'وضع الصورة',
+    what:'يبدّل بين أوضاع الصورة — قياسي، سينما، حيوي، ورياضة، ووضع Eco الموفّر للطاقة.',
+    when:'عند شكوى ضعف جودة الصورة أو ألوان باهتة — غالبًا الشاشة على وضع Eco.',
+    script:'«وضع الصورة عند حضرتك على Eco، وده وضع موفّر للطاقة وبيقلل السطوع. ممكن نغيّره لوضع قياسي أو حيوي ونشوف الفرق.»' },
+  { n:'٨', x:10.4, y:39.6, title:'إعدادات حد الاستخدام',
+    what:'يحدّد وقت استخدام أو مؤقّت للشاشة (القيمة في الصورة إيقاف).',
+    when:'عند شكوى إن الشاشة بتقفل من نفسها في وقت معيّن.',
+    script:'«ممكن نتأكد إن إعدادات حد الاستخدام على إيقاف — لأنها لو مفعّلة الشاشة بتقفل لوحدها في وقت محدّد.»' },
+  { n:'٩', x:22.3, y:39.6, title:'وضع الصوت',
+    what:'يبدّل بين أوضاع الصوت — قياسي، سينما، أخبار، ورياضة.',
+    when:'عند شكوى وضوح الصوت أو ضعف صوت الحوار.',
+    script:'«ممكن نغيّر وضع الصوت من هنا ونشوف الفرق — أحيانًا الوضع الحالي مش مناسب للمحتوى اللي حضرتك بتتفرج عليه.»' },
+  { n:'١٠', x:10.4, y:52.5, title:'إيقاف الشاشة',
+    what:'يطفي الصورة ويترك الصوت شغّال فقط — والشاشة تفضل قيد التشغيل.',
+    when:'مهم جدًا: عند شكوى «الصورة مطفية والصوت شغّال» — غالبًا العميل ضغط على الخيار ده بالغلط.',
+    script:'«الحالة دي غالبًا من خيار إيقاف الشاشة — بيطفي الصورة ويسيب الصوت. ممكن نضغط أي زر في الريموت وهترجع الصورة على طول.»' },
+  { n:'١١', x:22.3, y:52.5, title:'وضع مراعاة العين',
+    what:'يقلّل الضوء الأزرق لتقليل إجهاد العين (القيمة في الصورة إيقاف).',
+    when:'عند شكوى إن ألوان الصورة مايلة للأصفر — غالبًا الوضع ده مفعّل.',
+    script:'«لو ألوان الصورة مايلة للأصفر، ممكن نتأكد من وضع مراعاة العين — لو مفعّل نوقفه وهترجع الألوان طبيعية.»' }
+];
+
+// second screenshot: full settings menu (1376×816)
+const MENU = [
+  { n:'أ', x:14.5, y:11.0, title:'صورة — القسم الرئيسي',
+    what:'القسم الخاص بكل إعدادات الصورة: وضع الاختيار، نسبة العرض، والإعدادات المتقدمة.',
+    when:'عند أي شكوى خاصة بجودة الصورة أو الألوان أو حجم الصورة على الشاشة.',
+    script:'«من قائمة الإعدادات نختار قسم «صورة» — ومنه كل اللي يخص جودة الصورة والألوان وحجمها.»' },
+  { n:'ب', x:14.5, y:19.4, title:'صوت — القسم الرئيسي',
+    what:'القسم الخاص بإعدادات الصوت: وضع الصوت، مخارج الصوت، وتوصيل السماعات الخارجية.',
+    when:'عند شكوى ضعف الصوت أو عدم خروج صوت أو توصيل ساوند بار.',
+    script:'«لإعدادات الصوت نختار قسم «صوت» — منه نظبط وضع الصوت ومخرج الصوت.»' },
+  { n:'ج', x:14.5, y:27.7, title:'عام — القسم الرئيسي',
+    what:'إعدادات النظام: الشبكة، الوقت والتاريخ، اللغة، القنوات، والأجهزة الخارجية.',
+    when:'عند البحث عن القنوات، ضبط الوقت، تغيير اللغة، أو إعدادات الشبكة.',
+    script:'«لإعدادات النظام والقنوات والشبكة نختار قسم «عام».»' },
+  { n:'د', x:14.5, y:36.4, title:'الدعم — القسم الرئيسي',
+    what:'يحتوي على تحديث البرنامج، معلومات الجهاز (الموديل والسيريال)، والاختبار الذاتي.',
+    when:'عند الحاجة لرقم الموديل أو السيريال، أو تحديث البرنامج، أو إعادة ضبط المصنع.',
+    script:'«محتاج رقم الموديل والسيريال — ممكن من الإعدادات نختار «الدعم» ومنه معلومات الجهاز.»' },
+  { n:'هـ', x:54, y:23.5, title:'وضع الاختيار (وضع الصورة)',
+    what:'يحدّد وضع الصورة — والقيمة الظاهرة هنا Eco وهو وضع موفّر للطاقة يقلّل السطوع.',
+    when:'أول ما يُفحص عند شكوى ضعف السطوع أو ألوان باهتة.',
+    script:'«وضع الصورة على Eco — وده موفّر للطاقة وبيقلل السطوع. ممكن نغيّره لوضع قياسي أو حيوي ونشوف الفرق.»' },
+  { n:'و', x:54, y:35, title:'نسبة طول إلى عرض',
+    what:'يتحكم في نسبة أبعاد الصورة على الشاشة (16:9، أصلي، تكبير…).',
+    when:'عند شكوى إن الصورة مقطوعة من الأطراف أو فيها إطارات سوداء أو ممدودة.',
+    script:'«لو الصورة مقطوعة من الجناب أو فيها خطوط سودة، ممكن نظبط نسبة الطول إلى العرض من هنا.»' },
+  { n:'ز', x:52.5, y:47, title:'الإعدادات المتقدمة',
+    what:'إعدادات دقيقة للصورة: السطوع، التباين، درجة اللون، ووضع مراعاة العين.',
+    when:'عند الحاجة لضبط دقيق للصورة بعد تغيير وضع الصورة، أو إيقاف وضع مراعاة العين.',
+    script:'«لو محتاجين ضبط أدق للصورة، ندخل على الإعدادات المتقدمة ومنها نظبط السطوع والتباين ودرجة اللون.»' }
+];
+
+
+// third screenshot: picture mode list (1370×806)
+const PMODE = [
+  { n:'1', x:21.0, y:9.3, title:'وضع الاختيار — عنوان القائمة',
+    what:'العنوان يوضح إن العميل واقف داخل قائمة اختيار وضع الصورة، والسهم للرجوع للقائمة السابقة.',
+    when:'للتأكد إن العميل فعلًا داخل القائمة الصح قبل تغيير الوضع.',
+    script:'«ممكن نتأكد إن حضرتك شايف في أعلى القائمة كلمة «وضع الاختيار» — يبقى إحنا في المكان الصح.»' },
+  { n:'2', x:37.4, y:22.5, title:'حيوي (Vivid)',
+    what:'أعلى سطوع وأكثر تشبّع في الألوان — مناسب للغرف شديدة الإضاءة.',
+    when:'عند شكوى العميل إن الصورة غامقة أو الألوان باهتة في غرفة منوّرة.',
+    script:'«لو الغرفة منوّرة والصورة باهتة، ممكن نختار وضع «حيوي» — أعلى سطوع وألوان أقوى.»' },
+  { n:'3', x:37.4, y:31.6, title:'قياسي (Standard)',
+    what:'الوضع المتوازن الافتراضي — مناسب لمعظم أنواع المحتوى والاستخدام اليومي.',
+    when:'الوضع الموصى به في معظم شكاوى جودة الصورة — أول ما نرجع له.',
+    script:'«الوضع الموصى به لمعظم الاستخدامات هو «قياسي» — ممكن نختاره ونشوف الفرق.»' },
+  { n:'4', x:37.4, y:40.7, title:'Eco — الوضع الحالي',
+    what:'وضع موفّر للطاقة يقلّل السطوع — والنقطة الخضراء بتوضح إنه الوضع المختار حاليًا.',
+    when:'أهم عنصر: لو الوضع ده مختار وشكوى العميل ضعف السطوع، ده هو السبب.',
+    script:'«الشاشة عند حضرتك على وضع Eco — وده موفّر للطاقة وبيقلل السطوع. ممكن نغيّره لقياسي أو حيوي وهيبان الفرق على طول.»' },
+  { n:'5', x:37.4, y:49.4, title:'سينما (Cinema)',
+    what:'ألوان دافئة وسطوع أقل — مناسب للأفلام في غرفة مظلمة.',
+    when:'عند رغبة العميل في تجربة أفلام، أو عند شكوى إن الصورة بيضاء زيادة.',
+    script:'«لو حضرتك بتتفرج على أفلام في غرفة مضاءة خفيف، وضع «سينما» هيكون أنسب.»' },
+  { n:'6', x:37.4, y:58.6, title:'كرة القدم / رياضة',
+    what:'يزيد وضوح الحركة والتشبّع — مناسب لمشاهدة المباريات.',
+    when:'عند شكوى تهتّز أو عدم وضوح الحركة السريعة في المباريات.',
+    script:'«لمشاهدة الماتشات ممكن نختار وضع «كرة القدم» — بيحسّن وضوح الحركة السريعة.»' },
+  { n:'7', x:37.4, y:67.5, title:'محسن الألعاب (Game Optimizer)',
+    what:'يقلّل زمن الاستجابة لأقل قيمة عند توصيل جهاز ألعاب.',
+    when:'عند شكوى تأخير الاستجابة مع البلايستيشن أو الإكس بوكس.',
+    script:'«لو حضرتك موصّل جهاز ألعاب، ممكن نختار «محسن الألعاب» — بيقلل زمن الاستجابة.»' },
+  { n:'8', x:37.4, y:76.6, title:'FILMMAKER MODE',
+    what:'يعرض المحتوى كما أراده صنّاع الفيلم — بدون معالجة صورة إضافية أو تنعيم للحركة.',
+    when:'عند استفسار العميل عن الوضع ده أو شكوى إن الصورة «بتبان زي المسرحيات».',
+    script:'«وضع FILMMAKER بيعرض الفيلم زي ما المخرج عامله بالظبط من غير أي معالجة إضافية.»' },
+  { n:'9', x:37.4, y:85.2, title:'خبير (Expert)',
+    what:'أوضاع المعايرة الدقيقة — نسخة للفضاء المشرق ونسخة للإضاءة الخفيفة، للاستخدام الاحترافي.',
+    when:'لا يُنصح بها للعميل العادي — فقط عند طلب معايرة احترافية.',
+    script:'«أوضاع «خبير» دي للمعايرة الاحترافية — الأفضل لحضرتك تستخدم قياسي أو حيوي.»' }
+];
+
+
+// fourth screenshot: advanced picture settings (1381×812)
+const ADV = [
+  { n:'أ١', x:44.0, y:10.6, title:'الإعدادات المتقدمة — عنوان القائمة',
+    what:'العنوان يوضح إن العميل داخل قائمة الإعدادات المتقدمة للصورة، والسهم للرجوع للقائمة السابقة.',
+    when:'للتأكد إن العميل واقف في القائمة الصح قبل تغيير أي قيمة.',
+    script:'«ممكن نتأكد إن حضرتك شايف في أعلى القائمة «الإعدادات المتقدمة» — يبقى إحنا في المكان الصح.»' },
+  { n:'أ٢', x:44.0, y:23.9, title:'سطوع',
+    what:'يتحكم في سطوع الصورة بشكل دقيق داخل وضع الصورة المختار.',
+    when:'عند شكوى العميل إن الصورة غامقة أو منوّرة زيادة بعد تغيير وضع الصورة.',
+    script:'«من الإعدادات المتقدمة نضبط «سطوع» — نزوّده لو الصورة غامقة أو نقلّله لو منوّرة زيادة على حضرتك.»' },
+  { n:'أ٣', x:44.0, y:32.6, title:'اللون',
+    what:'يتحكم في درجة تشبّع الألوان — كل ما زاد بقت الألوان أقوى.',
+    when:'عند شكوى إن الألوان باهتة أو صارخة زيادة عن اللازم.',
+    script:'«لو الألوان باهتة أو صارخة زيادة، ممكن نضبط «اللون» من الإعدادات المتقدمة.»' },
+  { n:'أ٤', x:44.0, y:41.4, title:'الوضوح',
+    what:'يتحكم في حدّة تفاصيل الصورة — الزيادة المبالغ فيها بتعمل حدود صناعية حول الأشكال.',
+    when:'عند شكوى إن الصورة مش واضحة أو فيها حدود بيضاء حول الأشكال.',
+    script:'«لو التفاصيل مش واضحة ممكن نزوّد «الوضوح» شوية — بس مش لأقصاه لأنه بيعمل حدود صناعية حول الأشكال.»' },
+  { n:'أ٥', x:44.0, y:49.9, title:'تطبيق على كل المدخلات',
+    what:'ينسخ نفس إعدادات الصورة على كل المدخلات — الرسيفر، الدش، أجهزة HDMI، والتطبيقات.',
+    when:'عند شكوى إن الصورة كويسة على مدخل وسيئة على مدخل تاني، بعد ضبط الإعدادات مرة واحدة.',
+    script:'«بعد ما نظبط الصورة، نضغط «تطبيق على كل المدخلات» علشان نفس الإعدادات تشتغل على الرسيفر والأجهزة والتطبيقات كلها.»' },
+  { n:'أ٦', x:44.0, y:58.7, title:'إعادة الضبط',
+    what:'يرجّع كل إعدادات الصورة لقيم المصنع الافتراضية.',
+    when:'عند تغيير العميل قيم كتير ومش عارف يرجّعها — أسرع حل بدل ضبط كل قيمة يدويًا.',
+    script:'«لو حضرتك غيّرت قيم كتير ومش عارف ترجّعها، نضغط «إعادة الضبط» وكل إعدادات الصورة ترجع للمصنع.»' },
+  { n:'أ٧', x:44.0, y:70.0, title:'البدء التلقائي لوضع FILMMAKER',
+    what:'مفتاح يشغّل وضع FILMMAKER تلقائيًا عند تشغيل محتوى يدعمه — والمفتاح في الصورة مُغلق.',
+    when:'عند شكوى إن وضع الصورة بيتغيّر لوحده عند تشغيل فيلم أو تطبيق معيّن.',
+    script:'«لو وضع الصورة بيتغيّر لوحده مع الأفلام، ممكن نوقف «البدء التلقائي لوضع FILMMAKER» من هنا.»' },
+  { n:'أ٨', x:44.0, y:78.7, title:'تقليل الضوء الأزرق',
+    what:'يقلّل الضوء الأزرق لتقليل إجهاد العين — بيخلي الألوان أدفى (مايلة للأصفر). والمفتاح في الصورة مُغلق.',
+    when:'عند شكوى إن ألوان الصورة مايلة للأصفر — غالبًا المفتاح ده مفتوح.',
+    script:'«لو ألوان الصورة مايلة للأصفر، ممكن نتأكد إن مفتاح «تقليل الضوء الأزرق» مقفول — وهترجع الألوان طبيعية.»' }
+];
+
+
+// fifth screenshot: sound settings (1376×797)
+const SND = [
+  { n:'ص١', x:62, y:11.6, title:'صوت — عنوان القائمة',
+    what:'العنوان يوضح إن العميل داخل قسم إعدادات الصوت، والسهم للرجوع للقائمة السابقة.',
+    when:'للتأكد إن العميل واقف في قسم الصوت قبل تغيير أي إعداد.',
+    script:'«ممكن نتأكد إن حضرتك شايف كلمة «صوت» في أعلى القائمة — يبقى إحنا في قسم الصوت الصح.»' },
+  { n:'ص٥', x:57.5, y:24.8, title:'وضع الاختيار (وضع الصوت)',
+    what:'يحدّد وضع الصوت — والقيمة الظاهرة هنا «قياسي». والأوضاع الأخرى: سينما، أخبار، ورياضة.',
+    when:'عند شكوى ضعف وضوح الحوار أو عدم مناسبة الصوت للمحتوى.',
+    script:'«وضع الصوت عند حضرتك على «قياسي» — ممكن نجرّب نغيّره حسب اللي بتتفرج عليه ونشوف الفرق.»' },
+  { n:'ص٦', x:57.5, y:37.6, title:'مخرج الصوت',
+    what:'يحدّد مصدر خروج الصوت — والقيمة الظاهرة «سماعة التلفزيون». وباقي الخيارات: بلوتوث، ساوند بار، أو مخرج بصري.',
+    when:'أهم عنصر: عند شكوى «مفيش صوت» بعد توصيل ساوند بار أو سماعة بلوتوث — غالبًا المخرج مضبوط غلط.',
+    script:'«مخرج الصوت عند حضرتك على سماعة التلفزيون. لو حضرتك موصّل ساوند بار أو سماعة بلوتوث لازم نغيّر المخرج لها من هنا وهيرجع الصوت.»' },
+  { n:'ص٧', x:57.5, y:49.5, title:'الإعدادات المتقدمة (الصوت)',
+    what:'إعدادات دقيقة للصوت: تعديل التوازن، الترددات، ومزامنة الصوت مع الصورة.',
+    when:'عند شكوى تأخير الصوت عن الصورة، أو الحاجة لضبط دقيق للترددات.',
+    script:'«لو الصوت متأخر عن الصورة، ندخل على «الإعدادات المتقدمة» ومنها نظبط مزامنة الصوت مع الصورة.»' }
+];
+
+// sixth screenshot: sound mode list (1381×806)
+const SMODE = [
+  { n:'ن١', x:11, cx:30, y:9.7, title:'وضع الاختيار — عنوان قائمة وضع الصوت',
+    what:'العنوان يوضح إن العميل واقف داخل قائمة اختيار وضع الصوت، والسهم للرجوع للقائمة السابقة.',
+    when:'للتأكد إن العميل فعلًا داخل القائمة الصح قبل تغيير وضع الصوت.',
+    script:'«ممكن نتأكد إن حضرتك شايف في أعلى القائمة كلمة «وضع الاختيار» — يبقى إحنا في المكان الصح.»' },
+  { n:'ن٢', x:11, cx:30, y:22.6, title:'صوت AI برو',
+    what:'يحلّل نوع المحتوى تلقائيًا ويعدّل الصوت بما يناسبه لحظة بلحظة.',
+    when:'عند رغبة العميل في أفضل صوت بدون ما يغيّر الوضع كل مرة حسب المحتوى.',
+    script:'«لو حضرتك مش عايز تغيّر وضع الصوت كل شوية، ممكن نختار «صوت AI برو» — بيتعرّف على نوع المحتوى ويظبّط الصوت لوحده.»' },
+  { n:'ن٣', x:11, cx:30, y:31.4, title:'قياسي — الوضع الحالي',
+    what:'الوضع المتوازن الافتراضي — والنقطة الخضراء بتوضح إنه الوضع المختار حاليًا.',
+    when:'الوضع الموصى به في معظم شكاوى الصوت — أول ما نرجع له عند أي تغيير غير مفهوم.',
+    script:'«وضع الصوت عند حضرتك على «قياسي» وده الوضع المتوازن. ممكن نجرّب وضع تاني حسب اللي بتتفرج عليه ونشوف الفرق.»' },
+  { n:'ن٤', x:11, cx:30, y:40.1, title:'سينما',
+    what:'يوسّع المجال الصوتي ويقوّي المؤثرات — مناسب للأفلام.',
+    when:'عند رغبة العميل في تجربة أفلام أو شكوى إن صوت الأفلام «مسطّح».',
+    script:'«لو حضرتك بتتفرج على أفلام، وضع «سينما» بيوسّع الصوت ويقوّي المؤثرات.»' },
+  { n:'ن٥', x:11, cx:30, y:48.9, title:'صوت واضح برو',
+    what:'يرفع وضوح الأصوات البشرية والحوار على حساب المؤثرات.',
+    when:'أهم عنصر: عند شكوى «مش سامع كلام الممثلين» أو ضعف وضوح الحوار والأخبار.',
+    script:'«لو الكلام مش واضح في الأفلام أو الأخبار، ممكن نختار «صوت واضح برو» — بيوضّح صوت الكلام أكتر من المؤثرات.»' },
+  { n:'ن٦', x:11, cx:30, y:57.6, title:'كرة القدم',
+    what:'يبرز صوت المدرجات والتعليق لتجربة أقرب للملعب.',
+    when:'عند مشاهدة المباريات أو شكوى إن صوت التعليق ضعيف.',
+    script:'«لمشاهدة الماتشات ممكن نختار وضع «كرة القدم» — بيبرز صوت المدرجات والتعليق.»' },
+  { n:'ن٧', x:11, cx:30, y:66.4, title:'موسيقى',
+    what:'يضبط الترددات لمصلحة الآلات والغناء — مناسب للأغاني والحفلات.',
+    when:'عند استخدام الشاشة لتشغيل موسيقى أو يوتيوب أغاني.',
+    script:'«لو حضرتك بتسمع أغاني على الشاشة، وضع «موسيقى» هيكون أنسب للصوت.»' },
+  { n:'ن٨', x:11, cx:30, y:75.1, title:'محسن الألعاب',
+    what:'يضبط الصوت لأقل زمن تأخير مع أجهزة الألعاب ويبرز المؤثرات الاتجاهية.',
+    when:'عند توصيل بلايستيشن أو إكس بوكس أو شكوى تأخير الصوت في الألعاب.',
+    script:'«لو حضرتك موصّل جهاز ألعاب، ممكن نختار «محسن الألعاب» — بيقلل تأخير الصوت ويوضّح المؤثرات.»' }
+];
+
+// seventh screenshot: sound output list (1367×808)
+const SOUT = [
+  { n:'خ١', x:8, cx:26, y:10.8, title:'مخرج الصوت — عنوان القائمة',
+    what:'العنوان يوضح إن العميل داخل قائمة اختيار مخرج الصوت، والسهم للرجوع والعلامة (؟) لشرح مبسّط من الشاشة نفسها.',
+    when:'للتأكد إن العميل واقف في القائمة الصح قبل تغيير المخرج.',
+    script:'«ممكن نتأكد إن حضرتك شايف في أعلى القائمة «مخرج الصوت» — يبقى إحنا في المكان الصح.»' },
+  { n:'خ٢', x:17, cx:26, y:32.2, title:'السماعة المحددة — سماعة التلفاز',
+    what:'يعرض المخرج المُختار حاليًا. في الصورة المُختار «سماعة التلفاز» أي إن الصوت خارج من سماعات الشاشة الداخلية.',
+    when:'أهم عنصر: عند شكوى «مفيش صوت» بعد توصيل ساوند بار أو سماعة — نتأكد إيه المخرج المحدد فعلًا.',
+    script:'«المخرج المحدد عند حضرتك دلوقتي «سماعة التلفاز» — يعني الصوت طالع من سماعات الشاشة. لو حضرتك موصّل سماعة خارجية لازم نغيّر المخرج.»' },
+  { n:'خ٣', x:8, cx:26, y:46.4, title:'استخدام مكبر صوت التلفاز',
+    what:'الصوت يخرج من سماعات الشاشة الداخلية فقط — وهو الوضع الافتراضي.',
+    when:'عند شكوى إن مفيش صوت من الشاشة بعد فصل سماعة خارجية أو ساوند بار — نرجع للمخرج ده.',
+    script:'«علشان الصوت يرجع من سماعات الشاشة نختار «استخدام مكبر صوت التلفاز».»' },
+  { n:'خ٤', x:8, cx:26, y:55.2, title:'استخدام مكبر صوت سلكي',
+    what:'الصوت يخرج لجهاز موصّل بسلك — ساوند بار أو ريسيفر عن طريق HDMI (ARC) أو كابل بصري (Optical).',
+    when:'بعد توصيل ساوند بار بسلك وشكوى العميل إن مفيش صوت منه.',
+    script:'«حضرتك موصّل الساوند بار بسلك — لازم نختار «استخدم مكبر صوت سلكي» علشان الصوت يطلع منه.»' },
+  { n:'خ٥', x:8, cx:26, y:63.9, title:'استخدام مكبر صوت لاسلكي',
+    what:'الصوت يخرج لجهاز بلوتوث — سماعة أو ساوند بار لاسلكي مقترن بالشاشة.',
+    when:'بعد إقران سماعة بلوتوث وشكوى إن الصوت لسه من الشاشة أو مفيش صوت من السماعة.',
+    script:'«علشان الصوت يطلع من السماعة البلوتوث نختار «استخدم مكبر صوت لاسلكي» ونتأكد إن السماعة مقترنة.»' },
+  { n:'خ٦', x:8, cx:26, y:72.6, title:'استخدام مكبرات صوت خارجية مع سماعة التلفاز',
+    what:'يشغّل الصوت من الجهاز الخارجي وسماعة الشاشة في نفس الوقت.',
+    when:'عند رغبة العميل في صوت أعلى من المصدرين معًا، أو شكوى إن الصوت واطي بعد توصيل سماعة خارجية.',
+    script:'«لو حضرتك عايز الصوت يطلع من السماعة الخارجية ومن الشاشة في نفس الوقت، نختار الخيار الأخير «مكبرات صوت خارجية مع سماعة التلفاز».»' }
+];
+
+// eighth: advanced sound settings, page 1 (1378×817)
+const SADV1 = [
+  { n:'م١', x:11, cx:30, y:10.6, title:'الإعدادات المتقدمة (صوت) — عنوان القائمة',
+    what:'العنوان يوضح إن العميل داخل الإعدادات المتقدمة لقسم الصوت، والسهم للرجوع والعلامة (؟) لشرح من الشاشة.',
+    when:'للتأكد إن العميل واقف في القائمة الصح قبل تغيير أي قيمة صوت.',
+    script:'«ممكن نتأكد إن حضرتك شايف في أعلى القائمة «الإعدادات المتقدمة» جوه قسم الصوت.»' },
+  { n:'م٢', x:11, cx:30, y:23.8, title:'اتزان — Balance (القيمة ٠)',
+    what:'يضبط توازن الصوت المسموع من الجانب الأيسر والأيمن من مكبر صوت التلفاز. عند التعيين على «٠» يكون صوت كلا مكبري الصوت في نفس المستوى.',
+    when:'أهم عنصر: عند شكوى «الصوت طالع من ناحية واحدة» — غالبًا الاتزان مايل لجهة.',
+    script:'«لو الصوت طالع من ناحية واحدة بس، ممكن نبص على «اتزان» — لازم يكون على صفر علشان الجهتين يبقوا بنفس المستوى.»' },
+  { n:'م٣', x:11, cx:30, y:36.4, title:'معادل — Equalizer',
+    what:'يضبط الترددات يدويًا (الغليظة والحادة) لتفصيل الصوت حسب رغبة العميل.',
+    when:'عند رغبة العميل في زيادة وضوح الكلام أو تقوية الصوت الغليظ بعد اختيار وضع الصوت.',
+    script:'«من «معادل» ممكن نظبط الترددات — نزوّد الحاد لو الكلام مش واضح أو نزوّد الغليظ لو حضرتك عايز صوت أقوى.»' },
+  { n:'م٤', x:11, cx:30, y:45.4, title:'تطبيق على كل المدخلات',
+    what:'ينسخ نفس إعدادات الصوت على كل المدخلات — الرسيفر، أجهزة HDMI، والتطبيقات.',
+    when:'عند شكوى إن الصوت كويس على مدخل وسيئ على مدخل تاني، بعد ضبط الإعدادات مرة واحدة.',
+    script:'«بعد ما نظبط الصوت، نضغط «تطبيق على كل المدخلات» علشان نفس الإعدادات تشتغل على كل الأجهزة والتطبيقات.»' },
+  { n:'م٥', x:11, cx:30, y:54.0, title:'إعادة الضبط (الصوت)',
+    what:'يرجّع كل إعدادات الصوت لقيم المصنع الافتراضية.',
+    when:'عند تغيير العميل قيم كتير ومش عارف يرجّعها — أسرع حل بدل ضبط كل قيمة يدويًا.',
+    script:'«لو حضرتك غيّرت قيم كتير في الصوت ومش عارف ترجّعها، نضغط «إعادة الضبط» وكل إعدادات الصوت ترجع للمصنع.»' },
+  { n:'م٦', x:11, cx:30, y:68.0, title:'نوع التركيب — الحامل / الحائط',
+    what:'يخبر الشاشة إذا كانت على حامل أو معلّقة على الحائط، فتعدّل الصوت بما يناسب طريقة التركيب. القيمة في الصورة «الحامل».',
+    when:'عند شكوى ضعف أو تغيّر الصوت بعد تعليق الشاشة على الحائط.',
+    script:'«لو الشاشة معلّقة على الحيطة، لازم نغيّر «نوع التركيب» للحائط علشان الصوت يتظبط على الوضع الصح.»' },
+  { n:'م٧', x:11, cx:30, y:80.3, title:'ضبط الصوت التلقائي',
+    what:'مفتاح يوحّد مستوى الصوت تلقائيًا بين القنوات والتطبيقات المختلفة. المفتاح في الصورة مُغلق.',
+    when:'عند شكوى إن الصوت بيعلى ويقل فجأة عند تغيير القناة أو الإعلانات.',
+    script:'«لو الصوت بيعلى ويقل لوحده بين القنوات، ممكن نفتح «ضبط الصوت التلقائي» علشان يوحّد المستوى.»' },
+  { n:'م٨', x:11, cx:30, y:90.0, title:'إعداد صوت تلفاز رقمي — تلقائي',
+    what:'يحدّد صيغة الصوت الرقمي الخارج من الشاشة. القيمة في الصورة «تلقائي».',
+    when:'عند شكوى تقطيع الصوت أو عدم خروج صوت من الساوند بار المتصل بكابل بصري أو HDMI.',
+    script:'«لو الصوت بيتقطع مع الساوند بار، ممكن نجرّب نغيّر «إعداد صوت تلفاز رقمي» من تلقائي لـ PCM ونشوف الفرق.»' }
+];
+
+// ninth: advanced sound settings, page 2 (1378×812)
+const SADV2 = [
+  { n:'ق١', x:11, cx:30, y:10.7, title:'الإعدادات المتقدمة (صوت) — تكملة القائمة',
+    what:'نفس القائمة بعد التمرير لأسفل — تحتوي على إعدادات المزامنة ومخارج الصوت الرقمية.',
+    when:'عند الحاجة لإعدادات المزامنة أو HDMI/eARC — نطلب من العميل التمرير لأسفل في نفس القائمة.',
+    script:'«ممكن حضرتك تنزل لأسفل في نفس القائمة — فيه إعدادات تانية للمزامنة ومخارج الصوت.»' },
+  { n:'ق٢', x:11, cx:30, y:28.1, title:'إعداد صوت تلفاز رقمي — تلقائي',
+    what:'صيغة الصوت الرقمي الخارج من الشاشة (تلقائي / PCM).',
+    when:'عند تقطيع الصوت أو عدم خروج صوت من جهاز موصّل رقميًا.',
+    script:'«ممكن نجرّب نغيّر «إعداد صوت تلفاز رقمي» لـ PCM لو الصوت بيتقطع مع الجهاز الخارجي.»' },
+  { n:'ق٣', x:11, cx:30, y:40.0, title:'طابق الشاشة والصوت — مزامنة الصوت مع الصورة',
+    what:'يضبط تأخير الصوت ليتوافق مع الصورة.',
+    when:'أهم عنصر: عند شكوى «الصوت متأخر عن الصورة» أو «الشفايف مش مع الكلام».',
+    script:'«لو الصوت متأخر عن الصورة، من «طابق الشاشة والصوت» بنظبط المزامنة لحد ما يبقوا مع بعض.»' },
+  { n:'ق٤', x:11, cx:30, y:48.9, title:'تحديد تهيئة صوت إدخال HDMI',
+    what:'يحدّد طريقة معالجة صوت الأجهزة المتصلة بمنافذ HDMI.',
+    when:'عند مشاكل صوت خاصة بجهاز موصّل على HDMI (رسيفر، جهاز ألعاب).',
+    script:'«لو المشكلة مع جهاز موصّل على HDMI، ممكن نظبط تهيئة صوت إدخال HDMI من هنا.»' },
+  { n:'ق٥', x:11, cx:30, y:57.2, title:'مشاركة وضع الصوت للتلفاز',
+    what:'مفتاح يشارك وضع صوت الشاشة مع الأجهزة المتصلة.',
+    when:'عند استفسار العميل عن اختلاف الصوت بين الشاشة والجهاز الخارجي.',
+    script:'«الخيار ده بيشارك وضع صوت الشاشة مع الجهاز المتصل — ممكن نفتحه أو نقفله ونشوف الفرق.»' },
+  { n:'ق٦', x:11, cx:30, y:65.6, title:'مزامن صوت LG',
+    what:'يزامن الصوت تلقائيًا مع أجهزة الصوت من LG المتصلة بالشاشة.',
+    when:'عند استخدام ساوند بار LG وشكوى تأخير أو عدم تزامن الصوت.',
+    script:'«لو الساوند بار LG، ممكن نفتح «مزامن صوت LG» علشان الصوت يتزامن تلقائيًا.»' },
+  { n:'ق٧', x:11, cx:30, y:71.3, title:'إخراج الصوت الرقمي — تلقائي',
+    what:'يحدّد صيغة الإخراج الرقمي للصوت (تلقائي / PCM / Pass-through).',
+    when:'عند عدم خروج صوت من ريسيفر أو ساوند بار موصّل بمخرج رقمي.',
+    script:'«لو مفيش صوت من الريسيفر، ممكن نغيّر «إخراج الصوت الرقمي» لـ PCM ونجرّب.»' },
+  { n:'ق٨', x:11, cx:30, y:83.5, title:'دعم eARC',
+    what:'مفتاح يشغّل قناة إرجاع الصوت المطوّرة على منفذ HDMI للحصول على أفضل جودة صوت مع الساوند بار.',
+    when:'عند توصيل ساوند بار حديث على HDMI eARC وعدم خروج صوت أو ضعف الجودة.',
+    script:'«لو الساوند بار موصّل على منفذ eARC، لازم نتأكد إن «دعم eARC» مفتوح علشان الصوت يطلع بأفضل جودة.»' }
+];
+
+// tenth: general section (1381×811)
+const GEN = [
+  { n:'ع١', x:22, cx:47, y:10.7, title:'عام — عنوان القسم',
+    what:'قسم إعدادات النظام العامة: إمكانية الوصول، خدمة AI، الألعاب، الإعدادات العائلية، القنوات، الشبكة، الأجهزة الخارجية، النظام، وتوفير الطاقة.',
+    when:'عند أي إعداد خارج الصورة والصوت — القنوات، الشبكة، اللغة، الوقت، أو إعادة ضبط المصنع.',
+    script:'«لإعدادات النظام والقنوات والشبكة نختار قسم «عام» من قائمة الإعدادات.»' },
+  { n:'ع٢', x:22, cx:47, y:23.7, title:'إمكانية الوصول',
+    what:'إعدادات المساعدة: التعليق الصوتي، حجم الخط، والتباين العالي.',
+    when:'عند طلب تكبير الخط أو شكوى «الشاشة بتتكلم» لإيقاف التعليق الصوتي.',
+    script:'«من «إمكانية الوصول» بنكبّر الخط أو نوقف التعليق الصوتي.»' },
+  { n:'ع٣', x:22, cx:47, y:32.4, title:'خدمة AI',
+    what:'يعيّن خيارات مفصّلة لوظائف AI: إعدادات سطوع AI، صوت AI برو، ضبط صوتي AI، مساعدة التعرف على الصوت، إعدادات التعرف على الصوت، وتوصية AI.',
+    when:'عند استفسار العميل عن خصائص الذكاء الاصطناعي، أو شكوى إن السطوع أو الصوت بيتغيّر لوحده — غالبًا من خصائص AI.',
+    script:'«لو السطوع أو الصوت بيتغيّر لوحده، ده غالبًا من خصائص AI — ممكن نراجعها من «خدمة AI» ونقفل اللي حضرتك مش محتاجه.»' },
+  { n:'ع٤', x:22, cx:47, y:41.1, title:'محسن الألعاب',
+    what:'إعدادات وضع الألعاب — تقليل زمن الاستجابة وتحسين الصورة والصوت لأجهزة الألعاب.',
+    when:'عند شكوى تأخير الاستجابة مع البلايستيشن أو الإكس بوكس.',
+    script:'«لو حضرتك موصّل جهاز ألعاب، من «محسن الألعاب» بنقلل زمن الاستجابة.»' },
+  { n:'ع٥', x:22, cx:47, y:49.6, title:'الإعدادات العائلية',
+    what:'لبيئة آمنة وصحية لمشاهدة التلفاز: إعدادات حد الاستخدام، وضع مراعاة العين، وضع تحديد مستوى الصوت، وتقرير وقت المشاهدة.',
+    when:'مهم: عند شكوى «الشاشة بتقفل لوحدها» (حد الاستخدام) أو «الألوان مايلة للأصفر» (مراعاة العين) أو «الصوت مش بيعلى لفوق» (تحديد مستوى الصوت).',
+    script:'«الحالة دي غالبًا من «الإعدادات العائلية» — فيها حد الاستخدام ووضع مراعاة العين وتحديد مستوى الصوت. ممكن نراجعها مع بعض.»' },
+  { n:'ع٦', x:22, cx:47, y:58.2, title:'القنوات',
+    what:'البحث التلقائي واليدوي عن القنوات، وترتيبها، وتعديل قائمة القنوات.',
+    when:'عند شكوى «مفيش قنوات» أو «القنوات مش مرتبة» أو بعد تركيب دش أو رسيفر داخلي.',
+    script:'«علشان نعمل بحث عن القنوات نروح لقسم «عام» ومنه «القنوات» ونعمل بحث تلقائي.»' },
+  { n:'ع٧', x:22, cx:47, y:66.8, title:'شبكة',
+    what:'إعدادات الاتصال — واي فاي وكابل شبكة وحالة الاتصال.',
+    when:'أول خطوة في كل شكوى خاصة بالتطبيقات أو البث أو تحديث النظام.',
+    script:'«ممكن نتأكد من الاتصال بالإنترنت من قسم «شبكة» ونشوف الشاشة متصلة ولا لأ.»' },
+  { n:'ع٨', x:22, cx:47, y:75.6, title:'الأجهزة الخارجية',
+    what:'إعدادات الأجهزة المتصلة — HDMI، الريموت العام، وإدارة الأجهزة.',
+    when:'عند شكوى إن جهاز موصّل مش ظاهر أو الريموت مش بيتحكم في الرسيفر.',
+    script:'«لو الجهاز الموصّل مش ظاهر، نراجع «الأجهزة الخارجية» من قسم عام.»' },
+  { n:'ع٩', x:22, cx:47, y:84.2, title:'النظام',
+    what:'اللغة، الموقع، الوقت والمؤقت، السلامة، الإعدادات الإضافية، وإعادة الضبط للإعدادات المبدئية.',
+    when:'عند تغيير اللغة أو ضبط الوقت أو الحاجة لإعادة ضبط المصنع.',
+    script:'«لتغيير اللغة أو الوقت أو إعادة الضبط للمصنع نروح من «عام» لـ«النظام».»' }
+];
+
+// eleventh: system section (1370×810)
+const SYS = [
+  { n:'ز١', x:11, cx:30, y:10.7, title:'النظام — عنوان القائمة',
+    what:'القائمة الفرعية للنظام داخل قسم «عام» — والسهم للرجوع للقائمة السابقة.',
+    when:'للتأكد إن العميل واقف في قائمة النظام قبل أي تغيير — خصوصًا قبل إعادة ضبط المصنع.',
+    script:'«ممكن نتأكد إن حضرتك شايف في أعلى القائمة كلمة «النظام» — يبقى إحنا في المكان الصح.»' },
+  { n:'ز٢', x:11, cx:30, y:23.8, title:'اللغة (Language)',
+    what:'يحدّد لغة القوائم ولغة الصوت ولغة الترجمة.',
+    when:'عند شكوى إن قوائم الشاشة بلغة غير مفهومة، أو طلب تغيير لغة الترجمة.',
+    script:'«لتغيير لغة القوائم نروح «النظام» ومنه «اللغة» ونختار العربية.»' },
+  { n:'ز٣', x:11, cx:30, y:32.5, title:'الموقع',
+    what:'يحدّد بلد الاستخدام — ويؤثر على القنوات والخدمات والتطبيقات المتاحة.',
+    when:'عند شكوى إن تطبيق معيّن مش ظاهر في المتجر أو القنوات مش بتظهر صح.',
+    script:'«لو تطبيق مش ظاهر عند حضرتك، نتأكد إن «الموقع» مضبوط على البلد الصح.»' },
+  { n:'ز٤', x:11, cx:30, y:41.2, title:'الوقت والمؤقت',
+    what:'ضبط الوقت والتاريخ، ومؤقت الإطفاء التلقائي، ومؤقت التشغيل.',
+    when:'مهم: عند شكوى «الشاشة بتقفل لوحدها في وقت معيّن» — غالبًا مؤقت الإطفاء مفعّل.',
+    script:'«لو الشاشة بتقفل لوحدها، ممكن نراجع «الوقت والمؤقت» ونتأكد إن مؤقت الإطفاء مش مفعّل.»' },
+  { n:'ز٥', x:11, cx:30, y:49.9, title:'السلامة',
+    what:'قفل التطبيقات والقنوات والمدخلات بكلمة سر — الرقابة الأبوية.',
+    when:'عند طلب قفل قنوات أو تطبيقات للأطفال، أو شكوى إن قناة مقفولة وطالبة رقم سري.',
+    script:'«لو فيه قناة أو تطبيق طالب رقم سري، ده من «السلامة» — ومنها كمان بنقفل المحتوى غير المناسب للأطفال.»' },
+  { n:'ز٦', x:11, cx:30, y:58.5, title:'إعدادات إضافية',
+    what:'إعدادات متفرقة للنظام — شعار البداية، مؤشر التشغيل، وإعدادات المتجر والعرض.',
+    when:'عند شكوى إن الشاشة بتعرض إعلانات أو بتشتغل في وضع العرض (Store Mode).',
+    script:'«لو الشاشة بتعرض إعلانات أو شغّالة في وضع المعرض، نراجع «إعدادات إضافية» ونحوّلها لوضع الاستخدام المنزلي.»' },
+  { n:'ز٧', x:11, cx:30, y:67.3, title:'إعادة الضبط إلى الإعدادات المبدئية',
+    what:'يرجّع الشاشة بالكامل لإعدادات المصنع — كل الإعدادات والتطبيقات والحسابات تُحذف.',
+    when:'آخر خطوة قبل تسجيل بلاغ في الشكاوى البرمجية — مع تنبيه العميل إن كل بياناته وحساباته هتُحذف.',
+    script:'«الخطوة دي بترجّع الشاشة لإعدادات المصنع بالكامل — كل التطبيقات والحسابات هتتشال ولازم نسجّل الدخول تاني. تحب نعملها؟»' }
+];
+
+// twelfth: additional settings (1377×810)
+const EXTRA = [
+  { n:'ض١', x:9, cx:28, y:10.7, title:'إعدادات إضافية — عنوان القائمة',
+    what:'قائمة فرعية داخل «النظام» فيها خصائص متفرقة للتشغيل والصفحة الرئيسية والمؤشر.',
+    when:'للتأكد إن العميل واقف في القائمة الصح قبل تغيير أي مفتاح.',
+    script:'«ممكن نتأكد إن حضرتك شايف في أعلى القائمة «إعدادات إضافية».»' },
+  { n:'ض٢', x:9, cx:28, y:23.8, title:'البدء السريع+ (مفتاح مفتوح)',
+    what:'يخلي الشاشة تفتح أسرع بعد الإطفاء لأنها تفضل في وضع استعداد جزئي — بيزيد استهلاك الكهرباء قليلًا.',
+    when:'عند شكوى «الشاشة بتاخد وقت تفتح» (نفتحه)، أو شكوى استهلاك كهرباء في وضع الإطفاء (نقفله).',
+    script:'«لو الشاشة بتاخد وقت لحد ما تفتح، ممكن نفتح «البدء السريع+» وهتفتح أسرع.»' },
+  { n:'ض٣', x:9, cx:28, y:32.3, title:'إعدادات الصفحة الرئيسية',
+    what:'يتحكم في محتوى الصفحة الرئيسية وترتيب الصفوف والتوصيات والإعلانات.',
+    when:'عند شكوى إن الصفحة الرئيسية بتفتح تلقائيًا أو مليانة توصيات وإعلانات.',
+    script:'«لو الصفحة الرئيسية بتفتح لوحدها أو مليانة توصيات، ممكن نظبطها من «إعدادات الصفحة الرئيسية».»' },
+  { n:'ض٤', x:9, cx:28, y:41.1, title:'إضاءة الاستمداد (مفتاح مفتوح)',
+    what:'يتحكم في مؤشر الإضاءة الأمامي للشاشة عند التشغيل والإطفاء.',
+    when:'عند شكوى إن فيه لمبة صغيرة منوّرة قدام الشاشة وبتضايق العميل.',
+    script:'«اللمبة الصغيرة اللي قدام الشاشة ممكن نقفلها من «إضاءة الاستمداد».»' },
+  { n:'ض٥', x:9, cx:28, y:49.8, title:'العروض الترويجية على شاشة التوقف (مفتاح مفتوح)',
+    what:'يعرض محتوى ترويجي على شاشة التوقف عند عدم الاستخدام.',
+    when:'مهم: عند شكوى «الشاشة بتعرض إعلانات لوحدها» — نقفل المفتاح ده.',
+    script:'«الإعلانات اللي بتظهر لوحدها من «العروض الترويجية على شاشة التوقف» — ممكن نقفلها من هنا خلاص.»' },
+  { n:'ض٦', x:9, cx:28, y:58.5, title:'خيارات المؤشر',
+    what:'يضبط شكل وسرعة مؤشر الريموت السحري (Magic Remote).',
+    when:'عند شكوى إن المؤشر سريع أو بطيء أو مش ظاهر مع الريموت السحري.',
+    script:'«لو المؤشر سريع أو بطيء على حضرتك، بنظبط سرعته وشكله من «خيارات المؤشر».»' },
+  { n:'ض٧', x:9, cx:28, y:67.3, title:'Live Plus (مفتاح مفتوح)',
+    what:'خدمة تعرض معلومات إضافية عن المحتوى الجاري مشاهدته.',
+    when:'عند شكوى إن فيه معلومات أو إشعارات بتظهر فوق الصورة أثناء المشاهدة.',
+    script:'«المعلومات اللي بتظهر فوق الصورة من خدمة «Live Plus» — ممكن نقفلها.»' },
+  { n:'ض٨', x:9, cx:28, y:75.9, title:'تعليمات الإعدادات (مفتاح مفتوح)',
+    what:'يعرض شرحًا مختصرًا لكل إعداد داخل القوائم (نفس البالونة اللي على اليمين).',
+    when:'مفيد جدًا: نطلب من العميل يسيبه مفتوح علشان يقرأ شرح أي إعداد بنفسه.',
+    script:'«لو حضرتك سايب «تعليمات الإعدادات» مفتوح، الشاشة بتشرح لك كل إعداد لوحدها وانت واقف عليه.»' },
+  { n:'ض٩', x:9, cx:28, y:84.8, title:'مُعرّف الضبط — القيمة ١',
+    what:'رقم تعريف الجهاز المستخدم في التحكم عن طريق الشبكة (IP Control) عند وجود أكثر من شاشة.',
+    when:'في التركيبات التجارية أو عند التحكم في الشاشة بالشبكة.',
+    script:'«الرقم ده بيميّز الشاشة لو فيه أكتر من شاشة متحكم فيها عن طريق الشبكة.»' }
+];
+
+// thirteenth: support section (1377×793)
+const SUP = [
+  { n:'د١', x:22, cx:42, y:10.5, title:'الدعم — عنوان القسم',
+    what:'قسم الدعم داخل قائمة الإعدادات — فيه التحديث والتشخيص الذاتي ومعلومات الجهاز.',
+    when:'عند الحاجة لتحديث البرنامج أو رقم الموديل أو تشخيص مشكلة صورة أو صوت.',
+    script:'«ممكن نروح لقسم «الدعم» من قائمة الإعدادات — منه بنعمل التحديث والتشخيص.»' },
+  { n:'د٢', x:22, cx:42, y:23.5, title:'تحديث البرامج',
+    what:'يبحث عن تحديث لنظام الشاشة ويحمّله عبر الإنترنت.',
+    when:'خطوة أساسية في كل الشكاوى البرمجية: تعليق الشاشة، مشاكل التطبيقات، أو البث.',
+    script:'«ممكن نعمل تحديث للبرنامج من قسم «الدعم» — كتير من المشاكل بتتحل بالتحديث. محتاجين بس الشاشة تكون متصلة بالإنترنت.»' },
+  { n:'د٣', x:22, cx:42, y:32.7, title:'دليل المستخدم',
+    what:'دليل الاستخدام الكامل مدمج داخل الشاشة نفسها.',
+    when:'عند استفسار العميل عن خصية معيّنة — نوجّهه للدليل بدل الورق.',
+    script:'«دليل الاستخدام موجود جوه الشاشة نفسها في قسم «الدعم» — منه حضرتك تقدر تقرأ عن أي خصية.»' },
+  { n:'د٤', x:22, cx:42, y:41.6, title:'المساعدة السريعة',
+    what:'أداة تشخيص سريعة تفحص حالة الشاشة وتعرض خدمات الدعم عن بُعد.',
+    when:'أول أداة نوجّه لها العميل عند شكوى غير واضحة.',
+    script:'«ممكن نفتح «المساعدة السريعة» — بتفحص الشاشة وتقولنا فيه مشكلة إيه.»' },
+  { n:'د٥', x:22, cx:42, y:50.4, title:'التشخيص الذاتي للشاشة',
+    what:'يعرض أنماط اختبار للصورة على الشاشة لتحديد إذا كانت المشكلة في اللوحة أم في المصدر.',
+    when:'مهم جدًا: عند شكوى خطوط أو بقع أو ألوان غريبة — الاختبار بيفرّق بين عيب اللوحة وعيب الرسيفر أو الكابل.',
+    script:'«هنعمل اختبار للصورة من «التشخيص الذاتي للشاشة» — لو الصورة في الاختبار سليمة يبقى المشكلة من الجهاز الموصّل مش من الشاشة.»' },
+  { n:'د٦', x:22, cx:42, y:59.3, title:'التشخيص الذاتي للصوت',
+    what:'يشغّل نغمة اختبار من سماعات الشاشة لتحديد إذا كانت المشكلة في السماعات أم في المصدر.',
+    when:'عند شكوى تشويش أو عدم خروج صوت — نفرّق بين عيب السماعة وعيب المصدر أو إعدادات المخرج.',
+    script:'«هنعمل اختبار صوت من «التشخيص الذاتي للصوت» — لو النغمة طلعت سليمة يبقى السماعات سليمة والمشكلة من المصدر أو الإعدادات.»' },
+  { n:'د٧', x:22, cx:42, y:68.2, title:'محسن الذاكرة',
+    what:'يفرّغ ذاكرة الشاشة من العمليات المتراكمة لتحسين سرعة الاستجابة.',
+    when:'عند شكوى بطء الشاشة أو تعليق التطبيقات.',
+    script:'«لو الشاشة بقت بطيئة، ممكن نشغّل «محسن الذاكرة» وهيفرّغ الذاكرة ويحسّن السرعة.»' },
+  { n:'د٨', x:22, cx:42, y:77.6, title:'وضع الاستخدام المنزلي / العرض التوضيحي',
+    what:'يحدّد إذا كانت الشاشة في وضع الاستخدام المنزلي أو وضع العرض في المعرض (Store/Demo). القيمة في الصورة «وضع الاستخدام المنزلي».',
+    when:'مهم: عند شكوى إن الشاشة بتعرض فيديو ترويجي أو بتغيّر إعداداتها لوحدها — غالبًا على وضع العرض التوضيحي.',
+    script:'«لو الشاشة بتعرض فيديو دعائي أو بترجّع إعداداتها لوحدها، لازم نتأكد إنها على «وضع الاستخدام المنزلي» مش وضع المعرض.»' },
+  { n:'د٩', x:22, cx:42, y:86.5, title:'إعدادات التحكم في IP',
+    what:'إعدادات التحكم في الشاشة عبر الشبكة المحلية — للاستخدامات التجارية وأنظمة التحكم.',
+    when:'في التركيبات التجارية فقط — لا يُنصح بتغييرها للعميل العادي.',
+    script:'«الإعدادات دي خاصة بالتحكم في الشاشة عن طريق الشبكة — مش محتاجينها في الاستخدام المنزلي.»' }
+];
+
+// fourteenth: support section, scrolled (1381×818)
+const SUP2 = [
+  { n:'هـ١', x:22, cx:42, y:75.9, title:'معلومات التلفاز',
+    what:'يعرض رقم الموديل والرقم التسلسلي (السيريال) وإصدار البرنامج الحالي.',
+    when:'أهم عنصر عند تسجيل بلاغ: من هنا نأخذ رقم الموديل والسيريال من العميل بدقة.',
+    script:'«محتاج رقم الموديل والسيريال — من قسم «الدعم» نختار «معلومات التلفاز» وحضرتك تقرالي الأرقام اللي ظاهرة.»' },
+  { n:'هـ٢', x:22, cx:42, y:85.2, title:'خصوصية والشروط',
+    what:'للتحقق من الشروط والأحكام والمعلومات القانونية والموافقات الخاصة بالخصوصية.',
+    when:'عند شكوى إن تطبيق أو خدمة مش شغّالة لأن العميل مش موافق على الشروط، أو عند طلب سحب الموافقات.',
+    script:'«لو خدمة مش شغّالة، ممكن تكون الموافقة على الشروط ناقصة — نراجعها من «خصوصية والشروط».»' }
+];
+
+class Component extends DCLogic {
+  state = { selPanel: null, selMenu: null, selMode: null, selAdv: null, selSnd: null, selSmode: null, selSout: null, selA1: null, selA2: null, selGen: null, selSys: null, selEx: null, selSup: null, selSup2: null };
+  pickPanel(n) { this.setState({ selPanel: n }); }
+  pickMenu(n) { this.setState({ selMenu: n }); }
+  pickMode(n) { this.setState({ selMode: n }); }
+  pickAdv(n) { this.setState({ selAdv: n }); }
+  pickSnd(n) { this.setState({ selSnd: n }); }
+  pickSmode(n) { this.setState({ selSmode: n }); }
+  pickSout(n) { this.setState({ selSout: n }); }
+  pickA1(n) { this.setState({ selA1: n }); }
+  pickA2(n) { this.setState({ selA2: n }); }
+  pickGen(n) { this.setState({ selGen: n }); }
+  pickSys(n) { this.setState({ selSys: n }); }
+  pickEx(n) { this.setState({ selEx: n }); }
+  pickSup(n) { this.setState({ selSup: n }); }
+  pickSup2(n) { this.setState({ selSup2: n }); }
+  crop(sel) {
+    if (!sel) return null;
+    const PW = 250, PH = 160, W = 980;
+    const nat = sel.img.indexOf('tv-extra') >= 0 ? [1377, 810] : sel.img.indexOf('tv-support2') >= 0 ? [1381, 818] : sel.img.indexOf('tv-support') >= 0 ? [1377, 793] : sel.img.indexOf('sound-adv1') >= 0 ? [1378, 817] : sel.img.indexOf('sound-adv2') >= 0 ? [1378, 812] : sel.img.indexOf('tv-general') >= 0 ? [1381, 811] : sel.img.indexOf('tv-system') >= 0 ? [1370, 810] : sel.img.indexOf('sound-output') >= 0 ? [1367, 808] : sel.img.indexOf('sound-mode') >= 0 ? [1381, 806] : sel.img.indexOf('sound-settings') >= 0 ? [1376, 797] : sel.img.indexOf('advanced-settings') >= 0 ? [1381, 812] : sel.img.indexOf('picture-mode') >= 0 ? [1370, 806] : (sel.img.indexOf('all-settings') >= 0 ? [1376, 816] : [1380, 816]);
+    const H = W * nat[1] / nat[0];
+    const cx = (sel.cx === undefined ? sel.x : sel.cx), cy = (sel.cy === undefined ? sel.y : sel.cy);
+    return React.createElement('div', {
+      key: 'crop-' + sel.n,
+      style: { position:'relative', width:PW+'px', height:PH+'px', borderRadius:'10px', border:'2px solid #A50034', background:'#111314', overflow:'hidden' }
+    }, [
+      React.createElement('img', { key:'i', src: sel.img, alt:'', style:{ position:'absolute', left:(PW/2-(cx/100)*W)+'px', top:(PH/2-(cy/100)*H)+'px', width:W+'px', height:H+'px', display:'block' } }),
+      React.createElement('div', { key:'r', style:{ position:'absolute', left:'50%', top:'50%', transform:'translate(-50%,-50%)', width:'34px', height:'34px', borderRadius:'50%', border:'3px solid #ff2f6a', boxShadow:'0 0 0 2px rgba(0,0,0,.6)' } })
+    ]);
+  }
+  renderVals() {
+    const PANEL = SPOTS.map(o => Object.assign({ img: 'assets/tv-settings-panel.png' }, o));
+    const MENUI = MENU.map(o => Object.assign({ img: 'assets/tv-all-settings.png' }, o));
+    const selP = PANEL.find(o => o.n === this.state.selPanel) || null;
+    const selM = MENUI.find(o => o.n === this.state.selMenu) || null;
+    const MODEI = PMODE.map(o => Object.assign({ img: 'assets/tv-picture-mode.png' }, o));
+    const selD = MODEI.find(o => o.n === this.state.selMode) || null;
+    const ADVI = ADV.map(o => Object.assign({ img: 'assets/tv-advanced-settings.png' }, o));
+    const selA = ADVI.find(o => o.n === this.state.selAdv) || null;
+    const SNDI = SND.map(o => Object.assign({ img: 'assets/tv-sound-settings.png' }, o));
+    const selS = SNDI.find(o => o.n === this.state.selSnd) || null;
+    const SMI = SMODE.map(o => Object.assign({ img: 'assets/tv-sound-mode.png' }, o));
+    const selSM = SMI.find(o => o.n === this.state.selSmode) || null;
+    const SOI = SOUT.map(o => Object.assign({ img: 'assets/tv-sound-output.png' }, o));
+    const selSO = SOI.find(o => o.n === this.state.selSout) || null;
+    const A1I = SADV1.map(o => Object.assign({ img: 'assets/tv-sound-adv1.png' }, o));
+    const selA1 = A1I.find(o => o.n === this.state.selA1) || null;
+    const A2I = SADV2.map(o => Object.assign({ img: 'assets/tv-sound-adv2.png' }, o));
+    const selA2 = A2I.find(o => o.n === this.state.selA2) || null;
+    const GENI = GEN.map(o => Object.assign({ img: 'assets/tv-general.png' }, o));
+    const selGen = GENI.find(o => o.n === this.state.selGen) || null;
+    const SYSI = SYS.map(o => Object.assign({ img: 'assets/tv-system.png' }, o));
+    const selSys = SYSI.find(o => o.n === this.state.selSys) || null;
+    const mk = (arr, key, pick) => arr.map(it => {
+      const on = this.state[key] === it.n;
+      return { pageBack: () => { if (history.length > 1) history.back(); else location.href = 'Installation Guide Home.dc.html'; },
+        n: it.n,
+        title: it.title,
+        style: 'position:absolute;left:' + it.x + '%;top:' + it.y + '%;transform:translate(-50%,-50%);' +
+          'width:24px;height:24px;border-radius:50%;background:transparent;border:2px solid ' + (on ? '#fff' : '#ff2f6a') +
+          ';color:' + (on ? '#fff' : '#ff2f6a') + ";font-family:'Cairo',sans-serif;font-weight:900;font-size:10px;" +
+          'text-shadow:0 0 4px rgba(0,0,0,.95),0 0 2px rgba(0,0,0,.95);' +
+          'cursor:pointer;display:flex;align-items:center;justify-content:center;padding:0;' +
+          (on ? 'animation:pulseRing 1.6s ease infinite;' : ''),
+        listStyle: 'text-align:right;padding:14px 16px;border-radius:12px;border:1px solid ' +
+          (on ? '#A50034' : '#e3e0d8') + ';background:' + (on ? '#fff5f7' : '#fff') +
+          ";cursor:pointer;font-family:'IBM Plex Sans Arabic',sans-serif;width:100%;",
+        open: () => pick(it.n)
+      };
+    });
+    const EXI = EXTRA.map(o => Object.assign({ img: 'assets/tv-extra.png' }, o));
+    const selEx = EXI.find(o => o.n === this.state.selEx) || null;
+    const SUPI = SUP.map(o => Object.assign({ img: 'assets/tv-support.png' }, o));
+    const selSup = SUPI.find(o => o.n === this.state.selSup) || null;
+    const SUP2I = SUP2.map(o => Object.assign({ img: 'assets/tv-support2.png' }, o));
+    const selSup2 = SUP2I.find(o => o.n === this.state.selSup2) || null;
+    const blank = { n:'', title:'', what:'', when:'', script:'' };
+    return {
+      hotspots: SPOTS.map(s => {
+        const on = this.state.selPanel === s.n;
+        return {
+          n: s.n,
+          title: s.title,
+          style: 'position:absolute;left:' + s.x + '%;top:' + s.y + '%;transform:translate(-50%,-50%);' +
+            'width:20px;height:20px;border-radius:50%;background:transparent;border:2px solid ' + (on ? '#fff' : '#ff2f6a') +
+            ';color:' + (on ? '#fff' : '#ff2f6a') + ";font-family:'Cairo',sans-serif;font-weight:900;font-size:11px;" +
+            'text-shadow:0 0 4px rgba(0,0,0,.95),0 0 2px rgba(0,0,0,.95);' +
+            'cursor:pointer;display:flex;align-items:center;justify-content:center;padding:0;' +
+            (on ? 'animation:pulseRing 1.6s ease infinite;' : ''),
+          listStyle: 'text-align:right;padding:14px 16px;border-radius:12px;border:1px solid ' +
+            (on ? '#A50034' : '#e3e0d8') + ';background:' + (on ? '#fff5f7' : '#fff') +
+            ";cursor:pointer;font-family:'IBM Plex Sans Arabic',sans-serif;width:100%;",
+          open: () => this.pickPanel(s.n)
+        };
+      }),
+      menuSpots: MENU.map(s => {
+        const on = this.state.selMenu === s.n;
+        return {
+          n: s.n,
+          title: s.title,
+          style: 'position:absolute;left:' + s.x + '%;top:' + s.y + '%;transform:translate(-50%,-50%);' +
+            'width:20px;height:20px;border-radius:50%;background:transparent;border:2px solid ' + (on ? '#fff' : '#ff2f6a') +
+            ';color:' + (on ? '#fff' : '#ff2f6a') + ";font-family:'Cairo',sans-serif;font-weight:900;font-size:11px;" +
+            'text-shadow:0 0 4px rgba(0,0,0,.95),0 0 2px rgba(0,0,0,.95);' +
+            'cursor:pointer;display:flex;align-items:center;justify-content:center;padding:0;' +
+            (on ? 'animation:pulseRing 1.6s ease infinite;' : ''),
+          listStyle: 'text-align:right;padding:14px 16px;border-radius:12px;border:1px solid ' +
+            (on ? '#A50034' : '#e3e0d8') + ';background:' + (on ? '#fff5f7' : '#fff') +
+            ";cursor:pointer;font-family:'IBM Plex Sans Arabic',sans-serif;width:100%;",
+          open: () => this.pickMenu(s.n)
+        };
+      }),
+      hasSelPanel: !!selP,
+      selPanelItem: selP || blank,
+      panelCrop: this.crop(selP),
+      hasSelMenu: !!selM,
+      selMenuItem: selM || blank,
+      menuCrop: this.crop(selM),
+      clearPanel: () => this.setState({ selPanel: null }),
+      clearMenu: () => this.setState({ selMenu: null }),
+      modeSpots: PMODE.map(s => {
+        const on = this.state.selMode === s.n;
+        return {
+          n: s.n,
+          title: s.title,
+          style: 'position:absolute;left:' + s.x + '%;top:' + s.y + '%;transform:translate(-50%,-50%);' +
+            'width:20px;height:20px;border-radius:50%;background:transparent;border:2px solid ' + (on ? '#fff' : '#ff2f6a') +
+            ';color:' + (on ? '#fff' : '#ff2f6a') + ";font-family:'Cairo',sans-serif;font-weight:900;font-size:11px;" +
+            'text-shadow:0 0 4px rgba(0,0,0,.95),0 0 2px rgba(0,0,0,.95);' +
+            'cursor:pointer;display:flex;align-items:center;justify-content:center;padding:0;' +
+            (on ? 'animation:pulseRing 1.6s ease infinite;' : ''),
+          listStyle: 'text-align:right;padding:14px 16px;border-radius:12px;border:1px solid ' +
+            (on ? '#A50034' : '#e3e0d8') + ';background:' + (on ? '#fff5f7' : '#fff') +
+            ";cursor:pointer;font-family:'IBM Plex Sans Arabic',sans-serif;width:100%;",
+          open: () => this.pickMode(s.n)
+        };
+      }),
+      hasSelMode: !!selD,
+      selModeItem: selD || blank,
+      modeCrop: this.crop(selD),
+      clearMode: () => this.setState({ selMode: null }),
+      advSpots: ADV.map(s => {
+        const on = this.state.selAdv === s.n;
+        return {
+          n: s.n,
+          title: s.title,
+          style: 'position:absolute;left:' + s.x + '%;top:' + s.y + '%;transform:translate(-50%,-50%);' +
+            'width:24px;height:24px;border-radius:50%;background:transparent;border:2px solid ' + (on ? '#fff' : '#ff2f6a') +
+            ';color:' + (on ? '#fff' : '#ff2f6a') + ";font-family:'Cairo',sans-serif;font-weight:900;font-size:10px;" +
+            'text-shadow:0 0 4px rgba(0,0,0,.95),0 0 2px rgba(0,0,0,.95);' +
+            'cursor:pointer;display:flex;align-items:center;justify-content:center;padding:0;' +
+            (on ? 'animation:pulseRing 1.6s ease infinite;' : ''),
+          listStyle: 'text-align:right;padding:14px 16px;border-radius:12px;border:1px solid ' +
+            (on ? '#A50034' : '#e3e0d8') + ';background:' + (on ? '#fff5f7' : '#fff') +
+            ";cursor:pointer;font-family:'IBM Plex Sans Arabic',sans-serif;width:100%;",
+          open: () => this.pickAdv(s.n)
+        };
+      }),
+      hasSelAdv: !!selA,
+      selAdvItem: selA || blank,
+      advCrop: this.crop(selA),
+      clearAdv: () => this.setState({ selAdv: null }),
+      sndSpots: SND.map(s => {
+        const on = this.state.selSnd === s.n;
+        return {
+          n: s.n,
+          title: s.title,
+          style: 'position:absolute;left:' + s.x + '%;top:' + s.y + '%;transform:translate(-50%,-50%);' +
+            'width:24px;height:24px;border-radius:50%;background:transparent;border:2px solid ' + (on ? '#fff' : '#ff2f6a') +
+            ';color:' + (on ? '#fff' : '#ff2f6a') + ";font-family:'Cairo',sans-serif;font-weight:900;font-size:10px;" +
+            'text-shadow:0 0 4px rgba(0,0,0,.95),0 0 2px rgba(0,0,0,.95);' +
+            'cursor:pointer;display:flex;align-items:center;justify-content:center;padding:0;' +
+            (on ? 'animation:pulseRing 1.6s ease infinite;' : ''),
+          listStyle: 'text-align:right;padding:14px 16px;border-radius:12px;border:1px solid ' +
+            (on ? '#A50034' : '#e3e0d8') + ';background:' + (on ? '#fff5f7' : '#fff') +
+            ";cursor:pointer;font-family:'IBM Plex Sans Arabic',sans-serif;width:100%;",
+          open: () => this.pickSnd(s.n)
+        };
+      }),
+      hasSelSnd: !!selS,
+      selSndItem: selS || blank,
+      sndCrop: this.crop(selS),
+      clearSnd: () => this.setState({ selSnd: null }),
+      smodeSpots: SMODE.map(s2 => {
+        const on = this.state.selSmode === s2.n;
+        return {
+          n: s2.n,
+          title: s2.title,
+          style: 'position:absolute;left:' + s2.x + '%;top:' + s2.y + '%;transform:translate(-50%,-50%);' +
+            'width:24px;height:24px;border-radius:50%;background:transparent;border:2px solid ' + (on ? '#fff' : '#ff2f6a') +
+            ';color:' + (on ? '#fff' : '#ff2f6a') + ";font-family:'Cairo',sans-serif;font-weight:900;font-size:10px;" +
+            'text-shadow:0 0 4px rgba(0,0,0,.95),0 0 2px rgba(0,0,0,.95);' +
+            'cursor:pointer;display:flex;align-items:center;justify-content:center;padding:0;' +
+            (on ? 'animation:pulseRing 1.6s ease infinite;' : ''),
+          listStyle: 'text-align:right;padding:14px 16px;border-radius:12px;border:1px solid ' +
+            (on ? '#A50034' : '#e3e0d8') + ';background:' + (on ? '#fff5f7' : '#fff') +
+            ";cursor:pointer;font-family:'IBM Plex Sans Arabic',sans-serif;width:100%;",
+          open: () => this.pickSmode(s2.n)
+        };
+      }),
+      hasSelSmode: !!selSM,
+      selSmodeItem: selSM || blank,
+      smodeCrop: this.crop(selSM),
+      clearSmode: () => this.setState({ selSmode: null }),
+      soutSpots: SOUT.map(s3 => {
+        const on = this.state.selSout === s3.n;
+        return {
+          n: s3.n,
+          title: s3.title,
+          style: 'position:absolute;left:' + s3.x + '%;top:' + s3.y + '%;transform:translate(-50%,-50%);' +
+            'width:24px;height:24px;border-radius:50%;background:transparent;border:2px solid ' + (on ? '#fff' : '#ff2f6a') +
+            ';color:' + (on ? '#fff' : '#ff2f6a') + ";font-family:'Cairo',sans-serif;font-weight:900;font-size:10px;" +
+            'text-shadow:0 0 4px rgba(0,0,0,.95),0 0 2px rgba(0,0,0,.95);' +
+            'cursor:pointer;display:flex;align-items:center;justify-content:center;padding:0;' +
+            (on ? 'animation:pulseRing 1.6s ease infinite;' : ''),
+          listStyle: 'text-align:right;padding:14px 16px;border-radius:12px;border:1px solid ' +
+            (on ? '#A50034' : '#e3e0d8') + ';background:' + (on ? '#fff5f7' : '#fff') +
+            ";cursor:pointer;font-family:'IBM Plex Sans Arabic',sans-serif;width:100%;",
+          open: () => this.pickSout(s3.n)
+        };
+      }),
+      hasSelSout: !!selSO,
+      selSoutItem: selSO || blank,
+      soutCrop: this.crop(selSO),
+      clearSout: () => this.setState({ selSout: null }),
+      a1Spots: mk(SADV1, 'selA1', n => this.pickA1(n)),
+      hasSelA1: !!selA1, selA1Item: selA1 || blank, a1Crop: this.crop(selA1),
+      clearA1: () => this.setState({ selA1: null }),
+      a2Spots: mk(SADV2, 'selA2', n => this.pickA2(n)),
+      hasSelA2: !!selA2, selA2Item: selA2 || blank, a2Crop: this.crop(selA2),
+      clearA2: () => this.setState({ selA2: null }),
+      genSpots: mk(GEN, 'selGen', n => this.pickGen(n)),
+      hasSelGen: !!selGen, selGenItem: selGen || blank, genCrop: this.crop(selGen),
+      clearGen: () => this.setState({ selGen: null }),
+      sysSpots: mk(SYS, 'selSys', n => this.pickSys(n)),
+      hasSelSys: !!selSys, selSysItem: selSys || blank, sysCrop: this.crop(selSys),
+      clearSys: () => this.setState({ selSys: null }),
+      exSpots: mk(EXTRA, 'selEx', n => this.pickEx(n)),
+      hasSelEx: !!selEx, selExItem: selEx || blank, exCrop: this.crop(selEx),
+      clearEx: () => this.setState({ selEx: null }),
+      supSpots: mk(SUP, 'selSup', n => this.pickSup(n)),
+      hasSelSup: !!selSup, selSupItem: selSup || blank, supCrop: this.crop(selSup),
+      clearSup: () => this.setState({ selSup: null }),
+      sup2Spots: mk(SUP2, 'selSup2', n => this.pickSup2(n)),
+      hasSelSup2: !!selSup2, selSup2Item: selSup2 || blank, sup2Crop: this.crop(selSup2),
+      clearSup2: () => this.setState({ selSup2: null })
+
+    };
+  }
+}
+</script>
+</body>
+</html>

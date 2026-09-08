@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script>
+(function(){
+  var KEY = 'csGuideAuth_v1';
+  var USER = 'agent';
+  var PASS = 'LGE@2026';
+  function authed(){ try { return localStorage.getItem(KEY) === '1'; } catch(e){ return false; } }
+  if (authed()) return;
+  var u = window.prompt('اسم المستخدم / Username:');
+  var p = window.prompt('كلمة المرور / Password:');
+  if (u === USER && p === PASS) {
+    try { localStorage.setItem(KEY, '1'); } catch(e){}
+  } else {
+    window.stop();
+    document.open();
+    document.write('<div style="font-family:Tahoma,Arial,sans-serif;text-align:center;margin-top:80px;font-size:22px;color:#c00;">تم رفض الدخول<br>Access Denied</div>');
+    document.close();
+  }
+})();
+</script>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<template id="__bundler_thumbnail"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><rect width="200" height="200" fill="#111314"/><rect x="44" y="52" width="112" height="96" rx="10" fill="none" stroke="#A50034" stroke-width="11"/><rect x="66" y="86" width="68" height="10" rx="5" fill="#f0a8bd"/><rect x="66" y="110" width="44" height="10" rx="5" fill="#f0a8bd"/><rect x="52" y="34" width="12" height="30" rx="6" fill="#A50034"/><rect x="136" y="34" width="12" height="30" rx="6" fill="#A50034"/></svg></template>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  body { margin: 0; background: #f4f3ef; }
+  a { color: #A50034; text-decoration: none; }
+  a:hover { color: #7A0027; }
+</style>
+</helmet>
+<div dir="rtl" style="min-height:100vh;background:#f4f3ef;color:#191a1c;font-family:'IBM Plex Sans Arabic',system-ui,sans-serif;">
+
+  <div style="padding:14px 28px;background:#111314;color:#f4f3ef;display:flex;align-items:center;justify-content:space-between;gap:14px;">
+    <div style="display:flex;align-items:center;gap:14px;">
+      <div style="width:10px;height:34px;border-radius:2px;background:#A50034;"></div>
+      <div style="display:flex;flex-direction:column;gap:2px;">
+        <div style="font-family:'Cairo',sans-serif;font-weight:700;font-size:19px;">لا يوجد كباستي — <span dir="ltr" style="unicode-bidi:isolate;">No Capacity Process</span></div>
+        <div style="font-size:12.5px;color:#9ea4a8;">خاص ببلاغات التركيب · لكل المنتجات</div>
+      </div>
+    </div>
+    <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;"><button onClick="{{ goBack }}" type="button" style="padding:8px 16px;border-radius:8px;border:1px solid #3a4043;background:transparent;color:#e4e7e9;font-family:'IBM Plex Sans Arabic',system-ui,sans-serif;font-size:13.5px;cursor:pointer;white-space:nowrap;white-space:nowrap;flex:none;">رجوع</button><a href="Installation Guide Home.dc.html" style="padding:8px 16px;border-radius:8px;border:1px solid #3a4043;color:#f0a8bd;font-size:13.5px;text-decoration:none;white-space:nowrap;white-space:nowrap;flex:none;">الرئيسية</a></div>
+      <a href="Service Fees Table.dc.html" style="padding:8px 16px;border-radius:8px;border:1px solid #3a4043;color:#f0a8bd;font-size:13px;text-decoration:none;white-space:nowrap;flex:none;" style-hover="background:#22282a;">جدول تكاليف الصيانة</a>
+  </div>
+
+  <div style="max-width:960px;margin:0 auto;padding:32px 28px 70px;display:flex;flex-direction:column;gap:20px;">
+
+    <div style="background:#fff5f7;border:1px solid #f0c2ce;border-radius:14px;padding:24px 26px;">
+      <div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:17px;color:#A50034;margin-bottom:12px;">متى نتبع هذا المسار؟</div>
+      <div style="font-size:15.5px;line-height:1.95;margin-bottom:14px;">إذا تواصل معك العميل بخصوص تسجيل بلاغ تركيب واعتذرنا له لأحد الأسباب التالية:</div>
+      <div style="display:grid;gap:10px;">
+        <div style="padding:14px 18px;border-radius:10px;background:#fff;border:1px solid #f0c2ce;font-size:15.5px;line-height:1.85;">لا يوجد مواعيد متاحة على السيستم.</div>
+        <div style="padding:14px 18px;border-radius:10px;background:#fff;border:1px solid #f0c2ce;font-size:15.5px;line-height:1.85;">أو لا توجد مراكز متاحة.</div>
+        <div style="padding:14px 18px;border-radius:10px;background:#fff;border:1px solid #f0c2ce;font-size:15.5px;line-height:1.85;">أو في حالة وجود طلب <strong dir="ltr" style="unicode-bidi:isolate;">Reclaim</strong> والمركز غير ظاهر على السيستم.</div>
+      </div>
+    </div>
+
+    <div style="background:#fff;border:1px solid #e3e0d8;border-radius:14px;padding:28px;">
+      <div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:20px;margin-bottom:20px;">يتم اتباع الآتي</div>
+      <div style="display:grid;gap:14px;">
+        <div style="display:flex;gap:16px;padding:18px 20px;border-radius:12px;background:#fbfaf7;border:1px solid #e9e6de;">
+          <div style="width:28px;height:28px;flex:none;border-radius:8px;background:#A50034;color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Cairo',sans-serif;font-weight:900;font-size:14px;">١</div>
+          <div style="font-size:15.5px;line-height:1.95;">يتم <strong>تسجيل بيانات العميل بالكامل</strong> والكتابة داخل الاستفسار عن سبب عدم إمكانية تسجيل بلاغ التركيب.</div>
+        </div>
+        <div style="display:flex;gap:16px;padding:18px 20px;border-radius:12px;background:#fbfaf7;border:1px solid #e9e6de;">
+          <div style="width:28px;height:28px;flex:none;border-radius:8px;background:#A50034;color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Cairo',sans-serif;font-weight:900;font-size:14px;">٢</div>
+          <div style="font-size:15.5px;line-height:1.95;">يتم اختيار <strong dir="ltr" style="unicode-bidi:isolate;">Symptom</strong> الذي كان من المفترض تسجيله داخل البلاغ.</div>
+        </div>
+        <div style="display:flex;gap:16px;padding:18px 20px;border-radius:12px;background:#fbfaf7;border:1px solid #e9e6de;">
+          <div style="width:28px;height:28px;flex:none;border-radius:8px;background:#A50034;color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Cairo',sans-serif;font-weight:900;font-size:14px;">٣</div>
+          <div style="display:flex;flex-direction:column;gap:10px;font-size:15.5px;line-height:1.95;">
+            <div>يتم عمل تعيين <strong dir="ltr" style="unicode-bidi:isolate;">(Assign)</strong> في خانة <strong dir="ltr" style="unicode-bidi:isolate;">Call Back Agent</strong> على <strong dir="ltr" style="unicode-bidi:isolate;">Capacity Availability</strong>.</div>
+            <div style="padding:12px 16px;border-radius:10px;background:#fff;border:1px solid #e9e6de;">يقوم فريق الـ <strong dir="ltr" style="unicode-bidi:isolate;">Service Network</strong> بمراجعة الاستفسارات ومحاولة فتح المواعيد وإظهار المركز.</div>
+            <div style="padding:12px 16px;border-radius:10px;background:#fff;border:1px solid #e9e6de;">ثم بعد ذلك يقوم بتحويل الاستفسار من <strong dir="ltr" style="unicode-bidi:isolate;">No Capacity Process</strong> إلى <strong>Alshaima</strong>.</div>
+          </div>
+        </div>
+        <div style="display:flex;gap:16px;padding:18px 20px;border-radius:12px;background:#fff5f7;border:1px solid #f0c2ce;">
+          <div style="width:28px;height:28px;flex:none;border-radius:8px;background:#A50034;color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Cairo',sans-serif;font-weight:900;font-size:14px;">٤</div>
+          <div style="display:flex;flex-direction:column;gap:10px;font-size:15.5px;line-height:1.95;">
+            <div>سيتم الاتصال بالعميل من خلال قسم الـ <strong dir="ltr" style="unicode-bidi:isolate;">Schedule Complain</strong> <strong style="color:#A50034;">خلال اليوم</strong>.</div>
+            <div style="padding:12px 16px;border-radius:10px;background:#fff;border:1px solid #f0c2ce;">إذا كان البلاغ تركيب يتم اختيار <strong dir="ltr" style="unicode-bidi:isolate;">Delivery/Installation : Installation schedule Check and Change visit time</strong>.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="background:#1c1a1b;color:#f6f1f2;border-radius:14px;padding:28px;">
+      <div style="font-size:12.5px;color:#f0a8bd;margin-bottom:16px;font-weight:600;">الاسكربت — اقرأ للعميل</div>
+      <div style="display:grid;gap:12px;">
+        <div style="padding:16px 20px;border-radius:12px;background:#282526;">
+          <div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:14px;color:#f0a8bd;margin-bottom:8px;">الموظف</div>
+          <div style="font-size:16px;line-height:2;">تمام يافندم، أنا بعتذر لحضرتك هو للأسف غير متاح مواعيد لتسجيل الطلب، وأنا سجلت لحضرتك طلب للقسم المختص لتوفير الميعاد لحضرتك، وأستأذن حضرتك انتظار من القسم المختص لتأكيد موعد الزيارة مع حضرتك.</div>
+        </div>
+        <div style="padding:16px 20px;border-radius:12px;background:#22201f;">
+          <div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:14px;color:#9ea4a8;margin-bottom:8px;">العميل</div>
+          <div style="font-size:16px;line-height:2;">طيب هيكلموني إمتى؟</div>
+        </div>
+        <div style="padding:16px 20px;border-radius:12px;background:#282526;">
+          <div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:14px;color:#f0a8bd;margin-bottom:8px;">الموظف</div>
+          <div style="font-size:16px;line-height:2;">خلال اليوم يافندم.</div>
+        </div>
+        <div style="padding:16px 20px;border-radius:12px;background:#22201f;">
+          <div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:14px;color:#9ea4a8;margin-bottom:8px;">العميل</div>
+          <div style="font-size:16px;line-height:2;">خلاص تمام، شكرًا.</div>
+        </div>
+      </div>
+    </div>
+
+    <div style="background:#fff;border:1px solid #e3e0d8;border-radius:14px;padding:28px;">
+      <div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:20px;margin-bottom:18px;">ملحوظات هامة</div>
+      <div style="display:grid;gap:12px;">
+        <div style="padding:16px 20px;border-radius:12px;background:#fbfaf7;border:1px solid #e9e6de;font-size:15.5px;line-height:1.95;">في حالة تواصل العميل بعد تسجيل الطلب وأفاد بأنه يريد إضافة موديل <strong dir="ltr" style="unicode-bidi:isolate;">(Model)</strong> أو رقم إضافي — يتم إضافة ذلك في السيستم ويتم عمل تحديث داخل الاستفسار المفتوح.</div>
+        <div style="padding:16px 20px;border-radius:12px;background:#fbfaf7;border:1px solid #e9e6de;font-size:15.5px;line-height:1.95;">في حالة تواصل العميل ويريد إلغاء البلاغ — يتم غلق الاستفسار وتحديث ذلك داخل الاستفسار قبل غلقه.</div>
+        <div style="padding:16px 20px;border-radius:12px;background:#fff5f7;border:1px solid #f0c2ce;font-size:15.5px;line-height:1.95;">في حال تواصل العميل معنا بعد الساعة <strong dir="ltr" style="unicode-bidi:isolate;">5:30</strong> مساءً أو يوم الجمعة — سوف نقوم بإبلاغ العميل بأننا سنتابع معه غدًا للتأكد من موعد الزيارة.</div>
+      </div>
+    </div>
+
+    <div style="background:#fff;border:1px solid #e3e0d8;border-radius:14px;padding:28px;border-top:4px solid #A50034;">
+      <div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:19px;color:#A50034;margin-bottom:12px;">ملحوظة خاصة بتيم الاسكادول وكوميبلين</div>
+      <div style="font-size:15.5px;line-height:1.95;">عند غلق الاستفسار يتم اختيار <strong dir="ltr" style="unicode-bidi:isolate;">Call code : Call back</strong>.</div>
+    </div>
+
+  </div>
+</div>
+
+<div dir="rtl" style="background:#f4f3ef;padding:8px 28px 48px;display:flex;justify-content:center;font-family:'IBM Plex Sans Arabic',system-ui,sans-serif;">
+  <a href="Installation Guide Home.dc.html" style="display:inline-flex;align-items:center;gap:10px;padding:14px 30px;border-radius:12px;background:#111314;color:#f4f3ef;font-family:'Cairo',sans-serif;font-weight:700;font-size:15px;" style-hover="background:#A50034;color:#fff;">← العودة للصفحة الرئيسية</a>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() {
+    return { goBack: () => { if (history.length > 1) history.back(); else location.href = 'Installation Guide Home.dc.html'; } };
+  }
+}
+</script>
+</body>
+</html>

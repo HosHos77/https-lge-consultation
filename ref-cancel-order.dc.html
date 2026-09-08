@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script>
+(function(){
+  var KEY = 'csGuideAuth_v1';
+  var USER = 'agent';
+  var PASS = 'LGE@2026';
+  function authed(){ try { return localStorage.getItem(KEY) === '1'; } catch(e){ return false; } }
+  if (authed()) return;
+  var u = window.prompt('اسم المستخدم / Username:');
+  var p = window.prompt('كلمة المرور / Password:');
+  if (u === USER && p === PASS) {
+    try { localStorage.setItem(KEY, '1'); } catch(e){}
+  } else {
+    window.stop();
+    document.open();
+    document.write('<div style="font-family:Tahoma,Arial,sans-serif;text-align:center;margin-top:80px;font-size:22px;color:#c00;">تم رفض الدخول<br>Access Denied</div>');
+    document.close();
+  }
+})();
+</script>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<template id="__bundler_thumbnail"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><rect width="200" height="200" fill="#111314"/><circle cx="100" cy="100" r="46" fill="none" stroke="#A50034" stroke-width="12"/><rect x="94" y="62" width="12" height="76" rx="6" transform="rotate(45 100 100)" fill="#A50034"/></svg></template>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  body { margin: 0; background: #f4f3ef; }
+  a { color: #A50034; text-decoration: none; }
+  a:hover { color: #7A0027; }
+</style>
+</helmet>
+<div dir="rtl" style="min-height:100vh;background:#f4f3ef;color:#191a1c;font-family:'IBM Plex Sans Arabic',system-ui,sans-serif;">
+
+  <div style="padding:14px 28px;background:#111314;color:#f4f3ef;display:flex;align-items:center;justify-content:space-between;gap:14px;">
+    <div style="display:flex;align-items:center;gap:14px;">
+      <div style="width:10px;height:34px;border-radius:2px;background:#A50034;"></div>
+      <div style="display:flex;flex-direction:column;gap:2px;">
+        <div style="font-family:'Cairo',sans-serif;font-weight:700;font-size:19px;">تعليمات إلغاء البلاغ — Repair Cancel</div>
+        <div style="font-size:12.5px;color:#9ea4a8;">ينطبق على كل الطلبات: صيانة أو تركيب · الإلغاء من خلال GSFS</div>
+      </div>
+    </div>
+    <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;"><button onClick="{{ goBack }}" type="button" style="padding:8px 16px;border-radius:8px;border:1px solid #3a4043;background:transparent;color:#e4e7e9;font-family:'IBM Plex Sans Arabic',system-ui,sans-serif;font-size:13.5px;cursor:pointer;white-space:nowrap;white-space:nowrap;flex:none;">رجوع</button><a href="Installation Guide Home.dc.html" style="padding:8px 16px;border-radius:8px;border:1px solid #3a4043;color:#f0a8bd;font-size:13.5px;text-decoration:none;white-space:nowrap;white-space:nowrap;flex:none;">الرئيسية</a></div>
+      <a href="Service Fees Table.dc.html" style="padding:8px 16px;border-radius:8px;border:1px solid #3a4043;color:#f0a8bd;font-size:13px;text-decoration:none;white-space:nowrap;flex:none;" style-hover="background:#22282a;">جدول تكاليف الصيانة</a>
+  </div>
+
+  <div style="max-width:960px;margin:0 auto;padding:32px 28px 70px;display:flex;flex-direction:column;gap:20px;">
+
+    <div style="background:#fff5f7;border:1px solid #f0c2ce;border-radius:14px;padding:24px 26px;">
+      <div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:17px;color:#A50034;margin-bottom:10px;">ملحوظة</div>
+      <div style="font-size:16px;line-height:2;">يجب تسجيل <strong>استفسار مغلق</strong> عند إلغاء أي طلب صيانة أو تركيب على السيستم، واختيار كول كود <strong dir="ltr" style="unicode-bidi:isolate;">Cancelling appointment</strong>.</div>
+    </div>
+
+    <div style="background:#fff;border:1px solid #e3e0d8;border-radius:14px;padding:28px;">
+      <div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:20px;margin-bottom:20px;">إلغاء الأوردر من خلال GSFS</div>
+      <div style="display:grid;gap:14px;">
+        <div style="display:flex;gap:16px;padding:18px 20px;border-radius:12px;background:#fbfaf7;border:1px solid #e9e6de;">
+          <div style="width:28px;height:28px;flex:none;border-radius:8px;background:#A50034;color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Cairo',sans-serif;font-weight:900;font-size:14px;">١</div>
+          <div style="font-size:15.5px;line-height:1.95;">الدخول على الـ <strong dir="ltr" style="unicode-bidi:isolate;">RNU</strong> والضغط على <strong dir="ltr" style="unicode-bidi:isolate;">SVC Result Entry</strong>.</div>
+        </div>
+        <div style="display:flex;gap:16px;padding:18px 20px;border-radius:12px;background:#fbfaf7;border:1px solid #e9e6de;">
+          <div style="width:28px;height:28px;flex:none;border-radius:8px;background:#A50034;color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Cairo',sans-serif;font-weight:900;font-size:14px;">٢</div>
+          <div style="font-size:15.5px;line-height:1.95;">الضغط على اختيار <strong dir="ltr" style="unicode-bidi:isolate;">Cancel Reason</strong> — يظهر القائمة الموضحة. لا بد من اختيار <strong>السبب الصحيح</strong> لإلغاء الأوردر، وليس أي سبب آخر ليس له علاقة بما وضحه العميل.</div>
+        </div>
+        <div style="display:flex;gap:16px;padding:18px 20px;border-radius:12px;background:#fbfaf7;border:1px solid #e9e6de;">
+          <div style="width:28px;height:28px;flex:none;border-radius:8px;background:#A50034;color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Cairo',sans-serif;font-weight:900;font-size:14px;">٣</div>
+          <div style="font-size:15.5px;line-height:1.95;">كتابة السبب الصحيح للإلغاء في خانة <strong dir="ltr" style="unicode-bidi:isolate;">Request Title</strong> و<strong dir="ltr" style="unicode-bidi:isolate;">Request Content</strong>.</div>
+        </div>
+      </div>
+
+      <div style="margin-top:22px;padding-top:22px;border-top:1px solid #eeebe4;">
+        <div style="font-size:13px;color:#6b7075;margin-bottom:12px;line-height:1.8;">الشاشة على السيستم — <strong>①</strong> الدخول على <span dir="ltr" style="unicode-bidi:isolate;">SVC Result Entry</span> · <strong>②</strong> الضغط على <span dir="ltr" style="unicode-bidi:isolate;">Cancel Reason</span> · <strong>③</strong> اختيار السبب الصحيح من القائمة</div>
+        <img src="uploads/cancel-steps-hi.png" alt="شاشة SVC Result Entry وزر Cancel Reason وقائمة أسباب الإلغاء" style="width:100%;max-width:380px;border-radius:10px;border:1px solid #e9e6de;display:block;">
+      </div>
+    </div>
+
+    <div style="background:#fff;border:1px solid #e3e0d8;border-radius:14px;padding:28px;">
+      <div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:20px;margin-bottom:6px;">أكواد الإلغاء — Cancel Reason</div>
+      <div style="font-size:14.5px;color:#6b7075;line-height:1.9;margin-bottom:18px;">الأكواد المظللة بالأحمر <strong>لا يتم استخدامها</strong>.</div>
+
+      <div style="display:grid;gap:8px;">
+        <div style="display:grid;grid-template-columns:minmax(230px,1fr) 1.4fr;gap:10px;padding:12px 18px;border-radius:10px;background:#f3f2f1;font-family:'Cairo',sans-serif;font-weight:700;font-size:13.5px;color:#5a5553;">
+          <div dir="ltr" style="text-align:right;">Cancel Reason</div>
+          <div>أسباب الإلغاء</div>
+        </div>
+
+        <div style="display:grid;grid-template-columns:minmax(230px,1fr) 1.4fr;gap:10px;padding:14px 18px;border-radius:10px;background:#fbfaf7;border:1px solid #e9e6de;align-items:center;">
+          <div dir="ltr" style="font-family:'Cairo',sans-serif;font-weight:700;font-size:14.5px;text-align:right;">Self Repair by Customer_C01</div>
+          <div style="font-size:15px;line-height:1.8;">تم إصلاح الجهاز بواسطة العميل ولا يحتاج إلى فني.</div>
+        </div>
+        <div style="display:grid;grid-template-columns:minmax(230px,1fr) 1.4fr;gap:10px;padding:14px 18px;border-radius:10px;background:#fbfaf7;border:1px solid #e9e6de;align-items:center;">
+          <div dir="ltr" style="font-family:'Cairo',sans-serif;font-weight:700;font-size:14.5px;text-align:right;">Self Installation by Customer_C02</div>
+          <div style="font-size:15px;line-height:1.8;">تم تركيب الجهاز بواسطة العميل ولا يحتاج إلى فني.</div>
+        </div>
+        <div style="display:grid;grid-template-columns:minmax(230px,1fr) 1.4fr;gap:10px;padding:14px 18px;border-radius:10px;background:#fbfaf7;border:1px solid #e9e6de;align-items:center;">
+          <div dir="ltr" style="font-family:'Cairo',sans-serif;font-weight:700;font-size:14.5px;text-align:right;">High Service Charge (OOW)_C03</div>
+          <div style="font-size:15px;line-height:1.8;">رسوم خدمة مرتفعة (خارج الضمان) — فرفض الزيارة.</div>
+        </div>
+        <div style="display:grid;grid-template-columns:minmax(230px,1fr) 1.4fr;gap:10px;padding:14px 18px;border-radius:10px;background:#fbfaf7;border:1px solid #e9e6de;align-items:center;">
+          <div dir="ltr" style="font-family:'Cairo',sans-serif;font-weight:700;font-size:14.5px;text-align:right;">Discontinued Part (OOW)_C04</div>
+          <div style="font-size:15px;line-height:1.8;">قطعة غير متوفرة (خارج الضمان) — تم إبلاغه من الفني بعدم توافر قطعة الغيار ويريد الإلغاء.</div>
+        </div>
+        <div style="display:grid;grid-template-columns:minmax(230px,1fr) 1.4fr;gap:10px;padding:14px 18px;border-radius:10px;background:#fbfaf7;border:1px solid #e9e6de;align-items:center;">
+          <div dir="ltr" style="font-family:'Cairo',sans-serif;font-weight:700;font-size:14.5px;text-align:right;">Duplicate Registration_C05</div>
+          <div style="font-size:15px;line-height:1.8;">أوردر مكرر — تم تسجيله مرتين وبالتالي يتم إلغاء واحد منهم.</div>
+        </div>
+        <div style="display:grid;grid-template-columns:minmax(230px,1fr) 1.4fr;gap:10px;padding:14px 18px;border-radius:10px;background:#fbfaf7;border:1px solid #e9e6de;align-items:center;">
+          <div dir="ltr" style="font-family:'Cairo',sans-serif;font-weight:700;font-size:14.5px;text-align:right;">Technician explanation (Non visited)_C07</div>
+          <div style="font-size:15px;line-height:1.8;">شرح من الفني بالهاتف بخطوات دعم (لم تتم الزيارة).</div>
+        </div>
+
+        <div style="display:grid;grid-template-columns:minmax(230px,1fr) 1.4fr;gap:10px;padding:14px 18px;border-radius:10px;background:#A50034;color:#fff;align-items:center;">
+          <div dir="ltr" style="font-family:'Cairo',sans-serif;font-weight:700;font-size:14.5px;text-align:right;">Customer cannot be contacted_C08</div>
+          <div style="font-size:15px;line-height:1.8;">لا يمكن التواصل مع العميل — <strong>لا يتم استخدامها</strong>.</div>
+        </div>
+
+        <div style="display:grid;grid-template-columns:minmax(230px,1fr) 1.4fr;gap:10px;padding:14px 18px;border-radius:10px;background:#fbfaf7;border:1px solid #e9e6de;align-items:center;">
+          <div dir="ltr" style="font-family:'Cairo',sans-serif;font-weight:700;font-size:14.5px;text-align:right;">Customer Reschedule_C10</div>
+          <div style="font-size:15px;line-height:1.8;">إعادة جدولة من قبل العميل (العميل قرر الإلغاء لتحديد موعد آخر).</div>
+        </div>
+        <div style="display:grid;grid-template-columns:minmax(230px,1fr) 1.4fr;gap:10px;padding:14px 18px;border-radius:10px;background:#fbfaf7;border:1px solid #e9e6de;align-items:center;">
+          <div dir="ltr" style="font-family:'Cairo',sans-serif;font-weight:700;font-size:14.5px;text-align:right;">Non LG Product Issue_C11</div>
+          <div style="font-size:15px;line-height:1.8;">العطل ليس من الجهاز — مثل فاصل كهرباء أو وجود مشكلة من العميل وليس الجهاز.</div>
+        </div>
+
+        <div style="display:grid;grid-template-columns:minmax(230px,1fr) 1.4fr;gap:10px;padding:14px 18px;border-radius:10px;background:#A50034;color:#fff;align-items:center;">
+          <div dir="ltr" style="font-family:'Cairo',sans-serif;font-weight:700;font-size:14.5px;text-align:right;">Accepted incorrectly by ASC_C13</div>
+          <div style="font-size:15px;line-height:1.8;">تم قبول الطلب بشكل خاطئ من قبل مركز الخدمة — <strong>لا يتم استخدامها</strong>.</div>
+        </div>
+
+        <div style="display:grid;grid-template-columns:minmax(230px,1fr) 1.4fr;gap:10px;padding:14px 18px;border-radius:10px;background:#fbfaf7;border:1px solid #e9e6de;align-items:center;">
+          <div dir="ltr" style="font-family:'Cairo',sans-serif;font-weight:700;font-size:14.5px;text-align:right;">Transferred to other ASC_C17</div>
+          <div style="font-size:15px;line-height:1.8;">تم تحويله إلى مركز خدمة آخر.</div>
+        </div>
+        <div style="display:grid;grid-template-columns:minmax(230px,1fr) 1.4fr;gap:10px;padding:14px 18px;border-radius:10px;background:#fbfaf7;border:1px solid #e9e6de;align-items:center;">
+          <div dir="ltr" style="font-family:'Cairo',sans-serif;font-weight:700;font-size:14.5px;text-align:right;">Installation site not ready_C18</div>
+          <div style="font-size:15px;line-height:1.8;">موقع التركيب غير جاهز.</div>
+        </div>
+      </div>
+    </div>
+
+    <div style="background:#1c1a1b;color:#f6f1f2;border-radius:14px;padding:26px 28px;">
+      <div style="font-size:12.5px;color:#f0a8bd;margin-bottom:12px;font-weight:600;">خانة الاعتماد — Approval Request / Confirm</div>
+      <div style="display:grid;gap:10px;font-size:15px;line-height:1.9;">
+        <div style="display:flex;gap:14px;padding:14px 18px;border-radius:10px;background:#282526;"><div dir="ltr" style="font-family:'Cairo',sans-serif;font-weight:700;min-width:120px;">Process Type</div><div>Repair Cancel</div></div>
+        <div style="display:flex;gap:14px;padding:14px 18px;border-radius:10px;background:#282526;"><div dir="ltr" style="font-family:'Cairo',sans-serif;font-weight:700;min-width:120px;">Request Title</div><div>السبب الصحيح للإلغاء</div></div>
+        <div style="display:flex;gap:14px;padding:14px 18px;border-radius:10px;background:#282526;"><div dir="ltr" style="font-family:'Cairo',sans-serif;font-weight:700;min-width:120px;">Request Content</div><div>تفصيل ما تم مع العميل — مثال: تم الاتصال، والعميل لا يرد؛ تم إرسال رسالة للعميل وتسجيل مكالمات وتخطي الـ 3 أيام.</div></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div dir="rtl" style="background:#f4f3ef;padding:8px 28px 48px;display:flex;justify-content:center;font-family:'IBM Plex Sans Arabic',system-ui,sans-serif;">
+  <a href="Installation Guide Home.dc.html" style="display:inline-flex;align-items:center;gap:10px;padding:14px 30px;border-radius:12px;background:#111314;color:#f4f3ef;font-family:'Cairo',sans-serif;font-weight:700;font-size:15px;" style-hover="background:#A50034;color:#fff;">← العودة للصفحة الرئيسية</a>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() {
+    return { goBack: () => { if (history.length > 1) history.back(); else location.href = 'Installation Guide Home.dc.html'; } };
+  }
+}
+</script>
+</body>
+</html>

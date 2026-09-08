@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script>
+(function(){
+  var KEY = 'csGuideAuth_v1';
+  var USER = 'agent';
+  var PASS = 'LGE@2026';
+  function authed(){ try { return localStorage.getItem(KEY) === '1'; } catch(e){ return false; } }
+  if (authed()) return;
+  var u = window.prompt('اسم المستخدم / Username:');
+  var p = window.prompt('كلمة المرور / Password:');
+  if (u === USER && p === PASS) {
+    try { localStorage.setItem(KEY, '1'); } catch(e){}
+  } else {
+    window.stop();
+    document.open();
+    document.write('<div style="font-family:Tahoma,Arial,sans-serif;text-align:center;margin-top:80px;font-size:22px;color:#c00;">تم رفض الدخول<br>Access Denied</div>');
+    document.close();
+  }
+})();
+</script>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<title>محاكي الإعداد الأولي للشاشة</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&family=IBM+Plex+Sans+Arabic:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  body { margin:0; background:#3b3b3b; }
+  a { color:#f0a8bd; }
+  a:hover { color:#fff; }
+  @keyframes wheelPulse { 0%,100% { box-shadow:0 0 0 0 rgba(232,0,90,.55); } 50% { box-shadow:0 0 0 12px rgba(232,0,90,0); } }
+  @keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+</style>
+</helmet>
+<template id="__bundler_thumbnail"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><rect width="200" height="200" fill="#3b3b3b"/><rect x="24" y="56" width="112" height="70" rx="4" fill="#0a0a0a" stroke="#8a8a8a" stroke-width="2"/><rect x="150" y="48" width="26" height="88" rx="12" fill="#1a1a1a" stroke="#6a6a6a" stroke-width="2"/><circle cx="163" cy="106" r="8" fill="#e8005a"/></svg></template>
+
+<div dir="rtl" style="min-height:100vh;background:#3b3b3b;color:#f2f2f2;font-family:'IBM Plex Sans Arabic',system-ui,sans-serif;">
+
+  <div style="background:#2b2b2b;border-bottom:1px solid #4a4a4a;padding:14px 26px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;position:sticky;top:0;z-index:20;">
+    <div style="width:9px;height:30px;background:#A50034;border-radius:2px;flex:none;"></div>
+    <div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:17px;">محاكي الإعداد الأولي للشاشة — Initial setup</div>
+    <div style="margin-right:auto;display:flex;flex-wrap:wrap;gap:10px;align-items:center;">
+      <div style="padding:7px 14px;border-radius:999px;background:#1f1f1f;font-size:12.5px;color:#c8cdd0;white-space:nowrap;flex:none;">{{ stepBadge }}</div>
+      <a href="TV Simulator Guide.dc.html" style="padding:8px 14px;border-radius:8px;border:1px solid #565656;color:#f0a8bd;font-size:13px;text-decoration:none;white-space:nowrap;flex:none;" style-hover="background:#333;">محاكي القوائم</a>
+      <a href="TV Support Topics.dc.html" style="padding:8px 14px;border-radius:8px;border:1px solid #565656;color:#f0a8bd;font-size:13px;text-decoration:none;white-space:nowrap;flex:none;" style-hover="background:#333;">موضوعات الشاشات</a>
+    </div>
+  </div>
+
+  <div style="display:flex;gap:26px;align-items:flex-start;padding:34px 30px 60px;max-width:1500px;margin:0 auto;flex-wrap:wrap;">
+
+    <div style="flex:1;min-width:520px;">
+      <div style="border:2px solid #9a9a9a;border-radius:4px;background:#050505;aspect-ratio:16/9;position:relative;overflow:hidden;">
+
+        <sc-if value="{{ isMessage }}" hint-placeholder-val="{{ true }}">
+          <div style="position:absolute;inset:0;background:#000;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:26px;direction:rtl;animation:fadeIn .3s ease;">
+            <div style="width:74px;height:74px;border-radius:50%;border:3px solid #e8005a;display:flex;align-items:center;justify-content:center;font-family:'Cairo',sans-serif;font-weight:900;font-size:17px;color:#fff;animation:wheelPulse 1.8s ease infinite;">OK</div>
+            <div style="font-family:'Cairo',sans-serif;font-weight:600;font-size:26px;color:#fff;text-align:center;">اضغط زر OK (العجلة) في الريموت</div>
+            <div style="font-family:'Cairo',sans-serif;font-size:15px;color:#9a9a9a;text-align:center;">لبدء إعداد الشاشة</div>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ isReg }}" hint-placeholder-val="{{ false }}">
+          <div style="position:absolute;inset:0;background:#000;padding:3% 4% 3%;box-sizing:border-box;display:flex;flex-direction:column;direction:rtl;text-align:right;animation:fadeIn .3s ease;">
+            <div style="display:flex;align-items:flex-start;gap:12px;">
+              <button onClick="{{ nextStep }}" style="display:flex;align-items:center;gap:8px;padding:6px 14px;border-radius:5px;background:#1c1c1c;color:#fff;font-family:'Cairo',sans-serif;font-weight:600;font-size:13px;border:1.5px solid #e8005a;cursor:pointer;box-shadow:0 0 14px rgba(232,0,90,.75);" style-hover="background:#2a2a2a;">تخطّي <span style="background:#e8e8e8;color:#111;border-radius:3px;padding:0 6px;">‹</span></button>
+              <div style="flex:1;text-align:center;">
+                <div style="font-size:11px;color:#c9c9c9;">✓ ✓ ٣</div>
+                <div style="font-family:'Cairo',sans-serif;font-weight:600;font-size:24px;color:#fff;margin-top:4px;">تسجيل المنتج</div>
+                <div style="font-size:10.5px;color:#b8b8b8;margin-top:5px;">سجّل الشاشة عشان تحصل على خدمة عملاء أفضل.</div>
+              </div>
+              <div style="width:78px;"></div>
+            </div>
+            <div style="margin:14px auto 0;width:62%;height:78px;border-radius:4px;background:#1f4e7a;display:flex;align-items:center;justify-content:center;font-family:'Cairo',sans-serif;font-size:15px;color:#eaf2f9;letter-spacing:3px;">F F</div>
+            <div style="margin-top:12px;font-size:9.5px;line-height:1.7;color:#b0b0b0;">البيانات اللي بتتجمع بتسهّل عليك الاستفادة من المزايا والدعم للمنتجات اللي محتاجة رقم سيريال، وكمان بتُستخدم في عروض مفيدة بموافقتك المنفصلة. لو تخطّيت الصفحة دلوقتي هتقدر تستخدم الشاشة عادي، لكن ممكن ما تستفيدش من المزايا المتاحة بتسجيل السيريال.</div>
+            <div style="display:flex;align-items:center;gap:9px;margin-top:10px;">
+              <div style="width:12px;height:12px;border-radius:50%;border:1.5px solid #8a8a8a;flex:none;"></div>
+              <div style="font-family:'Cairo',sans-serif;font-size:11.5px;color:#d2d2d2;">أوافق على ما سبق وسأستخدم رقم المنتج لتسجيله.</div>
+            </div>
+            <div style="text-align:center;font-family:'Cairo',sans-serif;font-size:13px;color:#8a8a8a;margin-top:8px;">تسجيل</div>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ isNick }}" hint-placeholder-val="{{ false }}">
+          <div style="position:absolute;inset:0;background:#000;padding:3% 4% 4%;box-sizing:border-box;display:flex;flex-direction:column;direction:rtl;text-align:right;animation:fadeIn .3s ease;">
+            <div style="display:flex;align-items:center;">
+              <div style="margin-right:auto;color:#dcdcdc;font-size:15px;">✕</div>
+            </div>
+            <div style="text-align:center;font-family:'Cairo',sans-serif;font-weight:600;font-size:25px;color:#fff;margin-top:2px;">تسجيل الدخول بحساب إل جي</div>
+            <div style="text-align:center;font-size:10.5px;color:#b8b8b8;margin-top:6px;">اكتب الاسم اللي هيظهر في قائمة الحسابات على الشاشة.</div>
+            <div style="flex:1;min-height:0;display:flex;justify-content:center;margin-top:24px;">
+              <div style="width:250px;">
+                <div style="font-family:'Cairo',sans-serif;font-size:10.5px;color:#b8b8b8;margin-bottom:4px;">الاسم المستعار</div>
+                <div style="padding:8px 12px;border-radius:3px;background:#4a4f55;color:#f2f2f2;font-size:12.5px;letter-spacing:.5px;">LGEUSER0</div>
+              </div>
+            </div>
+            <div style="display:flex;justify-content:center;">
+              <button onClick="{{ nextStep }}" style="padding:8px 44px;border-radius:4px;background:#e8e8e8;color:#111;font-family:'Cairo',sans-serif;font-weight:600;font-size:14px;border:none;cursor:pointer;box-shadow:0 0 0 3px #e8005a,0 0 18px rgba(232,0,90,.7);" style-hover="background:#fff;">موافق</button>
+            </div>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ isCreds }}" hint-placeholder-val="{{ false }}">
+          <div style="position:absolute;inset:0;background:#000;padding:3% 4% 4%;box-sizing:border-box;display:flex;flex-direction:column;direction:rtl;text-align:right;animation:fadeIn .3s ease;">
+            <div style="display:flex;align-items:center;">
+              <div style="color:#dcdcdc;font-size:16px;">↩</div>
+              <div style="margin-right:auto;color:#dcdcdc;font-size:15px;">✕</div>
+            </div>
+            <div style="text-align:center;font-family:'Cairo',sans-serif;font-weight:600;font-size:25px;color:#fff;margin-top:2px;">تسجيل الدخول بحساب إل جي</div>
+            <div style="flex:1;min-height:0;display:flex;flex-direction:column;align-items:center;gap:14px;margin-top:26px;">
+              <div style="width:250px;">
+                <div style="font-family:'Cairo',sans-serif;font-size:10.5px;color:#b8b8b8;margin-bottom:4px;">البريد الإلكتروني</div>
+                <div style="padding:8px 12px;border-radius:3px;background:#4a4f55;color:#f2f2f2;font-size:12.5px;">lifeisgood@gmail.com</div>
+              </div>
+              <div style="width:250px;">
+                <div style="font-family:'Cairo',sans-serif;font-size:10.5px;color:#b8b8b8;margin-bottom:4px;">كلمة السر</div>
+                <div style="padding:8px 12px;border-radius:3px;background:#4a4f55;color:#f2f2f2;font-size:12.5px;letter-spacing:2px;">•••••••••</div>
+              </div>
+            </div>
+            <div style="display:flex;justify-content:center;gap:10px;">
+              <div style="padding:8px 20px;border-radius:4px;background:#3a3f45;color:#d8d8d8;font-family:'Cairo',sans-serif;font-size:13px;">نسيت كلمة السر</div>
+              <button onClick="{{ nextStep }}" style="padding:8px 34px;border-radius:4px;background:#fff;color:#111;font-family:'Cairo',sans-serif;font-weight:600;font-size:14px;border:none;cursor:pointer;box-shadow:0 0 0 3px #e8005a,0 0 18px rgba(232,0,90,.7);" style-hover="background:#f2f2f2;">تسجيل الدخول</button>
+            </div>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ isSignin }}" hint-placeholder-val="{{ false }}">
+          <div style="position:absolute;inset:0;background:#000;padding:3% 4% 4%;box-sizing:border-box;display:flex;flex-direction:column;direction:rtl;text-align:right;animation:fadeIn .3s ease;">
+            <div style="color:#dcdcdc;font-size:16px;">↩</div>
+            <div style="text-align:center;font-family:'Cairo',sans-serif;font-weight:600;font-size:25px;color:#fff;margin-top:6px;">تسجيل الدخول من الشاشة</div>
+            <div style="text-align:center;font-size:11px;color:#b8b8b8;margin-top:6px;">تقدر تسجّل الدخول بحساب إل جي أو تعمل حساب جديد.</div>
+            <div style="display:flex;flex-direction:column;align-items:center;gap:8px;margin-top:22px;">
+              <button onClick="{{ nextStep }}" style="width:210px;padding:9px 0;border-radius:4px;background:#e8e8e8;color:#111;font-family:'Cairo',sans-serif;font-weight:600;font-size:13.5px;border:none;cursor:pointer;box-shadow:0 0 0 3px #e8005a,0 0 18px rgba(232,0,90,.7);" style-hover="background:#fff;">تسجيل الدخول بحساب إل جي</button>
+              <div style="width:210px;padding:9px 0;border-radius:4px;background:#3a3f45;color:#d8d8d8;font-family:'Cairo',sans-serif;font-size:13.5px;text-align:center;">إنشاء حساب إل جي</div>
+            </div>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ isAccount }}" hint-placeholder-val="{{ false }}">
+          <div style="position:absolute;inset:0;background:#000;padding:3% 0 4%;box-sizing:border-box;display:flex;flex-direction:column;direction:rtl;text-align:right;animation:fadeIn .3s ease;">
+            <div style="display:flex;align-items:center;justify-content:center;gap:14px;font-size:11px;color:#7d7d7d;"><span style="color:#e6e6e6;">✓</span><span style="color:#e6e6e6;">✓</span><span>3</span></div>
+            <div style="display:flex;align-items:center;padding:0 4%;">
+              <div style="flex:1;text-align:center;font-family:'Cairo',sans-serif;font-weight:600;font-size:25px;color:#fff;margin-right:60px;">حساب إل جي</div>
+              <div style="color:#dcdcdc;font-family:'Cairo',sans-serif;font-size:14px;flex:none;">تخطّي ‹</div>
+            </div>
+            <div style="text-align:center;font-size:11px;color:#b8b8b8;margin-top:4px;">بتسجيل الدخول تقدر تستفيد بالمحتوى المقترح وخدمات التطبيقات المختلفة.</div>
+            <div style="flex:1;min-height:0;display:flex;align-items:center;justify-content:center;gap:20px;padding:0 4%;">
+              <sc-for list="{{ accountCards }}" as="c" hint-placeholder-count="3">
+                <div style="display:flex;flex-direction:column;align-items:center;gap:10px;">
+                  <button onClick="{{ c.pick }}" style="{{ c.cardStyle }}">
+                    <div style="{{ c.artStyle }}"></div>
+                  </button>
+                  <div style="font-family:'Cairo',sans-serif;font-size:12px;color:#e2e2e2;text-align:center;max-width:150px;line-height:1.5;">{{ c.label }}</div>
+                </div>
+              </sc-for>
+            </div>
+            <div style="display:flex;justify-content:center;">
+              <button onClick="{{ nextStep }}" style="padding:8px 30px;border-radius:4px;background:#e8e8e8;color:#111;font-family:'Cairo',sans-serif;font-weight:600;font-size:14px;border:none;cursor:pointer;" style-hover="background:#fff;">التالي</button>
+            </div>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ isUniversal }}" hint-placeholder-val="{{ false }}">
+          <div style="position:absolute;inset:0;background:#000;padding:3% 0 4%;box-sizing:border-box;display:flex;flex-direction:column;direction:rtl;text-align:right;animation:fadeIn .3s ease;">
+            <div style="display:flex;align-items:center;justify-content:center;gap:14px;font-size:11px;color:#7d7d7d;"><span style="color:#e6e6e6;">✓</span><span style="color:#e6e6e6;">✓</span><span>3</span></div>
+            <div style="text-align:center;font-family:'Cairo',sans-serif;font-weight:600;font-size:25px;color:#fff;margin-top:4px;">إعدادات التحكم الشامل</div>
+            <div style="text-align:center;font-size:11.5px;line-height:1.9;color:#c2c2c2;margin-top:10px;">جرّب إعداد التحكم الشامل.<br>تقدر تتحكّم في الأجهزة المتصلة بالشاشة من ريموت الشاشة نفسه.</div>
+            <div style="flex:1;min-height:0;display:flex;align-items:center;gap:20px;padding:0 6%;">
+              <div style="font-family:'Cairo',sans-serif;font-size:12.5px;color:#dcdcdc;flex:none;">لا يوجد جهاز متصل</div>
+              <div style="flex:1;height:74%;border-radius:6px;background:#1b2a33;display:flex;align-items:center;justify-content:center;gap:26px;">
+                <div style="width:120px;height:62px;border-radius:3px;background:#000;border:1px solid #33454f;"></div>
+                <div style="width:44px;height:2px;background:#33454f;"></div>
+                <div style="width:38px;height:38px;border-radius:3px;background:#16302a;border:1px solid #33454f;"></div>
+              </div>
+            </div>
+            <div style="display:flex;align-items:center;justify-content:center;gap:16px;">
+              <button onClick="{{ nextStep }}" style="display:flex;align-items:center;gap:8px;padding:8px 30px;border-radius:4px;background:#e8e8e8;color:#111;font-family:'Cairo',sans-serif;font-weight:600;font-size:14px;border:none;cursor:pointer;box-shadow:0 0 0 3px #e8005a,0 0 18px rgba(232,0,90,.7);" style-hover="background:#fff;">خروج ›</button>
+              <div style="font-family:'Cairo',sans-serif;font-size:13.5px;color:#8f8f8f;">إدارة الإعدادات</div>
+            </div>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ isUpdate }}" hint-placeholder-val="{{ false }}">
+          <div style="position:absolute;inset:0;background:#000;padding:3% 0 4%;box-sizing:border-box;display:flex;flex-direction:column;direction:rtl;text-align:right;animation:fadeIn .3s ease;">
+            <div style="display:flex;align-items:center;justify-content:center;gap:14px;font-size:11px;color:#7d7d7d;"><span style="color:#e6e6e6;">✓</span><span style="color:#e6e6e6;">✓</span><span>3</span></div>
+            <div style="display:flex;align-items:center;padding:0 4%;gap:12px;">
+              <div style="display:flex;align-items:center;gap:8px;color:#dcdcdc;font-family:'Cairo',sans-serif;font-size:14px;flex:none;">› السابق</div>
+              <div style="flex:1;text-align:center;font-family:'Cairo',sans-serif;font-weight:600;font-size:25px;color:#fff;margin-left:70px;">التحديث التلقائي للبرنامج</div>
+            </div>
+            <div style="flex:1;min-height:0;display:flex;flex-direction:column;justify-content:center;gap:26px;padding:0 8%;">
+              <div style="text-align:center;font-size:11.5px;line-height:1.9;color:#c2c2c2;">
+                عند تحديث البرنامج تلقائيًا، بيتم تثبيت تحديثات الخصائص وتحديثات الأمان لأحدث إصدار على الشاشة. وأثناء تنزيل التحديث تلقائيًا ممكن يتم استهلاك بيانات من غير موافقة مسبقة.<br>* لو شغّلت التحديث التلقائي، الجهاز هيحدّث نفسه لأحدث إصدار بدون إشعار بتفاصيل التحديث (الإصدار، الحجم، إلخ).
+              </div>
+              <div style="display:flex;align-items:center;justify-content:center;gap:18px;">
+                <div style="font-family:'Cairo',sans-serif;font-size:14px;color:#e8e8e8;">التحديث التلقائي للبرنامج</div>
+                <button onClick="{{ toggleUpdate }}" style="{{ switchStyle }}"><div style="{{ knobStyle }}"></div></button>
+              </div>
+              <div style="text-align:center;font-size:10.5px;color:#8f8f8f;">* لتغيير الإعداد لاحقًا: الإعدادات ‹ الدعم ‹ تحديث البرنامج ‹ التحديث التلقائي.</div>
+            </div>
+            <div style="display:flex;justify-content:center;">
+              <button onClick="{{ nextStep }}" style="padding:8px 34px;border-radius:4px;background:#e8e8e8;color:#111;font-family:'Cairo',sans-serif;font-weight:600;font-size:14px;border:none;cursor:pointer;box-shadow:0 0 0 3px #e8005a,0 0 18px rgba(232,0,90,.7);" style-hover="background:#fff;">التالي</button>
+            </div>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ isMount }}" hint-placeholder-val="{{ false }}">
+          <div style="position:absolute;inset:0;background:#000;padding:3% 0 4%;box-sizing:border-box;display:flex;flex-direction:column;direction:rtl;text-align:right;animation:fadeIn .3s ease;">
+            <div style="display:flex;align-items:center;justify-content:center;gap:14px;font-size:11px;color:#7d7d7d;"><span style="color:#e6e6e6;">✓</span><span style="color:#e6e6e6;">✓</span><span>3</span></div>
+            <div style="display:flex;align-items:center;padding:0 4%;gap:12px;">
+              <div style="display:flex;align-items:center;gap:8px;color:#dcdcdc;font-family:'Cairo',sans-serif;font-size:14px;flex:none;">› السابق</div>
+              <div style="flex:1;font-family:'Cairo',sans-serif;font-weight:600;font-size:23px;color:#fff;">نوع تركيب الشاشة للحصول على أفضل صوت</div>
+            </div>
+            <div style="flex:1;min-height:0;display:flex;align-items:center;justify-content:center;gap:32px;padding:0 6%;">
+              <sc-for list="{{ mountCards }}" as="c" hint-placeholder-count="2">
+                <div style="display:flex;flex-direction:column;align-items:center;gap:12px;">
+                  <button onClick="{{ c.pick }}" style="{{ c.cardStyle }}">
+                    <div style="width:120px;height:68px;border-radius:3px;background:linear-gradient(120deg,#0b3f8f,#28a3e8);"></div>
+                    <div style="{{ c.baseStyle }}"></div>
+                  </button>
+                  <div style="font-family:'Cairo',sans-serif;font-size:13.5px;color:#e8e8e8;">{{ c.label }}</div>
+                </div>
+              </sc-for>
+            </div>
+            <div style="text-align:center;font-size:10.5px;color:#8f8f8f;margin-bottom:10px;">* الإعدادات قد تختلف حسب الموديل.</div>
+            <div style="display:flex;justify-content:center;">
+              <button onClick="{{ nextStep }}" style="padding:8px 30px;border-radius:3px;background:#e8005a;color:#fff;font-family:'Cairo',sans-serif;font-weight:700;font-size:14px;border:none;cursor:pointer;" style-hover="background:#ff1a70;">التالي</button>
+            </div>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ isWatch }}" hint-placeholder-val="{{ false }}">
+          <div style="position:absolute;inset:0;background:#000;padding:3% 0 4%;box-sizing:border-box;display:flex;flex-direction:column;direction:rtl;text-align:right;animation:fadeIn .3s ease;">
+            <div style="display:flex;align-items:center;justify-content:center;gap:14px;font-size:11px;color:#7d7d7d;"><span style="color:#e6e6e6;">✓</span><span>2</span></div>
+            <div style="display:flex;align-items:center;padding:0 4%;gap:10px;">
+              <div style="display:flex;align-items:center;gap:8px;color:#dcdcdc;font-family:'Cairo',sans-serif;font-size:14px;flex:none;">› السابق</div>
+              <div style="flex:1;text-align:center;font-family:'Cairo',sans-serif;font-weight:600;font-size:26px;color:#fff;margin-left:70px;">تحليل بيئة الاستخدام</div>
+            </div>
+            <div style="flex:1;min-height:0;padding:4% 6% 0;">
+              <div style="font-family:'Cairo',sans-serif;font-style:italic;font-size:11.5px;color:#c9c9c9;margin-bottom:10px;">طريقة مشاهدة القنوات</div>
+              <div style="display:flex;flex-direction:column;gap:6px;max-width:60%;">
+                <sc-for list="{{ options }}" as="o" hint-placeholder-count="3">
+                  <button onClick="{{ o.pick }}" style="{{ o.watchStyle }}">{{ o.label }}</button>
+                </sc-for>
+              </div>
+            </div>
+            <div style="display:flex;justify-content:center;">
+              <button onClick="{{ nextStep }}" style="padding:8px 34px;border-radius:4px;background:#e8e8e8;color:#111;font-family:'Cairo',sans-serif;font-weight:600;font-size:14px;border:none;cursor:pointer;box-shadow:0 0 0 3px #e8005a,0 0 18px rgba(232,0,90,.7);" style-hover="background:#fff;">التالي</button>
+            </div>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ isEnv }}" hint-placeholder-val="{{ false }}">
+          <div style="position:absolute;inset:0;background:#000;padding:3% 0 4%;box-sizing:border-box;display:flex;flex-direction:column;direction:rtl;text-align:right;animation:fadeIn .3s ease;">
+            <div style="display:flex;align-items:center;justify-content:center;gap:14px;font-size:11px;color:#7d7d7d;"><span style="color:#e6e6e6;">✓</span><span>2</span></div>
+            <div style="display:flex;align-items:center;padding:0 4%;gap:10px;">
+              <div style="display:flex;align-items:center;gap:8px;color:#dcdcdc;font-family:'Cairo',sans-serif;font-size:14px;flex:none;">› السابق</div>
+              <div style="flex:1;text-align:center;font-family:'Cairo',sans-serif;font-weight:600;font-size:26px;color:#fff;margin-left:70px;">تحليل بيئة الاستخدام</div>
+            </div>
+            <div style="flex:1;min-height:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:22px;">
+              <div style="position:relative;display:flex;align-items:flex-end;gap:0;">
+                <div style="width:190px;height:112px;border-radius:5px;background:linear-gradient(160deg,#f2f2f2,#d6d6d6);position:relative;overflow:hidden;">
+                  <div style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:74px;height:74px;border-radius:50%;background:#0d0d0d;display:flex;align-items:center;justify-content:center;">
+                    <div style="width:34px;height:15px;border-radius:2px;background:linear-gradient(#f0c14b,#c99a2e);"></div>
+                  </div>
+                </div>
+                <div style="width:52px;height:2px;background:#cfcfcf;margin-bottom:34px;"></div>
+              </div>
+              <div style="width:16px;height:6px;border-radius:0 0 4px 4px;background:#bfbfbf;margin-top:-14px;"></div>
+              <div style="text-align:center;font-size:11.5px;line-height:1.9;color:#c2c2c2;max-width:64%;">
+                هيتم الإعداد تلقائيًا بعد فحص الجهاز المتصل بالشاشة.<br>بعد توصيل الجهاز بالشاشة بكابل HDMI، شغّل الجهاز.
+              </div>
+            </div>
+            <div style="display:flex;justify-content:center;">
+              <button onClick="{{ nextStep }}" style="padding:8px 34px;border-radius:4px;background:#e8e8e8;color:#111;font-family:'Cairo',sans-serif;font-weight:600;font-size:14px;border:none;cursor:pointer;box-shadow:0 0 0 3px #e8005a,0 0 18px rgba(232,0,90,.7);" style-hover="background:#fff;">التالي</button>
+            </div>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ isAgree }}" hint-placeholder-val="{{ false }}">
+          <div style="position:absolute;inset:0;background:#000;padding:3% 0 4%;box-sizing:border-box;display:flex;flex-direction:column;direction:rtl;text-align:right;animation:fadeIn .3s ease;">
+            <div style="text-align:center;font-size:11px;color:#7d7d7d;">1</div>
+            <div style="display:flex;align-items:center;padding:0 4%;gap:10px;">
+              <div style="display:flex;align-items:center;gap:8px;color:#dcdcdc;font-family:'Cairo',sans-serif;font-size:14px;flex:none;">› السابق</div>
+              <div style="flex:1;text-align:center;font-family:'Cairo',sans-serif;font-weight:600;font-size:26px;color:#fff;">الشروط والأحكام</div>
+              <div style="display:flex;align-items:center;gap:8px;color:#dcdcdc;font-family:'Cairo',sans-serif;font-size:14px;flex:none;">تخطّي ‹</div>
+            </div>
+            <div style="flex:1;min-height:0;display:flex;gap:26px;padding:3% 5% 0;">
+              <div style="width:46%;display:flex;flex-direction:column;gap:12px;">
+                <sc-for list="{{ consents }}" as="c" hint-placeholder-count="6">
+                  <div style="display:flex;align-items:center;gap:10px;">
+                    <div style="width:15px;height:15px;border-radius:50%;background:#37c26a;color:#08210f;display:flex;align-items:center;justify-content:center;font-size:10px;flex:none;">✓</div>
+                    <div style="font-family:'Cairo',sans-serif;font-size:12.5px;color:#e6e6e6;line-height:1.5;">{{ c.label }}</div>
+                  </div>
+                </sc-for>
+              </div>
+              <div style="flex:1;min-width:0;font-size:11.5px;line-height:1.75;color:#c2c2c2;">
+                <div style="margin-bottom:10px;">يمكنك الموافقة على كل بنود الموافقة مرة واحدة.</div>
+                <div>الموافقة على «بند معلومات المشاهدة» معناها إن معلومات تفصيلية عن المحتوى اللي بتشاهده هتُجمَع باستخدام تقنية التعرّف التلقائي على المحتوى، وممكن تُستخدم وتُشارَك مع شركاء الإعلانات على النحو الموضّح في سياسة الخصوصية وبنود المشاهدة والإعلانات. لمعرفة التفاصيل وطريقة سحب الموافقة يُرجى مراجعة هذه المستندات.</div>
+              </div>
+            </div>
+            <div style="display:flex;flex-direction:column;align-items:center;gap:10px;">
+              <div style="display:flex;align-items:center;gap:9px;">
+                <div style="width:15px;height:15px;border-radius:50%;background:#37c26a;color:#08210f;display:flex;align-items:center;justify-content:center;font-size:10px;">✓</div>
+                <div style="font-family:'Cairo',sans-serif;font-size:12.5px;color:#e6e6e6;">تحديد الكل</div>
+              </div>
+              <div style="display:flex;gap:10px;">
+                <div style="padding:8px 26px;border-radius:4px;background:#3a3f45;color:#d8d8d8;font-family:'Cairo',sans-serif;font-size:13.5px;">لاحقًا</div>
+                <button onClick="{{ nextStep }}" style="padding:8px 30px;border-radius:4px;background:#e8e8e8;color:#111;font-family:'Cairo',sans-serif;font-weight:600;font-size:14px;border:none;cursor:pointer;box-shadow:0 0 0 3px #e8005a,0 0 18px rgba(232,0,90,.7);" style-hover="background:#fff;">موافق</button>
+              </div>
+            </div>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ isTerms }}" hint-placeholder-val="{{ false }}">
+          <div style="position:absolute;inset:0;background:#000;padding:3% 0 4%;box-sizing:border-box;display:flex;flex-direction:column;direction:rtl;text-align:right;animation:fadeIn .3s ease;">
+            <div style="text-align:center;font-size:11px;color:#7d7d7d;">1</div>
+            <div style="display:flex;align-items:center;padding:0 4%;gap:10px;">
+              <div style="display:flex;align-items:center;gap:8px;color:#dcdcdc;font-family:'Cairo',sans-serif;font-size:14px;flex:none;">› السابق</div>
+              <div style="flex:1;text-align:center;font-family:'Cairo',sans-serif;font-weight:600;font-size:26px;color:#fff;">الشروط والأحكام</div>
+              <div style="display:flex;align-items:center;gap:8px;color:#dcdcdc;font-family:'Cairo',sans-serif;font-size:14px;flex:none;">تخطّي ‹</div>
+            </div>
+            <div style="flex:1;min-height:0;display:flex;justify-content:center;padding:4% 6% 0;">
+              <div style="flex:1;display:flex;gap:10px;">
+                <div style="flex:1;min-width:0;">
+                  <div style="font-family:'Cairo',sans-serif;font-weight:700;font-size:13px;color:#f2f2f2;margin-bottom:8px;">مرحبًا بك في خدمات Smart Media Product!</div>
+                  <div style="font-size:11.5px;line-height:1.7;color:#c2c2c2;">منتجات Smart Media بتتيح لك مجموعة من الخصائص والخدمات، منها بث الأفلام والموسيقى والألعاب وتصفّح الإنترنت. قبل استخدام هذه الخدمات هتظهر لك سياسة الخصوصية وشروط الاستخدام وعدد من المستندات اللي بتطلب موافقتك على خصائص وخدمات معيّنة. المستندات بتوضّح طريقة عمل الخدمات، ونوع البيانات اللي بتُجمَع من الجهاز، وحقوقك وواجباتك كمستخدم. يُرجى قراءتها بعناية — ويمكنك مراجعتها في أي وقت من قائمة الإعدادات في الجهاز. مع العلم إن بعض الخصائص والخدمات مش متاحة في كل البلاد، وبتختلف حسب مكان الاستخدام. لأي استفسار يُرجى التواصل مع خدمة العملاء.</div>
+                  <div style="font-family:'Cairo',sans-serif;font-weight:700;font-size:11.5px;color:#dcdcdc;margin-top:10px;">إشعار قانوني</div>
+                </div>
+                <div style="width:2px;background:#3a3a3a;border-radius:2px;flex:none;"><div style="width:2px;height:38%;background:#e8e8e8;border-radius:2px;"></div></div>
+              </div>
+            </div>
+            <div style="display:flex;justify-content:center;">
+              <button onClick="{{ nextStep }}" style="padding:8px 34px;border-radius:4px;background:#e8e8e8;color:#111;font-family:'Cairo',sans-serif;font-weight:600;font-size:14px;border:none;cursor:pointer;box-shadow:0 0 0 3px #e8005a,0 0 18px rgba(232,0,90,.7);" style-hover="background:#fff;">التالي</button>
+            </div>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ isWifi }}" hint-placeholder-val="{{ false }}">
+          <div style="position:absolute;inset:0;background:#000;padding:3% 0 4%;box-sizing:border-box;display:flex;flex-direction:column;direction:rtl;text-align:right;animation:fadeIn .3s ease;">
+            <div style="text-align:center;font-size:11px;color:#7d7d7d;">1</div>
+            <div style="display:flex;align-items:center;padding:0 4%;gap:10px;">
+              <div style="display:flex;align-items:center;gap:8px;color:#dcdcdc;font-family:'Cairo',sans-serif;font-size:14px;flex:none;">› السابق</div>
+              <div style="flex:1;text-align:center;font-family:'Cairo',sans-serif;font-weight:600;font-size:26px;color:#fff;">الاتصال بالإنترنت</div>
+              <div style="display:flex;align-items:center;gap:8px;color:#dcdcdc;font-family:'Cairo',sans-serif;font-size:14px;flex:none;">تخطّي ‹</div>
+            </div>
+            <div style="flex:1;min-height:0;display:flex;justify-content:center;align-items:center;">
+              <div style="width:56%;">
+                <div style="font-family:'Cairo',sans-serif;font-style:italic;font-size:11.5px;color:#c9c9c9;padding-bottom:6px;border-bottom:1px solid #6a6a6a;margin-bottom:8px;">شبكة واي فاي لاسلكية</div>
+                <div style="display:flex;flex-direction:column;gap:4px;">
+                  <sc-for list="{{ wifiList }}" as="w" hint-placeholder-count="4">
+                    <button onClick="{{ w.pick }}" style="{{ w.style }}">
+                      <span>{{ w.label }}</span>
+                      <span style="flex:none;">{{ w.icon }}</span>
+                    </button>
+                  </sc-for>
+                </div>
+              </div>
+            </div>
+            <div style="display:flex;justify-content:center;">
+              <button onClick="{{ nextStep }}" style="padding:9px 26px;border-radius:4px;background:#2a2a2a;color:#cfcfcf;font-family:'Cairo',sans-serif;font-weight:600;font-size:14px;border:none;cursor:pointer;" style-hover="background:#3a3a3a;color:#fff;">اتصال</button>
+            </div>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ isSetup }}" hint-placeholder-val="{{ false }}">
+          <div style="position:absolute;inset:0;background:#000;padding:3% 0 4%;box-sizing:border-box;display:flex;flex-direction:column;direction:rtl;text-align:right;animation:fadeIn .3s ease;">
+            <div style="text-align:center;font-size:11px;color:#7d7d7d;">1</div>
+            <div style="display:flex;align-items:center;padding:0 4%;">
+              <div style="display:flex;align-items:center;gap:8px;color:#dcdcdc;font-family:'Cairo',sans-serif;font-size:14px;">› السابق</div>
+              <div style="flex:1;text-align:center;font-family:'Cairo',sans-serif;font-weight:600;font-size:26px;color:#fff;margin-right:70px;">طريقة إعداد الشاشة</div>
+            </div>
+            <div style="flex:1;min-height:0;display:flex;align-items:center;justify-content:center;gap:32px;padding:0 6%;">
+              <sc-for list="{{ setupCards }}" as="c" hint-placeholder-count="2">
+                <div style="display:flex;flex-direction:column;align-items:center;gap:12px;">
+                  <button onClick="{{ c.pick }}" style="{{ c.cardStyle }}">
+                    <div style="{{ c.artStyle }}"></div>
+                  </button>
+                  <div style="display:flex;align-items:center;gap:9px;">
+                    <div style="{{ c.dotStyle }}"></div>
+                    <div style="font-family:'Cairo',sans-serif;font-size:14px;color:#e8e8e8;">{{ c.label }}</div>
+                  </div>
+                </div>
+              </sc-for>
+            </div>
+            <div style="display:flex;align-items:center;padding:0 4%;gap:14px;">
+              <div style="display:flex;align-items:center;gap:9px;">
+                <div style="width:13px;height:13px;border-radius:50%;border:1.5px solid #8a8a8a;"></div>
+                <div style="font-family:'Cairo',sans-serif;font-size:12.5px;color:#8a8a8a;">وضع المعرض</div>
+              </div>
+              <div style="flex:1;display:flex;justify-content:center;gap:10px;">
+                <div style="padding:8px 20px;border-radius:4px;background:#2a2a2a;color:#d8d8d8;font-family:'Cairo',sans-serif;font-size:13.5px;">إنهاء الإعداد</div>
+                <button onClick="{{ nextStep }}" style="padding:8px 30px;border-radius:4px;background:#e8e8e8;color:#111;font-family:'Cairo',sans-serif;font-weight:600;font-size:14px;border:none;cursor:pointer;box-shadow:0 0 0 3px #e8005a,0 0 18px rgba(232,0,90,.7);" style-hover="background:#fff;">التالي</button>
+              </div>
+            </div>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ isLang }}" hint-placeholder-val="{{ false }}">
+          <div style="position:absolute;inset:0;background:#000;padding:4% 0 5%;box-sizing:border-box;direction:rtl;text-align:right;display:flex;flex-direction:column;animation:fadeIn .3s ease;">
+            <div style="text-align:center;font-size:11px;color:#7d7d7d;">1</div>
+            <div style="text-align:center;font-family:'Cairo',sans-serif;font-weight:600;font-size:28px;color:#fff;margin-top:2px;">{{ screenTitle }}</div>
+            <div style="flex:1;min-height:0;display:flex;align-items:center;padding:0 8%;">
+              <div style="width:46%;display:flex;flex-direction:column;gap:14px;">
+                <sc-for list="{{ options }}" as="o" hint-placeholder-count="4">
+                  <button onClick="{{ o.pick }}" style="{{ o.langStyle }}">
+                    <span>{{ o.label }}</span>
+                    <span style="{{ o.checkStyle }}">✓</span>
+                  </button>
+                </sc-for>
+              </div>
+              <div style="flex:1;display:flex;align-items:center;justify-content:center;">
+                <img src="assets/tv-setup-globe.png" alt="" style="width:170px;height:170px;object-fit:contain;" />
+              </div>
+            </div>
+            <div style="display:flex;justify-content:center;">
+              <button onClick="{{ nextStep }}" style="padding:8px 34px;border-radius:4px;background:#e8e8e8;color:#111;font-family:'Cairo',sans-serif;font-weight:600;font-size:14px;border:none;cursor:pointer;box-shadow:0 0 0 3px #e8005a,0 0 18px rgba(232,0,90,.7);" style-hover="background:#fff;">التالي</button>
+            </div>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ isList }}" hint-placeholder-val="{{ false }}">
+          <div style="position:absolute;inset:0;padding:5% 7%;box-sizing:border-box;display:flex;flex-direction:column;animation:fadeIn .3s ease;">
+            <div style="font-family:'Cairo',sans-serif;font-weight:700;font-size:22px;color:#f2f2f2;margin-bottom:4px;">{{ screen.headline }}</div>
+            <div style="font-size:13px;color:#9aa0a4;margin-bottom:14px;">{{ screen.sub }}</div>
+            <div style="display:flex;flex-direction:column;gap:6px;flex:none;">
+              <sc-for list="{{ options }}" as="o" hint-placeholder-count="4">
+                <button onClick="{{ o.pick }}" style="{{ o.style }}">
+                  <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
+                    <div style="{{ o.dot }}"></div>
+                    <div style="text-align:right;">{{ o.label }}</div>
+                  </div>
+                </button>
+              </sc-for>
+            </div>
+            <div style="display:flex;gap:10px;justify-content:flex-start;margin-top:12px;">
+              <button onClick="{{ nextStep }}" style="padding:8px 22px;border-radius:6px;background:#e8e8e8;color:#111;font-family:'Cairo',sans-serif;font-weight:700;font-size:14px;border:none;cursor:pointer;" style-hover="background:#fff;">{{ screen.cta }}</button>
+            </div>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ isProgress }}" hint-placeholder-val="{{ false }}">
+          <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;padding:0 12%;animation:fadeIn .3s ease;">
+            <div style="font-family:'Cairo',sans-serif;font-weight:700;font-size:22px;color:#f2f2f2;text-align:center;">{{ screen.headline }}</div>
+            <div style="width:100%;height:10px;border-radius:999px;background:#2a2a2a;overflow:hidden;"><div style="{{ barStyle }}"></div></div>
+            <div style="font-size:13.5px;color:#9aa0a4;">{{ screen.sub }}</div>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ isHome }}" hint-placeholder-val="{{ false }}">
+          <div style="position:absolute;inset:0;background:#0b0c0e;display:flex;direction:ltr;animation:fadeIn .3s ease;">
+            <div style="width:36px;flex:none;display:flex;flex-direction:column;align-items:center;gap:18px;padding-top:16px;color:#9aa0a6;font-size:13px;">
+              <div>☺</div><div>♪</div><div>⚙</div><div>⌕</div>
+            </div>
+            <div style="flex:1;min-width:0;padding:12px 12px 10px 0;display:flex;flex-direction:column;gap:8px;">
+              <div style="position:relative;height:40%;border-radius:5px;background:linear-gradient(120deg,#39434b,#78848c 50%,#2e3941);display:flex;align-items:center;justify-content:center;">
+                <div style="font-family:'Cairo',sans-serif;font-size:20px;color:#fff;letter-spacing:3px;">KING BLAKE</div>
+                <div style="position:absolute;left:8px;top:50%;color:#e6e6e6;font-size:13px;">‹</div>
+                <div style="position:absolute;right:8px;top:50%;color:#e6e6e6;font-size:13px;">›</div>
+                <div style="position:absolute;right:8px;bottom:7px;padding:3px 9px;border-radius:3px;background:rgba(20,20,20,.75);color:#e8e8e8;font-size:8.5px;">Watch more</div>
+              </div>
+              <div style="display:flex;gap:6px;">
+                <div style="flex:1;height:23px;border-radius:3px;background:#0f7f92;color:#fff;font-size:10px;display:flex;align-items:center;justify-content:center;">Home Office</div>
+                <div style="flex:1;height:23px;border-radius:3px;background:#4b3fc4;color:#fff;font-size:10px;display:flex;align-items:center;justify-content:center;">Game</div>
+                <div style="flex:1;height:23px;border-radius:3px;background:#b93397;color:#fff;font-size:10px;display:flex;align-items:center;justify-content:center;">Music</div>
+                <div style="flex:1;height:23px;border-radius:3px;background:#1668b8;color:#fff;font-size:10px;display:flex;align-items:center;justify-content:center;">Home Hub</div>
+                <div style="flex:1;height:23px;border-radius:3px;background:#6e8f18;color:#fff;font-size:10px;display:flex;align-items:center;justify-content:center;">Sports</div>
+              </div>
+              <div style="display:flex;gap:5px;">
+                <sc-for list="{{ tiles }}" as="t" hint-placeholder-count="10">
+                  <div style="flex:1;height:25px;border-radius:5px;background:#15181b;border:1px solid #262b2f;color:#cfd4d8;font-size:8.5px;display:flex;align-items:center;justify-content:center;">{{ t }}</div>
+                </sc-for>
+              </div>
+              <div style="font-size:8.5px;color:#9aa0a6;">Free on LG Channels</div>
+              <div style="flex:1;min-height:0;display:flex;gap:5px;">
+                <div style="flex:1;border-radius:4px;background:linear-gradient(160deg,#8f2f7d,#241033);"></div>
+                <div style="flex:1;border-radius:4px;background:linear-gradient(160deg,#8a5a2a,#1e1208);"></div>
+                <div style="flex:1;border-radius:4px;background:linear-gradient(160deg,#2f4f7b,#0d1626);"></div>
+                <div style="flex:1;border-radius:4px;background:linear-gradient(160deg,#38566b,#101a20);"></div>
+                <div style="flex:1;border-radius:4px;background:linear-gradient(160deg,#8f3a2a,#26100b);"></div>
+                <div style="flex:1;border-radius:4px;background:linear-gradient(160deg,#3f3f3f,#141414);"></div>
+                <div style="flex:1;border-radius:4px;background:linear-gradient(160deg,#5a4a7b,#170f26);"></div>
+                <div style="flex:1;border-radius:4px;background:linear-gradient(160deg,#2f5a4a,#0c1b16);"></div>
+              </div>
+            </div>
+          </div>
+        </sc-if>
+      </div>
+      <div style="display:flex;justify-content:center;"><div style="width:120px;height:8px;background:#6f6f6f;border-radius:0 0 6px 6px;"></div></div>
+
+      <div style="margin-top:22px;background:#2f2f2f;border:1px solid #4a4a4a;border-radius:10px;padding:20px 22px;">
+        <div style="font-size:12px;color:#f0a8bd;font-weight:600;margin-bottom:8px;">اقرأ للعميل</div>
+        <div style="font-family:'Cairo',sans-serif;font-size:17px;line-height:2.05;color:#f2f2f2;">{{ script }}</div>
+      </div>
+    </div>
+
+    <div style="width:120px;flex:none;display:flex;flex-direction:column;align-items:center;gap:12px;">
+      <img src="assets/sim-remote.png" alt="الريموت السحري" style="display:block;width:100px;height:auto;border-radius:14px;">
+      <button onClick="{{ up }}" style="width:72px;height:30px;border-radius:8px;border:1px solid #4a4a4a;background:#242424;color:#e7edf0;font-size:12px;cursor:pointer;" style-hover="background:#303030;">▲</button>
+      <button onClick="{{ ok }}" style="{{ wheelStyle }}">OK</button>
+      <button onClick="{{ down }}" style="width:72px;height:30px;border-radius:8px;border:1px solid #4a4a4a;background:#242424;color:#e7edf0;font-size:12px;cursor:pointer;" style-hover="background:#303030;">▼</button>
+      <button onClick="{{ prev }}" style="width:72px;height:30px;border-radius:8px;border:1px solid #4a4a4a;background:#242424;color:#e7edf0;font-family:'IBM Plex Sans Arabic',sans-serif;font-size:12px;cursor:pointer;" style-hover="background:#303030;">رجوع</button>
+      <div style="font-size:11.5px;color:#9a9a9a;text-align:center;line-height:1.7;">اضغط OK لتنفيذ الخطوة والانتقال للتالية</div>
+    </div>
+
+    <div style="width:390px;flex:none;">
+      <div style="display:flex;align-items:center;gap:10px;padding-bottom:14px;border-bottom:1px solid #565656;margin-bottom:14px;flex-wrap:wrap;">
+        <div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:19px;">خطوات الإعداد الأولي للشاشة</div>
+        <div style="margin-right:auto;color:#a8a8a8;font-size:16px;">⌄</div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:2px;max-height:70vh;overflow:auto;padding-left:6px;">
+        <sc-for list="{{ steps }}" as="s" hint-placeholder-count="10">
+          <button onClick="{{ s.go }}" style="{{ s.style }}">
+            <div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:15px;margin-bottom:6px;color:{{ s.numColor }};">{{ s.num }}</div>
+            <div style="font-size:15px;line-height:1.75;text-align:right;">{{ s.text }}</div>
+          </button>
+        </sc-for>
+      </div>
+    </div>
+
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1500,&quot;height&quot;:940}}">
+const STEPS = [
+  { num:'٠١', text:'شغّل الشاشة، ثم اضغط زر OK (العجلة) في الريموت لبدء الإعداد.',
+    kind:'message', headline:'اضغط زر OK (العجلة) في الريموت',
+    script:'«لو سمحت شغّل الشاشة من الريموت، وهتظهر رسالة تقول اضغط زر OK — ده الزر الدايرة اللي في وسط الريموت. دوس عليه ونكمل مع بعض.»' },
+
+  { num:'٠٢', text:'اختر اللغة، ثم اختر «التالي».',
+    kind:'lang', headline:'اللغة — Language', sub:'اختر لغة قوائم الشاشة', cta:'التالي',
+    options:['العربية','English','Français','한국어'], def:'العربية',
+    script:'«أول اختيار هو اللغة — اختار اللغة بالأسهم ودوس OK، وبعدين اختار Next.»' },
+
+  { num:'٠٣', text:'اختر البلد، ثم اختر «التالي».',
+    kind:'lang', screenTitle:'البلد', headline:'البلد — Country', sub:'البلد يحدّد القنوات والخدمات والتطبيقات المتاحة', cta:'التالي',
+    options:['مصر','تونس','ليبيا','الجزائر'], def:'مصر',
+    script:'«بعد كده البلد — ودي مهمة لأنها بتحدّد القنوات والتطبيقات المتاحة. اختار بلد حضرتك ودوس التالي.»' },
+
+  { num:'٠٤', text:'اختر المنطقة الزمنية، ثم اختر «التالي».',
+    kind:'lang', screenTitle:'المنطقة الزمنية', headline:'المنطقة الزمنية — Time zone', sub:'لضبط الوقت والمؤقتات وجدول القنوات', cta:'التالي',
+    options:['توقيت القاهرة (GMT+2)','توقيت تونس (GMT+1)','توقيت طرابلس (GMT+2)','تحديد تلقائي'], def:'توقيت القاهرة (GMT+2)',
+    script:'«نختار المنطقة الزمنية علشان الوقت والمؤقتات تكون مضبوطة.»' },
+
+  { num:'٠٥', text:'اختر طريقة بدء الإعداد — في المثال ده نختار «الشاشة» ثم «التالي».',
+    kind:'setup', headline:'طريقة الإعداد — How to set up the TV', sub:'الإعداد من الشاشة نفسها أو من الموبايل', cta:'التالي',
+    options:['الموبايل','الشاشة'], def:'الشاشة', defIdx:1,
+    script:'«هنختار نبدأ الإعداد منين — من الشاشة نفسها ولا من الموبايل. الأسهل نختار TV وندوس Next. ومتاخدش وضع Store Mode أبدًا لأنه وضع المعرض.»' },
+
+  { num:'٠٦', text:'اتصل بشبكة الواي فاي وأدخل كلمة السر.',
+    kind:'wifi', headline:'الشبكة — Internet Connection', sub:'الاتصال مطلوب للتطبيقات والبث وتحديث البرنامج', cta:'اتصال',
+    options:['WIFI_1','WIFI_2','WIFI_3','Life_is_Good'], def:'Life_is_Good', defIdx:3,
+    script:'«نوصّل الشاشة بالواي فاي — اختار اسم الشبكة ودوس OK وبعدين اكتب كلمة السر. الاتصال مهم للتطبيقات والتحديثات.»' },
+
+  { num:'٠٧', text:'اقرأ الشروط والأحكام ووافق عليها للمتابعة.',
+    kind:'terms', headline:'الشروط والأحكام', sub:'بعض الخدمات والتطبيقات لا تعمل بدون الموافقة', cta:'التالي',
+    options:[], def:'',
+    script:'«فيه شروط وأحكام لازم نوافق عليها — من غير الموافقة الأساسية بعض الخدمات والتطبيقات مش هتشتغل.»' },
+
+  { num:'٠٨', text:'وافق على بنود الاستخدام وسياسة الخصوصية — اختر «تحديد الكل» ثم «موافق».',
+    kind:'agree', headline:'الشروط والأحكام — بنود الموافقة', sub:'الموافقة الأساسية مطلوبة لتشغيل الخدمات والتطبيقات', cta:'موافق',
+    options:['سياسة الخصوصية','بند معلومات المشاهدة','بند معلومات الصوت','بند الإعلانات المبنية على الاهتمامات وعبر الأجهزة','بند مستخدم Who.Where.What','سياسة خصوصية ASPECT'], def:'',
+    script:'«هنوافق على بنود الاستخدام وسياسة الخصوصية — نختار «تحديد الكل» من تحت وبعدها «موافق». لو العميل مش عايز الموافقات الاختيارية ينفع يختار الأساسية بس، بس ساعتها بعض الخدمات مش هتشتغل.»' },
+
+  { num:'٠٩', text:'وصّل الجهاز بكابل HDMI لو حابب، واتبع التعليمات على الشاشة ثم اختر «التالي».',
+    kind:'env', headline:'تحليل بيئة الاستخدام — User Environment Analysis', sub:'الشاشة بتفحص الجهاز المتصل بها وتضبط الإعدادات تلقائيًا', cta:'التالي',
+    options:[], def:'',
+    script:'«لو حضرتك عايز توصّل رسيفر أو أي جهاز بكابل HDMI، وصّله ثم شغّله — الشاشة هتفحصه وتظبط الإعدادات لوحدها. وبعدها ندوس التالي.»' },
+
+  { num:'١٠', text:'اختر طريقة مشاهدة القنوات — في المثال ده «رسيفر/دش متصل بمدخل HDMI أو AV» ثم «التالي».',
+    kind:'watch', headline:'تحليل بيئة الاستخدام — طريقة المشاهدة', sub:'تحديد مصدر المشاهدة الفعلي عند العميل', cta:'التالي',
+    options:['رسيفر / دش متصل بمدخل HDMI أو AV','هوائي أو كابل متصل بمدخل الهوائي','تطبيقات البث فقط (بدون قنوات)'], def:'رسيفر / دش متصل بمدخل HDMI أو AV',
+    script:'«نختار طريقة مشاهدة القنوات عند حضرتك — لو الرسيفر أو الدش متوصّل على HDMI أو AV نختار الأولى، وبعدها التالي.»' },
+
+  { num:'١١', text:'اختر نوع التركيب حسب تركيب الشاشة عند العميل: ترابيزة أو حائط.',
+    kind:'mount', headline:'نوع تركيب الشاشة — للحصول على أفضل صوت', sub:'الاختيار يضبط معالجة الصوت حسب مكان التركيب', cta:'التالي',
+    options:['ترابيزة (Stand)','حائط (Wall-mounted)'], def:'ترابيزة (Stand)',
+    script:'«نختار الشاشة متركبة إزاي — على ترابيزة ولا على الحيطة — لأن ده بيظبط الصوت على مكان التركيب. الإعدادات ممكن تختلف حسب الموديل.»' },
+
+  { num:'١٢', text:'شغّل «التحديث التلقائي للبرنامج» لو حابب، ثم اختر «التالي».',
+    kind:'update', headline:'التحديث التلقائي للبرنامج — SW Automatic Update', sub:'الشاشة بتحدّث نفسها من خلال الإنترنت', cta:'التالي',
+    options:[], def:'',
+    script:'«ممكن نشغّل التحديث التلقائي للبرنامج — كده الشاشة بتجيب أحدث إصدار لوحدها من خلال الإنترنت. وينفع نغيّر الإعداد بعدين من الإعدادات ثم الدعم ثم تحديث البرنامج.»' },
+
+  { num:'١٣', text:'إعداد التحكم الشامل — في المثال ده نختار «خروج».',
+    kind:'universal', headline:'إعدادات التحكم الشامل — Universal Control', sub:'للتحكم في الأجهزة المتصلة بالشاشة من ريموت الشاشة', cta:'خروج',
+    options:[], def:'',
+    script:'«لو حضرتك عايز تتحكّم في الرسيفر من ريموت الشاشة نفسه، ممكن نعمل إعداد التحكم الشامل. لو مش محتاج ده دلوقتي نختار «خروج» ونكمل.»' },
+
+  { num:'١٤', text:'سجّل الدخول بحساب إل جي — في المثال ده «تسجيل الدخول من الشاشة».',
+    kind:'account', headline:'حساب إل جي — LG Account', sub:'تسجيل الدخول بيتيح المحتوى المقترح وخدمات التطبيقات', cta:'التالي',
+    options:['تسجيل الدخول من تطبيق LG ThinQ','تسجيل الدخول من متصفح الموبايل','تسجيل الدخول من الشاشة'], def:'تسجيل الدخول من الشاشة', defIdx:2,
+    script:'«هنسجّل الدخول بحساب إل جي — ينفع من التطبيق أو من الموبايل أو من الشاشة نفسها. في المثال ده نختار من الشاشة. ولو مفيش حساب نختار إنشاء حساب جديد ونتبع الخطوات.»' },
+
+  { num:'١٥', text:'اختر «تسجيل الدخول بحساب إل جي» — ولو مفيش حساب اختر «إنشاء حساب إل جي».',
+    kind:'signin', headline:'تسجيل الدخول من الشاشة — Sign in on TV', sub:'تسجيل دخول بحساب موجود أو إنشاء حساب جديد', cta:'تسجيل الدخول',
+    options:[], def:'',
+    script:'«نختار تسجيل الدخول بحساب إل جي. ولو حضرتك ماعندكش حساب نختار إنشاء حساب إل جي ونتبع الخطوات اللي على الشاشة.»' },
+
+  { num:'١٦', text:'أدخل بيانات الحساب (البريد وكلمة السر) ثم اختر «تسجيل الدخول».',
+    kind:'creds', headline:'بيانات حساب إل جي', sub:'إدخال البريد الإلكتروني وكلمة السر', cta:'تسجيل الدخول',
+    options:[], def:'',
+    script:'«ندخل البريد الإلكتروني وكلمة السر بتاعة حساب إل جي وبعدها نختار تسجيل الدخول. ولو نسيت كلمة السر فيه اختيار لاستعادتها.»' },
+
+  { num:'١٧', text:'اكتب الاسم المستعار للشاشة ثم اختر «موافق» — الاسم ده هيظهر في قائمة الحسابات.',
+    kind:'nick', headline:'الاسم المستعار — Nickname', sub:'الاسم اللي هيظهر في قائمة الحسابات على الشاشة', cta:'موافق',
+    options:[], def:'',
+    script:'«نكتب اسم للشاشة زي LGEUSER0 وندوس موافق. الاسم ده هو اللي هيظهر في قائمة الحسابات على الشاشة.»' },
+
+  { num:'١٨', text:'خلاص كده الإعداد الأولي انتهى — الشاشة هتفتح على الصفحة الرئيسية وتكون جاهزة للاستخدام.',
+    kind:'home',
+    script:'«مبروك — كده الإعداد الأولي خلص تمامًا والشاشة هتفتح على الصفحة الرئيسية جاهزة للاستخدام. لو حابب، نراجع مع بعض وضع الصورة والصوت المناسب لحضرتك.»' }
+];
+
+const TILES = ['LG Ch', 'NETFLIX', 'prime', 'Disney+', 'hulu', 'sling', 'tv', 'YouTube', 'max', 'tubi'];
+
+class Component extends DCLogic {
+  state = { i: 0, sel: {}, opt: 0 };
+
+  cur() { return STEPS[this.state.i]; }
+
+  setStep(i) {
+    const n = Math.max(0, Math.min(STEPS.length - 1, i));
+    this.setState({ i: n, opt: STEPS[n].defIdx || 0 });
+  }
+
+  renderVals() {
+    const st = this.cur();
+    const opts = st.options || [];
+    const chosen = this.state.sel[st.num] || st.def || '';
+    const optIdx = Math.min(this.state.opt, Math.max(0, opts.length - 1));
+
+    return {
+      stepBadge: 'خطوة ' + st.num + ' من ' + STEPS[STEPS.length - 1].num,
+      isMessage: st.kind === 'message',
+      isReg: st.kind === 'reg',
+      isNick: st.kind === 'nick',
+      isCreds: st.kind === 'creds',
+      isSignin: st.kind === 'signin',
+      isAccount: st.kind === 'account',
+      accountCards: opts.map((o, i) => {
+        const picked = i === optIdx;
+        return {
+          label: o,
+          cardStyle: 'width:200px;height:120px;border-radius:6px;background:linear-gradient(160deg,#c3ccd6,#9aa6b4);cursor:pointer;padding:0;display:flex;align-items:center;justify-content:center;border:2px solid ' +
+            (picked ? '#e8005a' : 'transparent') + ';box-shadow:' + (picked ? '0 0 22px rgba(232,0,90,.75)' : 'none') + ';',
+          artStyle: i === 0
+            ? 'width:40px;height:70px;border-radius:6px;background:#fff;box-shadow:0 2px 8px rgba(0,0,0,.25);'
+            : (i === 1
+              ? 'width:120px;height:66px;border-radius:4px;background:#fff;box-shadow:0 2px 8px rgba(0,0,0,.25);'
+              : 'width:130px;height:70px;border-radius:3px;background:#101010;'),
+          pick: () => this.setState(s => ({ opt: i, sel: Object.assign({}, s.sel, { [st.num]: o }) }))
+        };
+      }),
+      isUniversal: st.kind === 'universal',
+      isUpdate: st.kind === 'update',
+      switchStyle: 'width:44px;height:22px;border-radius:999px;border:none;cursor:pointer;padding:2px;display:flex;justify-content:' +
+        (this.state.autoUpdate === false ? 'flex-start' : 'flex-end') + ';background:' + (this.state.autoUpdate === false ? '#4a4a4a' : '#37c26a') + ';',
+      knobStyle: 'width:18px;height:18px;border-radius:50%;background:#fff;',
+      toggleUpdate: () => this.setState(s => ({ autoUpdate: s.autoUpdate === false })),
+      isMount: st.kind === 'mount',
+      mountCards: opts.map((o, i) => {
+        const picked = i === optIdx;
+        return {
+          label: o,
+          cardStyle: 'width:210px;height:130px;border-radius:8px;background:linear-gradient(160deg,#c3ccd6,#9aa6b4);border:2px solid ' +
+            (picked ? '#e8005a' : 'transparent') + ';cursor:pointer;padding:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;',
+          baseStyle: i === 0
+            ? 'width:150px;height:12px;border-radius:2px;background:#aab3bd;'
+            : 'width:150px;height:1px;background:rgba(255,255,255,.35);',
+          pick: () => this.setState(s => ({ opt: i, sel: Object.assign({}, s.sel, { [st.num]: o }) }))
+        };
+      }),
+      isWatch: st.kind === 'watch',
+      isEnv: st.kind === 'env',
+      isAgree: st.kind === 'agree',
+      consents: opts.map(o => ({ label: o })),
+      isTerms: st.kind === 'terms',
+      isWifi: st.kind === 'wifi',
+      wifiList: opts.map((o, i) => {
+        const picked = i === optIdx;
+        return {
+          label: o,
+          icon: React.createElement('svg', { width: 17, height: 14, viewBox: '0 0 20 16' },
+            React.createElement('path', { d: 'M2 5.5a12 12 0 0 1 16 0', fill: 'none', stroke: picked ? '#333' : '#dcdcdc', strokeWidth: 1.7, strokeLinecap: 'round' }),
+            React.createElement('path', { d: 'M5.2 8.6a7.6 7.6 0 0 1 9.6 0', fill: 'none', stroke: picked ? '#333' : '#dcdcdc', strokeWidth: 1.7, strokeLinecap: 'round' }),
+            React.createElement('circle', { cx: 10, cy: 12.6, r: 1.5, fill: picked ? '#333' : '#dcdcdc' })),
+          style: 'display:flex;align-items:center;justify-content:space-between;width:100%;padding:9px 14px;cursor:pointer;text-align:right;' +
+            "font-family:'Cairo',sans-serif;font-size:13.5px;color:" + (picked ? '#111' : '#e2e2e2') +
+            ';background:' + (picked ? '#d8d8d8' : 'transparent') + ';border:1px solid ' + (picked ? '#f2f2f2' : 'transparent') + ';border-radius:4px;',
+          pick: () => this.setState(s => ({ opt: i, sel: Object.assign({}, s.sel, { [st.num]: o }) }))
+        };
+      }),
+      isSetup: st.kind === 'setup',
+      setupCards: opts.map((o, i) => {
+        const picked = i === optIdx;
+        return {
+          label: o,
+          cardStyle: 'width:210px;height:130px;border-radius:8px;background:linear-gradient(160deg,#c3ccd6,#9aa6b4);border:2px solid ' +
+            (picked ? '#e8005a' : 'transparent') + ';cursor:pointer;padding:0;display:flex;align-items:center;justify-content:center;',
+          artStyle: i === 0
+            ? 'width:46px;height:78px;border-radius:6px;background:#fff;box-shadow:0 2px 8px rgba(0,0,0,.25);'
+            : 'width:130px;height:74px;border-radius:4px;background:linear-gradient(120deg,#0b3f8f,#1e7fd4);',
+          dotStyle: 'width:13px;height:13px;border-radius:50%;border:1.5px solid ' + (picked ? '#37c26a' : '#8a8a8a') +
+            ';background:' + (picked ? '#37c26a' : 'transparent') + ';',
+          pick: () => this.setState(s => ({ opt: i, sel: Object.assign({}, s.sel, { [st.num]: o }) }))
+        };
+      }),
+      isLang: st.kind === 'lang',
+      screenTitle: st.screenTitle || 'اللغة',
+      isList: st.kind === 'list',
+      isProgress: st.kind === 'progress',
+      isHome: st.kind === 'home',
+      screen: { headline: st.headline || '', sub: st.sub || '', cta: st.cta || '' },
+      barStyle: 'height:100%;width:' + (st.bar || 0) + '%;background:linear-gradient(90deg,#A50034,#e8005a);',
+      padDots: [1,2,3,4,5,6,7,8,9],
+      tiles: TILES,
+      script: st.script,
+      options: opts.map((o, i) => {
+        const on = i === optIdx;
+        const picked = chosen === o;
+        return {
+          label: o,
+          style: 'text-align:right;width:100%;padding:10px 14px;border-radius:8px;border:1px solid ' +
+            (on ? 'rgba(255,255,255,.55)' : 'transparent') + ';background:' + (on ? 'rgba(255,255,255,.15)' : 'rgba(255,255,255,.04)') +
+            ";color:#f2f2f2;font-family:'IBM Plex Sans Arabic',sans-serif;font-size:14.5px;cursor:pointer;",
+          watchStyle: 'padding:9px 14px;border-radius:3px;cursor:pointer;text-align:right;' +
+            "font-family:'Cairo',sans-serif;font-size:13px;color:" + (on ? '#111' : '#e2e2e2') +
+            ';background:' + (on ? '#dcdcdc' : '#151515') + ';border:1px solid ' + (on ? '#f2f2f2' : '#2e2e2e') + ';',
+          dot: 'width:13px;height:13px;border-radius:50%;flex:none;border:2px solid ' + (picked ? '#39d98a' : 'rgba(255,255,255,.45)') +
+            ';background:' + (picked ? '#39d98a' : 'transparent') + ';',
+          langStyle: 'display:flex;align-items:center;justify-content:flex-start;gap:70px;width:100%;background:none;border:none;padding:0;cursor:pointer;text-align:right;' +
+            "font-family:'Cairo',sans-serif;font-size:15px;color:" + (on || picked ? '#fff' : '#c9c9c9') + ';',
+          checkStyle: 'font-size:15px;color:#fff;visibility:' + (picked ? 'visible' : 'hidden') + ';',
+          pick: () => this.setState(s => ({ opt: i, sel: Object.assign({}, s.sel, { [st.num]: o }) }))
+        };
+      }),
+      steps: STEPS.map((s, i) => {
+        const on = i === this.state.i;
+        return {
+          num: s.num,
+          text: s.text,
+          numColor: on ? '#111' : '#cfcfcf',
+          style: 'text-align:right;width:100%;padding:18px 20px;border-radius:6px;cursor:pointer;border:none;' +
+            (on ? 'background:#e9e9e9;color:#141414;' : 'background:transparent;color:#d8d8d8;border-bottom:1px solid #4d4d4d;') +
+            "font-family:'IBM Plex Sans Arabic',sans-serif;",
+          go: () => this.setStep(i)
+        };
+      }),
+      wheelStyle: 'width:58px;height:58px;border-radius:50%;border:3px solid #e8005a;background:#1c1c1c;color:#fff;' +
+        "font-family:'Cairo',sans-serif;font-weight:900;font-size:14px;cursor:pointer;animation:wheelPulse 1.8s ease infinite;",
+      nextStep: () => {
+        if (opts.length) {
+          const o = opts[optIdx];
+          this.setState(s => ({ sel: Object.assign({}, s.sel, { [st.num]: o }) }));
+        }
+        this.setStep(this.state.i + 1);
+      },
+      up: () => this.setState(s => ({ opt: Math.max(0, s.opt - 1) })),
+      down: () => this.setState(s => ({ opt: Math.min(Math.max(0, opts.length - 1), s.opt + 1) })),
+      ok: () => {
+        if (opts.length) {
+          const o = opts[optIdx];
+          this.setState(s => ({ sel: Object.assign({}, s.sel, { [st.num]: o }) }));
+        }
+        this.setStep(this.state.i + 1);
+      },
+      prev: () => this.setStep(this.state.i - 1)
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script>
+(function(){
+  var KEY = 'csGuideAuth_v1';
+  var USER = 'agent';
+  var PASS = 'LGE@2026';
+  function authed(){ try { return localStorage.getItem(KEY) === '1'; } catch(e){ return false; } }
+  if (authed()) return;
+  var u = window.prompt('اسم المستخدم / Username:');
+  var p = window.prompt('كلمة المرور / Password:');
+  if (u === USER && p === PASS) {
+    try { localStorage.setItem(KEY, '1'); } catch(e){}
+  } else {
+    window.stop();
+    document.open();
+    document.write('<div style="font-family:Tahoma,Arial,sans-serif;text-align:center;margin-top:80px;font-size:22px;color:#c00;">تم رفض الدخول<br>Access Denied</div>');
+    document.close();
+  }
+})();
+</script>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<template id="__bundler_thumbnail"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><rect width="200" height="200" fill="#111314"/><rect x="60" y="70" width="80" height="46" rx="8" fill="#A50034"/><rect x="72" y="126" width="56" height="8" rx="4" fill="#f0a8bd"/><rect x="84" y="142" width="32" height="8" rx="4" fill="#f0a8bd"/></svg></template>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  body { margin: 0; background: #f4f3ef; }
+  a { color: #A50034; text-decoration: none; }
+  a:hover { color: #7A0027; }
+</style>
+</helmet>
+<div dir="rtl" style="min-height:100vh;background:#f4f3ef;color:#191a1c;font-family:'IBM Plex Sans Arabic',system-ui,sans-serif;">
+  <div style="padding:14px 28px;background:#111314;color:#f4f3ef;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;">
+    <div style="display:flex;align-items:center;gap:14px;">
+      <div style="width:10px;height:30px;border-radius:2px;background:#A50034;"></div>
+      <div style="font-family:'Cairo',sans-serif;font-weight:700;font-size:18px;">تركيب مجفف إل جي أعلى غسالة إل جي</div>
+    </div>
+    <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;"><button onClick="{{ goBack }}" type="button" style="padding:8px 16px;border-radius:8px;border:1px solid #3a4043;background:transparent;color:#e4e7e9;font-family:'IBM Plex Sans Arabic',system-ui,sans-serif;font-size:13.5px;cursor:pointer;white-space:nowrap;white-space:nowrap;flex:none;">رجوع</button><a href="Installation Guide Home.dc.html" style="padding:8px 16px;border-radius:8px;border:1px solid #3a4043;color:#f0a8bd;font-size:13.5px;text-decoration:none;white-space:nowrap;white-space:nowrap;flex:none;">الرئيسية</a><a href="Washer Installation Call Guide.dc.html#dryer" style="padding:8px 16px;border-radius:8px;border:1px solid #3a4043;color:#f0a8bd;font-size:13.5px;text-decoration:none;white-space:nowrap;white-space:nowrap;flex:none;">مسار مكالمة المجفف</a></div>
+      <a href="Service Fees Table.dc.html" style="padding:8px 16px;border-radius:8px;border:1px solid #3a4043;color:#f0a8bd;font-size:13px;text-decoration:none;white-space:nowrap;flex:none;" style-hover="background:#22282a;">جدول تكاليف الصيانة</a>
+  </div>
+
+  <div style="max-width:960px;margin:0 auto;padding:30px 28px 70px;display:flex;flex-direction:column;gap:20px;">
+
+    <div style="background:#fdf6e8;border:1px solid #ecd9ae;border-radius:12px;padding:18px 20px;font-size:15px;line-height:1.9;color:#4a3c1c;">
+      المجفف التركي <strong>RH80T2SP7RM</strong>: أداة التثبيت ليست مرفقة داخل الكرتونة. إذا أراد العميل تركيب المجفف أعلى الغسالة فعليه شراء القطعة المنفصلة.
+    </div>
+
+    <div style="background:#fff;border:1px solid #e3e0d8;border-radius:14px;padding:28px;">
+      <div style="font-family:'Cairo',sans-serif;font-weight:700;font-size:20px;margin-bottom:18px;">٣ حالات للتركيب</div>
+      <div style="display:grid;gap:14px;">
+        <div style="padding:20px 22px;border-radius:12px;background:#f3f2f1;border:1px solid #dfdcda;">
+          <div style="font-family:'Cairo',sans-serif;font-weight:700;font-size:16.5px;margin-bottom:8px;">الحالة ١ — يتم التركيب</div>
+          <div style="font-size:15.5px;line-height:1.9;color:#292c2f;">العميل اشترى الغسالة والمجفف التركي، ومعه قطعة التثبيت المطلوبة.</div>
+          <div style="margin-top:10px;font-size:14.5px;color:#5a5553;" dir="ltr">Washer → F2T2TYM1S &nbsp;·&nbsp; Dryer → RH80T2SP7RM</div>
+        </div>
+        <div style="padding:20px 22px;border-radius:12px;background:#fdf5f5;border:1px solid #e6c9c9;">
+          <div style="font-family:'Cairo',sans-serif;font-weight:700;font-size:16.5px;margin-bottom:8px;color:#9b3a3a;">الحالة ٢ — لا يتم التركيب</div>
+          <div style="font-size:15.5px;line-height:1.9;color:#292c2f;">العميل اشترى غسالة إل جي ومجفف تركي، ويريد تركيب المجفف أعلى الغسالة.</div>
+        </div>
+        <div style="padding:20px 22px;border-radius:12px;background:#fdf5f5;border:1px solid #e6c9c9;">
+          <div style="font-family:'Cairo',sans-serif;font-weight:700;font-size:16.5px;margin-bottom:8px;color:#9b3a3a;">الحالة ٣ — لا يتم التركيب</div>
+          <div style="font-size:15.5px;line-height:1.9;color:#292c2f;">العميل اشترى الغسالة التركي ومجفف إل جي، ويريد تركيب المجفف أعلى الغسالة — يتم إبلاغ العميل بعدم إمكانية ذلك.</div>
+          <div style="margin-top:10px;font-size:14.5px;color:#5a5553;" dir="ltr">Washer → F2T2TYM1S &nbsp;·&nbsp; Dryer → RH10V9JV2W</div>
+        </div>
+      </div>
+    </div>
+
+    <div style="background:#fff;border:1px solid #e3e0d8;border-radius:14px;padding:28px;">
+      <div style="font-family:'Cairo',sans-serif;font-weight:700;font-size:20px;margin-bottom:18px;">أداة التثبيت (Stacking kit) حسب موديل المجفف</div>
+      <div style="overflow-x:auto;">
+        <table style="width:100%;border-collapse:collapse;font-size:14.5px;">
+          <thead>
+            <tr style="background:#111314;color:#f4f3ef;font-family:'Cairo',sans-serif;">
+              <th style="padding:12px;text-align:right;font-weight:700;">المجفف</th>
+              <th style="padding:12px;text-align:right;font-weight:700;">الغسالة المتوافقة</th>
+              <th style="padding:12px;text-align:right;font-weight:700;">أداة التثبيت</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td style="padding:12px;font-weight:600;border-bottom:1px solid #e9e6de;">RH10</td><td style="padding:12px;border-bottom:1px solid #e9e6de;line-height:1.8;">غسالات إل جي 7، 8، 9، 10، 11، 12 كجم — بشرط أن يكون عمق الغسالة من 55 سم إلى 65 سم.</td><td style="padding:12px;border-bottom:1px solid #e9e6de;">مشابك</td></tr>
+            <tr style="background:#fbfaf7;"><td style="padding:12px;font-weight:600;border-bottom:1px solid #e9e6de;">RH16</td><td style="padding:12px;border-bottom:1px solid #e9e6de;line-height:1.8;">غسالات إل جي 14، 15، 16 كجم — بشرط توافر القطعة الموضحة بالصورة مع الغسالة.</td><td style="padding:12px;border-bottom:1px solid #e9e6de;">عوارض</td></tr>
+            <tr><td style="padding:12px;font-weight:600;border-bottom:1px solid #e9e6de;">RH18</td><td style="padding:12px;border-bottom:1px solid #e9e6de;line-height:1.8;">غسالات من 16 كجم — بشرط توافر القطعة الموضحة بالصورة مع الغسالة.</td><td style="padding:12px;border-bottom:1px solid #e9e6de;">عوارض</td></tr>
+            <tr style="background:#fdf5f5;"><td style="padding:12px;font-weight:600;">RH80 التركي</td><td style="padding:12px;line-height:1.8;">حسب الحالات الثلاث أعلاه.</td><td style="padding:12px;color:#9b3a3a;font-weight:600;">تُشترى منفصلة</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div style="margin-top:16px;font-size:14px;color:#6b7075;line-height:1.8;">صور أدوات التثبيت وأرقام الـ SVC متاحة على قاعدة البيانات — راجعها قبل إبلاغ العميل بالتكلفة.</div>
+    </div>
+
+  </div>
+</div>
+
+
+<div dir="rtl" style="background:#f4f3ef;padding:8px 28px 48px;display:flex;justify-content:center;font-family:'IBM Plex Sans Arabic',system-ui,sans-serif;">
+  <a href="Installation Guide Home.dc.html" style="display:inline-flex;align-items:center;gap:10px;padding:14px 30px;border-radius:12px;background:#111314;color:#f4f3ef;font-family:'Cairo',sans-serif;font-weight:700;font-size:15px;" style-hover="background:#A50034;color:#fff;">← العودة للصفحة الرئيسية</a>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() {
+    return { goBack: () => { if (history.length > 1) history.back(); else location.href = 'Installation Guide Home.dc.html'; } };
+  }
+}
+</script>
+</body>
+</html>

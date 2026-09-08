@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script>
+(function(){
+  var KEY = 'csGuideAuth_v1';
+  var USER = 'agent';
+  var PASS = 'LGE@2026';
+  function authed(){ try { return localStorage.getItem(KEY) === '1'; } catch(e){ return false; } }
+  if (authed()) return;
+  var u = window.prompt('اسم المستخدم / Username:');
+  var p = window.prompt('كلمة المرور / Password:');
+  if (u === USER && p === PASS) {
+    try { localStorage.setItem(KEY, '1'); } catch(e){}
+  } else {
+    window.stop();
+    document.open();
+    document.write('<div style="font-family:Tahoma,Arial,sans-serif;text-align:center;margin-top:80px;font-size:22px;color:#c00;">تم رفض الدخول<br>Access Denied</div>');
+    document.close();
+  }
+})();
+</script>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<template id="__bundler_thumbnail"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><rect width="200" height="200" fill="#111314"/><rect x="60" y="70" width="80" height="46" rx="8" fill="#A50034"/><rect x="72" y="126" width="56" height="8" rx="4" fill="#f0a8bd"/><rect x="84" y="142" width="32" height="8" rx="4" fill="#f0a8bd"/></svg></template>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  body { margin: 0; background: #f4f3ef; }
+  a { color: #A50034; text-decoration: none; }
+  a:hover { color: #7A0027; }
+</style>
+</helmet>
+<div dir="rtl" style="min-height:100vh;background:#f4f3ef;color:#191a1c;font-family:'IBM Plex Sans Arabic',system-ui,sans-serif;">
+  <div style="padding:14px 28px;background:#111314;color:#f4f3ef;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;">
+    <div style="display:flex;align-items:center;gap:14px;">
+      <div style="width:10px;height:30px;border-radius:2px;background:#A50034;"></div>
+      <div style="font-family:'Cairo',sans-serif;font-weight:700;font-size:18px;">الكابولي والمواسير وتزويد الفريون</div>
+    </div>
+    <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;"><button onClick="{{ goBack }}" type="button" style="padding:8px 16px;border-radius:8px;border:1px solid #3a4043;background:transparent;color:#e4e7e9;font-family:'IBM Plex Sans Arabic',system-ui,sans-serif;font-size:13.5px;cursor:pointer;white-space:nowrap;white-space:nowrap;flex:none;">رجوع</button><a href="Installation Guide Home.dc.html" style="padding:8px 16px;border-radius:8px;border:1px solid #3a4043;color:#f0a8bd;font-size:13.5px;text-decoration:none;white-space:nowrap;flex:none;">الرئيسية</a><a href="ref-index.dc.html" style="padding:8px 16px;border-radius:8px;border:1px solid #3a4043;color:#f0a8bd;font-size:13.5px;text-decoration:none;white-space:nowrap;flex:none;">كل التعليمات الفنية</a></div>
+      <a href="Service Fees Table.dc.html" style="padding:8px 16px;border-radius:8px;border:1px solid #3a4043;color:#f0a8bd;font-size:13px;text-decoration:none;white-space:nowrap;flex:none;" style-hover="background:#22282a;">جدول تكاليف الصيانة</a>
+  </div>
+
+  <div style="max-width:960px;margin:0 auto;padding:30px 28px 70px;display:flex;flex-direction:column;gap:20px;">
+
+    <div style="background:#fff;border:1px solid #e3e0d8;border-radius:14px;padding:28px;">
+      <div style="font-family:'Cairo',sans-serif;font-weight:700;font-size:20px;margin-bottom:16px;">الكابولي</div>
+      <ol style="margin:0;padding-inline-start:22px;display:grid;gap:12px;font-size:15.5px;line-height:1.9;color:#292c2f;">
+        <li>على العميل شراء الكابولي من الموزع أو مركز الخدمة القائم بالتركيب.</li>
+        <li>الجبس والأسمنت وتطويل خرطوم الصرف مسؤولية العميل.</li>
+      </ol>
+    </div>
+
+    <div style="background:#fff;border:1px solid #e3e0d8;border-radius:14px;padding:28px;">
+      <div style="font-family:'Cairo',sans-serif;font-weight:700;font-size:20px;margin-bottom:16px;">المواسير</div>
+      <div style="font-size:15.5px;line-height:1.9;color:#292c2f;margin-bottom:12px;"><strong>١.</strong> تركيب التكييف يتم بالمواسير الموجودة مع الجهاز:</div>
+      <div style="display:grid;gap:10px;margin:0 0 18px;">
+        <div style="padding:14px 18px;border-radius:10px;background:#fbfaf7;border:1px solid #e9e6de;font-size:15px;line-height:1.8;">التكييف الانفرتر (STD / SP.PLUS / ARTCOOL) يأتي بمواسير <strong>3 متر</strong>.</div>
+        <div style="padding:14px 18px;border-radius:10px;background:#fbfaf7;border:1px solid #e9e6de;font-size:15px;line-height:1.8;">التكييف الـ Hero إنتاج مصري أو أردني يأتي بمواسير من <strong>2.5 إلى 3 متر</strong>.</div>
+      </div>
+      <div style="font-size:15.5px;line-height:1.9;color:#292c2f;margin-bottom:12px;"><strong>٢.</strong> في حالة وجود مواسير مدفونة لدى العميل، يلزم أن تكون المواسير نفس أقطار الأجهزة التي سيتم تركيبها، وأن يتم لها اختبار ضغط بالنيتروجين، وفي حالة سلامتها يتم التركيب.</div>
+      <ul style="margin:0 0 18px;padding-inline-start:20px;display:grid;gap:10px;font-size:15px;line-height:1.85;color:#3c4145;">
+        <li>تكلفة الكشف على التجهيزات وضغط واختبار المواسير المدفونة على حساب العميل.</li>
+        <li>إذا احتاج تركيب الجهاز زيادة أطوال المواسير، يتم محاسبة العميل عليها.</li>
+        <li>الشركة مسؤولة عن عمل فتحة الشنيدة في الطوب فقط. في حالة وجود حائط خرساني يتم التوضيح للعميل بتجهيز فتحة الشنيدة في الحائط الخرساني عن طريقه، وإعادة الاتصال بالشركة للتركيب.</li>
+      </ul>
+      <div style="padding:18px 20px;border-radius:12px;background:#fdf6e8;border:1px solid #ecd9ae;font-size:15.5px;line-height:1.9;color:#4a3c1c;">
+        <strong>٣.</strong> في حالة زيادة أطوال المواسير عن <strong>7.5 متر</strong> يلزم تزويد فريون — وتزويد الفريون على حساب العميل.
+      </div>
+    </div>
+
+    <div style="background:#fff;border:1px solid #e3e0d8;border-radius:14px;padding:28px;">
+      <div style="font-family:'Cairo',sans-serif;font-weight:700;font-size:20px;margin-bottom:18px;">جدول أقطار وأطوال المواسير وتزويد الشحنة للقدرات المختلفة</div>
+      <div style="overflow-x:auto;">
+        <table style="width:100%;border-collapse:collapse;font-size:14.5px;">
+          <thead>
+            <tr style="background:#111314;color:#f4f3ef;font-family:'Cairo',sans-serif;">
+              <th style="padding:12px 12px;text-align:right;font-weight:700;">قدرة</th>
+              <th style="padding:12px 12px;font-weight:700;">قطر ماسورة الغاز (بوصة)</th>
+              <th style="padding:12px 12px;font-weight:700;">قطر ماسورة السائل (بوصة)</th>
+              <th style="padding:12px 12px;font-weight:700;">أقصى طول للمواسير (متر)</th>
+              <th style="padding:12px 12px;font-weight:700;">أقصى ارتفاع بين الوحدتين (متر)</th>
+              <th style="padding:12px 12px;font-weight:700;">تزويد الشحنة (جرام/متر)</th>
+            </tr>
+          </thead>
+          <tbody style="text-align:center;font-variant-numeric:tabular-nums;">
+            <tr style="background:#fbfaf7;"><td style="padding:11px 12px;text-align:right;font-weight:600;border-bottom:1px solid #e9e6de;">HP 1.5</td><td style="padding:11px 12px;border-bottom:1px solid #e9e6de;">3/8</td><td style="padding:11px 12px;border-bottom:1px solid #e9e6de;">1/4</td><td style="padding:11px 12px;border-bottom:1px solid #e9e6de;">15</td><td style="padding:11px 12px;border-bottom:1px solid #e9e6de;">7</td><td style="padding:11px 12px;border-bottom:1px solid #e9e6de;">20</td></tr>
+            <tr><td style="padding:11px 12px;text-align:right;font-weight:600;border-bottom:1px solid #e9e6de;">HP 2.25</td><td style="padding:11px 12px;border-bottom:1px solid #e9e6de;">1/2</td><td style="padding:11px 12px;border-bottom:1px solid #e9e6de;">1/4</td><td style="padding:11px 12px;border-bottom:1px solid #e9e6de;">20</td><td style="padding:11px 12px;border-bottom:1px solid #e9e6de;">10</td><td style="padding:11px 12px;border-bottom:1px solid #e9e6de;">20</td></tr>
+            <tr style="background:#fbfaf7;"><td style="padding:11px 12px;text-align:right;font-weight:600;border-bottom:1px solid #e9e6de;">HP 3</td><td style="padding:11px 12px;border-bottom:1px solid #e9e6de;">5/8</td><td style="padding:11px 12px;border-bottom:1px solid #e9e6de;">1/4</td><td style="padding:11px 12px;border-bottom:1px solid #e9e6de;">20</td><td style="padding:11px 12px;border-bottom:1px solid #e9e6de;">10</td><td style="padding:11px 12px;border-bottom:1px solid #e9e6de;">20</td></tr>
+            <tr><td style="padding:11px 12px;text-align:right;font-weight:600;border-bottom:1px solid #e9e6de;">HP 4</td><td style="padding:11px 12px;border-bottom:1px solid #e9e6de;">5/8</td><td style="padding:11px 12px;border-bottom:1px solid #e9e6de;">3/8</td><td style="padding:11px 12px;border-bottom:1px solid #e9e6de;">30</td><td style="padding:11px 12px;border-bottom:1px solid #e9e6de;">25</td><td style="padding:11px 12px;border-bottom:1px solid #e9e6de;">30</td></tr>
+            <tr style="background:#fbfaf7;"><td style="padding:11px 12px;text-align:right;font-weight:600;">HP 5</td><td style="padding:11px 12px;">5/8</td><td style="padding:11px 12px;">3/8</td><td style="padding:11px 12px;">30</td><td style="padding:11px 12px;">25</td><td style="padding:11px 12px;">30</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<div dir="rtl" style="background:#f4f3ef;padding:8px 28px 48px;display:flex;justify-content:center;font-family:'IBM Plex Sans Arabic',system-ui,sans-serif;">
+  <a href="Installation Guide Home.dc.html" style="display:inline-flex;align-items:center;gap:10px;padding:14px 30px;border-radius:12px;background:#111314;color:#f4f3ef;font-family:'Cairo',sans-serif;font-weight:700;font-size:15px;" style-hover="background:#A50034;color:#fff;">← العودة للصفحة الرئيسية</a>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() {
+    return { goBack: () => { if (history.length > 1) history.back(); else location.href = 'Installation Guide Home.dc.html'; } };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script>
+(function(){
+  var KEY = 'csGuideAuth_v1';
+  var USER = 'agent';
+  var PASS = 'LGE@2026';
+  function authed(){ try { return localStorage.getItem(KEY) === '1'; } catch(e){ return false; } }
+  if (authed()) return;
+  var u = window.prompt('اسم المستخدم / Username:');
+  var p = window.prompt('كلمة المرور / Password:');
+  if (u === USER && p === PASS) {
+    try { localStorage.setItem(KEY, '1'); } catch(e){}
+  } else {
+    window.stop();
+    document.open();
+    document.write('<div style="font-family:Tahoma,Arial,sans-serif;text-align:center;margin-top:80px;font-size:22px;color:#c00;">تم رفض الدخول<br>Access Denied</div>');
+    document.close();
+  }
+})();
+</script>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<template id="__bundler_thumbnail"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><rect width="200" height="200" fill="#111314"/><rect x="60" y="70" width="80" height="46" rx="8" fill="#A50034"/><rect x="72" y="126" width="56" height="8" rx="4" fill="#f0a8bd"/><rect x="84" y="142" width="32" height="8" rx="4" fill="#f0a8bd"/></svg></template>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  body { margin: 0; background: #f4f3ef; }
+  a { color: #A50034; text-decoration: none; }
+  a:hover { color: #7A0027; }
+</style>
+</helmet>
+<div dir="rtl" style="min-height:100vh;background:#f4f3ef;color:#191a1c;font-family:'IBM Plex Sans Arabic',system-ui,sans-serif;">
+  <div style="padding:14px 28px;background:#111314;color:#f4f3ef;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;">
+    <div style="display:flex;align-items:center;gap:14px;">
+      <div style="width:10px;height:30px;border-radius:2px;background:#A50034;"></div>
+      <div style="font-family:'Cairo',sans-serif;font-weight:700;font-size:18px;">تعليمات تركيب الوحدة الخارجية للتكييف المنزلي</div>
+    </div>
+    <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;"><button onClick="{{ goBack }}" type="button" style="padding:8px 16px;border-radius:8px;border:1px solid #3a4043;background:transparent;color:#e4e7e9;font-family:'IBM Plex Sans Arabic',system-ui,sans-serif;font-size:13.5px;cursor:pointer;white-space:nowrap;white-space:nowrap;flex:none;">رجوع</button><a href="Installation Guide Home.dc.html" style="padding:8px 16px;border-radius:8px;border:1px solid #3a4043;color:#f0a8bd;font-size:13.5px;text-decoration:none;white-space:nowrap;flex:none;">الرئيسية</a><a href="ref-index.dc.html" style="padding:8px 16px;border-radius:8px;border:1px solid #3a4043;color:#f0a8bd;font-size:13.5px;text-decoration:none;white-space:nowrap;flex:none;">كل التعليمات الفنية</a></div>
+      <a href="Service Fees Table.dc.html" style="padding:8px 16px;border-radius:8px;border:1px solid #3a4043;color:#f0a8bd;font-size:13px;text-decoration:none;white-space:nowrap;flex:none;" style-hover="background:#22282a;">جدول تكاليف الصيانة</a>
+  </div>
+
+  <div style="max-width:900px;margin:0 auto;padding:30px 28px 70px;">
+    <div style="background:#fff;border:1px solid #e3e0d8;border-radius:14px;padding:30px;margin-bottom:16px;">
+      <div style="font-family:'Cairo',sans-serif;font-weight:700;font-size:19px;margin-bottom:18px;">اختيار المكان</div>
+      <div style="font-size:16px;line-height:1.95;color:#292c2f;">اختيار مكان مناسب لسهولة أعمال الصيانة لاحقًا: داخل بلكونة — أسفل شباك — <strong>تجنب التركيب في المنور</strong>.</div>
+    </div>
+
+    <div style="background:#fff;border:1px solid #e3e0d8;border-radius:14px;padding:30px;">
+      <div style="font-family:'Cairo',sans-serif;font-weight:700;font-size:19px;margin-bottom:20px;">المسافات المطلوبة حول الوحدة</div>
+      <div style="display:grid;gap:12px;">
+        <div style="display:flex;align-items:center;gap:18px;padding:16px 20px;border-radius:12px;background:#fbfaf7;border:1px solid #e9e6de;">
+          <div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:24px;color:#A50034;min-width:88px;">1 متر</div>
+          <div style="font-size:15.5px;line-height:1.8;">أمام الوحدة — لطرد الهواء الساخن.</div>
+        </div>
+        <div style="display:flex;align-items:center;gap:18px;padding:16px 20px;border-radius:12px;background:#fbfaf7;border:1px solid #e9e6de;">
+          <div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:24px;color:#A50034;min-width:88px;">40 سم</div>
+          <div style="font-size:15.5px;line-height:1.8;">فوق الوحدة — لسهولة الصيانة.</div>
+        </div>
+        <div style="display:flex;align-items:center;gap:18px;padding:16px 20px;border-radius:12px;background:#fbfaf7;border:1px solid #e9e6de;">
+          <div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:24px;color:#A50034;min-width:88px;">25 سم</div>
+          <div style="font-size:15.5px;line-height:1.8;">من جهة المحابس — لتسهيل ربط المحابس.</div>
+        </div>
+        <div style="display:flex;align-items:center;gap:18px;padding:16px 20px;border-radius:12px;background:#fbfaf7;border:1px solid #e9e6de;">
+          <div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:24px;color:#A50034;min-width:88px;">10 سم</div>
+          <div style="font-size:15.5px;line-height:1.8;">على الأقل من الجهة الأخرى.</div>
+        </div>
+        <div style="display:flex;align-items:center;gap:18px;padding:16px 20px;border-radius:12px;background:#f3f2f1;border:1px solid #dfdcda;">
+          <div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:18px;color:#5a5553;min-width:88px;">خلف الوحدة</div>
+          <div style="font-size:15.5px;line-height:1.8;">عدم وجود عوائق خلف الوحدة لضمان دخول الهواء بحرية.</div>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:16px;background:#fbf0f3;border:1px solid #ecd2da;border-radius:12px;padding:18px 20px;font-size:14.5px;line-height:1.85;color:#7A0027;">
+      للرسم التوضيحي بالمليمتر: <a href="ref-clearances.dc.html">المسافات المتروكة حول الوحدات</a>
+    </div>
+  </div>
+</div>
+
+
+<div dir="rtl" style="background:#f4f3ef;padding:8px 28px 48px;display:flex;justify-content:center;font-family:'IBM Plex Sans Arabic',system-ui,sans-serif;">
+  <a href="Installation Guide Home.dc.html" style="display:inline-flex;align-items:center;gap:10px;padding:14px 30px;border-radius:12px;background:#111314;color:#f4f3ef;font-family:'Cairo',sans-serif;font-weight:700;font-size:15px;" style-hover="background:#A50034;color:#fff;">← العودة للصفحة الرئيسية</a>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() {
+    return { goBack: () => { if (history.length > 1) history.back(); else location.href = 'Installation Guide Home.dc.html'; } };
+  }
+}
+</script>
+</body>
+</html>

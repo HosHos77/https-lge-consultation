@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script>
+(function(){
+  var KEY = 'csGuideAuth_v1';
+  var USER = 'agent';
+  var PASS = 'LGE@2026';
+  function authed(){ try { return localStorage.getItem(KEY) === '1'; } catch(e){ return false; } }
+  if (authed()) return;
+  var u = window.prompt('اسم المستخدم / Username:');
+  var p = window.prompt('كلمة المرور / Password:');
+  if (u === USER && p === PASS) {
+    try { localStorage.setItem(KEY, '1'); } catch(e){}
+  } else {
+    window.stop();
+    document.open();
+    document.write('<div style="font-family:Tahoma,Arial,sans-serif;text-align:center;margin-top:80px;font-size:22px;color:#c00;">تم رفض الدخول<br>Access Denied</div>');
+    document.close();
+  }
+})();
+</script>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<template id="__bundler_thumbnail"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><rect width="200" height="200" fill="#111314"/><rect x="46" y="76" width="108" height="70" rx="8" fill="#A50034"/><circle cx="76" cy="100" r="9" fill="#111314"/><circle cx="124" cy="100" r="9" fill="#111314"/><rect x="60" y="122" width="80" height="10" rx="5" fill="#f0a8bd"/><rect x="60" y="54" width="80" height="10" rx="5" fill="#f0a8bd"/></svg></template>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  body { margin: 0; background: #f4f3ef; }
+  a { color: #A50034; text-decoration: none; }
+  a:hover { color: #7A0027; }
+  @keyframes cardIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+</style>
+</helmet>
+<div dir="rtl" style="min-height:100vh;background:#f4f3ef;color:#191a1c;font-family:'IBM Plex Sans Arabic',system-ui,sans-serif;">
+
+  <div style="position:sticky;top:0;z-index:20;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 28px;background:#111314;color:#f4f3ef;flex-wrap:wrap;">
+    <div style="display:flex;align-items:center;gap:14px;">
+      <div style="width:10px;height:34px;border-radius:2px;background:#A50034;"></div>
+      <div style="display:flex;flex-direction:column;gap:2px;">
+        <div style="font-family:'Cairo',sans-serif;font-weight:700;font-size:19px;line-height:1.2;">دليل مكالمة البوتاجازات والأفران والشفاط</div>
+        <div style="font-size:12.5px;color:#9ea4a8;">مسار إرشادي خطوة بخطوة أثناء المكالمة</div>
+      </div>
+    </div>
+    <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
+      <button onClick="{{ openNoCap }}" style="padding:8px 14px;border-radius:8px;border:1px solid #3a4043;background:transparent;color:#f0a8bd;font-family:'IBM Plex Sans Arabic',sans-serif;font-size:13px;cursor:pointer;white-space:nowrap;flex:none;" style-hover="background:#22282a;">لا يوجد كباستي؟</button>
+      <button type="button" onClick="{{ pageBack }}" style="padding:8px 16px;border-radius:8px;border:1px solid #3a4043;color:#f0a8bd;font-size:13px;background:transparent;cursor:pointer;font-family:'IBM Plex Sans Arabic',sans-serif;white-space:nowrap;flex:none;" style-hover="background:#22282a;">رجوع للصفحة السابقة</button>
+      <a href="Installation Guide Home.dc.html" style="padding:8px 16px;border-radius:8px;border:1px solid #3a4043;color:#f0a8bd;font-size:13px;text-decoration:none;white-space:nowrap;flex:none;" style-hover="background:#22282a;">الرئيسية</a>
+      <a href="Service Fees Table.dc.html" style="padding:8px 16px;border-radius:8px;border:1px solid #3a4043;color:#f0a8bd;font-size:13px;text-decoration:none;white-space:nowrap;flex:none;" style-hover="background:#22282a;">جدول تكاليف الصيانة</a>
+      <div style="padding:7px 14px;border-radius:999px;background:#1e2224;font-size:12.5px;color:#c8cdd0;white-space:nowrap;flex:none;">خطوة {{ stepNo }}</div>
+      <button onClick="{{ restart }}" style="padding:8px 16px;border-radius:8px;border:none;background:#A50034;color:#fff;font-family:'IBM Plex Sans Arabic',sans-serif;font-weight:600;font-size:13px;cursor:pointer;white-space:nowrap;flex:none;" style-hover="background:#C4004A;">من البداية</button>
+    </div>
+  </div>
+
+  <div style="max-width:900px;margin:0 auto;padding:26px 28px 70px;display:flex;flex-direction:column;gap:18px;">
+
+    <div style="display:flex;flex-wrap:wrap;gap:8px;align-items:center;">
+      <sc-for list="{{ crumbs }}" as="c" hint-placeholder-count="1">
+        <div style="padding:6px 13px;border-radius:999px;background:#e6e4de;color:#4c5155;font-size:12.5px;">{{ c }}</div>
+      </sc-for>
+    </div>
+
+    <sc-if value="{{ atStart }}" hint-placeholder-val="{{ true }}">
+      <div style="background:#fff;border:1px solid #e3e0d8;border-radius:14px;padding:34px 32px;animation:cardIn .25s ease;">
+        <div style="font-size:12.5px;font-weight:600;color:#A50034;margin-bottom:10px;">الخطوة ١</div>
+        <div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:28px;line-height:1.4;margin-bottom:12px;">ما هو المنتج المطلوب تركيبه؟</div>
+        <p style="margin:0 0 24px;font-size:15.5px;line-height:1.9;color:#4c5155;max-width:62ch;">موديلات 2024 — الضمان <strong>5 سنوات</strong> والتركيب أول مرة مجانًا. التركيب يتم من <strong>مركز رئيسي</strong> أو <strong>مركز جنيدي A.F.C</strong>؛ وفي حالة عدم وجودهما <strong>يتم الرجوع للمينتور</strong>.</p>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;">
+          <button onClick="{{ goGas }}" style="text-align:right;padding:20px;border-radius:12px;border:1px solid #d9d5cb;background:#fbfaf7;cursor:pointer;font-family:'IBM Plex Sans Arabic',sans-serif;font-size:14px;color:#6b7075;line-height:1.7;" style-hover="border-color:#A50034;background:#fdf5f7;"><strong style="font-family:'Cairo',sans-serif;font-size:17px;color:#191a1c;display:block;margin-bottom:4px;">بوتاجاز غاز</strong>4 شعلة · 5 شعلة</button>
+          <button onClick="{{ goElec }}" style="text-align:right;padding:20px;border-radius:12px;border:1px solid #d9d5cb;background:#fbfaf7;cursor:pointer;font-family:'IBM Plex Sans Arabic',sans-serif;font-size:14px;color:#6b7075;line-height:1.7;" style-hover="border-color:#A50034;background:#fdf5f7;"><strong style="font-family:'Cairo',sans-serif;font-size:17px;color:#191a1c;display:block;margin-bottom:4px;">بوتاجاز كهرباء</strong>يلزم مفتاح منفصل وقاطع 32 أمبير</button>
+          <button onClick="{{ goHood }}" style="text-align:right;padding:20px;border-radius:12px;border:1px solid #d9d5cb;background:#fbfaf7;cursor:pointer;font-family:'IBM Plex Sans Arabic',sans-serif;font-size:14px;color:#6b7075;line-height:1.7;" style-hover="border-color:#A50034;background:#fdf5f7;"><strong style="font-family:'Cairo',sans-serif;font-size:17px;color:#191a1c;display:block;margin-bottom:4px;">شفاط</strong>من 65 إلى 75 سم أعلى البوتاجاز</button>
+          <button onClick="{{ goOven }}" style="text-align:right;padding:20px;border-radius:12px;border:1px solid #d9d5cb;background:#fbfaf7;cursor:pointer;font-family:'IBM Plex Sans Arabic',sans-serif;font-size:14px;color:#6b7075;line-height:1.7;" style-hover="border-color:#A50034;background:#fdf5f7;"><strong style="font-family:'Cairo',sans-serif;font-size:17px;color:#191a1c;display:block;margin-bottom:4px;">فرن Built-in</strong>الأبعاد حسب الموديل</button>
+        </div>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ atConfirm }}" hint-placeholder-val="{{ false }}">
+      <div style="display:flex;flex-direction:column;gap:18px;animation:cardIn .25s ease;">
+        <div style="background:#1c1a1b;color:#f6f1f2;border-radius:14px;padding:28px;">
+          <div style="font-size:12.5px;color:#f0a8bd;margin-bottom:12px;font-weight:600;">اقرأ للعميل</div>
+          <div style="font-family:'Cairo',sans-serif;font-size:18.5px;line-height:2.1;">برجاء تأكيد: هل {{ productWord }} إل جي يا فندم؟</div>
+        </div>
+        <div style="background:#fff;border:1px solid #e3e0d8;border-radius:14px;padding:32px;">
+          <div style="font-size:12.5px;font-weight:600;color:#A50034;margin-bottom:10px;">{{ confirmKicker }}</div>
+          <div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:24px;margin-bottom:18px;">تأكيدات قبل تسجيل البلاغ</div>
+          <div style="display:grid;gap:12px;">
+            <div style="display:flex;gap:16px;padding:16px 20px;border-radius:12px;background:#fbfaf7;border:1px solid #e9e6de;"><div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:17px;color:#A50034;">١</div><div style="font-size:15.5px;line-height:1.85;">تأكيد وصول {{ productWord }} بالمنزل.</div></div>
+            <sc-if value="{{ isGas }}" hint-placeholder-val="{{ false }}">
+              <div style="display:flex;gap:16px;padding:16px 20px;border-radius:12px;background:#fff5f7;border:1px solid #f0c2ce;"><div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:17px;color:#A50034;">٢</div><div style="font-size:15.5px;line-height:1.85;">يلزم وجود <strong>منظم للأنبوبة</strong> عند العميل قبل الزيارة.</div></div>
+              <div style="display:flex;gap:16px;padding:16px 20px;border-radius:12px;background:#fbfaf7;border:1px solid #e9e6de;"><div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:17px;color:#A50034;">٣</div><div style="font-size:15.5px;line-height:1.85;">يرجى توفير <strong>مساحة تركيب مناسبة</strong> للأبعاد التالية:
+                <div style="margin-top:12px;display:grid;gap:10px;">
+                  <div style="padding:14px 18px;border-radius:10px;background:#fff;border:1px solid #e9e6de;"><div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:15px;margin-bottom:8px;">بوتاجاز <span style="color:#A50034;">5 شعلة</span></div><div style="display:flex;gap:22px;flex-wrap:wrap;font-family:'Cairo',sans-serif;font-weight:900;font-size:21px;"><div>86 <span style="font-size:12.5px;font-weight:600;color:#6b7075;">سم عرض</span></div><div>51 <span style="font-size:12.5px;font-weight:600;color:#6b7075;">سم عمق</span></div><div>9 <span style="font-size:12.5px;font-weight:600;color:#6b7075;">سم طول</span></div></div></div>
+                  <div style="padding:14px 18px;border-radius:10px;background:#fff;border:1px solid #e9e6de;"><div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:15px;margin-bottom:8px;">بوتاجاز <span style="color:#A50034;">4 شعلة</span></div><div style="display:flex;gap:22px;flex-wrap:wrap;font-family:'Cairo',sans-serif;font-weight:900;font-size:21px;"><div>59.4 <span style="font-size:12.5px;font-weight:600;color:#6b7075;">سم عرض</span></div><div>51 <span style="font-size:12.5px;font-weight:600;color:#6b7075;">سم عمق</span></div><div>9 <span style="font-size:12.5px;font-weight:600;color:#6b7075;">سم طول</span></div></div></div>
+                </div>
+              </div></div>
+            </sc-if>
+            <sc-if value="{{ isHood }}" hint-placeholder-val="{{ false }}">
+              <div style="display:flex;gap:16px;padding:16px 20px;border-radius:12px;background:#fff5f7;border:1px solid #f0c2ce;"><div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:17px;color:#A50034;">٢</div><div style="font-size:15.5px;line-height:1.85;">يتم تركيبه <strong>أعلى البوتاجاز (أو الموقد)</strong> بمسافة من <strong>65 إلى 75 سم</strong>.</div></div>
+              <div style="display:flex;gap:16px;padding:16px 20px;border-radius:12px;background:#fbfaf7;border:1px solid #e9e6de;"><div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:17px;color:#A50034;">٣</div><div style="font-size:15.5px;line-height:1.85;">توفير <strong>فتحة مدخنة قطر 15 سم</strong> — <span style="color:#6b7075;">(اختياري)</span>.</div></div>
+            </sc-if>
+            <sc-if value="{{ isElec }}" hint-placeholder-val="{{ false }}">
+              <div style="display:flex;gap:16px;padding:16px 20px;border-radius:12px;background:#fff5f7;border:1px solid #f0c2ce;"><div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:17px;color:#A50034;">٢</div><div style="font-size:15.5px;line-height:1.85;">يلزم توفير <strong>مفتاح منفصل عند العداد</strong> و<strong>قاطع دائرة 32 أمبير</strong>.</div></div>
+              <div style="display:flex;gap:16px;padding:16px 20px;border-radius:12px;background:#fbfaf7;border:1px solid #e9e6de;"><div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:17px;color:#A50034;">٣</div><div style="font-size:15.5px;line-height:1.85;">يرجى توفير <strong>مساحة تركيب مناسبة</strong> للأبعاد التالية:
+                <div style="margin-top:12px;padding:14px 18px;border-radius:10px;background:#fff;border:1px solid #e9e6de;"><div style="display:flex;gap:22px;flex-wrap:wrap;font-family:'Cairo',sans-serif;font-weight:900;font-size:21px;"><div>56 <span style="font-size:12.5px;font-weight:600;color:#6b7075;">سم عرض</span></div><div>49 <span style="font-size:12.5px;font-weight:600;color:#6b7075;">سم عمق</span></div></div></div>
+              </div></div>
+            </sc-if>
+          </div>
+        <div style="margin-top:22px;padding-top:20px;border-top:1px solid #eeebe4;">
+          <div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:19px;margin-bottom:6px;">اسأل العميل: اشتريت من موزع ولا من موقعنا؟</div>
+          <div style="font-size:14.5px;color:#6b7075;line-height:1.85;margin-bottom:14px;">اختر إجابة العميل لعرض طريقة التسجيل الصحيحة على السيستم.</div>
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;">
+            <button onClick="{{ pickObs }}" style="{{ obsBtnStyle }}">من الموقع — <span dir="ltr" style="unicode-bidi:isolate;">OBS</span></button>
+            <button onClick="{{ pickDealer }}" style="{{ dealerBtnStyle }}">من موزع عادي</button>
+          </div>
+        </div>
+        <sc-if value="{{ isObs }}" hint-placeholder-val="{{ false }}">
+        <div style="margin-top:18px;padding:22px;border-radius:12px;background:#fff5f7;border:1px solid #f0c2ce;">
+          <div style="font-size:12.5px;font-weight:600;color:#A50034;margin-bottom:8px;">تسجيل البلاغ على السيستم</div>
+          <div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:19px;margin-bottom:14px;">العميل اشترى من <span dir="ltr" style="unicode-bidi:isolate;">OBS</span></div>
+          <div style="display:grid;gap:10px;font-size:15.5px;line-height:1.9;">
+            <div>١ — يُطلب من العميل <strong>رقم أوردر الشراء</strong>.</div>
+            <div>٢ — يوضع في خانة <strong dir="ltr" style="unicode-bidi:isolate;">OBS Order No</strong> على السيستم.</div>
+            <div>٣ — يتم اختيار <strong dir="ltr" style="unicode-bidi:isolate;">Symptom: OBS</strong>.</div>
+            <div>٤ — والـ <strong dir="ltr" style="unicode-bidi:isolate;">Sub Symptom: Product Installation</strong>.</div>
+                <div style="margin-top:12px;padding:12px 14px;border-radius:10px;background:#fff;border:1px solid #A50034;color:#A50034;font-size:14.5px;line-height:1.8;font-weight:600;">لو العميل ليس معه رقم أوردر الشراء: يتم تسجيل البلاغ عادي واختيار <span dir="ltr" style="unicode-bidi:isolate;">Symptom: Installation/Connection</span> — نفس الموزع العادي.</div>
+          </div>
+          <div style="margin-top:16px;padding:14px;border-radius:10px;background:#fff;border:1px solid #f0c2ce;">
+            <div style="font-size:13px;color:#6b7075;margin-bottom:10px;">شاشة السيستم — مكان الحقول</div>
+            <img src="uploads/pasted-1786280779819-0.png" alt="OBS Order No و Symptom على السيستم" style="width:100%;max-width:460px;border-radius:8px;display:block;">
+          </div>
+        </div>
+        </sc-if>
+        <sc-if value="{{ isDealer }}" hint-placeholder-val="{{ false }}">
+        <div style="margin-top:18px;padding:22px;border-radius:12px;background:#fbfaf7;border:1px solid #e9e6de;">
+          <div style="font-size:12.5px;font-weight:600;color:#A50034;margin-bottom:8px;">تسجيل البلاغ على السيستم</div>
+          <div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:19px;margin-bottom:12px;">العميل اشترى من <strong>موزع عادي</strong></div>
+          <div style="font-size:15.5px;line-height:1.9;">يتم اختيار <strong dir="ltr" style="unicode-bidi:isolate;">Symptom: Installation/Connection</strong> — ولا يوجد رقم أوردر <span dir="ltr" style="unicode-bidi:isolate;">OBS</span>.</div>
+        </div>
+        </sc-if>
+        <sc-if value="{{ sourcePicked }}" hint-placeholder-val="{{ false }}">
+          <button onClick="{{ next }}" style="margin-top:22px;padding:15px 32px;border-radius:10px;border:none;background:#111314;color:#fff;font-family:'Cairo',sans-serif;font-weight:700;font-size:15.5px;cursor:pointer;" style-hover="background:#A50034;">{{ nextLabel }}</button>
+        </sc-if>
+        </div>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ atGasType }}" hint-placeholder-val="{{ false }}">
+      <div style="background:#fff;border:1px solid #e3e0d8;border-radius:14px;padding:32px;border-top:4px solid #A50034;animation:cardIn .25s ease;">
+        <div style="font-size:12.5px;font-weight:600;color:#A50034;margin-bottom:10px;">سؤال حاسم</div>
+        <div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:24px;margin-bottom:20px;">هيتم تركيب البوتاجاز على <strong>غاز طبيعي</strong> ولا <strong>أنبوبة</strong>؟</div>
+        <div style="display:grid;gap:12px;">
+          <button onClick="{{ goNatural }}" style="text-align:right;padding:20px 22px;border-radius:12px;border:1px solid #f0c2ce;background:#fff5f7;cursor:pointer;font-family:'IBM Plex Sans Arabic',sans-serif;font-size:15px;line-height:1.85;color:#6b7075;" style-hover="border-color:#A50034;"><strong style="font-family:'Cairo',sans-serif;font-size:17px;color:#A50034;display:block;margin-bottom:5px;">غاز طبيعي</strong>نعتذر للعميل ونوجهه لشركة الغاز</button>
+          <button onClick="{{ goPrep }}" style="text-align:right;padding:20px 22px;border-radius:12px;border:1px solid #c6e0d1;background:#eef6f1;cursor:pointer;font-family:'IBM Plex Sans Arabic',sans-serif;font-size:15px;line-height:1.85;color:#6b7075;" style-hover="border-color:#0f5132;"><strong style="font-family:'Cairo',sans-serif;font-size:17px;color:#0f5132;display:block;margin-bottom:5px;">أنبوبة</strong>نكمل عادي — الرسوم ثم التأكيدات</button>
+        </div>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ atGasFees }}" hint-placeholder-val="{{ false }}">
+      <div style="background:#fff;border:1px solid #e3e0d8;border-radius:14px;padding:32px;animation:cardIn .25s ease;">
+        <div style="font-size:12.5px;font-weight:600;color:#A50034;margin-bottom:10px;">الرسوم</div>
+        <div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:24px;margin-bottom:18px;">رسوم التركيب</div>
+        <div style="display:grid;gap:12px;">
+          <div style="padding:18px 20px;border-radius:12px;background:#eef6f1;border:1px solid #c6e0d1;font-size:15.5px;line-height:1.85;">التركيب <strong>أول مرة داخل فترة الضمان مجانًا</strong>.</div>
+          <div style="padding:22px;border-radius:12px;background:#fbfaf7;border:1px solid #e9e6de;"><div style="font-size:14px;color:#6b7075;margin-bottom:6px;">في حالة التركيب للمرة الثانية أو خارج فترة الضمان</div><div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:32px;">300 <span style="font-size:15px;font-weight:600;color:#6b7075;">جنيهًا</span></div></div>
+        </div>
+        <button onClick="{{ goConfirmFromFees }}" style="margin-top:22px;padding:15px 32px;border-radius:10px;border:none;background:#111314;color:#fff;font-family:'Cairo',sans-serif;font-weight:700;font-size:15.5px;cursor:pointer;" style-hover="background:#A50034;">التالي — تأكيدات قبل تسجيل البلاغ</button>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ atNatural }}" hint-placeholder-val="{{ false }}">
+      <div style="background:#fff5f7;border:1px solid #f0c2ce;border-radius:14px;padding:34px 32px;animation:cardIn .25s ease;">
+        <div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:24px;color:#A50034;margin-bottom:14px;">غاز طبيعي — نعتذر</div>
+        <div style="font-size:16px;line-height:2;margin-bottom:24px;">يتم الاعتذار للعميل وتوجيهه إلى <strong>شركة الغاز</strong> — التوصيل بالغاز الطبيعي ليس من اختصاصنا، ولا يتم تسجيل بلاغ.</div>
+        <button onClick="{{ restart }}" style="padding:14px 30px;border-radius:10px;border:none;background:#A50034;color:#fff;font-family:'Cairo',sans-serif;font-weight:700;font-size:15px;cursor:pointer;" style-hover="background:#7A0027;">مكالمة جديدة</button>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ atPrep }}" hint-placeholder-val="{{ false }}">
+      <div style="background:#fff;border:1px solid #e3e0d8;border-radius:14px;padding:32px;animation:cardIn .25s ease;">
+        <div style="font-size:12.5px;font-weight:600;color:#A50034;margin-bottom:10px;">التجهيزات</div>
+        <div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:24px;margin-bottom:20px;">{{ prepTitle }}</div>
+
+        <sc-if value="{{ isGas }}" hint-placeholder-val="{{ false }}">
+          <div style="display:grid;gap:12px;">
+            <div style="display:flex;align-items:center;gap:18px;padding:18px 20px;border-radius:12px;background:#fbfaf7;border:1px solid #e9e6de;"><div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:16px;color:#A50034;min-width:88px;">منظم غاز</div><div style="font-size:15.5px;line-height:1.8;">يرجى توفير <strong>منظم غاز</strong> على أن يكون زايد <strong>جودة عالية</strong>.</div></div>
+            <div style="padding:20px 22px;border-radius:12px;background:#fbfaf7;border:1px solid #e9e6de;">
+              <div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:16px;margin-bottom:10px;">مساحة التركيب — بوتاجاز <span style="color:#A50034;">5 شعلة</span></div>
+              <div style="display:flex;gap:26px;flex-wrap:wrap;font-family:'Cairo',sans-serif;font-weight:900;font-size:24px;">
+                <div>86 <span style="font-size:13px;font-weight:600;color:#6b7075;">سم عرض</span></div>
+                <div>51 <span style="font-size:13px;font-weight:600;color:#6b7075;">سم عمق</span></div>
+                <div>9 <span style="font-size:13px;font-weight:600;color:#6b7075;">سم طول</span></div>
+              </div>
+            </div>
+            <div style="padding:20px 22px;border-radius:12px;background:#fbfaf7;border:1px solid #e9e6de;">
+              <div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:16px;margin-bottom:10px;">مساحة التركيب — بوتاجاز <span style="color:#A50034;">4 شعلة</span></div>
+              <div style="display:flex;gap:26px;flex-wrap:wrap;font-family:'Cairo',sans-serif;font-weight:900;font-size:24px;">
+                <div>59.4 <span style="font-size:13px;font-weight:600;color:#6b7075;">سم عرض</span></div>
+                <div>51 <span style="font-size:13px;font-weight:600;color:#6b7075;">سم عمق</span></div>
+                <div>9 <span style="font-size:13px;font-weight:600;color:#6b7075;">سم طول</span></div>
+              </div>
+            </div>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ isElec }}" hint-placeholder-val="{{ false }}">
+          <div style="display:grid;gap:12px;">
+            <div style="display:flex;gap:16px;padding:18px 20px;border-radius:12px;background:#fbfaf7;border:1px solid #e9e6de;"><div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:17px;color:#A50034;min-width:20px;">١</div><div style="font-size:15.5px;line-height:1.9;">توفير <strong>مفتاح منفصل عند العداد</strong>.</div></div>
+            <div style="display:flex;gap:16px;padding:18px 20px;border-radius:12px;background:#fbfaf7;border:1px solid #e9e6de;"><div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:17px;color:#A50034;min-width:20px;">٢</div><div style="font-size:15.5px;line-height:1.9;"><strong>قاطع دائرة 32 أمبير</strong>.</div></div>
+            <div style="padding:20px 22px;border-radius:12px;background:#fbfaf7;border:1px solid #e9e6de;">
+              <div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:16px;margin-bottom:10px;">٣ — مساحة التركيب</div>
+              <div style="display:flex;gap:26px;flex-wrap:wrap;font-family:'Cairo',sans-serif;font-weight:900;font-size:24px;">
+                <div>56 <span style="font-size:13px;font-weight:600;color:#6b7075;">سم عرض</span></div>
+                <div>49 <span style="font-size:13px;font-weight:600;color:#6b7075;">سم عمق</span></div>
+              </div>
+            </div>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ isHood }}" hint-placeholder-val="{{ false }}">
+          <div style="display:grid;gap:12px;">
+            <div style="display:flex;align-items:center;gap:18px;padding:18px 20px;border-radius:12px;background:#fbfaf7;border:1px solid #e9e6de;"><div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:20px;color:#A50034;min-width:98px;"><span dir="ltr" style="unicode-bidi:isolate;">65–75</span> سم</div><div style="font-size:15.5px;line-height:1.8;">يتم تركيب الشفاط <strong>أعلى البوتاجاز (أو الموقد)</strong> بمسافة من 65 إلى 75 سم.</div></div>
+            <div style="display:flex;align-items:center;gap:18px;padding:18px 20px;border-radius:12px;background:#fbfaf7;border:1px solid #e9e6de;"><div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:20px;color:#A50034;min-width:98px;">قطر 15 سم</div><div style="font-size:15.5px;line-height:1.8;">توفير <strong>فتحة مدخنة</strong> قطر 15 سم — <span style="color:#6b7075;">(اختياري)</span>.</div></div>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ isOven }}" hint-placeholder-val="{{ false }}">
+          <div style="display:grid;gap:12px;">
+            <div style="padding:18px 20px;border-radius:12px;background:#fbfaf7;border:1px solid #e9e6de;font-size:15.5px;line-height:1.9;">يرجى توفير مساحة تركيب مناسبة للأبعاد — الأبعاد تختلف حسب الموديل، الرجاء زيارة صفحة الموديل على الموقع.</div>
+            <a href="https://www.lg.com/eg_ar/cooking-appliances/built-in-oven/wsed7613s/" target="_blank" style="display:flex;align-items:center;justify-content:space-between;gap:14px;padding:16px 20px;border-radius:12px;background:#fff;border:1px solid #e3e0d8;" style-hover="border-color:#A50034;background:#fdf5f7;"><span style="font-family:'Cairo',sans-serif;font-weight:700;font-size:16px;color:#191a1c;">WSED7613S</span><span style="font-size:13px;color:#A50034;">فتح صفحة الموديل ←</span></a>
+            <a href="https://www.lg.com/eg_ar/cooking-appliances/built-in-oven/wsezm7225s2/" target="_blank" style="display:flex;align-items:center;justify-content:space-between;gap:14px;padding:16px 20px;border-radius:12px;background:#fff;border:1px solid #e3e0d8;" style-hover="border-color:#A50034;background:#fdf5f7;"><span style="font-family:'Cairo',sans-serif;font-weight:700;font-size:16px;color:#191a1c;">WSEZM7225S2</span><span style="font-size:13px;color:#A50034;">فتح صفحة الموديل ←</span></a>
+            <a href="https://www.lg.com/eg_ar/cooking-appliances/built-in-oven/wsed7667m/" target="_blank" style="display:flex;align-items:center;justify-content:space-between;gap:14px;padding:16px 20px;border-radius:12px;background:#fff;border:1px solid #e3e0d8;" style-hover="border-color:#A50034;background:#fdf5f7;"><span style="font-family:'Cairo',sans-serif;font-weight:700;font-size:16px;color:#191a1c;">WSED7667M</span><span style="font-size:13px;color:#A50034;">فتح صفحة الموديل ←</span></a>
+          </div>
+        </sc-if>
+
+        <button onClick="{{ goData }}" style="margin-top:22px;padding:15px 32px;border-radius:10px;border:none;background:#111314;color:#fff;font-family:'Cairo',sans-serif;font-weight:700;font-size:15.5px;cursor:pointer;" style-hover="background:#A50034;">التالي — بيانات البلاغ</button>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ atData }}" hint-placeholder-val="{{ false }}">
+      <div style="background:#fff;border:1px solid #e3e0d8;border-radius:14px;padding:32px;animation:cardIn .25s ease;">
+        <div style="font-size:12.5px;font-weight:600;color:#A50034;margin-bottom:10px;">بيانات البلاغ</div>
+        <div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:24px;margin-bottom:20px;">البيانات المطلوبة من العميل</div>
+        <div style="display:grid;gap:12px;">
+          <div style="display:flex;gap:16px;padding:16px 20px;border-radius:12px;background:#fbfaf7;border:1px solid #e9e6de;"><div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:17px;color:#A50034;">١</div><div style="font-size:15.5px;line-height:1.85;">الاسم الثلاثي المسجل على فاتورة الشراء. <span style="color:#A50034;">(لو غير متوفر يتم السؤال عن اسم صاحب الجهاز)</span></div></div>
+          <div style="display:flex;gap:16px;padding:16px 20px;border-radius:12px;background:#fbfaf7;border:1px solid #e9e6de;"><div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:17px;color:#A50034;">٢</div><div style="font-size:15.5px;line-height:1.85;">رقم موبايل أو أكثر للتواصل.</div></div>
+          <div style="display:flex;gap:16px;padding:16px 20px;border-radius:12px;background:#fbfaf7;border:1px solid #e9e6de;"><div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:17px;color:#A50034;">٣</div><div style="font-size:15.5px;line-height:1.85;">العنوان بالتفصيل: المحافظة، المنطقة، اسم الشارع، رقم العمارة، الدور، الشقة، علامة مميزة.</div></div>
+        </div>
+
+        <button onClick="{{ goFees }}" style="margin-top:22px;padding:15px 32px;border-radius:10px;border:none;background:#111314;color:#fff;font-family:'Cairo',sans-serif;font-weight:700;font-size:15.5px;cursor:pointer;" style-hover="background:#A50034;">التالي — الرسوم ونوع البلاغ</button>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ atFees }}" hint-placeholder-val="{{ false }}">
+      <div style="display:flex;flex-direction:column;gap:18px;animation:cardIn .25s ease;">
+        <div style="background:#fff5f7;border:1px solid #f0c2ce;border-radius:14px;padding:26px 28px;">
+          <div style="font-size:12.5px;font-weight:600;color:#A50034;margin-bottom:10px;">نوع البلاغ</div>
+          <div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:22px;margin-bottom:14px;">تسجيل البلاغ الصحيح</div>
+          <div style="font-size:15.5px;line-height:1.95;">
+            يتم تسجيل <strong>طلب تركيب</strong>.
+          </div>
+        </div>
+        <button onClick="{{ goSched }}" style="align-self:flex-start;padding:15px 32px;border-radius:10px;border:none;background:#111314;color:#fff;font-family:'Cairo',sans-serif;font-weight:700;font-size:15.5px;cursor:pointer;" style-hover="background:#A50034;">التالي — تحديد الموعد</button>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ atSched }}" hint-placeholder-val="{{ false }}">
+      <div style="background:#fff;border:1px solid #e3e0d8;border-radius:14px;padding:32px;animation:cardIn .25s ease;">
+        <div style="font-size:12.5px;font-weight:600;color:#A50034;margin-bottom:10px;">تحديد الموعد</div>
+        <div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:24px;margin-bottom:20px;">التأكد من الكباستي المتاحة وتحديد الموعد</div>
+        <div style="display:grid;gap:12px;">
+          <div style="display:flex;gap:16px;padding:16px 20px;border-radius:12px;background:#fbfaf7;border:1px solid #e9e6de;"><div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:17px;color:#A50034;min-width:20px;">١</div><div style="font-size:15.5px;line-height:1.9;">تأكد من <strong>الكباستي المتاحة</strong> على السيستم قبل الوعد بأي موعد.</div></div>
+          <div style="display:flex;gap:16px;padding:16px 20px;border-radius:12px;background:#fbfaf7;border:1px solid #e9e6de;"><div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:17px;color:#A50034;min-width:20px;">٢</div><div style="font-size:15.5px;line-height:1.9;">أبلغ العميل <strong>بخيارات مواعيد الزيارة</strong> المتاحة.</div></div>
+          <div style="display:flex;gap:16px;padding:16px 20px;border-radius:12px;background:#fbfaf7;border:1px solid #e9e6de;"><div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:17px;color:#A50034;min-width:20px;">٣</div><div style="font-size:15.5px;line-height:1.9;">استفسر منه عن <strong>الموعد المفضل</strong> وسجّله على الأوردر. <span style="color:#A50034;">(لو لم يرد على السؤال يتم اختيار أقرب موعد متاح وإبلاغ العميل به)</span></div></div>
+        </div>
+        <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:22px;">
+          <button onClick="{{ goDone }}" style="padding:15px 32px;border-radius:10px;border:none;background:#111314;color:#fff;font-family:'Cairo',sans-serif;font-weight:700;font-size:15.5px;cursor:pointer;" style-hover="background:#A50034;">تم — إنهاء المكالمة</button>
+          
+        </div>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ atDone }}" hint-placeholder-val="{{ false }}">
+      <div style="background:#0f5132;color:#eaf6ef;border-radius:14px;padding:34px 32px;animation:cardIn .25s ease;">
+        <div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:26px;margin-bottom:12px;">تم تسجيل البلاغ — انتهت المكالمة</div>
+        <div style="font-size:15.5px;line-height:1.95;opacity:.9;margin-bottom:24px;">تأكد من مراجعة بيانات العميل والتجهيزات المطلوبة قبل إغلاق الأوردر.</div>
+        <button onClick="{{ restart }}" style="padding:14px 30px;border-radius:10px;border:none;background:#fff;color:#0f5132;font-family:'Cairo',sans-serif;font-weight:700;font-size:15px;cursor:pointer;">مكالمة جديدة</button>
+      </div>
+    </sc-if>
+
+  </div>
+</div>
+
+
+<sc-if value="{{ showNoCap }}" hint-placeholder-val="{{ false }}">
+  <div dir="rtl" style="position:fixed;inset:0;z-index:80;background:rgba(17,19,20,.6);display:flex;align-items:flex-start;justify-content:center;padding:32px 20px;overflow:auto;font-family:'IBM Plex Sans Arabic',system-ui,sans-serif;">
+    <div style="width:100%;max-width:880px;background:#f4f3ef;border-radius:16px;overflow:hidden;box-shadow:0 24px 60px rgba(0,0,0,.35);">
+      <div style="position:sticky;top:0;padding:16px 26px;background:#111314;color:#f4f3ef;display:flex;align-items:center;justify-content:space-between;gap:14px;">
+        <div style="display:flex;align-items:center;gap:14px;">
+          <div style="width:8px;height:30px;border-radius:2px;background:#A50034;"></div>
+          <div>
+            <div style="font-family:'Cairo',sans-serif;font-weight:700;font-size:18px;">لا يوجد كباستي — <span dir="ltr" style="unicode-bidi:isolate;">No Capacity Process</span></div>
+            <div style="font-size:12px;color:#9ea4a8;">خاص ببلاغات التركيب</div>
+          </div>
+        </div>
+        <button onClick="{{ closeNoCap }}" style="padding:9px 18px;border-radius:8px;border:1px solid #3a4043;background:transparent;color:#e4e7e9;font-family:'IBM Plex Sans Arabic',sans-serif;font-size:13px;cursor:pointer;" style-hover="background:#22282a;">إغلاق</button>
+      </div>
+      <div style="padding:26px;display:flex;flex-direction:column;gap:18px;color:#191a1c;">
+
+        <div style="background:#fff5f7;border:1px solid #f0c2ce;border-radius:14px;padding:22px 24px;">
+          <div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:17px;color:#A50034;margin-bottom:12px;">متى نتبع هذا المسار؟</div>
+          <div style="font-size:15.5px;line-height:1.95;margin-bottom:12px;">إذا تواصل معك العميل بخصوص تسجيل بلاغ تركيب واعتذرنا له لأحد الأسباب التالية:</div>
+          <div style="display:grid;gap:10px;">
+            <div style="padding:13px 17px;border-radius:10px;background:#fff;border:1px solid #f0c2ce;font-size:15px;line-height:1.85;">لا يوجد مواعيد متاحة على السيستم.</div>
+            <div style="padding:13px 17px;border-radius:10px;background:#fff;border:1px solid #f0c2ce;font-size:15px;line-height:1.85;">أو لا توجد مراكز متاحة.</div>
+            <div style="padding:13px 17px;border-radius:10px;background:#fff;border:1px solid #f0c2ce;font-size:15px;line-height:1.85;">أو في حالة وجود طلب <strong dir="ltr" style="unicode-bidi:isolate;">Reclaim</strong> والمركز غير ظاهر على السيستم.</div>
+          </div>
+        </div>
+
+        <div style="background:#fff;border:1px solid #e3e0d8;border-radius:14px;padding:24px;">
+          <div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:19px;margin-bottom:16px;">يتم اتباع الآتي</div>
+          <div style="display:grid;gap:12px;">
+            <div style="display:flex;gap:14px;padding:16px 18px;border-radius:12px;background:#fbfaf7;border:1px solid #e9e6de;"><div style="width:26px;height:26px;flex:none;border-radius:8px;background:#A50034;color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Cairo',sans-serif;font-weight:900;font-size:13px;">١</div><div style="font-size:15px;line-height:1.95;">يتم <strong>تسجيل بيانات العميل بالكامل</strong> والكتابة داخل الاستفسار عن سبب عدم إمكانية تسجيل بلاغ التركيب.</div></div>
+            <div style="display:flex;gap:14px;padding:16px 18px;border-radius:12px;background:#fbfaf7;border:1px solid #e9e6de;"><div style="width:26px;height:26px;flex:none;border-radius:8px;background:#A50034;color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Cairo',sans-serif;font-weight:900;font-size:13px;">٢</div><div style="font-size:15px;line-height:1.95;">يتم اختيار <strong dir="ltr" style="unicode-bidi:isolate;">Symptom</strong> الذي كان من المفترض تسجيله داخل البلاغ.</div></div>
+            <div style="display:flex;gap:14px;padding:16px 18px;border-radius:12px;background:#fbfaf7;border:1px solid #e9e6de;"><div style="width:26px;height:26px;flex:none;border-radius:8px;background:#A50034;color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Cairo',sans-serif;font-weight:900;font-size:13px;">٣</div><div style="display:flex;flex-direction:column;gap:9px;font-size:15px;line-height:1.95;"><div>يتم عمل تعيين <strong dir="ltr" style="unicode-bidi:isolate;">(Assign)</strong> في خانة <strong dir="ltr" style="unicode-bidi:isolate;">Call Back Agent</strong> على <strong dir="ltr" style="unicode-bidi:isolate;">Capacity Availability</strong>.</div><div style="padding:11px 15px;border-radius:10px;background:#fff;border:1px solid #e9e6de;">يقوم فريق الـ <strong dir="ltr" style="unicode-bidi:isolate;">Service Network</strong> بمراجعة الاستفسارات ومحاولة فتح المواعيد وإظهار المركز.</div><div style="padding:11px 15px;border-radius:10px;background:#fff;border:1px solid #e9e6de;">ثم بعد ذلك يقوم بتحويل الاستفسار من <strong dir="ltr" style="unicode-bidi:isolate;">No Capacity Process</strong> إلى <strong>Alshaima</strong>.</div></div></div>
+            <div style="display:flex;gap:14px;padding:16px 18px;border-radius:12px;background:#fff5f7;border:1px solid #f0c2ce;"><div style="width:26px;height:26px;flex:none;border-radius:8px;background:#A50034;color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Cairo',sans-serif;font-weight:900;font-size:13px;">٤</div><div style="display:flex;flex-direction:column;gap:9px;font-size:15px;line-height:1.95;"><div>سيتم الاتصال بالعميل من خلال قسم الـ <strong dir="ltr" style="unicode-bidi:isolate;">Schedule Complain</strong> <strong style="color:#A50034;">خلال اليوم</strong>.</div><div style="padding:11px 15px;border-radius:10px;background:#fff;border:1px solid #f0c2ce;">إذا كان البلاغ تركيب يتم اختيار <strong dir="ltr" style="unicode-bidi:isolate;">Delivery/Installation : Installation schedule Check and Change visit time</strong>.</div></div></div>
+          </div>
+        </div>
+
+        <div style="background:#1c1a1b;color:#f6f1f2;border-radius:14px;padding:24px;">
+          <div style="font-size:12.5px;color:#f0a8bd;margin-bottom:14px;font-weight:600;">الاسكربت — اقرأ للعميل</div>
+          <div style="display:grid;gap:11px;">
+            <div style="padding:15px 18px;border-radius:12px;background:#282526;"><div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:13.5px;color:#f0a8bd;margin-bottom:7px;">الموظف</div><div style="font-size:15.5px;line-height:2;">تمام يافندم، أنا بعتذر لحضرتك هو للأسف غير متاح مواعيد لتسجيل الطلب، وأنا سجلت لحضرتك طلب للقسم المختص لتوفير الميعاد لحضرتك، وأستأذن حضرتك انتظار من القسم المختص لتأكيد موعد الزيارة مع حضرتك.</div></div>
+            <div style="padding:15px 18px;border-radius:12px;background:#22201f;"><div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:13.5px;color:#9ea4a8;margin-bottom:7px;">العميل</div><div style="font-size:15.5px;line-height:2;">طيب هيكلموني إمتى؟</div></div>
+            <div style="padding:15px 18px;border-radius:12px;background:#282526;"><div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:13.5px;color:#f0a8bd;margin-bottom:7px;">الموظف</div><div style="font-size:15.5px;line-height:2;">خلال اليوم يافندم.</div></div>
+            <div style="padding:15px 18px;border-radius:12px;background:#22201f;"><div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:13.5px;color:#9ea4a8;margin-bottom:7px;">العميل</div><div style="font-size:15.5px;line-height:2;">خلاص تمام، شكرًا.</div></div>
+          </div>
+        </div>
+
+        <div style="background:#fff;border:1px solid #e3e0d8;border-radius:14px;padding:24px;">
+          <div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:19px;margin-bottom:16px;">ملحوظات هامة</div>
+          <div style="display:grid;gap:11px;">
+            <div style="padding:15px 18px;border-radius:12px;background:#fbfaf7;border:1px solid #e9e6de;font-size:15px;line-height:1.95;">في حالة تواصل العميل بعد تسجيل الطلب وأفاد بأنه يريد إضافة موديل <strong dir="ltr" style="unicode-bidi:isolate;">(Model)</strong> أو رقم إضافي — يتم إضافة ذلك في السيستم ويتم عمل تحديث داخل الاستفسار المفتوح.</div>
+            <div style="padding:15px 18px;border-radius:12px;background:#fbfaf7;border:1px solid #e9e6de;font-size:15px;line-height:1.95;">في حالة تواصل العميل ويريد إلغاء البلاغ — يتم غلق الاستفسار وتحديث ذلك داخل الاستفسار قبل غلقه.</div>
+            <div style="padding:15px 18px;border-radius:12px;background:#fff5f7;border:1px solid #f0c2ce;font-size:15px;line-height:1.95;">في حال تواصل العميل معنا بعد الساعة <strong dir="ltr" style="unicode-bidi:isolate;">5:30</strong> مساءً أو يوم الجمعة — سوف نقوم بإبلاغ العميل بأننا سنتابع معه غدًا للتأكد من موعد الزيارة.</div>
+          </div>
+        </div>
+
+        <div style="background:#fff;border:1px solid #e3e0d8;border-radius:14px;padding:24px;border-top:4px solid #A50034;">
+          <div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:18px;color:#A50034;margin-bottom:10px;">ملحوظة خاصة بتيم الاسكادول وكوميبلين</div>
+          <div style="font-size:15px;line-height:1.95;">عند غلق الاستفسار يتم اختيار <strong dir="ltr" style="unicode-bidi:isolate;">Call code : Call back</strong>.</div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</sc-if>
+
+
+
+
+<div dir="rtl" style="background:#f4f3ef;padding:8px 28px 48px;display:flex;justify-content:center;font-family:'IBM Plex Sans Arabic',system-ui,sans-serif;">
+  <a href="Installation Guide Home.dc.html" style="display:inline-flex;align-items:center;gap:10px;padding:14px 30px;border-radius:12px;background:#111314;color:#f4f3ef;font-family:'Cairo',sans-serif;font-weight:700;font-size:15px;" style-hover="background:#A50034;color:#fff;">← العودة للصفحة الرئيسية</a>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const LABELS = {
+  start: 'اختيار المنتج',
+  confirm: 'تأكيدات قبل البلاغ',
+  gasType: 'غاز طبيعي أم أنبوبة',
+  gasFees: 'الرسوم',
+  natural: 'غاز طبيعي — اعتذار',
+  prep: 'التجهيزات',
+  data: 'بيانات البلاغ',
+  fees: 'الرسوم ونوع البلاغ',
+  sched: 'تحديد الموعد',
+  done: 'انتهت المكالمة'
+};
+const WORDS = { gas: 'البوتاجاز', elec: 'البوتاجاز الكهرباء', hood: 'الشفاط', oven: 'الفرن' };
+const PREP = { gas: 'التجهيزات والمساحة المطلوبة للبوتاجاز', elec: 'التجهيزات الكهربائية والمساحة المطلوبة', hood: 'مكان تركيب الشفاط والمدخنة', oven: 'مساحة تركيب الفرن حسب الموديل' };
+
+class Component extends DCLogic {
+  state = { node: 'start', product: '', source: '', history: [] };
+
+  srcBtn(active) {
+    return 'text-align:right;padding:18px 20px;border-radius:12px;cursor:pointer;font-family:\'Cairo\',sans-serif;font-weight:700;font-size:17px;border:1px solid ' +
+      (active ? '#A50034;background:#A50034;color:#fff;' : '#d9d5cb;background:#fbfaf7;color:#191a1c;');
+  }
+
+  go(node, product) {
+    this.setState(s => ({
+      node,
+      product: product === undefined ? s.product : product,
+      history: s.history.concat([s.node])
+    }));
+    window.scrollTo(0, 0);
+  }
+
+  renderVals() {
+    const n = this.state.node;
+    const p = this.state.product;
+    return { pageBack: () => { if (history.length > 1) history.back(); else location.href = 'Installation Guide Home.dc.html'; },
+      atSched: this.state.node === 'sched',
+      goSched: () => this.go('sched'),
+      showNoCap: !!this.state.noCap,
+      openNoCap: () => this.setState({ noCap: true }),
+      closeNoCap: () => this.setState({ noCap: false }),
+      stepNo: this.state.history.length + 1,
+      crumbs: this.state.history.concat([n]).map(id => LABELS[id] || id),
+      productWord: WORDS[p] || 'الجهاز',
+      isObs: this.state.source === 'obs',
+      isDealer: this.state.source === 'dealer',
+      sourcePicked: !!this.state.source,
+      obsBtnStyle: this.srcBtn(this.state.source === 'obs'),
+      dealerBtnStyle: this.srcBtn(this.state.source === 'dealer'),
+      pickObs: () => this.setState({ source: 'obs' }),
+      pickDealer: () => this.setState({ source: 'dealer' }),
+      prepTitle: PREP[p] || 'التجهيزات المطلوبة',
+      atStart: n === 'start',
+      atConfirm: n === 'confirm',
+      confirmKicker: p === 'gas' ? 'الخطوة ٤' : (p === 'elec' ? 'الخطوة ٣' : 'الخطوة ٢'),
+      atGasType: n === 'gasType',
+      atNatural: n === 'natural',
+      atPrep: n === 'prep',
+      atData: n === 'data',
+      atFees: n === 'fees',
+      atDone: n === 'done',
+      isGas: p === 'gas',
+      isElec: p === 'elec',
+      isHood: p === 'hood',
+      isOven: p === 'oven',
+      nextLabel: p === 'gas' || p === 'elec' ? 'التالي — بيانات البلاغ' : 'التالي — التجهيزات المطلوبة',
+      goGas: () => this.go('gasType', 'gas'),
+      goElec: () => this.go('gasFees', 'elec'),
+      goHood: () => this.go('confirm', 'hood'),
+      goOven: () => this.go('confirm', 'oven'),
+      next: () => this.go(p === 'gas' || p === 'elec' ? 'data' : 'prep'),
+      goNatural: () => this.go('natural'),
+      goPrep: () => this.go('gasFees'),
+      atGasFees: n === 'gasFees',
+      goConfirmFromFees: () => this.go('confirm'),
+      goData: () => this.go('data'),
+      goFees: () => this.go('fees'),
+      goDone: () => this.go('done'),
+      back: () => this.setState(s => s.history.length ? { node: s.history[s.history.length - 1], history: s.history.slice(0, -1) } : s),
+      restart: () => this.setState({ node: 'start', product: '', source: '', history: [] })
+    };
+  }
+}
+</script>
+</body>
+</html>
