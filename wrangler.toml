@@ -23,3 +23,23 @@ fallthrough = true
 type = "CompiledContentType"
 globs = ["**/*.wasm"]
 fallthrough = true
+
+[site]
+bucket = "."
+include = [
+  "*.html",
+  "*.css",
+  "*.js",
+  "*.json",
+  "*.xml",
+  "*.jpg",
+  "*.jpeg",
+  "*.png",
+  "*.gif",
+  "*.svg",
+  "*.webp",
+  "*.ico",
+  "*.ttf",
+  "*.woff",
+  "*.woff2"
+]
