@@ -45,7 +45,7 @@
     <div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:18px;">أكواد أخطاء الثلاجة — Top &amp; Bottom</div>
     <div style="margin-right:auto;display:flex;flex-wrap:wrap;gap:10px;align-items:center;">
       <button type="button" onClick="{{ pageBack }}" style="padding:8px 16px;border-radius:8px;border:1px solid #3a4043;color:#f0a8bd;font-size:13px;background:transparent;cursor:pointer;font-family:'IBM Plex Sans Arabic',sans-serif;white-space:nowrap;flex:none;" style-hover="background:#22282a;">رجوع للصفحة السابقة</button>
-      <a href="Installation Guide Home.dc.html" style="padding:8px 16px;border-radius:8px;border:1px solid #3a4043;color:#f0a8bd;font-size:13px;text-decoration:none;white-space:nowrap;flex:none;" style-hover="background:#22282a;">الرئيسية</a>
+      <a href="index.html" style="padding:8px 16px;border-radius:8px;border:1px solid #3a4043;color:#f0a8bd;font-size:13px;text-decoration:none;white-space:nowrap;flex:none;" style-hover="background:#22282a;">الرئيسية</a>
       <a href="Service Fees Table.dc.html#fridge" style="padding:8px 16px;border-radius:8px;border:1px solid #3a4043;color:#f0a8bd;font-size:13px;text-decoration:none;white-space:nowrap;flex:none;" style-hover="background:#22282a;">جدول تكاليف الصيانة</a>
       <a href="Fridge Support Topics.dc.html" style="padding:8px 16px;border-radius:8px;border:1px solid #3a4043;color:#e4e7e9;font-size:13px;text-decoration:none;white-space:nowrap;flex:none;" style-hover="background:#22282a;">رجوع</a>
     </div>
@@ -248,7 +248,7 @@ class Component extends DCLogic {
   }
   renderVals() {
     const found = CODES.find(c => c.code === this.state.sel) || null;
-    return { pageBack: () => { if (history.length > 1) history.back(); else location.href = 'Installation Guide Home.dc.html'; },
+    return { pageBack: () => { if (history.length > 1) history.back(); else location.href = 'index.html'; },
       sensorCodes: this.build('sensor'),
       fanCodes: this.build('fan'),
       otherCodes: this.build('other'),

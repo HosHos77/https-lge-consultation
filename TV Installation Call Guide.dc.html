@@ -53,7 +53,7 @@
     <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
       <button onClick="{{ openNoCap }}" style="padding:8px 14px;border-radius:8px;border:1px solid #3a4043;background:transparent;color:#f0a8bd;font-family:'IBM Plex Sans Arabic',sans-serif;font-size:13px;cursor:pointer;white-space:nowrap;flex:none;" style-hover="background:#22282a;">لا يوجد كباستي؟</button>
       <button type="button" onClick="{{ pageBack }}" style="padding:8px 16px;border-radius:8px;border:1px solid #3a4043;color:#f0a8bd;font-size:13px;background:transparent;cursor:pointer;font-family:'IBM Plex Sans Arabic',sans-serif;white-space:nowrap;flex:none;" style-hover="background:#22282a;">رجوع للصفحة السابقة</button>
-      <a href="Installation Guide Home.dc.html" style="padding:8px 16px;border-radius:8px;border:1px solid #3a4043;color:#f0a8bd;font-size:13px;text-decoration:none;white-space:nowrap;flex:none;" style-hover="background:#22282a;">الرئيسية</a>
+      <a href="index.html" style="padding:8px 16px;border-radius:8px;border:1px solid #3a4043;color:#f0a8bd;font-size:13px;text-decoration:none;white-space:nowrap;flex:none;" style-hover="background:#22282a;">الرئيسية</a>
       <a href="Service Fees Table.dc.html" style="padding:8px 16px;border-radius:8px;border:1px solid #3a4043;color:#f0a8bd;font-size:13px;text-decoration:none;white-space:nowrap;flex:none;" style-hover="background:#22282a;">جدول تكاليف الصيانة</a>
       <div style="padding:7px 14px;border-radius:999px;background:#1e2224;font-size:12.5px;color:#c8cdd0;white-space:nowrap;flex:none;">خطوة {{ stepNo }}</div>
       <button onClick="{{ restart }}" style="padding:8px 16px;border-radius:8px;border:none;background:#A50034;color:#fff;font-family:'IBM Plex Sans Arabic',sans-serif;font-weight:600;font-size:13px;cursor:pointer;white-space:nowrap;flex:none;" style-hover="background:#C4004A;">من البداية</button>
@@ -340,7 +340,7 @@
 
 
 <div dir="rtl" style="background:#f4f3ef;padding:8px 28px 48px;display:flex;justify-content:center;font-family:'IBM Plex Sans Arabic',system-ui,sans-serif;">
-  <a href="Installation Guide Home.dc.html" style="display:inline-flex;align-items:center;gap:10px;padding:14px 30px;border-radius:12px;background:#111314;color:#f4f3ef;font-family:'Cairo',sans-serif;font-weight:700;font-size:15px;" style-hover="background:#A50034;color:#fff;">← العودة للصفحة الرئيسية</a>
+  <a href="index.html" style="display:inline-flex;align-items:center;gap:10px;padding:14px 30px;border-radius:12px;background:#111314;color:#f4f3ef;font-family:'Cairo',sans-serif;font-weight:700;font-size:15px;" style-hover="background:#A50034;color:#fff;">← العودة للصفحة الرئيسية</a>
 </div>
 
 </x-dc>
@@ -355,7 +355,7 @@ class Component extends DCLogic {
   }
   renderVals() {
     const n = this.state.node;
-    return { pageBack: () => { if (history.length > 1) history.back(); else location.href = 'Installation Guide Home.dc.html'; },
+    return { pageBack: () => { if (history.length > 1) history.back(); else location.href = 'index.html'; },
       atSched: this.state.node === 'sched',
       goSched: () => this.go('sched'),
       showNoCap: !!this.state.noCap,

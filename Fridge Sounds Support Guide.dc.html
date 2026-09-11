@@ -47,7 +47,7 @@
     <div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:18px;">أصوات الثلاجة الطبيعية</div>
     <div style="margin-right:auto;display:flex;flex-wrap:wrap;gap:10px;align-items:center;">
       <button type="button" onClick="{{ pageBack }}" style="padding:8px 16px;border-radius:8px;border:1px solid #3a4043;color:#f0a8bd;font-size:13px;background:transparent;cursor:pointer;font-family:'IBM Plex Sans Arabic',sans-serif;white-space:nowrap;flex:none;" style-hover="background:#22282a;">رجوع للصفحة السابقة</button>
-      <a href="Installation Guide Home.dc.html" style="padding:8px 16px;border-radius:8px;border:1px solid #3a4043;color:#f0a8bd;font-size:13px;text-decoration:none;white-space:nowrap;flex:none;" style-hover="background:#22282a;">الرئيسية</a>
+      <a href="index.html" style="padding:8px 16px;border-radius:8px;border:1px solid #3a4043;color:#f0a8bd;font-size:13px;text-decoration:none;white-space:nowrap;flex:none;" style-hover="background:#22282a;">الرئيسية</a>
       <a href="Service Fees Table.dc.html#fridge" style="padding:8px 16px;border-radius:8px;border:1px solid #3a4043;color:#f0a8bd;font-size:13px;text-decoration:none;white-space:nowrap;flex:none;" style-hover="background:#22282a;">جدول تكاليف الصيانة</a>
       <a href="Fridge Support Topics.dc.html" style="padding:8px 16px;border-radius:8px;border:1px solid #3a4043;color:#e4e7e9;font-size:13px;text-decoration:none;white-space:nowrap;flex:none;" style-hover="background:#22282a;">رجوع</a>
     </div>
@@ -216,7 +216,7 @@ class Component extends DCLogic {
   };
   componentWillUnmount() { if (this._ctx) this._ctx.close(); }
   renderVals() {
-    return { pageBack: () => { if (history.length > 1) history.back(); else location.href = 'Installation Guide Home.dc.html'; },
+    return { pageBack: () => { if (history.length > 1) history.back(); else location.href = 'index.html'; },
       play_hiss: this.play_hiss, play_gurgle: this.play_gurgle, play_crack: this.play_crack,
       play_click: this.play_click, play_splash: this.play_splash, play_knock: this.play_knock,
       play_hum: this.play_hum
