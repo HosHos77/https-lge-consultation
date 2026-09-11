@@ -6,7 +6,6 @@
     "enabled": true
   },
   "assets": {
-    "directory": ".",
-    "exclude": [".git", "node_modules", ".github", ".gitignore", "*.md"]
+    "directory": "."
   }
 }
