@@ -47,7 +47,7 @@
     <div style="margin-right:auto;display:flex;flex-wrap:wrap;gap:10px;align-items:center;">
       <div style="padding:7px 14px;border-radius:999px;background:#1e2224;font-size:12.5px;color:#c8cdd0;white-space:nowrap;flex:none;">{{ stepLabel }}</div>
       <button type="button" onClick="{{ pageBack }}" style="padding:8px 16px;border-radius:8px;border:1px solid #3a4043;color:#f0a8bd;font-size:13px;background:transparent;cursor:pointer;font-family:'IBM Plex Sans Arabic',sans-serif;white-space:nowrap;flex:none;" style-hover="background:#22282a;">رجوع للصفحة السابقة</button>
-      <a href="Installation Guide Home.dc.html" style="padding:8px 16px;border-radius:8px;border:1px solid #3a4043;color:#f0a8bd;font-size:13px;text-decoration:none;white-space:nowrap;flex:none;" style-hover="background:#22282a;">الرئيسية</a>
+      <a href="index.html" style="padding:8px 16px;border-radius:8px;border:1px solid #3a4043;color:#f0a8bd;font-size:13px;text-decoration:none;white-space:nowrap;flex:none;" style-hover="background:#22282a;">الرئيسية</a>
       <a href="Service Fees Table.dc.html#washers" style="padding:8px 16px;border-radius:8px;border:1px solid #3a4043;color:#f0a8bd;font-size:13px;text-decoration:none;white-space:nowrap;flex:none;" style-hover="background:#22282a;">جدول تكاليف الصيانة</a>
       <button onClick="{{ restart }}" style="padding:8px 16px;border-radius:8px;border:1px solid #3a4043;background:transparent;color:#e4e7e9;font-family:'IBM Plex Sans Arabic',sans-serif;font-size:13px;cursor:pointer;white-space:nowrap;flex:none;" style-hover="background:#22282a;">من البداية</button>
     </div>
@@ -252,7 +252,7 @@ class Component extends DCLogic {
     const n = this.state.node;
     const sel = CHECKS.find(c => c.key === this.state.sel) || null;
     const labels = { start:'خطوة ١', err:'رمز خطأ', pick:'خطوة ٢', detail:'خطوة ٣', done:'إنهاء', esc:'تسجيل بلاغ' };
-    return { pageBack: () => { if (history.length > 1) history.back(); else location.href = 'Installation Guide Home.dc.html'; },
+    return { pageBack: () => { if (history.length > 1) history.back(); else location.href = 'index.html'; },
       stepLabel: labels[n] || '',
       isStart: n === 'start', isErr: n === 'err', isPick: n === 'pick',
       isDetail: n === 'detail', isDone: n === 'done', isEsc: n === 'esc',
