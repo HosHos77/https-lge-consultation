@@ -1,0 +1,6 @@
+name = "lge-consultation"
+compatibility_date = "2026-09-11"
+pages_build_output_dir = "."
+
+[assets]
+directory = "."
