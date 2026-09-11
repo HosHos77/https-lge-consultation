@@ -1,0 +1,54 @@
+name = "https-lge-consultation"
+type = "javascript"
+account_id = ""
+workers_dev = true
+compatibility_date = "2026-09-10"
+observability = { enabled = true }
+
+[env.production]
+
+[build]
+command = ""
+cwd = ""
+watch_paths = []
+
+[build.upload]
+format = "service-worker"
+main = "./index.js"
+
+[[build.upload.rules]]
+type = "Text"
+globs = ["**/*.txt"]
+fallthrough = true
+
+[[build.upload.rules]]
+type = "CompiledContentType"
+globs = ["**/*.wasm"]
+fallthrough = true
+
+[site]
+bucket = "."
+include_patterns = [
+  "*.html",
+  "*.css",
+  "*.js",
+  "*.json",
+  "*.xml",
+  "*.jpg",
+  "*.jpeg",
+  "*.png",
+  "*.gif",
+  "*.svg",
+  "*.webp"
+]
+exclude_patterns = [
+  ".git/**",
+  ".github/**",
+  "node_modules/**",
+  ".env*",
+  "*.md",
+  ".DS_Store",
+  "wrangler.toml",
+  "package.json",
+  "package-lock.json"
+]
