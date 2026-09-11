@@ -1,0 +1,12 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "https-lge-consultation",
+  "compatibility_date": "2026-09-10",
+  "observability": {
+    "enabled": true
+  },
+  "assets": {
+    "directory": ".",
+    "exclude": [".git", "node_modules", ".github", ".gitignore", "*.md"]
+  }
+}
