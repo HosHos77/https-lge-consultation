@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<title>أكواد أعطال الغسالات بدون شاشة رقمية</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&family=IBM+Plex+Sans+Arabic:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  body { margin:0; background:#f4f3ef; }
+  a { color:#A50034; }
+  a:hover { color:#7d0027; }
+</style>
+<script src="shadow-nav.js"></script>
+</helmet>
+<div dir="rtl" style="min-height:100vh;background:#f4f3ef;color:#191a1c;font-family:'IBM Plex Sans Arabic',system-ui,sans-serif;padding-bottom:70px;">
+  <div style="background:#111314;color:#f4f3ef;padding:16px 28px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
+    <div style="width:9px;height:32px;background:#A50034;border-radius:2px;flex:none;"></div>
+    <div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:18px;">أكواد أعطال الغسالات بدون شاشة رقمية — LED Error Codes</div>
+  </div>
+
+  <div style="max-width:1080px;margin:0 auto;padding:28px 28px 40px;display:grid;gap:18px;">
+    <div style="background:#fff;border:1px solid #e3e0d8;border-radius:14px;padding:24px 26px;border-top:4px solid #A50034;">
+      <div style="background:#1c1a1b;color:#f6f1f2;border-radius:12px;padding:18px 22px;margin-bottom:14px;">
+        <div style="font-size:12.5px;color:#f0a8bd;margin-bottom:8px;font-weight:600;">اقرأ للعميل</div>
+        <div style="font-family:'Cairo',sans-serif;font-size:17px;line-height:2;">«ممكن حضرتك تقولّي أنهي لمبات بتنوّر وتطفي (بترمش) على لوحة الغسالة دلوقتي؟»</div>
+      </div>
+      <div style="padding:14px 18px;border-radius:12px;background:#fff5f7;border:1px solid #f0c2ce;font-size:15px;line-height:1.9;">الغسالات اللي من غير شاشة أرقام بتعرض العطل عن طريق <strong>لمبات بترمش</strong>. اختار شكل لوحة التحكم الأول، وبعدين اللمبات اللي العميل بيوصفها.</div>
+    </div>
+
+    <div style="background:#fff;border:1px solid #e3e0d8;border-radius:14px;padding:22px 24px;">
+      <div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:18px;margin-bottom:12px;">١ — شكل لوحة التحكم</div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;">
+        <sc-for list="{{ types }}" as="t" hint-placeholder-count="2">
+          <button type="button" onClick="{{ t.pick }}" style="{{ t.style }}">
+            <div style="font-family:'Cairo',sans-serif;font-weight:700;font-size:16px;margin-bottom:4px;">{{ t.title }}</div>
+            <div style="font-size:13.5px;color:#6b7075;line-height:1.7;">{{ t.hint }}</div>
+          </button>
+        </sc-for>
+      </div>
+    </div>
+
+    <div style="background:#fff;border:1px solid #e3e0d8;border-radius:14px;padding:22px 24px;">
+      <div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:18px;margin-bottom:12px;">٢ — اللمبات اللي بترمش</div>
+      <div style="display:grid;gap:8px;">
+        <sc-for list="{{ list }}" as="c" hint-placeholder-count="9">
+          <button type="button" onClick="{{ c.pick }}" style="{{ c.style }}">
+            <div dir="ltr" style="flex:none;min-width:44px;padding:5px 10px;border-radius:8px;background:#111314;color:#fff;font-family:'Cairo',sans-serif;font-weight:900;font-size:15px;text-align:center;">{{ c.code }}</div>
+            <div style="flex:1;min-width:200px;display:flex;flex-wrap:wrap;gap:6px;">
+              <sc-for list="{{ c.leds }}" as="l" hint-placeholder-count="3">
+                <div dir="ltr" style="padding:3px 9px;border-radius:999px;border:1px solid #f0a8bd;background:#fff5f7;color:#A50034;font-size:12.5px;font-weight:600;">✺ {{ l }}</div>
+              </sc-for>
+            </div>
+            <div style="flex:1;min-width:160px;font-weight:600;font-size:14.5px;">{{ c.ar }}</div>
+          </button>
+        </sc-for>
+      </div>
+    </div>
+
+    <sc-if value="{{ hasSel }}" hint-placeholder-val="{{ false }}">
+      <div id="sel-card" style="background:#fff;border:1px solid #f0c2ce;border-radius:14px;padding:24px 26px;">
+        <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:14px;">
+          <div dir="ltr" style="padding:6px 14px;border-radius:8px;background:#A50034;color:#fff;font-family:'Cairo',sans-serif;font-weight:900;font-size:20px;">{{ sel.code }}</div>
+          <div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:21px;">{{ sel.ar }}</div>
+        </div>
+        <div style="background:#1c1a1b;color:#f6f1f2;border-radius:12px;padding:16px 20px;margin-bottom:14px;">
+          <div style="font-size:12.5px;color:#f0a8bd;margin-bottom:6px;font-weight:600;">اقرأ للعميل</div>
+          <div style="font-family:'Cairo',sans-serif;font-size:16.5px;line-height:1.95;">{{ sel.script }}</div>
+        </div>
+        <div style="font-size:14px;font-weight:700;color:#6b7075;margin-bottom:8px;">السبب المحتمل</div>
+        <div style="display:grid;gap:6px;margin-bottom:18px;">
+          <sc-for list="{{ sel.causes }}" as="x" hint-placeholder-count="3">
+            <div style="display:flex;gap:10px;align-items:flex-start;font-size:15px;line-height:1.8;"><div style="flex:none;width:6px;height:6px;border-radius:50%;background:#A50034;margin-top:11px;"></div><div>{{ x }}</div></div>
+          </sc-for>
+        </div>
+        <div style="font-size:14px;font-weight:700;color:#6b7075;margin-bottom:8px;">الحل — خطوات مع العميل</div>
+        <div style="display:grid;gap:8px;margin-bottom:18px;">
+          <sc-for list="{{ sel.steps }}" as="s" hint-placeholder-count="3">
+            <div style="display:flex;gap:12px;align-items:flex-start;padding:10px 14px;border-radius:10px;background:#faf9f6;font-size:15px;line-height:1.8;"><div style="flex:none;width:26px;height:26px;border-radius:50%;background:#A50034;color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Cairo',sans-serif;font-weight:900;font-size:13px;">{{ s.n }}</div><div>{{ s.t }}</div></div>
+          </sc-for>
+        </div>
+        <div style="background:#1c1a1b;color:#f6f1f2;border-radius:12px;padding:18px 22px;margin-bottom:14px;">
+          <div style="font-size:12.5px;color:#f0a8bd;margin-bottom:8px;font-weight:600;">اقرأ للعميل — الرسوم</div>
+          <div style="font-family:'Cairo',sans-serif;font-size:16.5px;line-height:2;">«الصيانة داخل فترة الضمان مجانية تمامًا. ولو ظهر إن السبب مش عطل فني في الجهاز، أو إن العطل خارج نطاق الضمان، بتكون في تكلفة زيارة ومعاينة ١٨٢ جنيه لأول زيارة، وأي زيارة بعدها ٣٠٠ جنيه — وتكلفة الصيانة نفسها بتتحدد بعد ما الفني يعاين الجهاز، وهتُعرض على حضرتك للموافقة قبل أي إصلاح.»</div>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px;">
+          <sc-if value="{{ sel.fixable }}" hint-placeholder-val="{{ true }}">
+            <a href="Washer Support Topics.dc.html" style="display:block;padding:16px 20px;border-radius:12px;border:1px solid #c6e0d1;background:#eef6f1;color:#0f5132;text-decoration:none;font-family:'Cairo',sans-serif;font-weight:700;font-size:16px;">✓ المشكلة اتحلت</a>
+          </sc-if>
+          <a href="Washer No Spin Support Guide.dc.html#esc" style="display:block;padding:16px 20px;border-radius:12px;border:none;background:#A50034;color:#fff;text-decoration:none;font-family:'Cairo',sans-serif;font-weight:700;font-size:16px;">تسجيل طلب صيانة</a>
+        </div>
+      </div>
+    </sc-if>
+
+    <div style="background:#fff;border:1px solid #e3e0d8;border-radius:14px;padding:18px 22px;">
+      <button type="button" onClick="{{ toggleImgs }}" style="width:100%;display:flex;align-items:center;gap:10px;text-align:right;background:none;border:none;cursor:pointer;font-family:'Cairo',sans-serif;font-weight:700;font-size:16px;color:#191a1c;padding:0;"><div style="flex:1;">صور جدول الأعطال من دليل الاستخدام</div><div style="color:#A50034;">{{ imgIcon }}</div></button>
+      <sc-if value="{{ showImgs }}" hint-placeholder-val="{{ false }}">
+        <div style="display:grid;gap:12px;margin-top:14px;">
+          <sc-for list="{{ imgs }}" as="im" hint-placeholder-count="0">
+            <img src="{{ im }}" alt="جدول الأعطال" style="width:100%;border:1px solid #e3e0d8;border-radius:10px;display:block;">
+          </sc-for>
+        </div>
+      </sc-if>
+    </div>
+
+    <div style="padding-top:20px;border-top:1px solid #e3e0d8;display:flex;align-items:center;justify-content:center;gap:10px;">
+      <div style="width:6px;height:16px;border-radius:2px;background:#A50034;"></div>
+      <div style="font-size:13px;color:#A50034;font-weight:600;">Created by ICC QA &amp; Training Team</div>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const BASE = {
+  IE:{ ar:'مشكلة في دخول المية', causes:['ضغط المية في المنطقة ضعيف.','حنفية المية مش مفتوحة على الآخر.','خرطوم دخول المية ملفوف أو مثني.','مصفاة خرطوم دخول المية مسدودة.'],
+    steps:['اتأكد إن المية شغالة في باقي البيت.','افتح حنفية المية على الآخر.','عدّل خرطوم الدخول وخليه مفرود.','نضّف مصفاة خرطوم دخول المية.'], fixable:true,
+    script:'«اللمبات دي معناها إن المية مش داخلة الغسالة كويس. خلّينا نتأكد من الحنفية والخرطوم مع بعض.»' },
+  OE:{ ar:'مشكلة في تصريف المية', causes:['خرطوم الصرف ملفوف أو مسدود.','فلتر الصرف مسدود.'],
+    steps:['عدّل خرطوم الصرف وخليه مفرود ومش مسدود.','نضّف فلتر الصرف اللي قدام من تحت.'], fixable:true,
+    script:'«اللمبات دي معناها إن الغسالة مش قادرة تصرّف المية. هنراجع خرطوم الصرف والفلتر.»' },
+  UE:{ ar:'الحمل مش متوازن', causes:['الهدوم قليلة جدًا أو مش متوزعة.','حاجات تقيلة لوحدها زي بطانية أو برنس — الغسالة بتوقف العصر عشان تحمي نفسها.'],
+    steps:['ضيف قطعة أو اتنين عشان الحمل يتوازن.','وزّع الهدوم كويس جوه الحلة.','لو الهدوم لسه مبلولة في الآخر — ضيف قطع صغيرة وشغّل عصر تاني.'], fixable:true,
+    script:'«الغسالة وقفت العصر لأن الهدوم مش متوزعة كويس. وزّعها أو ضيف قطعة كمان وشغّل عصر تاني.»' },
+  dE:{ ar:'الباب مفتوح', causes:['الباب مش مقفول كويس.'],
+    steps:['اقفل الباب كويس لحد ما تسمع صوت القفل.','لو اللمبات لسه بترمش — سجّل طلب صيانة.'], fixable:true,
+    script:'«اللمبات دي معناها إن الباب مش مقفول. اقفله كويس وجرّب تاني.»' },
+  tE:{ ar:'عطل في التسخين', causes:['مشكلة في السخان أو حساس الحرارة.'],
+    steps:['افصل كابل الكهربا من الغسالة.','سجّل طلب صيانة.'], fixable:false,
+    script:'«ده عطل محتاج فني. افصل الغسالة من الكهربا، وهسجّل لحضرتك طلب صيانة دلوقتي.»' },
+  FE:{ ar:'المية فايضة جوه الغسالة', causes:['المية بتفيض بسبب مشكلة في محبس المية.'],
+    steps:['اقفل حنفية المية.','افصل كابل الكهربا.','سجّل طلب صيانة.'], fixable:false,
+    script:'«اقفل حنفية المية وافصل الغسالة من الكهربا حالًا، وهسجّل لحضرتك طلب صيانة.»' },
+  PE:{ ar:'عطل في حساس مستوى المية', causes:['عطل في حساس مستوى المية.'],
+    steps:['اقفل حنفية المية.','افصل كابل الكهربا.','سجّل طلب صيانة.'], fixable:false,
+    script:'«ده عطل محتاج فني. اقفل الحنفية وافصل الغسالة من الكهربا، وهسجّل لحضرتك طلب صيانة.»' },
+  LE:{ ar:'حمل زيادة على الموتور', causes:['حمل زيادة على الموتور.'],
+    steps:['اقفل حنفية المية.','افصل كابل الكهربا.','سجّل طلب صيانة.'], fixable:false,
+    script:'«ده عطل في الموتور محتاج فني. اقفل الحنفية وافصل الغسالة من الكهربا، وهسجّل لحضرتك طلب صيانة.»' }
+};
+const TYPES = [
+  { key:'a', title:'لوحة فيها ٤ زراير: Medic Rinse · Pre Wash · Intensive · Crease Care', hint:'زي موديل F10B9QDT2 — لمبات الحرارة والعصر جنب الشاشة الصغيرة.', imgs:['assets/wled-a1.png','assets/wled-a2.png'],
+    codes:[['IE',['Pre Wash','Crease Care']],['OE',['Medic Rinse','Pre Wash']],['UE',['لمبات العصر كلها (1000 ← Rinse Hold)']],['dE',['الـ ٤ زراير','لمبات الحرارة كلها']],['tE',['لمبات الحرارة كلها (95° ← Cold)']],['FE',['Pre Wash','Intensive','Crease Care','Medic Rinse']],['PE',['Medic Rinse','Pre Wash','لمبات الحرارة']],['LE',['Medic Rinse','Crease Care']],['LE',['Medic Rinse','Intensive']]] },
+  { key:'b', title:'لوحة فيها زرارين: Intensive · Pre Wash', hint:'لمبات العصر (1200 ← Rinse Hold) ولمبات الحرارة (95° ← Cold).', imgs:['assets/wled-b1.png','assets/wled-b2.png'],
+    codes:[['IE',['60°C','40°C']],['OE',['Intensive','Pre Wash']],['UE',['لمبات العصر كلها (1200 ← Rinse Hold)']],['dE',['Intensive','Pre Wash','لمبات العصر']],['tE',['لمبات الحرارة كلها (95° ← Cold)']],['FE',['لمبات البرامج','لمبات الحرارة']],['PE',['لمبات البرامج','لمبات العصر']],['LE',['لمبات البرامج','Intensive','Pre Wash']],['LE',['لمبات البرامج (Cotton Large ← Baby Care)','لمبات العصر']]] }
+];
+const AR = ['٠','١','٢','٣','٤','٥','٦','٧','٨','٩'];
+class Component extends DCLogic {
+  state = { type:'a', sel:-1, imgs:false };
+  renderVals() {
+    const s = this.state, T = TYPES.find(t => t.key === s.type);
+    const list = T.codes.map(([code, leds], i) => ({ code, leds, ar: BASE[code].ar,
+      pick: () => { this.setState({ sel:i }); setTimeout(() => { const el = document.getElementById('sel-card'); if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - 20, behavior:'smooth' }); }, 60); },
+      style:{ display:'flex', alignItems:'center', gap:'12px', flexWrap:'wrap', width:'100%', textAlign:'right', padding:'12px 14px', borderRadius:'12px', cursor:'pointer', fontFamily:"'IBM Plex Sans Arabic',sans-serif", color:'#191a1c', border: s.sel === i ? '2px solid #A50034' : '1px solid #e3e0d8', background: s.sel === i ? '#fde7ee' : '#fbfaf7' } }));
+    const c = s.sel >= 0 ? T.codes[s.sel] : null, b = c ? BASE[c[0]] : null;
+    return {
+      types: TYPES.map(t => ({ title:t.title, hint:t.hint, pick: () => this.setState({ type:t.key, sel:-1 }),
+        style:{ textAlign:'right', padding:'16px 18px', borderRadius:'12px', cursor:'pointer', fontFamily:"'IBM Plex Sans Arabic',sans-serif", color:'#191a1c', border: s.type === t.key ? '2px solid #A50034' : '1px solid #e3e0d8', background: s.type === t.key ? '#fff5f7' : '#fff' } })),
+      list, hasSel: !!c,
+      sel: c ? { code:c[0], ar:b.ar, causes:b.causes, steps:b.steps.map((t, i) => ({ n: AR[i + 1], t })), script:b.script, fixable:b.fixable } : { code:'', ar:'', causes:[], steps:[], script:'', fixable:false },
+      imgs: T.imgs, showImgs: s.imgs, imgIcon: s.imgs ? '▲' : '▼', toggleImgs: () => this.setState(p => ({ imgs: !p.imgs }))
+    };
+  }
+}
+</script>
+</body>
+</html>

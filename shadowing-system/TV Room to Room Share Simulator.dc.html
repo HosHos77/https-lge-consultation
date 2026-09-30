@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<script src="shadow-nav.js"></script>
+<title>Room to Room Share — مشاركة الشاشة بين الأوض</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&family=IBM+Plex+Sans+Arabic:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  body { margin:0; background:#3b3b3b; }
+  a { color:#f0a8bd; }
+  a:hover { color:#fff; }
+</style>
+</helmet>
+<div dir="rtl" style="min-height:100vh;background:#3b3b3b;color:#f2f2f2;font-family:'IBM Plex Sans Arabic',system-ui,sans-serif;">
+  <div style="background:#2b2b2b;border-bottom:1px solid #4a4a4a;padding:14px 26px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;position:sticky;top:0;z-index:20;">
+    <div style="width:9px;height:30px;background:#A50034;border-radius:2px;flex:none;"></div>
+    <div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:17px;">Room to Room Share — مشاركة الشاشة بين الأوض</div>
+    <div style="margin-right:auto;padding:7px 14px;border-radius:999px;background:#1f1f1f;font-size:12.5px;color:#c8cdd0;white-space:nowrap;">{{ stepBadge }}</div>
+  </div>
+
+  <div style="max-width:1200px;margin:0 auto;padding:28px 28px 90px;display:grid;gap:18px;">
+    <div style="background:#2b2b2b;border:1px solid #4a4a4a;border-radius:14px;padding:18px 22px;">
+      <div style="font-size:12.5px;color:#f0a8bd;font-weight:600;margin-bottom:6px;">الخاصية دي بتعمل إيه؟</div>
+      <div style="font-size:15.5px;line-height:1.9;">بتخلّي العميل يكمّل اللي بيتفرج عليه على شاشة LG تانية في أوضة تانية من غير كابلات — عن طريق الواي فاي. مثال: بيتفرج على ماتش في الريسبشن، ويدخل أوضة النوم يكمّله على الشاشة اللي هناك.</div>
+    </div>
+
+    <div style="padding:16px 20px;border-radius:12px;background:#4a1020;border:2px solid #ff4d6d;color:#ffe3e8;">
+      <div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:17px;color:#ff8fa3;margin-bottom:8px;">⚠ شروط التشغيل — اتأكد منها الأول</div>
+      <div style="display:grid;gap:6px;font-size:15px;line-height:1.8;">
+        <div>١. الشاشتين لازم يكونوا LG ومتوصلين على <strong>نفس شبكة الواي فاي (نفس الراوتر)</strong>.</div>
+        <div>٢. الخاصية شغالة على موديلات <strong>2022 وأحدث</strong> — والشاشتين لازم يدعموا Room to Room Share (الشاشات اللي مش بتدعمها مش هتظهر في القايمة).</div>
+        <div>٣. <strong>الشاشة الأساسية (اللي بتبعت):</strong> موديلات Z2 · G2 · C2 · CS والأحدث منهم.</div>
+        <div>٤. <strong>الشاشة التانية (اللي بتستقبل):</strong> موديلات 2021 والأحدث.</div>
+        <div>٥. بتنقل اللي جاي من <strong>الدش (RF) أو HDMI</strong> — فالشاشة التانية مش محتاجة دش ولا كابل HDMI.</div>
+        <div>٦. الشاشة اللي بعتت الصورة بتطفي بعد الإرسال.</div>
+        <div>٧. الخاصية مش متاحة في دول أوروبا.</div>
+      </div>
+    </div>
+
+
+    <div style="display:flex;gap:24px;align-items:flex-start;flex-wrap:wrap;">
+      <div style="flex:1;min-width:320px;display:grid;gap:14px;">
+        <div style="background:#2b2b2b;border:1px solid #4a4a4a;border-radius:14px;padding:16px 20px;">
+          <div style="font-size:12.5px;color:#f0a8bd;font-weight:600;margin-bottom:6px;">اقرأ للعميل</div>
+          <div style="font-family:'Cairo',sans-serif;font-size:17px;line-height:2;">{{ cur.script }}</div>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px;font-size:13.5px;color:#c8cdd0;margin-bottom:-6px;"><div style="width:8px;height:8px;border-radius:50%;background:#e8005a;"></div><div>{{ cur.tvLabel }}</div></div>
+        <div style="border:2px solid #9a9a9a;border-radius:4px;background:#000;aspect-ratio:16/9;position:relative;overflow:hidden;">
+          <img src="{{ cur.img }}" alt="{{ cur.title }}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;">
+          <sc-if value="{{ hasHot }}" hint-placeholder-val="{{ false }}"><button type="button" aria-label="اضغط هنا" onClick="{{ next }}" style="{{ hotStyle }}"></button></sc-if>
+        </div>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;">
+          <button type="button" onClick="{{ prev }}" style="{{ prevStyle }}">السابق</button>
+          <button type="button" onClick="{{ next }}" style="{{ nextStyle }}">{{ nextLabel }}</button>
+        </div>
+      </div>
+      <div style="flex:none;width:130px;margin:0 auto;display:flex;flex-direction:column;align-items:center;gap:10px;">
+        <img src="assets/sim-remote.png" alt="ريموت LG" style="display:block;width:110px;height:auto;border-radius:14px;">
+        <button type="button" onClick="{{ noop }}" style="width:44px;height:30px;border-radius:8px;border:1px solid #555;background:#2d2d2d;color:#fff;cursor:pointer;">▲</button>
+        <div style="display:flex;gap:8px;align-items:center;">
+          <button type="button" onClick="{{ noop }}" style="width:30px;height:44px;border-radius:8px;border:1px solid #555;background:#2d2d2d;color:#fff;cursor:pointer;">◀</button>
+          <button type="button" onClick="{{ next }}" style="width:58px;height:58px;border-radius:50%;border:2px solid #e8005a;background:#2d2d2d;color:#fff;font-weight:700;cursor:pointer;box-shadow:0 0 12px rgba(232,0,90,.6);">OK</button>
+          <button type="button" onClick="{{ noop }}" style="width:30px;height:44px;border-radius:8px;border:1px solid #555;background:#2d2d2d;color:#fff;cursor:pointer;">▶</button>
+        </div>
+        <button type="button" onClick="{{ noop }}" style="width:44px;height:30px;border-radius:8px;border:1px solid #555;background:#2d2d2d;color:#fff;cursor:pointer;">▼</button>
+        <div style="font-size:11.5px;color:#c8cdd0;text-align:center;line-height:1.6;">دوس OK أو على الدايرة في الشاشة</div>
+      </div>
+      <div style="flex:none;width:340px;max-width:100%;display:grid;gap:8px;">
+        <sc-for list="{{ steps }}" as="s" hint-placeholder-count="4">
+          <button type="button" onClick="{{ s.go }}" style="{{ s.style }}"><div style="{{ s.numStyle }}">{{ s.n }}</div><div style="flex:1;line-height:1.8;text-align:right;">{{ s.t }}</div></button>
+        </sc-for>
+        <sc-if value="{{ done }}" hint-placeholder-val="{{ false }}">
+          <div style="padding:14px 16px;border-radius:10px;background:#133526;border:1px solid #2f6b4f;font-size:14.5px;line-height:1.8;">{{ doneText }}</div>
+        </sc-if>
+        <div style="padding:12px 14px;border-radius:10px;background:#2b2b2b;border:1px solid #4a4a4a;font-size:13.5px;color:#c8cdd0;line-height:1.8;"><strong style="color:#fff;">لو الشاشة التانية مش ظاهرة في Find TV:</strong> اتأكد إن الشاشة التانية شغالة، وإن الشاشتين على نفس الواي فاي، وإنها موديل بيدعم الخاصية.</div>
+      </div>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const FLOWS = {
+  send: { title:'Room to Room Share', sub:'', done:'الشاشة التانية بتعرض نفس المحتوى، والشاشة الأولى هتطفي.', steps:[
+    { t:'من الصفحة الرئيسية للشاشة اللي عليها المحتوى، افتح تطبيق Room to Room Share من التطبيقات (APPS).', img:'assets/r2r-sim-1.jpg', tv:'الشاشة الأساسية — الريسبشن', hx:85, hy:65, script:'«من الصفحة الرئيسية في الشاشة اللي حضرتك بتتفرج عليها، ادخل على التطبيقات وافتح Room to Room Share.»' },
+    { t:'اختار طريقة التوصيل: Connect from TV.', img:'assets/r2r-sim-3.jpg', tv:'الشاشة الأساسية — الريسبشن', hx:66, hy:56, script:'«هيظهر لحضرتك اختيارين — اختار Connect from TV.»' },
+    { t:'من شاشة Find TV، اختار الشاشة التانية من القايمة.', img:'assets/r2r-sim-4.jpg', tv:'الشاشة الأساسية — الريسبشن', hx:22, hy:40, script:'«هتظهر قايمة بالشاشات اللي على نفس الواي فاي — اختار الشاشة اللي في الأوضة التانية.»' },
+    { t:'هتظهر رسالة Connection Completed — دوس Done.', img:'assets/r2r-sim-5.jpg', tv:'الشاشة الأساسية — الريسبشن', hx:69, hy:86, script:'«كده الشاشتين اتوصلوا ببعض — دوس Done.»' },
+    { t:'على الشاشة التانية هتظهر رسالة طلب إرسال الشاشة — دوس Watch.', img:'assets/r2r-sim-6.jpg', tv:'الشاشة التانية — أوضة النوم', hx:68, hy:67, script:'«على الشاشة اللي في الأوضة التانية هتظهر رسالة — دوس Watch عشان تبدأ الفرجة.»' },
+    { t:'المحتوى هيظهر على الشاشة التانية، والعميل يكمّل الفرجة.', img:'assets/r2r-sim-7.jpg', tv:'الشاشة التانية — أوضة النوم', script:'«كده حضرتك بتكمّل الفرجة على الشاشة التانية.»' }
+  ] }
+};
+class Component extends DCLogic {
+  state = { mode:'send', i:0, done:false };
+  renderVals() {
+    const s = this.state, F = FLOWS[s.mode], cur = F.steps[s.i], last = s.i === F.steps.length - 1;
+    const nb = on => ({ padding:'12px 22px', borderRadius:'10px', cursor: on ? 'pointer' : 'default', fontFamily:"'Cairo',sans-serif", fontWeight:700, fontSize:'15px', border:'1px solid #565656', background:'#2b2b2b', color:'#fff', opacity: on ? 1 : .4 });
+    return {
+      stepBadge: s.done ? 'تم' : `الخطوة ${s.i + 1} من ${F.steps.length}`,
+      modes: [].map(k => ({ title:FLOWS[k].title, sub:FLOWS[k].sub, pick: () => this.setState({ mode:k, i:0, done:false }),
+        style:{ flex:'1 1 260px', textAlign:'right', padding:'14px 18px', borderRadius:'12px', cursor:'pointer', fontFamily:"'Cairo',sans-serif", color:'#fff', border: s.mode === k ? '2px solid #e8005a' : '1px solid #565656', background: s.mode === k ? '#3a2330' : '#2b2b2b' } })),
+      cur: { ...cur, tvLabel: cur.tv, title: F.title },
+      hasHot: cur.hx != null && !s.done, hotStyle: { position:'absolute', left: (cur.hx || 0) + '%', top: (cur.hy || 0) + '%', width:'54px', height:'54px', marginLeft:'-27px', marginTop:'-27px', borderRadius:'50%', border:'3px solid #e8005a', boxShadow:'0 0 18px rgba(232,0,90,.9)', background:'rgba(232,0,90,.18)', cursor:'pointer', padding:0 },
+      prev: () => this.setState(p => ({ i: Math.max(0, p.i - 1), done:false })), prevStyle: nb(s.i > 0),
+      next: () => this.setState(p => last ? { done:true } : { i: p.i + 1 }),
+      nextLabel: last ? 'تم' : 'التالي',
+      noop: () => {},
+      nextStyle: { ...nb(true), background:'#A50034', border:'1px solid #A50034' },
+      done: s.done, doneText: F.done,
+      steps: F.steps.map((st, i) => ({ n: i + 1, t: st.t, go: () => this.setState({ i, done:false }),
+        style:{ display:'flex', gap:'12px', alignItems:'flex-start', padding:'12px 14px', borderRadius:'10px', cursor:'pointer', fontFamily:"'IBM Plex Sans Arabic',sans-serif", fontSize:'14.5px', color:'#fff', background: i < s.i || s.done ? '#233a2e' : (i === s.i ? '#3a2330' : '#2b2b2b'), border: i === s.i && !s.done ? '1px solid #e8005a' : '1px solid #4a4a4a' },
+        numStyle:{ width:'26px', height:'26px', borderRadius:'50%', flex:'none', display:'flex', alignItems:'center', justifyContent:'center', fontWeight:700, background: i < s.i || s.done ? '#2f6b4f' : '#A50034' } }))
+    };
+  }
+}
+</script>
+</body>
+</html>

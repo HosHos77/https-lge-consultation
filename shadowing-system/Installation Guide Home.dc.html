@@ -1,26 +1,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-<script>
-(function(){
-  var KEY = 'csGuideAuth_v1';
-  var USER = 'agent';
-  var PASS = 'LGE@2026';
-  function authed(){ try { return localStorage.getItem(KEY) === '1'; } catch(e){ return false; } }
-  if (authed()) return;
-  var u = window.prompt('اسم المستخدم / Username:');
-  var p = window.prompt('كلمة المرور / Password:');
-  if (u === USER && p === PASS) {
-    try { localStorage.setItem(KEY, '1'); } catch(e){}
-  } else {
-    window.stop();
-    document.open();
-    document.write('<div style="font-family:Tahoma,Arial,sans-serif;text-align:center;margin-top:80px;font-size:22px;color:#c00;">تم رفض الدخول<br>Access Denied</div>');
-    document.close();
-  }
-})();
-</script>
-
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="./support.js"></script>
@@ -46,7 +26,6 @@
       <div style="font-family:'Cairo',sans-serif;font-weight:700;font-size:19px;">Consultation Shadowing</div>
       <div style="font-size:12.5px;color:#9ea4a8;white-space:nowrap;">مسارات المكالمات والتعليمات الفنية لكل منتج</div>
     </div>
-    <a href="shadowing-system/" style="margin-right:auto;padding:9px 18px;border-radius:8px;border:1px solid #3a4043;color:#f0a8bd;font-size:13.5px;text-decoration:none;white-space:nowrap;" style-hover="background:#22282a;">النظام الكامل</a>
     <sc-if value="{{ isSupport }}" hint-placeholder-val="{{ false }}">
     <div style="margin-right:auto;">
       <a href="Service Fees Table.dc.html" style="padding:9px 18px;border-radius:8px;border:1px solid #3a4043;color:#f0a8bd;font-size:13.5px;text-decoration:none;white-space:nowrap;" style-hover="background:#22282a;">جدول تكاليف الصيانة</a>
@@ -93,6 +72,19 @@
           <div style="display:inline-flex;align-items:center;gap:8px;font-family:'Cairo',sans-serif;font-weight:700;font-size:15px;color:#f0a8bd;">ابدأ <span style="font-size:18px;">←</span></div>
         </div>
       </button>
+      <button onClick="{{ showHM }}" style="position:relative;overflow:hidden;text-align:right;padding:40px 34px 34px;border-radius:20px;cursor:pointer;font-family:'IBM Plex Sans Arabic',sans-serif;background:#1c1a1b;color:#f6f1f2;border:1px solid #1c1a1b;transition:transform .18s ease,box-shadow .18s ease;" style-hover="transform:translateY(-3px);box-shadow:0 16px 34px rgba(28,26,27,.22);">
+        <div style="position:absolute;top:-40px;left:-40px;width:150px;height:150px;border-radius:50%;background:rgba(165,0,52,.28);"></div>
+        <div style="position:relative;">
+          <div style="display:inline-flex;align-items:center;justify-content:center;width:46px;height:46px;border-radius:13px;background:#A50034;color:#fff;font-family:'Cairo',sans-serif;font-weight:900;font-size:20px;margin-bottom:18px;">٣</div>
+          <div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:32px;margin-bottom:10px;">HM — Telesales</div>
+          <div style="font-size:15px;line-height:1.85;opacity:.82;margin-bottom:22px;">سكريبت مكالمات بيع الصيانة الوقائية (Hygienic Maintenance) — خطوات الخدمة وفوايدها، الإقناع والرد على الاعتراضات، وقواعد التسجيل.</div>
+          <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:22px;">
+            <span style="padding:6px 13px;border-radius:999px;background:rgba(255,255,255,.09);font-size:12.5px;">الصيانة الوقائية</span>
+            <span style="padding:6px 13px;border-radius:999px;background:rgba(255,255,255,.09);font-size:12.5px;">سكريبت المكالمة</span>
+          </div>
+          <div style="display:inline-flex;align-items:center;gap:8px;font-family:'Cairo',sans-serif;font-weight:700;font-size:15px;color:#f0a8bd;">ابدأ <span style="font-size:18px;">←</span></div>
+        </div>
+      </button>
     </div>
 
     </sc-if>
@@ -101,6 +93,59 @@
     <div style="display:flex;align-items:center;gap:12px;margin-bottom:22px;flex-wrap:wrap;">
       <button onClick="{{ showLanding }}" style="padding:11px 20px;border-radius:10px;border:1px solid #d9d5cb;background:#fff;color:#191a1c;font-family:'IBM Plex Sans Arabic',sans-serif;font-size:14px;cursor:pointer;" style-hover="border-color:#A50034;background:#fdf5f7;">القائمة الرئيسية</button>
       <div style="padding:11px 20px;border-radius:10px;background:#1c1a1b;color:#f6f1f2;font-family:'Cairo',sans-serif;font-weight:700;font-size:15px;">{{ sectionTitle }}</div>
+    </div>
+    </sc-if>
+
+    <sc-if value="{{ isHM }}" hint-placeholder-val="{{ false }}">
+    <div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:28px;margin-bottom:8px;">HM — Telesales</div>
+    <div style="font-size:15px;color:#6b7075;line-height:1.8;margin-bottom:22px;max-width:60ch;text-wrap:pretty;">اختار جهاز العميل عشان تفتح سكريبت المكالمة وخطوات الخدمة وقواعد التسجيل الخاصة بيه.</div>
+
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px;">
+      <a href="HM Washer Cleaning Guide.dc.html" style="display:block;background:#fff;border:1px solid #e3e0d8;border-radius:14px;padding:26px;" style-hover="border-color:#A50034;background:#fdf5f7;">
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;">
+          <div style="font-family:'Cairo',sans-serif;font-weight:700;font-size:19px;color:#191a1c;">الغسالات</div>
+          <div style="padding:5px 12px;border-radius:999px;background:#f3f2f1;color:#5a5553;font-size:12px;font-weight:600;">جاهز</div>
+        </div>
+        <div style="font-size:13.5px;color:#8a8f94;margin-top:8px;letter-spacing:.04em;">Washing Machine — WM</div>
+        <div style="font-size:14px;color:#6b7075;line-height:1.75;margin-top:8px;">فرونت لود — تنظيف عادي وشامل · الخطوات وأهمية كل خطوة</div>
+      </a>
+
+      <a href="HM Fridge Cleaning Guide.dc.html" style="display:block;background:#fff;border:1px solid #e3e0d8;border-radius:14px;padding:26px;" style-hover="border-color:#A50034;background:#fdf5f7;">
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;">
+          <div style="font-family:'Cairo',sans-serif;font-weight:700;font-size:19px;color:#191a1c;">الثلاجات</div>
+          <div style="padding:5px 12px;border-radius:999px;background:#f3f2f1;color:#5a5553;font-size:12px;font-weight:600;">جاهز</div>
+        </div>
+        <div style="font-size:13.5px;color:#8a8f94;margin-top:8px;letter-spacing:.04em;">Refrigerator — REF</div>
+        <div style="font-size:14px;color:#6b7075;line-height:1.75;margin-top:8px;">٧ خطوات — المكثف والمروحة والمبخر والميزان · الفوايد للعميل</div>
+      </a>
+
+      <a href="HM AC Cleaning Guide.dc.html" style="display:block;background:#fff;border:1px solid #e3e0d8;border-radius:14px;padding:26px;" style-hover="border-color:#A50034;background:#fdf5f7;">
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;">
+          <div style="font-family:'Cairo',sans-serif;font-weight:700;font-size:19px;color:#191a1c;">التكييف</div>
+          <div style="padding:5px 12px;border-radius:999px;background:#f3f2f1;color:#5a5553;font-size:12px;font-weight:600;">جاهز</div>
+        </div>
+        <div style="font-size:13.5px;color:#8a8f94;margin-top:8px;letter-spacing:.04em;">Air Conditioner — AC</div>
+        <div style="font-size:14px;color:#6b7075;line-height:1.75;margin-top:8px;">بسيطة ٤ خطوات · عميقة ٧ خطوات — الفلتر والكويل والوحدة الخارجية</div>
+      </a>
+
+      <a href="HM Dishwasher Cleaning Guide.dc.html" style="display:block;background:#fff;border:1px solid #e3e0d8;border-radius:14px;padding:26px;" style-hover="border-color:#A50034;background:#fdf5f7;">
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;">
+          <div style="font-family:'Cairo',sans-serif;font-weight:700;font-size:19px;color:#191a1c;">غسالة الأطباق</div>
+          <div style="padding:5px 12px;border-radius:999px;background:#f3f2f1;color:#5a5553;font-size:12px;font-weight:600;">جاهز</div>
+        </div>
+        <div style="font-size:13.5px;color:#8a8f94;margin-top:8px;letter-spacing:.04em;">Dishwasher — DW</div>
+        <div style="font-size:14px;color:#6b7075;line-height:1.75;margin-top:8px;">٧ خطوات — الفلاتر والرشاشات وخزان الملح · ٥٠٠ ج</div>
+      </a>
+
+      <a href="HM Dryer Cleaning Guide.dc.html" style="display:block;background:#fff;border:1px solid #e3e0d8;border-radius:14px;padding:26px;" style-hover="border-color:#A50034;background:#fdf5f7;">
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;">
+          <div style="font-family:'Cairo',sans-serif;font-weight:700;font-size:19px;color:#191a1c;">المجفف</div>
+          <div style="padding:5px 12px;border-radius:999px;background:#f3f2f1;color:#5a5553;font-size:12px;font-weight:600;">جاهز</div>
+        </div>
+        <div style="font-size:13.5px;color:#8a8f94;margin-top:8px;letter-spacing:.04em;">Dryer — DRY</div>
+        <div style="font-size:14px;color:#6b7075;line-height:1.75;margin-top:8px;">٦ خطوات — التيست مود والفلاتر والكوندنسر</div>
+      </a>
     </div>
     </sc-if>
 
@@ -197,13 +242,13 @@
     <div style="font-size:15px;color:#6b7075;line-height:1.8;margin-bottom:22px;max-width:60ch;text-wrap:pretty;">اختر المنتج لعرض موضوعات الدعم الفني الخاصة به — الثلاجات والشاشات جاهزة، وباقي المنتجات قيد الإعداد.</div>
 
     <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px;">
-      <div style="background:#fff;border:1px solid #e3e0d8;border-radius:14px;padding:26px;">
+      <a href="AC Support Topics.dc.html" style="display:block;background:#fff;border:1px solid #e3e0d8;border-radius:14px;padding:26px;text-decoration:none;" style-hover="border-color:#A50034;background:#fdf5f7;">
         <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;">
           <div style="font-family:'Cairo',sans-serif;font-weight:700;font-size:19px;color:#191a1c;">التكييف السبليت</div>
-          <div style="padding:5px 12px;border-radius:999px;background:#f3f2f1;color:#8a8f94;font-size:12px;font-weight:600;">قيد الإعداد</div>
+          <div style="padding:5px 12px;border-radius:999px;background:#f3f2f1;color:#5a5553;font-size:12px;font-weight:600;">جاهز</div>
         </div>
-        <div style="font-size:13.5px;color:#8a8f94;margin-top:8px;">لا توجد موضوعات بعد</div>
-      </div>
+        <div style="font-size:13.5px;color:#6b7075;margin-top:8px;">١٠ مواضيع</div>
+      </a>
 
       <a href="Washer Support Topics.dc.html" style="display:block;background:#fff;border:1px solid #e3e0d8;border-radius:14px;padding:26px;text-decoration:none;" style-hover="border-color:#A50034;background:#fdf5f7;">
         <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;">
@@ -221,13 +266,13 @@
         <div style="font-size:13.5px;color:#6b7075;margin-top:8px;">١١ موضوعًا</div>
       </a>
 
-      <div style="background:#fff;border:1px solid #e3e0d8;border-radius:14px;padding:26px;">
+      <a href="Cooking Support Topics.dc.html" style="display:block;background:#fff;border:1px solid #e3e0d8;border-radius:14px;padding:26px;text-decoration:none;" style-hover="border-color:#A50034;background:#fdf5f7;">
         <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;">
           <div style="font-family:'Cairo',sans-serif;font-weight:700;font-size:19px;color:#191a1c;">البوتاجازات والأفران والشفاط</div>
-          <div style="padding:5px 12px;border-radius:999px;background:#f3f2f1;color:#8a8f94;font-size:12px;font-weight:600;">قيد الإعداد</div>
+          <div style="padding:5px 12px;border-radius:999px;background:#f3f2f1;color:#5a5553;font-size:12px;font-weight:600;">جاهز</div>
         </div>
-        <div style="font-size:13.5px;color:#8a8f94;margin-top:8px;">لا توجد موضوعات بعد</div>
-      </div>
+        <div style="font-size:13.5px;color:#6b7075;margin-top:8px;">٤ موضوعات</div>
+      </a>
 
       <a href="TV Support Topics.dc.html" style="display:block;background:#fff;border:1px solid #e3e0d8;border-radius:14px;padding:26px;text-decoration:none;" style-hover="border-color:#A50034;background:#fdf5f7;">
         <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;">
@@ -237,21 +282,21 @@
         <div style="font-size:13.5px;color:#6b7075;margin-top:8px;">موضوع واحد</div>
       </a>
 
-      <div style="background:#fff;border:1px solid #e3e0d8;border-radius:14px;padding:26px;">
+      <a href="Home Theater Support Topics.dc.html" style="display:block;background:#fff;border:1px solid #e3e0d8;border-radius:14px;padding:26px;text-decoration:none;" style-hover="border-color:#A50034;background:#fdf5f7;">
         <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;">
           <div style="font-family:'Cairo',sans-serif;font-weight:700;font-size:19px;color:#191a1c;">المسرح المنزلي</div>
-          <div style="padding:5px 12px;border-radius:999px;background:#f3f2f1;color:#8a8f94;font-size:12px;font-weight:600;">قيد الإعداد</div>
+          <div style="padding:5px 12px;border-radius:999px;background:#f3f2f1;color:#5a5553;font-size:12px;font-weight:600;">جاهز</div>
         </div>
-        <div style="font-size:13.5px;color:#8a8f94;margin-top:8px;">لا توجد موضوعات بعد</div>
-      </div>
+        <div style="font-size:13.5px;color:#6b7075;margin-top:8px;">موضوعين</div>
+      </a>
 
-      <div style="background:#fff;border:1px solid #e3e0d8;border-radius:14px;padding:26px;">
+      <a href="Microwave Support Topics.dc.html" style="display:block;background:#fff;border:1px solid #e3e0d8;border-radius:14px;padding:26px;text-decoration:none;" style-hover="border-color:#A50034;background:#fdf5f7;">
         <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;">
           <div style="font-family:'Cairo',sans-serif;font-weight:700;font-size:19px;color:#191a1c;">الميكروويف</div>
-          <div style="padding:5px 12px;border-radius:999px;background:#f3f2f1;color:#8a8f94;font-size:12px;font-weight:600;">قيد الإعداد</div>
+          <div style="padding:5px 12px;border-radius:999px;background:#f3f2f1;color:#5a5553;font-size:12px;font-weight:600;">جاهز</div>
         </div>
-        <div style="font-size:13.5px;color:#8a8f94;margin-top:8px;">لا توجد موضوعات بعد</div>
-      </div>
+        <div style="font-size:13.5px;color:#6b7075;margin-top:8px;">موضوع واحد</div>
+      </a>
     </div>
     </sc-if>
 
@@ -318,11 +363,13 @@ class Component extends DCLogic {
       isSupport: this.state.tab === 'support',
 
       isSupport: this.state.tab === 'support',
+      isHM: this.state.tab === 'hm',
       isLanding: !this.state.tab,
       notLanding: !!this.state.tab,
-      sectionTitle: this.state.tab === 'support' ? 'الدعم الفني' : 'التركيب',
+      sectionTitle: this.state.tab === 'support' ? 'الدعم الفني' : this.state.tab === 'hm' ? 'HM — Telesales' : 'التركيب',
       showInstall: () => { this.setState({ tab: 'install' }); window.scrollTo(0, 0); },
       showSupport: () => { this.setState({ tab: 'support' }); window.scrollTo(0, 0); },
+      showHM: () => { this.setState({ tab: 'hm' }); window.scrollTo(0, 0); },
       showLanding: () => { this.setState({ tab: null }); window.scrollTo(0, 0); }
     };
   }

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<title>أكواد أعطال المجفف</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&family=IBM+Plex+Sans+Arabic:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  body { margin:0; background:#f4f3ef; }
+  a { color:#A50034; }
+  a:hover { color:#7d0027; }
+</style>
+<script src="shadow-nav.js"></script>
+</helmet>
+<div dir="rtl" style="min-height:100vh;background:#f4f3ef;color:#191a1c;font-family:'IBM Plex Sans Arabic',system-ui,sans-serif;padding-bottom:70px;">
+  <div style="background:#111314;color:#f4f3ef;padding:16px 28px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
+    <div style="width:9px;height:32px;background:#A50034;border-radius:2px;flex:none;"></div>
+    <div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:18px;">أكواد أعطال المجفف — <bdi dir="ltr">Dryer Error Codes</bdi></div>
+  </div>
+
+  <div style="max-width:1080px;margin:0 auto;padding:28px 28px 40px;display:grid;gap:18px;">
+    <div style="background:#fff;border:1px solid #e3e0d8;border-radius:14px;padding:24px 26px;border-top:4px solid #A50034;display:grid;gap:14px;">
+      <div style="background:#1c1a1b;color:#f6f1f2;border-radius:12px;padding:18px 22px;">
+        <div style="font-size:12.5px;color:#f0a8bd;margin-bottom:8px;font-weight:600;">اقرأ للعميل</div>
+        <div style="font-family:'Cairo',sans-serif;font-size:17px;line-height:2;">«ممكن حضرتك تقولّي الكود أو الكلمة اللي ظاهرة على شاشة المجفف؟ أغلب الأكواد بتتحل بخطوات بسيطة من غير فني.»</div>
+      </div>
+      <input value="{{ q }}" onInput="{{ onQ }}" placeholder="اكتب الكود… مثال: HS" style="width:100%;box-sizing:border-box;padding:13px 16px;border-radius:10px;border:1px solid #d9d5cb;font-size:16px;font-family:'IBM Plex Sans Arabic',sans-serif;outline:none;">
+      <div style="display:flex;flex-wrap:wrap;gap:8px;">
+        <sc-for list="{{ list }}" as="c" hint-placeholder-count="18">
+          <button type="button" onClick="{{ c.pick }}" style="{{ c.style }}">{{ c.code }}</button>
+        </sc-for>
+      </div>
+      <div style="display:flex;gap:14px;flex-wrap:wrap;font-size:13px;color:#6b7075;">
+        <div style="display:flex;align-items:center;gap:6px;"><div style="width:12px;height:12px;border-radius:3px;background:#eef6f1;border:1px solid #c6e0d1;"></div>مش عطل / رسالة عادية</div>
+        <div style="display:flex;align-items:center;gap:6px;"><div style="width:12px;height:12px;border-radius:3px;background:#fbfaf7;border:1px solid #e0dcd4;"></div>كود عطل</div>
+      </div>
+    </div>
+
+    <sc-if value="{{ hasSel }}" hint-placeholder-val="{{ false }}">
+      <div style="background:#fff;border:1px solid #f0c2ce;border-radius:14px;padding:26px 28px;display:grid;gap:14px;">
+        <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
+          <div dir="ltr" style="font-family:'Cairo',sans-serif;font-weight:900;font-size:24px;color:#A50034;">{{ sel.code }}</div>
+          <div style="{{ badgeStyle }}">{{ badge }}</div>
+        </div>
+        <div style="font-family:'Cairo',sans-serif;font-weight:700;font-size:20px;">{{ sel.ar }}</div>
+        <div style="font-size:15.5px;line-height:1.9;">{{ sel.desc }}</div>
+        <div style="display:grid;gap:8px;">
+          <sc-for list="{{ selSteps }}" as="s" hint-placeholder-count="3">
+            <div style="display:flex;gap:12px;align-items:flex-start;padding:12px 14px;border-radius:12px;background:#faf9f6;">
+              <div style="width:28px;height:28px;border-radius:50%;background:#A50034;color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Cairo',sans-serif;font-weight:900;font-size:14px;flex:none;">{{ s.n }}</div>
+              <div style="font-size:15px;line-height:1.85;padding-top:2px;">{{ s.t }}</div>
+            </div>
+          </sc-for>
+        </div>
+        <sc-if value="{{ needsFix }}" hint-placeholder-val="{{ true }}">
+          <div style="padding:12px 16px;border-radius:10px;background:#fdf6e8;border:1px solid #ecd9ae;font-size:14.5px;line-height:1.85;color:#7a5410;"><strong>لو الكود ظهر تاني بعد الخطوات:</strong> سجّل طلب صيانة واكتب الكود ({{ sel.code }}) في وصف المشكلة.</div>
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px;">
+            <a href="Washer Support Topics.dc.html" style="display:block;padding:16px 20px;border-radius:12px;border:1px solid #c6e0d1;background:#eef6f1;color:#0f5132;text-decoration:none;font-family:'Cairo',sans-serif;font-weight:700;font-size:16px;">✓ المشكلة اتحلت</a>
+            <a href="Washer No Spin Support Guide.dc.html#esc" style="display:block;padding:16px 20px;border-radius:12px;background:#A50034;color:#fff;text-decoration:none;font-family:'Cairo',sans-serif;font-weight:700;font-size:16px;">المشكلة مستمرة — تسجيل طلب صيانة</a>
+          </div>
+        </sc-if>
+      </div>
+    </sc-if>
+
+    <div style="padding-top:20px;border-top:1px solid #e3e0d8;display:flex;align-items:center;justify-content:center;gap:10px;">
+      <div style="width:6px;height:16px;border-radius:2px;background:#A50034;"></div>
+      <div style="font-size:13px;color:#A50034;font-weight:600;">Created by ICC QA &amp; Training Team</div>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const RESET = ['افصل كابل الكهربا عن المجفف أو اقفل المفتاح بتاعه في لوحة الكهربا.','والمجفف مفصول — دوس على زرار Start/Pause لمدة ٥ ثواني.','رجّع الكهربا وجرّب تشغّل دورة.'];
+const C = [
+  { code:'d75 · d80 · d90 · d95', ar:'مسار طرد الهوا مسدود', desc:'الكود معناه إن الهوا السخن مش عارف يطلع — مسار الطرد مسدود بنسبة ٧٥٪ أو ٨٠٪ أو ٩٠٪ أو ٩٥٪. ولو ظهر شرطتين أو ٤ شرط على مؤشر Flow Sense يبقى الانسداد شديد.',
+    steps:['شيل الوبر من فلتر الوبر بعد كل غسلة، واغسل الفلتر بمية دافية وفرشة ناعمة وسيبه ينشف.','قلّل كمية الهدوم عشان الهوا يعدّي.','اتأكد إن خرطوم الطرد اللي ورا المجفف مش متني أو مضغوط أو مخروم، ومش ملفوف لفّات فوق بعض.','لو في فتحة طرد برّه البيت — اتأكد إنها بتفتح كويس وشيل أي وبر حواليها.'] },
+  { code:'nP', ar:'مفيش تيار واصل للسخان', desc:'غالبًا مشكلة في توصيلات الكهربا في البيت.',
+    steps:['اتأكد إن كابل الكهربا متوصّل كويس في بريزة فيها أرضي ومناسبة لبيانات المجفف.','اقفل مفتاح المجفف في لوحة الكهربا ١٠ ثواني على الأقل وارجع افتحه.','لو الكود لسه موجود — البريزة محتاجة كشف من كهربائي.'] },
+  { code:'PS', ar:'فولت غلط في كابل الكهربا', desc:'ممكن يكون بسبب إن أسلاك الكهربا متوصّلة غلط في المجفف.',
+    steps:['لو المجفف متركّب جديد — كلّم الفني اللي ركّبه يراجع توصيل الكابل.','اقفل مفتاح المجفف في لوحة الكهربا ١٠ ثواني على الأقل وارجع افتحه.','اتأكد إن الكابل متوصّل في بريزة فيها أرضي ومناسبة لبيانات المجفف.'] },
+  { code:'dE', ar:'الباب مش مقفول', desc:'باب المجفف مش مقفول كويس.',
+    steps:['افتح الباب واتأكد إن فلتر الوبر داخل لآخره، ومفيش هدوم محشورة في الباب.','لو المجفف جديد وفيه خبطة أو الباب معووج — كلّم التاجر.','لو مفيش خبطة: افصل الكهربا، استنى ٥ ثواني، رجّعها، واقفل الباب جامد، واختار أي برنامج ودوس Start.'] },
+  { code:'E13', ar:'خرطوم الصرف متني أو مسدود', desc:'بيظهر في المجففات الكوندنسر (Hybrid) بس — خرطوم الصرف متني أو مضغوط أو مسدود، أو المية اللي في الخزان متجمدة.',
+    steps:['اتأكد إن خرطوم الصرف مش متني أو ملفوف أو مسدود بمية في آخره.','لو الخرطوم اتطوّل — الصرف مش هيبقى كويس. يفضّل استخدام خرطوم LG الأصلي بس.','دوس Start/Pause عشان تشغّل المجفف تاني.'] },
+  { code:'F0 · Insert Filter', ar:'فلتر الوبر مش متركّب', desc:'الحساس مش لاقي فلتر الوبر، والمجفف بيقف.',
+    steps:['طلّع فلتر الوبر ورجّعه مكانه كويس لآخره.'] },
+  { code:'HS', ar:'خطأ في حساس الرطوبة', desc:'المجفف بيشتغل ساعتين ونص — فبيبان إنه مش بينشّف.',
+    steps:['نضّف الحساسات اللي جوه المجفف تحت فلتر الوبر بقماشة مبلولة أو منديل.','سيب الحساسات تنشف خالص قبل ما تشغّل دورة تانية.'] },
+  { code:'PF', ar:'انقطاع الكهربا', desc:'غالبًا بيظهر بعد ما الكهربا تقطع — بيتحل بإعادة ضبط المجفف.', steps: RESET },
+  { code:'tE1 · tE3', ar:'خطأ في حساس الحرارة', desc:'المجفف لقى مشكلة في حساس الحرارة — غالبًا بيتحل بإعادة ضبط المجفف.', steps: RESET },
+  { code:'tE2', ar:'خطأ في حساس الحرارة وقت البرد', desc:'بيظهر غالبًا في الجو البارد مع برامج البخار (SteamFresh / Steam Sanitary / Steam Option) — لأن الهوا البارد بيرجع من فتحة الطرد.',
+    steps:['اتأكد إن فلتر الوبر نضيف.','اتأكد إن فتحة الطرد مش مسدودة، وإن الريش بتاعتها بتفتح وتقفل كويس.','شغّل المجفف فاضي على برنامج تاني كام دقيقة عشان يسخن.','أو: شغّل SteamFresh، ودوس More Time لحد ما تظهر كلمة Big، ودوس Start.'] },
+  { code:'Clean Filter', ok:true, ar:'تذكير بتنظيف فلتر الوبر', desc:'مش عطل — ده تذكير بتنظيف فلتر الوبر قبل كل استخدام. بيطفي لما تلف مؤشر البرامج أو تدوس Start/Pause.',
+    steps:[] },
+  { code:'Wrinkle Care', ok:true, ar:'خاصية منع الكرمشة', desc:'مش عطل — بعد التجفيف الحلة بتلف ١٠ ثواني وتقف ٦ دقايق، وتفضل كده لحد ٣ ساعات. لو فتحت الباب الخاصية بتقفل.',
+    steps:[] },
+  { code:'CL · Child Lock', ok:true, ar:'قفل الأطفال شغّال', desc:'مش عطل — لوحة التحكم مقفولة ومينفعش تغيّر الإعدادات.',
+    steps:['دوس على زرار Child Lock لمدة ٣ ثواني عشان تلغيه.'] },
+  { code:'Cooling / Drying', ok:true, ar:'لمبة التبريد / التجفيف', desc:'مش عطل — المجفف بيشتغل جزء تجفيف وجزء تبريد، والتبريد بيبدأ في آخر ٥ دقايق من الدورة.',
+    steps:[] }
+];
+const AR = ['٠','١','٢','٣','٤','٥','٦'];
+class Component extends DCLogic {
+  state = { q: '', sel: null };
+  renderVals() {
+    const q = this.state.q.trim().toLowerCase();
+    const list = C.filter(c => !q || c.code.toLowerCase().includes(q));
+    const sel = C.find(c => c.code === this.state.sel);
+    return {
+      q: this.state.q, onQ: e => this.setState({ q: e.target.value }),
+      list: list.map(c => { const on = this.state.sel === c.code; return { code: c.code, pick: () => this.setState({ sel: c.code }), style: { padding:'9px 14px', borderRadius:'10px', cursor:'pointer', direction:'ltr', fontFamily:"'Cairo',sans-serif", fontWeight:700, fontSize:'14px', border: on ? '2px solid #A50034' : (c.ok ? '1px solid #c6e0d1' : '1px solid #e0dcd4'), background: on ? '#A50034' : (c.ok ? '#eef6f1' : '#fbfaf7'), color: on ? '#fff' : '#191a1c' } }; }),
+      hasSel: !!sel, sel: sel || { code:'', ar:'', desc:'' },
+      selSteps: sel ? sel.steps.map((t, i) => ({ n: AR[i + 1], t })) : [],
+      needsFix: !!sel && !sel.ok,
+      badge: sel && sel.ok ? 'مش عطل' : 'كود عطل',
+      badgeStyle: { padding:'4px 12px', borderRadius:'999px', fontSize:'13px', fontWeight:700, background: sel && sel.ok ? '#eef6f1' : '#fdecee', color: sel && sel.ok ? '#0f5132' : '#c8102e', border: sel && sel.ok ? '1px solid #c6e0d1' : '1px solid #f0c2ce' }
+    };
+  }
+}
+</script>
+</body>
+</html>
