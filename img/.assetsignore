@@ -1,2 +1,9 @@
-.git
-node_modules
+.git/
+.git/**
+.github/
+.github/**
+node_modules/
+node_modules/**
+wrangler.toml
+wrangler.json
+wrangler.jsonc
