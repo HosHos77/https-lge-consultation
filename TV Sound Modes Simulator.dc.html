@@ -9,7 +9,7 @@
 <x-dc>
 <helmet>
 <script src="shadow-nav.js"></script>
-<title>محاكي إعداد الحسابات الشخصية — Personal Profiles</title>
+<title>محاكي أوضاع الصوت — Use Sound modes</title>
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&family=IBM+Plex+Sans+Arabic:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   body { margin:0; background:#3b3b3b; }
@@ -25,7 +25,7 @@
 
   <div style="background:#2b2b2b;border-bottom:1px solid #4a4a4a;padding:14px 26px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;position:sticky;top:0;z-index:20;">
     <div style="width:9px;height:30px;background:#A50034;border-radius:2px;flex:none;"></div>
-    <div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:17px;">محاكي إعداد الحسابات الشخصية — Personal Profiles</div>
+    <div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:17px;">محاكي أوضاع الصوت — Use Sound modes</div>
     <div style="margin-right:auto;display:flex;flex-wrap:wrap;gap:10px;align-items:center;">
       <div style="padding:7px 14px;border-radius:999px;background:#1f1f1f;font-size:12.5px;color:#c8cdd0;white-space:nowrap;flex:none;">{{ stepBadge }}</div>
       <a href="TV Simulator Guide.dc.html" style="padding:8px 14px;border-radius:8px;border:1px solid #565656;color:#f0a8bd;font-size:13px;text-decoration:none;white-space:nowrap;flex:none;" style-hover="background:#333;">محاكي القوائم</a>
@@ -552,6 +552,72 @@
           </div>
         </sc-if>
 
+        <sc-if value="{{ isLive }}" hint-placeholder-val="{{ false }}">
+          <div style="position:absolute;inset:0;background:#000;overflow:hidden;animation:fadeIn .3s ease;">
+            <img src="assets/tv-home-profiles.png" alt="معاينة وضع الصورة" style="{{ liveImgStyle }}" />
+            <div style="position:absolute;top:0;bottom:0;left:0;width:36%;background:rgba(22,24,26,.92);padding:10px 12px;box-sizing:border-box;direction:rtl;text-align:right;display:flex;flex-direction:column;gap:5px;">
+              <div style="display:flex;align-items:center;gap:8px;color:#e2e2e2;font-family:'Cairo',sans-serif;font-size:12px;padding-bottom:6px;">
+                <div>↩</div><div>تحديد وضع الصوت</div>
+              </div>
+              <sc-for list="{{ modes }}" as="m" hint-placeholder-count="8">
+                <button onClick="{{ m.pick }}" style="{{ m.style }}">
+                  <span style="{{ m.dotStyle }}"></span>
+                  <span>{{ m.label }}</span>
+                </button>
+              </sc-for>
+            </div>
+            <div style="position:absolute;bottom:8px;right:12px;display:flex;align-items:center;gap:9px;padding:6px 13px;border-radius:5px;background:rgba(0,0,0,.72);color:#fff;font-family:'Cairo',sans-serif;font-size:11px;">
+              <span>🔊</span>
+              <span>{{ liveNote }}</span>
+              <span style="display:flex;align-items:flex-end;gap:2px;height:13px;">
+                <sc-for list="{{ eqBars }}" as="b" hint-placeholder-count="5">
+                  <span style="{{ b }}"></span>
+                </sc-for>
+              </span>
+            </div>
+            <sc-if value="{{ showDone }}" hint-placeholder-val="{{ false }}">
+              <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;">
+                <div style="width:86px;height:86px;border-radius:50%;background:#e8232a;display:flex;align-items:center;justify-content:center;color:#fff;font-size:42px;line-height:1;">✓</div>
+              </div>
+            </sc-if>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ isModeList }}" hint-placeholder-val="{{ false }}">
+          <div style="position:absolute;inset:0;background:#000;animation:fadeIn .3s ease;">
+            <img src="assets/tv-mode-list.png" alt="قائمة أوضاع الصورة" style="display:block;width:100%;height:100%;object-fit:cover;" />
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ isSelMode }}" hint-placeholder-val="{{ false }}">
+          <div style="position:absolute;inset:0;background:#000;animation:fadeIn .3s ease;">
+            <img src="assets/tv-select-mode.png" alt="اختيار وضع الصورة" style="display:block;width:100%;height:100%;object-fit:cover;" />
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ isPicMenu }}" hint-placeholder-val="{{ false }}">
+          <div style="position:absolute;inset:0;background:#000;animation:fadeIn .3s ease;">
+            <img src="assets/tv-picture-menu.png" alt="قائمة إعدادات الصورة" style="display:block;width:100%;height:100%;object-fit:cover;" />
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ isSndSel }}" hint-placeholder-val="{{ false }}">
+          <div style="position:absolute;inset:0;background:#000;animation:fadeIn .3s ease;">
+            <img src="assets/tv-sound-selectmode.png" alt="اختيار وضع الصوت" style="display:block;width:100%;height:100%;object-fit:cover;" />
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ isSndMenu }}" hint-placeholder-val="{{ false }}">
+          <div style="position:absolute;inset:0;background:#000;animation:fadeIn .3s ease;">
+            <img src="assets/tv-sound-menu.png" alt="قائمة إعدادات الصوت" style="display:block;width:100%;height:100%;object-fit:cover;" />
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ isQuick }}" hint-placeholder-val="{{ false }}">
+          <div style="position:absolute;inset:0;background:#000;animation:fadeIn .3s ease;">
+            <img src="assets/tv-quick-settings.png" alt="لوحة الإعدادات السريعة" style="display:block;width:100%;height:100%;object-fit:cover;" />
+          </div>
+        </sc-if>
         <sc-if value="{{ isHomeSet }}" hint-placeholder-val="{{ false }}">
           <div style="position:absolute;inset:0;background:#000;animation:fadeIn .3s ease;">
             <img src="assets/tv-home-profiles.png" alt="الصفحة الرئيسية للشاشة" style="display:block;width:100%;height:100%;object-fit:cover;" />
@@ -614,7 +680,7 @@
 
     <div style="width:390px;flex:none;">
       <div style="display:flex;align-items:center;gap:10px;padding-bottom:14px;border-bottom:1px solid #565656;margin-bottom:14px;flex-wrap:wrap;">
-        <div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:19px;">خطوات إعداد الحسابات الشخصية</div>
+        <div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:19px;">خطوات ضبط وضع الصوت</div>
         <div style="margin-right:auto;color:#a8a8a8;font-size:16px;">⌄</div>
       </div>
       <div style="display:flex;flex-direction:column;gap:2px;max-height:70vh;overflow:auto;padding-left:6px;">
@@ -632,53 +698,87 @@
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1500,&quot;height&quot;:940}}">
 const STEPS = [
-  { num:'٠١', text:'اضغط زر الصفحة الرئيسية (Home) في ريموت الشاشة.',
-    kind:'homeset', headline:'اضغط زر Home في الريموت',
-    script:'«لو سمحت اضغط زر الصفحة الرئيسية — الـ Home — في ريموت الشاشة، وهتظهر لنا الصفحة الرئيسية.»' },
+  { num:'٠١', text:'اضغط زر الإعدادات (⚙) في الريموت لفتح الإعدادات السريعة على الشاشة.',
+    kind:'quick', headline:'افتح الإعدادات السريعة',
+    script:'«اضغط زر الإعدادات — الترس — في الريموت، هتظهر لوحة الإعدادات السريعة على جنب الشاشة.»' },
 
-  { num:'٠٢', text:'روح على أيقونة الحساب (البروفايل) في أعلى يسار الشاشة واختارها.',
-    kind:'homeprofile', headline:'اختر أيقونة الحساب في أعلى يسار الشاشة',
-    script:'«دلوقتي بالأسهم روح فوق على الشمال، هتلاقي أيقونة الحساب — شكل شخص — دوس عليها OK.»' },
+  { num:'٠٢', text:'اختر «الصوت» (Sound) من قائمة الإعدادات.',
+    kind:'sndmenu', headline:'اختر الصوت — Sound',
+    script:'«من قائمة الإعدادات اختار «الصوت»، هتظهر لنا اختيارات وضع الصوت ومخرج الصوت والإعدادات المتقدمة.»' },
 
-  { num:'٠٣', text:'تقدر تسجّل الدخول بتطبيق ThinQ أو من متصفح الموبايل أو من الشاشة — في المثال ده نختار «تسجيل الدخول من الشاشة».',
-    kind:'signopts', headline:'اختر طريقة تسجيل الدخول', cta:'تسجيل الدخول من الشاشة',
-    script:'«قدامنا تلات طرق لتسجيل الدخول: بتطبيق LG ThinQ، أو من متصفح الموبايل، أو من الشاشة نفسها. هنختار تسجيل الدخول من الشاشة.»' },
+  { num:'٠٣', text:'اختر «تحديد الوضع» (Select Mode) لاختيار وضع الصوت المناسب لنوع المحتوى.',
+    kind:'sndsel', headline:'اختر تحديد الوضع — Select Mode',
+    script:'«اختار «تحديد الوضع» ونقدر نختار أنسب وضع صوت حسب المحتوى. ملحوظة: لو متوصّل ساوند بار من إل جي، تقدر تختار وضع صوت الساوند بار من الشاشة نفسها — والتوافق بيختلف حسب موديل الساوند بار وصيغة الصوت.»' },
 
-  { num:'٠٤', text:'اختر «تسجيل الدخول بحساب إل جي» — ولو مفيش حساب اختر «إنشاء حساب إل جي».',
-    kind:'signdev', headline:'تسجيل الدخول من الشاشة', cta:'تسجيل الدخول بحساب إل جي',
-    script:'«نختار تسجيل الدخول بحساب إل جي. ولو حضرتك ماعندكش حساب، نختار إنشاء حساب إل جي ونعمل حساب جديد.»' },
+  { num:'٠٤', text:'«AI Sound / AI Sound Pro»: بيستخدم صوت محسّن وصوت محيطي افتراضي (Virtual Surround).',
+    kind:'live', defMode:'AI Sound Pro', headline:'AI Sound / AI Sound Pro',
+    script:'«الوضع ده بيستخدم صوت محسّن مع صوت محيطي افتراضي — يعني الصوت بيبان أوسع وكأنه جاي من كذا اتجاه حواليك.»' },
 
-  { num:'٠٥', text:'أدخل بيانات حساب إل جي (الإيميل وكلمة السر) ثم اختر «تسجيل الدخول».',
-    kind:'signcreds', headline:'بيانات حساب إل جي', cta:'تسجيل الدخول',
-    script:'«ندخل الإيميل وكلمة السر بتاعة حساب إل جي وندوس تسجيل الدخول. ولو حابب تضيف حساب تاني، نعيد نفس الخطوات دي من الأول.»' },
+  { num:'٠٥', text:'«قياسي» بيستخدم صوت محسّن يناسب كل أنواع المحتوى.',
+    kind:'live', defMode:'قياسي', headline:'قياسي — Standard',
+    script:'«الوضع «قياسي» بيدي صوت محسّن مناسب لكل أنواع المحتوى — وهو الاختيار الآمن لو حضرتك بتتفرج على حاجات مختلفة.»' },
 
-  { num:'٠٦', text:'الحساب الجديد هيتضاف للشاشة وهترجع للصفحة الرئيسية — وتقدر تستخدمه لتصفّح التطبيقات والبحث وضبط الإعدادات.',
-    kind:'profiles', headline:'الحساب اتضاف — LG Account',
-    script:'«تمام، الحساب الشخصي اتضاف للشاشة. دلوقتي هترجع للصفحة الرئيسية وتقدر تستخدم الحساب في التطبيقات والبحث وضبط الإعدادات. ولو حابب تضيف حساب تاني اختار «إضافة حساب» وكرّر نفس الخطوات.»' },
+  { num:'٠٦', text:'«سينما» بيحسّن الصوت أثناء مشاهدة الأفلام.',
+    kind:'live', defMode:'سينما', headline:'سينما — Cinema',
+    script:'«وضع السينما بيظبط الصوت مخصوص للأفلام — المؤثرات بتبان أقوى والصوت أوسع.»' },
 
-  { num:'٠٧', text:'لتغيير الحساب: روح على أيقونة الحساب في أعلى يسار الصفحة الرئيسية واختار الحساب اللي عايز تدخل بيه — وكده خلصنا.',
-    kind:'homeprofile', headline:'تغيير الحساب من أيقونة البروفايل',
-    script:'«لو حابب تغيّر الحساب في أي وقت، ارجع للصفحة الرئيسية واختار أيقونة الحساب في أعلى الشمال، وبعدها اختار الحساب اللي عايز تدخل بيه. وكده خلصنا إضافة الحساب الشخصي.»' },
+  { num:'٠٧', text:'«Clear Voice Pro» بيزوّد وضوح الصوت البشري فيبقى الحوار أسهل في السماع.',
+    kind:'live', defMode:'Clear Voice Pro', headline:'Clear Voice Pro',
+    script:'«الوضع ده بيركّز على وضوح الكلام — مناسب جدًا للأخبار والمسلسلات لو الحوار مش واضح لحضرتك.»' },
 
-  { num:'٠٨', text:'من قائمة الحسابات اختر الحساب اللي عايز تدخل بيه — وكده خلصنا إضافة الحساب الشخصي.',
-    kind:'switch', headline:'اختر الحساب من القائمة',
-    script:'«هتظهر قائمة الحسابات على الشمال — اختار الحساب اللي عايز تدخل بيه ودوس OK. ولو حابب تضيف حساب جديد اختار «إضافة حساب». وكده خلصنا.»' },
+  { num:'٠٨', text:'«رياضة» بيحسّن الصوت أثناء مشاهدة الماتشات — واسم الوضع ممكن يختلف حسب المنطقة.',
+    kind:'live', defMode:'رياضة', headline:'رياضة — Sports',
+    script:'«وضع الرياضة بيظبط الصوت للماتشات — صوت الملعب والتعليق بيبقى أوضح. ملحوظة: اسم الوضع ممكن يختلف حسب المنطقة.»' },
 
-  { num:'٠٩', text:'تمام — الحساب الشخصي اتضاف للشاشة وتقدر تستخدمه دلوقتي.',
-    kind:'done', headline:'تمّت إضافة الحساب الشخصي',
-    script:'«مبروك — الحساب الشخصي اتضاف على الشاشة. تقدر دلوقتي تستخدمه في التطبيقات والبحث وضبط الإعدادات، وتقدر تبدّل بين الحسابات في أي وقت من أيقونة الحساب.»' }
+  { num:'٠٩', text:'«موسيقى» بيحسّن الصوت أثناء سماع الأغاني.',
+    kind:'live', defMode:'موسيقى', headline:'موسيقى — Music',
+    script:'«وضع الموسيقى بيظبط الصوت للأغاني — الآلات والصوت بيبانوا أوضح وأنقى.»' },
+
+  { num:'١٠', text:'«Game Optimizer» بيحسّن الصوت أثناء اللعب.',
+    kind:'live', defMode:'Game Optimizer', headline:'Game Optimizer',
+    script:'«الوضع ده مخصوص للألعاب — بيوضّح تفاصيل الصوت في اللعبة زي الخطوات والمؤثرات.»' },
+
+  { num:'١١', text:'خلاص كده تقدر تستخدم أوضاع الصوت وتختار الأنسب لحضرتك.',
+    kind:'live', defMode:'قياسي', done:true, headline:'تمّ — Done',
+    script:'«مبروك — كده حضرتك عارف تستخدم أوضاع الصوت وتختار الوضع المناسب حسب المحتوى.»' }
+];
+
+const MODES = ['AI Sound Pro','قياسي','سينما','Clear Voice Pro','رياضة','موسيقى','Game Optimizer'];
+const MODE_FX = {};
+const EQ = {
+  'AI Sound Pro': [6,11,8,12,7],
+  'قياسي': [6,8,7,8,6],
+  'سينما': [10,7,6,9,11],
+  'Clear Voice Pro': [4,9,12,9,4],
+  'رياضة': [8,10,9,7,10],
+  'موسيقى': [11,8,10,7,12],
+  'Game Optimizer': [9,6,11,8,9]
+};
+
+const QUICK = [
+  { label:'وضع الصورة', value:'قياسي' },
+  { label:'سطوع بيكسل OLED', value:'توفير الطاقة' },
+  { label:'وضع الصوت', value:'قياسي' },
+  { label:'مخرج الصوت', value:'سماعة الشاشة' },
+  { label:'مؤقت النوم', value:'إيقاف' },
+  { label:'وضع العناية بالعين', value:'إيقاف' },
+  { label:'إطفاء الشاشة', value:'' },
+  { label:'الخصوصية والشروط', value:'' },
+  { label:'العرض المتعدد', value:'' },
+  { label:'استكشاف الموسيقى', value:'' }
 ];
 
 const TILES = ['APPS', 'LG Ch', 'NETFLIX', 'prime', 'Disney+', 'hulu', 'sling', 'tv', 'YouTube', 'max', 'tubi', 'shop'];
 
 class Component extends DCLogic {
-  state = { i: 0, sel: {}, opt: 0 };
+  state = { i: 0, sel: {}, opt: 0, mode: 'AI Sound Pro' };
 
   cur() { return STEPS[this.state.i]; }
 
   setStep(i) {
     const n = Math.max(0, Math.min(STEPS.length - 1, i));
-    this.setState({ i: n, opt: STEPS[n].defIdx || 0 });
+    const st = STEPS[n];
+    this.setState(s => ({ i: n, opt: st.defIdx || 0, mode: st.defMode || s.mode }));
   }
 
   renderVals() {
@@ -769,6 +869,28 @@ class Component extends DCLogic {
       isProgress: st.kind === 'progress',
       isHome: st.kind === 'home',
       isHomeSet: st.kind === 'homeset',
+      isQuick: st.kind === 'quick',
+      isSndMenu: st.kind === 'sndmenu',
+      isSndSel: st.kind === 'sndsel',
+      isPicMenu: st.kind === 'picmenu',
+      isSelMode: st.kind === 'selmode',
+      isModeList: st.kind === 'modelist',
+      isLive: st.kind === 'live',
+      showDone: !!st.done,
+      liveImgStyle: 'display:block;width:100%;height:100%;object-fit:cover;transition:filter .3s ease;filter:' + (MODE_FX[this.state.mode] || 'none') + ';',
+      liveNote: this.state.mode ? ('وضع الصوت: ' + this.state.mode) : 'اختر وضعًا',
+      eqBars: (EQ[this.state.mode] || [5,8,6,9,4]).map(h => 'display:block;width:3px;border-radius:1px;background:#2ec46b;height:' + h + 'px;'),
+      modes: MODES.map(m => {
+        const on = this.state.mode === m;
+        return {
+          label: m,
+          style: 'display:flex;align-items:center;gap:8px;width:100%;padding:6px 9px;border:none;border-radius:4px;cursor:pointer;text-align:right;' +
+            "font-family:'Cairo',sans-serif;font-size:11px;color:" + (on ? '#fff' : '#cfd4d8') + ';background:' + (on ? '#3a4046' : 'transparent') + ';',
+          dotStyle: 'width:11px;height:11px;border-radius:50%;flex:none;border:1.5px solid ' + (on ? '#2ec46b' : '#8a8f94') + ';background:' + (on ? '#2ec46b' : 'transparent') + ';',
+          pick: () => this.setState({ mode: m })
+        };
+      }),
+      quickTiles: QUICK,
       isHomeProfile: st.kind === 'homeprofile',
       isSignOpts: st.kind === 'signopts',
       isSignDev: st.kind === 'signdev',

@@ -9,14 +9,16 @@
 <x-dc>
 <helmet>
 <script src="shadow-nav.js"></script>
-<title>محاكي إعداد الحسابات الشخصية — Personal Profiles</title>
+<title>اختصارات الوصول السريع — Quick Access</title>
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&family=IBM+Plex+Sans+Arabic:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   body { margin:0; background:#3b3b3b; }
   a { color:#f0a8bd; }
   a:hover { color:#fff; }
   @keyframes wheelPulse { 0%,100% { box-shadow:0 0 0 0 rgba(232,0,90,.55); } 50% { box-shadow:0 0 0 12px rgba(232,0,90,0); } }
-  @keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+  @keyframes shakeRemote { 0%,100% { transform: translateX(-6px) rotate(-1deg); } 50% { transform: translateX(6px) rotate(1deg); } }
+@keyframes blinkRing { 0%,100% { opacity:1; } 50% { opacity:.15; } }
+@keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
 </style>
 </helmet>
 <template id="__bundler_thumbnail"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><rect width="200" height="200" fill="#3b3b3b"/><rect x="24" y="56" width="112" height="70" rx="4" fill="#0a0a0a" stroke="#8a8a8a" stroke-width="2"/><rect x="150" y="48" width="26" height="88" rx="12" fill="#1a1a1a" stroke="#6a6a6a" stroke-width="2"/><circle cx="163" cy="106" r="8" fill="#e8005a"/></svg></template>
@@ -25,11 +27,10 @@
 
   <div style="background:#2b2b2b;border-bottom:1px solid #4a4a4a;padding:14px 26px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;position:sticky;top:0;z-index:20;">
     <div style="width:9px;height:30px;background:#A50034;border-radius:2px;flex:none;"></div>
-    <div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:17px;">محاكي إعداد الحسابات الشخصية — Personal Profiles</div>
+    <div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:17px;">محاكي اختصارات الوصول السريع — Quick Access</div>
     <div style="margin-right:auto;display:flex;flex-wrap:wrap;gap:10px;align-items:center;">
       <div style="padding:7px 14px;border-radius:999px;background:#1f1f1f;font-size:12.5px;color:#c8cdd0;white-space:nowrap;flex:none;">{{ stepBadge }}</div>
-      <a href="TV Simulator Guide.dc.html" style="padding:8px 14px;border-radius:8px;border:1px solid #565656;color:#f0a8bd;font-size:13px;text-decoration:none;white-space:nowrap;flex:none;" style-hover="background:#333;">محاكي القوائم</a>
-      <a href="TV Support Topics.dc.html" style="padding:8px 14px;border-radius:8px;border:1px solid #565656;color:#f0a8bd;font-size:13px;text-decoration:none;white-space:nowrap;flex:none;" style-hover="background:#333;">موضوعات الشاشات</a>
+      <a href="TV Support Topics.dc.html" style="padding:8px 14px;border-radius:8px;border:1px solid #565656;color:#f0a8bd;font-size:13px;text-decoration:none;white-space:nowrap;flex:none;" style-hover="background:#333;">مواضيع الشاشات</a>
     </div>
   </div>
 
@@ -552,6 +553,197 @@
           </div>
         </sc-if>
 
+        <sc-if value="{{ isLive }}" hint-placeholder-val="{{ false }}">
+          <div style="position:absolute;inset:0;background:#000;overflow:hidden;animation:fadeIn .3s ease;">
+            <img src="assets/tv-home-profiles.png" alt="معاينة وضع الصورة" style="{{ liveImgStyle }}" />
+            <div style="position:absolute;top:0;bottom:0;left:0;width:36%;background:rgba(22,24,26,.92);padding:10px 12px;box-sizing:border-box;direction:rtl;text-align:right;display:flex;flex-direction:column;gap:5px;">
+              <div style="display:flex;align-items:center;gap:8px;color:#e2e2e2;font-family:'Cairo',sans-serif;font-size:12px;padding-bottom:6px;">
+                <div>↩</div><div>تحديد وضع الصوت</div>
+              </div>
+              <sc-for list="{{ modes }}" as="m" hint-placeholder-count="8">
+                <button onClick="{{ m.pick }}" style="{{ m.style }}">
+                  <span style="{{ m.dotStyle }}"></span>
+                  <span>{{ m.label }}</span>
+                </button>
+              </sc-for>
+            </div>
+            <div style="position:absolute;bottom:8px;right:12px;display:flex;align-items:center;gap:9px;padding:6px 13px;border-radius:5px;background:rgba(0,0,0,.72);color:#fff;font-family:'Cairo',sans-serif;font-size:11px;">
+              <span>🔊</span>
+              <span>{{ liveNote }}</span>
+              <span style="display:flex;align-items:flex-end;gap:2px;height:13px;">
+                <sc-for list="{{ eqBars }}" as="b" hint-placeholder-count="5">
+                  <span style="{{ b }}"></span>
+                </sc-for>
+              </span>
+            </div>
+            <sc-if value="{{ showDone }}" hint-placeholder-val="{{ false }}">
+              <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;">
+                <div style="width:86px;height:86px;border-radius:50%;background:#e8232a;display:flex;align-items:center;justify-content:center;color:#fff;font-size:42px;line-height:1;">✓</div>
+              </div>
+            </sc-if>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ isModeList }}" hint-placeholder-val="{{ false }}">
+          <div style="position:absolute;inset:0;background:#000;animation:fadeIn .3s ease;">
+            <img src="assets/tv-mode-list.png" alt="قائمة أوضاع الصورة" style="display:block;width:100%;height:100%;object-fit:cover;" />
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ isSelMode }}" hint-placeholder-val="{{ false }}">
+          <div style="position:absolute;inset:0;background:#000;animation:fadeIn .3s ease;">
+            <img src="assets/tv-select-mode.png" alt="اختيار وضع الصورة" style="display:block;width:100%;height:100%;object-fit:cover;" />
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ isPicMenu }}" hint-placeholder-val="{{ false }}">
+          <div style="position:absolute;inset:0;background:#000;animation:fadeIn .3s ease;">
+            <img src="assets/tv-picture-menu.png" alt="قائمة إعدادات الصورة" style="display:block;width:100%;height:100%;object-fit:cover;" />
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ isSndSel }}" hint-placeholder-val="{{ false }}">
+          <div style="position:absolute;inset:0;background:#000;animation:fadeIn .3s ease;">
+            <img src="assets/tv-sound-selectmode.png" alt="اختيار وضع الصوت" style="display:block;width:100%;height:100%;object-fit:cover;" />
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ isSndMenu }}" hint-placeholder-val="{{ false }}">
+          <div style="position:absolute;inset:0;background:#000;animation:fadeIn .3s ease;">
+            <img src="assets/tv-sound-menu.png" alt="قائمة إعدادات الصوت" style="display:block;width:100%;height:100%;object-fit:cover;" />
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ isLearnScreen }}" hint-placeholder-val="{{ false }}">
+          <div style="position:absolute;inset:0;background:#000;animation:fadeIn .3s ease;">
+            <img src="assets/tv-learn-remote-screen.png" alt="شاشة تعلّم التحكم بالريموت" style="display:block;width:100%;height:100%;object-fit:cover;" />
+            <sc-if value="{{ showDone }}" hint-placeholder-val="{{ false }}">
+              <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;">
+                <div style="width:86px;height:86px;border-radius:50%;background:#e8232a;display:flex;align-items:center;justify-content:center;color:#fff;font-size:42px;line-height:1;">✓</div>
+              </div>
+            </sc-if>
+          </div>
+        </sc-if>
+        <sc-if value="{{ isLearn }}" hint-placeholder-val="{{ false }}">
+          <div style="position:absolute;inset:0;background:#000;animation:fadeIn .3s ease;">
+            <img src="assets/tv-learn-remote.png" alt="تعلّم التحكم بالريموت" style="display:block;width:100%;height:100%;object-fit:cover;" />
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ isAccess }}" hint-placeholder-val="{{ false }}">
+          <div style="position:absolute;inset:0;background:#000;animation:fadeIn .3s ease;">
+            <img src="assets/tv-accessibility.png" alt="قائمة إمكانية الوصول" style="display:block;width:100%;height:100%;object-fit:cover;" />
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ isGeneral }}" hint-placeholder-val="{{ false }}">
+          <div style="position:absolute;inset:0;background:#000;animation:fadeIn .3s ease;">
+            <img src="assets/tv-general-menu.png" alt="قائمة الإعدادات العامة" style="display:block;width:100%;height:100%;object-fit:cover;" />
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ isDoneScreen }}" hint-placeholder-val="{{ false }}">
+          <div style="position:absolute;inset:0;background:#000;overflow:hidden;animation:fadeIn .3s ease;">
+            <img src="assets/tv-home-profiles.png" alt="الصفحة الرئيسية للشاشة" style="display:block;width:100%;height:100%;object-fit:cover;" />
+            <sc-if value="{{ showDone }}" hint-placeholder-val="{{ false }}">
+              <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;">
+                <div style="width:86px;height:86px;border-radius:50%;background:#e8232a;display:flex;align-items:center;justify-content:center;color:#fff;font-size:42px;line-height:1;">✓</div>
+              </div>
+            </sc-if>
+            <div style="position:absolute;left:50%;bottom:9%;transform:translateX(-50%);max-width:62%;padding:8px 20px;border-radius:5px;background:rgba(150,155,160,.92);color:#111;font-family:'Cairo',sans-serif;font-size:11.5px;line-height:1.7;text-align:center;">{{ pairNote }}</div>
+          </div>
+        </sc-if>
+
+               <sc-if value="{{ isPaired }}" hint-placeholder-val="{{ false }}">
+          <div style="position:absolute;inset:0;background:#000;overflow:hidden;animation:fadeIn .3s ease;">
+            <img src="assets/tv-home-profiles.png" alt="الصفحة الرئيسية للشاشة" style="display:block;width:100%;height:100%;object-fit:cover;" />
+            <div style="position:absolute;left:50%;bottom:11%;transform:translateX(-50%);padding:8px 22px;border-radius:5px;background:rgba(150,155,160,.92);color:#111;font-family:'Cairo',sans-serif;font-size:12px;white-space:nowrap;">جارٍ تسجيل ريموت سحري جديد.</div>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ isConfirm }}" hint-placeholder-val="{{ false }}">
+          <div style="position:absolute;inset:0;background:#000;overflow:hidden;animation:fadeIn .3s ease;">
+            <img src="assets/tv-home-profiles.png" alt="الصفحة الرئيسية للشاشة" style="display:block;width:100%;height:100%;object-fit:cover;" />
+            <div style="position:absolute;left:14%;bottom:12%;display:flex;align-items:center;gap:16px;padding:12px 18px;border-radius:5px;background:rgba(216,216,216,.95);">
+              <div style="font-family:'Cairo',sans-serif;font-size:12px;color:#111;">هل تريد الإضافة إلى [الوصول السريع 1]؟</div>
+              <div style="display:flex;flex-direction:column;gap:5px;">
+                <div style="padding:5px 26px;border-radius:3px;background:#fff;color:#111;font-family:'Cairo',sans-serif;font-size:11.5px;text-align:center;box-shadow:0 0 0 2px #e8005a,0 0 14px rgba(232,0,90,.8);">نعم</div>
+                <div style="padding:5px 26px;border-radius:3px;background:#b9b0b6;color:#333;font-family:'Cairo',sans-serif;font-size:11.5px;text-align:center;">لا</div>
+              </div>
+            </div>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ isEdit }}" hint-placeholder-val="{{ false }}">
+          <div style="position:absolute;inset:0;background:#000;overflow:hidden;animation:fadeIn .3s ease;">
+            <img src="assets/tv-home-profiles.png" alt="الصفحة الرئيسية للشاشة" style="display:block;width:100%;height:100%;object-fit:cover;" />
+            <div style="position:absolute;top:7%;left:50%;width:31%;padding:12px 14px;box-sizing:border-box;border-radius:6px;background:rgba(26,28,30,.95);direction:rtl;text-align:right;">
+              <div style="display:flex;align-items:flex-start;">
+                <div style="min-width:0;">
+                  <div style="font-family:'Cairo',sans-serif;font-weight:600;font-size:13px;color:#f2f2f2;">تعديل الوصول السريع</div>
+                  <div style="font-size:8.5px;color:#a8adb2;margin-top:3px;">لإضافة وصول سريع 1، اضغط…</div>
+                </div>
+                <div style="margin-right:auto;color:#c8c8c8;font-size:12px;">✕</div>
+              </div>
+              <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:10px;direction:ltr;text-align:left;">
+                <div style="height:44px;border-radius:4px;background:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;">
+                  <div style="width:16px;height:16px;border-radius:4px;background:#e8232a;"></div>
+                  <div style="font-size:6.5px;color:#333;">LG Chann…</div>
+                </div>
+                <sc-for list="{{ keys }}" as="k" hint-placeholder-count="8">
+                  <div style="height:44px;border-radius:4px;background:#4a4f55;color:#f2f2f2;font-family:'Cairo',sans-serif;font-size:12px;display:flex;align-items:center;justify-content:center;">{{ k }}</div>
+                </sc-for>
+              </div>
+              <div style="margin-top:9px;padding:6px 0;border-radius:4px;background:#5a6570;color:#f2f2f2;font-family:'Cairo',sans-serif;font-size:11px;text-align:center;">مساعدة</div>
+            </div>
+            <sc-if value="{{ showDone }}" hint-placeholder-val="{{ false }}">
+              <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;">
+                <div style="width:86px;height:86px;border-radius:50%;background:#e8232a;display:flex;align-items:center;justify-content:center;color:#fff;font-size:42px;line-height:1;">✓</div>
+              </div>
+            </sc-if>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ isQuickPick }}" hint-placeholder-val="{{ false }}">
+          <div style="position:absolute;inset:0;background:#000;overflow:hidden;animation:fadeIn .3s ease;">
+            <img src="assets/tv-home-profiles.png" alt="الصفحة الرئيسية للشاشة" style="display:block;width:100%;height:100%;object-fit:cover;" />
+            <sc-if value="{{ hlTile }}" hint-placeholder-val="{{ false }}">
+              <div style="position:absolute;top:60.5%;left:7.5%;width:5.2%;height:9.5%;border-radius:6px;border:2px solid #e8005a;box-shadow:0 0 16px rgba(232,0,90,.85);"></div>
+            </sc-if>
+            <sc-if value="{{ toast }}" hint-placeholder-val="{{ false }}">
+              <div style="position:absolute;left:50%;bottom:10%;transform:translateX(-50%);padding:8px 20px;border-radius:5px;background:rgba(216,216,216,.95);color:#111;font-family:'Cairo',sans-serif;font-size:11.5px;white-space:nowrap;">{{ toast }}</div>
+            </sc-if>
+            <div style="position:absolute;bottom:8px;right:12px;padding:6px 13px;border-radius:5px;background:rgba(0,0,0,.72);color:#fff;font-family:'Cairo',sans-serif;font-size:11px;">{{ pairNote }}</div>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ isPair }}" hint-placeholder-val="{{ false }}">
+          <div style="position:absolute;inset:0;background:#000;overflow:hidden;animation:fadeIn .3s ease;">
+            <img src="assets/tv-home-profiles.png" alt="الصفحة الرئيسية للشاشة" style="display:block;width:100%;height:100%;object-fit:cover;" />
+            <div style="position:absolute;bottom:8px;right:12px;padding:6px 13px;border-radius:5px;background:rgba(0,0,0,.72);color:#fff;font-family:'Cairo',sans-serif;font-size:11px;">{{ pairNote }}</div>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ isSelect }}" hint-placeholder-val="{{ false }}">
+          <div style="position:absolute;inset:0;background:#000;overflow:hidden;animation:fadeIn .3s ease;">
+            <img src="assets/tv-home-profiles.png" alt="تحريك المؤشّر واختيار عنصر" style="display:block;width:100%;height:100%;object-fit:cover;" />
+            <div style="position:absolute;top:16%;left:1.6%;width:26px;height:26px;border-radius:5px;border:1.5px solid #fff;background:rgba(255,255,255,.18);"></div>
+            <div style="position:absolute;top:22%;left:4.4%;width:14px;height:14px;border-radius:50%;border:2px solid #fff;background:rgba(255,255,255,.3);box-shadow:0 0 10px rgba(255,255,255,.7);"></div>
+            <div style="position:absolute;bottom:8px;right:12px;padding:6px 13px;border-radius:5px;background:rgba(0,0,0,.72);color:#fff;font-family:'Cairo',sans-serif;font-size:11px;">حرّك المؤشّر على العنصر ثم اضغط العجلة (OK)</div>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ isPointer }}" hint-placeholder-val="{{ false }}">
+          <div style="position:absolute;inset:0;background:#000;overflow:hidden;animation:fadeIn .3s ease;">
+            <img src="assets/tv-magic-shake.png" alt="هزّ الريموت السحري لإظهار المؤشّر" style="display:block;width:100%;height:100%;object-fit:cover;animation:shakeRemote 1.1s ease-in-out infinite;" />
+            <div style="position:absolute;bottom:8px;right:12px;padding:6px 13px;border-radius:5px;background:rgba(0,0,0,.72);color:#fff;font-family:'Cairo',sans-serif;font-size:11px;">هزّ الريموت يمين وشمال ليظهر المؤشّر</div>
+          </div>
+        </sc-if>
+        <sc-if value="{{ isQuick }}" hint-placeholder-val="{{ false }}">
+          <div style="position:absolute;inset:0;background:#000;animation:fadeIn .3s ease;">
+            <img src="assets/tv-quick-settings.png" alt="لوحة الإعدادات السريعة" style="display:block;width:100%;height:100%;object-fit:cover;" />
+          </div>
+        </sc-if>
         <sc-if value="{{ isHomeSet }}" hint-placeholder-val="{{ false }}">
           <div style="position:absolute;inset:0;background:#000;animation:fadeIn .3s ease;">
             <img src="assets/tv-home-profiles.png" alt="الصفحة الرئيسية للشاشة" style="display:block;width:100%;height:100%;object-fit:cover;" />
@@ -604,7 +796,15 @@
     </div>
 
     <div style="width:120px;flex:none;display:flex;flex-direction:column;align-items:center;gap:12px;">
-      <img src="assets/sim-remote.png" alt="الريموت السحري" style="display:block;width:100px;height:auto;border-radius:14px;">
+      <div style="position:relative;width:100px;">
+        <img src="assets/sim-remote.png" alt="الريموت السحري" style="display:block;width:100px;height:auto;border-radius:14px;">
+        <sc-if value="{{ hlNum }}" hint-placeholder-val="{{ false }}">
+          <div style="position:absolute;top:7.3%;left:11%;width:19px;height:19px;border-radius:50%;border:2px solid #e8005a;box-shadow:0 0 12px rgba(232,0,90,.9);animation:blinkRing 1s ease-in-out infinite;"></div>
+        </sc-if>
+        <sc-if value="{{ hlZero }}" hint-placeholder-val="{{ false }}">
+          <div style="position:absolute;top:22.3%;left:35%;width:19px;height:19px;border-radius:50%;border:2px solid #e8005a;box-shadow:0 0 12px rgba(232,0,90,.9);animation:blinkRing 1s ease-in-out infinite;"></div>
+        </sc-if>
+      </div>
       <button onClick="{{ up }}" style="width:72px;height:30px;border-radius:8px;border:1px solid #4a4a4a;background:#242424;color:#e7edf0;font-size:12px;cursor:pointer;" style-hover="background:#303030;">▲</button>
       <button onClick="{{ ok }}" style="{{ wheelStyle }}">OK</button>
       <button onClick="{{ down }}" style="width:72px;height:30px;border-radius:8px;border:1px solid #4a4a4a;background:#242424;color:#e7edf0;font-size:12px;cursor:pointer;" style-hover="background:#303030;">▼</button>
@@ -614,7 +814,7 @@
 
     <div style="width:390px;flex:none;">
       <div style="display:flex;align-items:center;gap:10px;padding-bottom:14px;border-bottom:1px solid #565656;margin-bottom:14px;flex-wrap:wrap;">
-        <div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:19px;">خطوات إعداد الحسابات الشخصية</div>
+        <div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:19px;">خطوات ضبط اختصارات الوصول السريع</div>
         <div style="margin-right:auto;color:#a8a8a8;font-size:16px;">⌄</div>
       </div>
       <div style="display:flex;flex-direction:column;gap:2px;max-height:70vh;overflow:auto;padding-left:6px;">
@@ -632,53 +832,67 @@
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1500,&quot;height&quot;:940}}">
 const STEPS = [
-  { num:'٠١', text:'اضغط زر الصفحة الرئيسية (Home) في ريموت الشاشة.',
-    kind:'homeset', headline:'اضغط زر Home في الريموت',
-    script:'«لو سمحت اضغط زر الصفحة الرئيسية — الـ Home — في ريموت الشاشة، وهتظهر لنا الصفحة الرئيسية.»' },
+  { num:'٠١', text:'اضغط مع الاستمرار على زر «0» في الريموت لفتح شاشة الوصول السريع.',
+    kind:'quickpick', hlZero:true, note:'اضغط مطوّلًا على الرقم 0 في الريموت',
+    headline:'افتح الوصول السريع من زر 0',
+    script:'«اضغط مع الاستمرار على زر صفر في الريموت — هتفتح شاشة الوصول السريع اللي منها نسجّل ونعدّل الاختصارات.»' },
 
-  { num:'٠٢', text:'روح على أيقونة الحساب (البروفايل) في أعلى يسار الشاشة واختارها.',
-    kind:'homeprofile', headline:'اختر أيقونة الحساب في أعلى يسار الشاشة',
-    script:'«دلوقتي بالأسهم روح فوق على الشمال، هتلاقي أيقونة الحساب — شكل شخص — دوس عليها OK.»' },
+  { num:'٠٢', text:'هتظهر رسالة تأكيد — اختر «نعم» ليتم تسجيل التطبيق أو القناة أو المدخل على الرقم المطلوب.',
+    kind:'confirm', headline:'أكّد التسجيل — نعم',
+    script:'«هتظهر رسالة بتسأل: هل تريد الإضافة للوصول السريع رقم واحد؟ اختار «نعم» — وكده التطبيق اتسجّل على الرقم ده في الريموت.»' },
 
-  { num:'٠٣', text:'تقدر تسجّل الدخول بتطبيق ThinQ أو من متصفح الموبايل أو من الشاشة — في المثال ده نختار «تسجيل الدخول من الشاشة».',
-    kind:'signopts', headline:'اختر طريقة تسجيل الدخول', cta:'تسجيل الدخول من الشاشة',
-    script:'«قدامنا تلات طرق لتسجيل الدخول: بتطبيق LG ThinQ، أو من متصفح الموبايل، أو من الشاشة نفسها. هنختار تسجيل الدخول من الشاشة.»' },
+  { num:'٠٣', text:'هتظهر شاشة تعديل الوصول السريع — اضغط على الرقم اللي عايزه من القائمة واختار التطبيق أو القناة اللي هتتخصّص للوصول السريع. ومنها كمان تقدر تلغي اختصار أو تشوف تعليمات الاستخدام.',
+    kind:'edit', note:'شاشة تعديل اختصارات الوصول السريع',
+    headline:'شاشة تعديل الوصول السريع',
+    script:'«هتظهر شاشة تعديل الوصول السريع — اضغط على الرقم اللي حضرتك عايزه من القائمة، وبعدين اختار التطبيق أو القناة اللي هتتسجّل عليه. ومن نفس الشاشة تقدر تلغي أي اختصار أو تشوف التعليمات من زر المساعدة.»' },
 
-  { num:'٠٤', text:'اختر «تسجيل الدخول بحساب إل جي» — ولو مفيش حساب اختر «إنشاء حساب إل جي».',
-    kind:'signdev', headline:'تسجيل الدخول من الشاشة', cta:'تسجيل الدخول بحساب إل جي',
-    script:'«نختار تسجيل الدخول بحساب إل جي. ولو حضرتك ماعندكش حساب، نختار إنشاء حساب إل جي ونعمل حساب جديد.»' },
+  { num:'٠٤', text:'دلوقتي اضغط مع الاستمرار على نفس الرقم في أي وقت لفتح التطبيق أو القناة أو المدخل مباشرة.',
+    kind:'quickpick', hlNum:true, hlTile:true, toast:'تمت إضافة LG Channels إلى [الوصول السريع 1]', note:'اضغط مطوّلًا على الرقم لفتح الاختصار',
+    headline:'استخدام الاختصار',
+    script:'«من دلوقتي، اضغط مع الاستمرار على الرقم ده في الريموت وهيفتح على طول التطبيق أو القناة أو المدخل اللي سجّلته.»' },
 
-  { num:'٠٥', text:'أدخل بيانات حساب إل جي (الإيميل وكلمة السر) ثم اختر «تسجيل الدخول».',
-    kind:'signcreds', headline:'بيانات حساب إل جي', cta:'تسجيل الدخول',
-    script:'«ندخل الإيميل وكلمة السر بتاعة حساب إل جي وندوس تسجيل الدخول. ولو حابب تضيف حساب تاني، نعيد نفس الخطوات دي من الأول.»' },
+  { num:'٠٥', text:'خلاص كده تقدر تضبط اختصارات الوصول السريع وتفتح أي تطبيق أو قناة أو مدخل بضغطة رقم.',
+    kind:'edit', done:true, note:'تمّ ضبط اختصارات الوصول السريع',
+    headline:'تمّ — Done',
+    script:'«مبروك — كده حضرتك تقدر تضبط اختصارات الوصول السريع، وتفتح أي تطبيق أو قناة أو مدخل بضغطة رقم واحدة من الريموت.»' }
+];
 
-  { num:'٠٦', text:'الحساب الجديد هيتضاف للشاشة وهترجع للصفحة الرئيسية — وتقدر تستخدمه لتصفّح التطبيقات والبحث وضبط الإعدادات.',
-    kind:'profiles', headline:'الحساب اتضاف — LG Account',
-    script:'«تمام، الحساب الشخصي اتضاف للشاشة. دلوقتي هترجع للصفحة الرئيسية وتقدر تستخدم الحساب في التطبيقات والبحث وضبط الإعدادات. ولو حابب تضيف حساب تاني اختار «إضافة حساب» وكرّر نفس الخطوات.»' },
+const MODES = ['AI Sound Pro','قياسي','سينما','Clear Voice Pro','رياضة','موسيقى','Game Optimizer'];
+const MODE_FX = {};
+const EQ = {
+  'AI Sound Pro': [6,11,8,12,7],
+  'قياسي': [6,8,7,8,6],
+  'سينما': [10,7,6,9,11],
+  'Clear Voice Pro': [4,9,12,9,4],
+  'رياضة': [8,10,9,7,10],
+  'موسيقى': [11,8,10,7,12],
+  'Game Optimizer': [9,6,11,8,9]
+};
 
-  { num:'٠٧', text:'لتغيير الحساب: روح على أيقونة الحساب في أعلى يسار الصفحة الرئيسية واختار الحساب اللي عايز تدخل بيه — وكده خلصنا.',
-    kind:'homeprofile', headline:'تغيير الحساب من أيقونة البروفايل',
-    script:'«لو حابب تغيّر الحساب في أي وقت، ارجع للصفحة الرئيسية واختار أيقونة الحساب في أعلى الشمال، وبعدها اختار الحساب اللي عايز تدخل بيه. وكده خلصنا إضافة الحساب الشخصي.»' },
-
-  { num:'٠٨', text:'من قائمة الحسابات اختر الحساب اللي عايز تدخل بيه — وكده خلصنا إضافة الحساب الشخصي.',
-    kind:'switch', headline:'اختر الحساب من القائمة',
-    script:'«هتظهر قائمة الحسابات على الشمال — اختار الحساب اللي عايز تدخل بيه ودوس OK. ولو حابب تضيف حساب جديد اختار «إضافة حساب». وكده خلصنا.»' },
-
-  { num:'٠٩', text:'تمام — الحساب الشخصي اتضاف للشاشة وتقدر تستخدمه دلوقتي.',
-    kind:'done', headline:'تمّت إضافة الحساب الشخصي',
-    script:'«مبروك — الحساب الشخصي اتضاف على الشاشة. تقدر دلوقتي تستخدمه في التطبيقات والبحث وضبط الإعدادات، وتقدر تبدّل بين الحسابات في أي وقت من أيقونة الحساب.»' }
+const QUICK = [
+  { label:'وضع الصورة', value:'قياسي' },
+  { label:'سطوع بيكسل OLED', value:'توفير الطاقة' },
+  { label:'وضع الصوت', value:'قياسي' },
+  { label:'مخرج الصوت', value:'سماعة الشاشة' },
+  { label:'مؤقت النوم', value:'إيقاف' },
+  { label:'وضع العناية بالعين', value:'إيقاف' },
+  { label:'إطفاء الشاشة', value:'' },
+  { label:'الخصوصية والشروط', value:'' },
+  { label:'العرض المتعدد', value:'' },
+  { label:'استكشاف الموسيقى', value:'' }
 ];
 
 const TILES = ['APPS', 'LG Ch', 'NETFLIX', 'prime', 'Disney+', 'hulu', 'sling', 'tv', 'YouTube', 'max', 'tubi', 'shop'];
 
 class Component extends DCLogic {
-  state = { i: 0, sel: {}, opt: 0 };
+  state = { i: 0, sel: {}, opt: 0, mode: 'AI Sound Pro' };
 
   cur() { return STEPS[this.state.i]; }
 
   setStep(i) {
     const n = Math.max(0, Math.min(STEPS.length - 1, i));
-    this.setState({ i: n, opt: STEPS[n].defIdx || 0 });
+    const st = STEPS[n];
+    this.setState(s => ({ i: n, opt: st.defIdx || 0, mode: st.defMode || s.mode }));
   }
 
   renderVals() {
@@ -769,6 +983,47 @@ class Component extends DCLogic {
       isProgress: st.kind === 'progress',
       isHome: st.kind === 'home',
       isHomeSet: st.kind === 'homeset',
+      isQuick: st.kind === 'quick',
+      isPointer: st.kind === 'pointer',
+      isSelect: st.kind === 'select',
+      isPair: st.kind === 'pair',
+      isQuickPick: st.kind === 'quickpick',
+      isEdit: st.kind === 'edit',
+      keys: ['2','3','4','5','6','7','8','9'],
+      isConfirm: st.kind === 'confirm',
+      hlNum: !!st.hlNum,
+      hlTile: !!st.hlTile,
+      toast: st.toast || '',
+      hlZero: !!st.hlZero,
+      isPaired: st.kind === 'paired',
+      isDoneScreen: st.kind === 'donescreen',
+      showDone: !!st.done,
+      pairNote: st.note || 'قف على العنصر المطلوب تخصيصه للوصول السريع',
+      isGeneral: st.kind === 'general',
+      isAccess: st.kind === 'access',
+      isLearn: st.kind === 'learn',
+      isLearnScreen: st.kind === 'learnscreen',
+      isSndMenu: st.kind === 'sndmenu',
+      isSndSel: st.kind === 'sndsel',
+      isPicMenu: st.kind === 'picmenu',
+      isSelMode: st.kind === 'selmode',
+      isModeList: st.kind === 'modelist',
+      isLive: st.kind === 'live',
+      showDone: !!st.done,
+      liveImgStyle: 'display:block;width:100%;height:100%;object-fit:cover;transition:filter .3s ease;filter:' + (MODE_FX[this.state.mode] || 'none') + ';',
+      liveNote: this.state.mode ? ('وضع الصوت: ' + this.state.mode) : 'اختر وضعًا',
+      eqBars: (EQ[this.state.mode] || [5,8,6,9,4]).map(h => 'display:block;width:3px;border-radius:1px;background:#2ec46b;height:' + h + 'px;'),
+      modes: MODES.map(m => {
+        const on = this.state.mode === m;
+        return {
+          label: m,
+          style: 'display:flex;align-items:center;gap:8px;width:100%;padding:6px 9px;border:none;border-radius:4px;cursor:pointer;text-align:right;' +
+            "font-family:'Cairo',sans-serif;font-size:11px;color:" + (on ? '#fff' : '#cfd4d8') + ';background:' + (on ? '#3a4046' : 'transparent') + ';',
+          dotStyle: 'width:11px;height:11px;border-radius:50%;flex:none;border:1.5px solid ' + (on ? '#2ec46b' : '#8a8f94') + ';background:' + (on ? '#2ec46b' : 'transparent') + ';',
+          pick: () => this.setState({ mode: m })
+        };
+      }),
+      quickTiles: QUICK,
       isHomeProfile: st.kind === 'homeprofile',
       isSignOpts: st.kind === 'signopts',
       isSignDev: st.kind === 'signdev',

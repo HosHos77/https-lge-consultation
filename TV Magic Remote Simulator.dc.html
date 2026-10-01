@@ -9,14 +9,15 @@
 <x-dc>
 <helmet>
 <script src="shadow-nav.js"></script>
-<title>محاكي إعداد الحسابات الشخصية — Personal Profiles</title>
+<title>تعرّف على الريموت السحري — Magic Remote</title>
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&family=IBM+Plex+Sans+Arabic:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   body { margin:0; background:#3b3b3b; }
   a { color:#f0a8bd; }
   a:hover { color:#fff; }
   @keyframes wheelPulse { 0%,100% { box-shadow:0 0 0 0 rgba(232,0,90,.55); } 50% { box-shadow:0 0 0 12px rgba(232,0,90,0); } }
-  @keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+  @keyframes shakeRemote { 0%,100% { transform: translateX(-6px) rotate(-1deg); } 50% { transform: translateX(6px) rotate(1deg); } }
+@keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
 </style>
 </helmet>
 <template id="__bundler_thumbnail"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><rect width="200" height="200" fill="#3b3b3b"/><rect x="24" y="56" width="112" height="70" rx="4" fill="#0a0a0a" stroke="#8a8a8a" stroke-width="2"/><rect x="150" y="48" width="26" height="88" rx="12" fill="#1a1a1a" stroke="#6a6a6a" stroke-width="2"/><circle cx="163" cy="106" r="8" fill="#e8005a"/></svg></template>
@@ -25,7 +26,7 @@
 
   <div style="background:#2b2b2b;border-bottom:1px solid #4a4a4a;padding:14px 26px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;position:sticky;top:0;z-index:20;">
     <div style="width:9px;height:30px;background:#A50034;border-radius:2px;flex:none;"></div>
-    <div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:17px;">محاكي إعداد الحسابات الشخصية — Personal Profiles</div>
+    <div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:17px;">محاكي الريموت السحري — Magic Remote</div>
     <div style="margin-right:auto;display:flex;flex-wrap:wrap;gap:10px;align-items:center;">
       <div style="padding:7px 14px;border-radius:999px;background:#1f1f1f;font-size:12.5px;color:#c8cdd0;white-space:nowrap;flex:none;">{{ stepBadge }}</div>
       <a href="TV Simulator Guide.dc.html" style="padding:8px 14px;border-radius:8px;border:1px solid #565656;color:#f0a8bd;font-size:13px;text-decoration:none;white-space:nowrap;flex:none;" style-hover="background:#333;">محاكي القوائم</a>
@@ -552,6 +553,115 @@
           </div>
         </sc-if>
 
+        <sc-if value="{{ isLive }}" hint-placeholder-val="{{ false }}">
+          <div style="position:absolute;inset:0;background:#000;overflow:hidden;animation:fadeIn .3s ease;">
+            <img src="assets/tv-home-profiles.png" alt="معاينة وضع الصورة" style="{{ liveImgStyle }}" />
+            <div style="position:absolute;top:0;bottom:0;left:0;width:36%;background:rgba(22,24,26,.92);padding:10px 12px;box-sizing:border-box;direction:rtl;text-align:right;display:flex;flex-direction:column;gap:5px;">
+              <div style="display:flex;align-items:center;gap:8px;color:#e2e2e2;font-family:'Cairo',sans-serif;font-size:12px;padding-bottom:6px;">
+                <div>↩</div><div>تحديد وضع الصوت</div>
+              </div>
+              <sc-for list="{{ modes }}" as="m" hint-placeholder-count="8">
+                <button onClick="{{ m.pick }}" style="{{ m.style }}">
+                  <span style="{{ m.dotStyle }}"></span>
+                  <span>{{ m.label }}</span>
+                </button>
+              </sc-for>
+            </div>
+            <div style="position:absolute;bottom:8px;right:12px;display:flex;align-items:center;gap:9px;padding:6px 13px;border-radius:5px;background:rgba(0,0,0,.72);color:#fff;font-family:'Cairo',sans-serif;font-size:11px;">
+              <span>🔊</span>
+              <span>{{ liveNote }}</span>
+              <span style="display:flex;align-items:flex-end;gap:2px;height:13px;">
+                <sc-for list="{{ eqBars }}" as="b" hint-placeholder-count="5">
+                  <span style="{{ b }}"></span>
+                </sc-for>
+              </span>
+            </div>
+            <sc-if value="{{ showDone }}" hint-placeholder-val="{{ false }}">
+              <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;">
+                <div style="width:86px;height:86px;border-radius:50%;background:#e8232a;display:flex;align-items:center;justify-content:center;color:#fff;font-size:42px;line-height:1;">✓</div>
+              </div>
+            </sc-if>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ isModeList }}" hint-placeholder-val="{{ false }}">
+          <div style="position:absolute;inset:0;background:#000;animation:fadeIn .3s ease;">
+            <img src="assets/tv-mode-list.png" alt="قائمة أوضاع الصورة" style="display:block;width:100%;height:100%;object-fit:cover;" />
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ isSelMode }}" hint-placeholder-val="{{ false }}">
+          <div style="position:absolute;inset:0;background:#000;animation:fadeIn .3s ease;">
+            <img src="assets/tv-select-mode.png" alt="اختيار وضع الصورة" style="display:block;width:100%;height:100%;object-fit:cover;" />
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ isPicMenu }}" hint-placeholder-val="{{ false }}">
+          <div style="position:absolute;inset:0;background:#000;animation:fadeIn .3s ease;">
+            <img src="assets/tv-picture-menu.png" alt="قائمة إعدادات الصورة" style="display:block;width:100%;height:100%;object-fit:cover;" />
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ isSndSel }}" hint-placeholder-val="{{ false }}">
+          <div style="position:absolute;inset:0;background:#000;animation:fadeIn .3s ease;">
+            <img src="assets/tv-sound-selectmode.png" alt="اختيار وضع الصوت" style="display:block;width:100%;height:100%;object-fit:cover;" />
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ isSndMenu }}" hint-placeholder-val="{{ false }}">
+          <div style="position:absolute;inset:0;background:#000;animation:fadeIn .3s ease;">
+            <img src="assets/tv-sound-menu.png" alt="قائمة إعدادات الصوت" style="display:block;width:100%;height:100%;object-fit:cover;" />
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ isLearnScreen }}" hint-placeholder-val="{{ false }}">
+          <div style="position:absolute;inset:0;background:#000;animation:fadeIn .3s ease;">
+            <img src="assets/tv-learn-remote-screen.png" alt="شاشة تعلّم التحكم بالريموت" style="display:block;width:100%;height:100%;object-fit:cover;" />
+            <sc-if value="{{ showDone }}" hint-placeholder-val="{{ false }}">
+              <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;">
+                <div style="width:86px;height:86px;border-radius:50%;background:#e8232a;display:flex;align-items:center;justify-content:center;color:#fff;font-size:42px;line-height:1;">✓</div>
+              </div>
+            </sc-if>
+          </div>
+        </sc-if>
+        <sc-if value="{{ isLearn }}" hint-placeholder-val="{{ false }}">
+          <div style="position:absolute;inset:0;background:#000;animation:fadeIn .3s ease;">
+            <img src="assets/tv-learn-remote.png" alt="تعلّم التحكم بالريموت" style="display:block;width:100%;height:100%;object-fit:cover;" />
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ isAccess }}" hint-placeholder-val="{{ false }}">
+          <div style="position:absolute;inset:0;background:#000;animation:fadeIn .3s ease;">
+            <img src="assets/tv-accessibility.png" alt="قائمة إمكانية الوصول" style="display:block;width:100%;height:100%;object-fit:cover;" />
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ isGeneral }}" hint-placeholder-val="{{ false }}">
+          <div style="position:absolute;inset:0;background:#000;animation:fadeIn .3s ease;">
+            <img src="assets/tv-general-menu.png" alt="قائمة الإعدادات العامة" style="display:block;width:100%;height:100%;object-fit:cover;" />
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ isSelect }}" hint-placeholder-val="{{ false }}">
+          <div style="position:absolute;inset:0;background:#000;overflow:hidden;animation:fadeIn .3s ease;">
+            <img src="assets/tv-home-profiles.png" alt="تحريك المؤشّر واختيار عنصر" style="display:block;width:100%;height:100%;object-fit:cover;" />
+            <div style="position:absolute;top:16%;left:1.6%;width:26px;height:26px;border-radius:5px;border:1.5px solid #fff;background:rgba(255,255,255,.18);"></div>
+            <div style="position:absolute;top:22%;left:4.4%;width:14px;height:14px;border-radius:50%;border:2px solid #fff;background:rgba(255,255,255,.3);box-shadow:0 0 10px rgba(255,255,255,.7);"></div>
+            <div style="position:absolute;bottom:8px;right:12px;padding:6px 13px;border-radius:5px;background:rgba(0,0,0,.72);color:#fff;font-family:'Cairo',sans-serif;font-size:11px;">حرّك المؤشّر على العنصر ثم اضغط العجلة (OK)</div>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ isPointer }}" hint-placeholder-val="{{ false }}">
+          <div style="position:absolute;inset:0;background:#000;overflow:hidden;animation:fadeIn .3s ease;">
+            <img src="assets/tv-magic-shake.png" alt="هزّ الريموت السحري لإظهار المؤشّر" style="display:block;width:100%;height:100%;object-fit:cover;animation:shakeRemote 1.1s ease-in-out infinite;" />
+            <div style="position:absolute;bottom:8px;right:12px;padding:6px 13px;border-radius:5px;background:rgba(0,0,0,.72);color:#fff;font-family:'Cairo',sans-serif;font-size:11px;">هزّ الريموت يمين وشمال ليظهر المؤشّر</div>
+          </div>
+        </sc-if>
+        <sc-if value="{{ isQuick }}" hint-placeholder-val="{{ false }}">
+          <div style="position:absolute;inset:0;background:#000;animation:fadeIn .3s ease;">
+            <img src="assets/tv-quick-settings.png" alt="لوحة الإعدادات السريعة" style="display:block;width:100%;height:100%;object-fit:cover;" />
+          </div>
+        </sc-if>
         <sc-if value="{{ isHomeSet }}" hint-placeholder-val="{{ false }}">
           <div style="position:absolute;inset:0;background:#000;animation:fadeIn .3s ease;">
             <img src="assets/tv-home-profiles.png" alt="الصفحة الرئيسية للشاشة" style="display:block;width:100%;height:100%;object-fit:cover;" />
@@ -614,7 +724,7 @@
 
     <div style="width:390px;flex:none;">
       <div style="display:flex;align-items:center;gap:10px;padding-bottom:14px;border-bottom:1px solid #565656;margin-bottom:14px;flex-wrap:wrap;">
-        <div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:19px;">خطوات إعداد الحسابات الشخصية</div>
+        <div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:19px;">خطوات استخدام الريموت السحري</div>
         <div style="margin-right:auto;color:#a8a8a8;font-size:16px;">⌄</div>
       </div>
       <div style="display:flex;flex-direction:column;gap:2px;max-height:70vh;overflow:auto;padding-left:6px;">
@@ -632,53 +742,83 @@
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1500,&quot;height&quot;:940}}">
 const STEPS = [
-  { num:'٠١', text:'اضغط زر الصفحة الرئيسية (Home) في ريموت الشاشة.',
-    kind:'homeset', headline:'اضغط زر Home في الريموت',
-    script:'«لو سمحت اضغط زر الصفحة الرئيسية — الـ Home — في ريموت الشاشة، وهتظهر لنا الصفحة الرئيسية.»' },
+  { num:'٠١', text:'عشان تبدأ تستخدم الريموت السحري، هزّه يمين وشمال أو حرّك عجلة الوسط وهو موجّه ناحية الشاشة — هيظهر مؤشّر على الشاشة بيتحرّك مع حركة إيدك.',
+    kind:'pointer', headline:'ظهور مؤشّر الريموت السحري',
+    script:'«هزّ الريموت يمين وشمال وهو في اتجاه الشاشة، أو حرّك عجلة الوسط — هيظهر مؤشّر على الشاشة وهيتحرّك مع حركة إيد حضرتك.»' },
 
-  { num:'٠٢', text:'روح على أيقونة الحساب (البروفايل) في أعلى يسار الشاشة واختارها.',
-    kind:'homeprofile', headline:'اختر أيقونة الحساب في أعلى يسار الشاشة',
-    script:'«دلوقتي بالأسهم روح فوق على الشمال، هتلاقي أيقونة الحساب — شكل شخص — دوس عليها OK.»' },
+  { num:'٠٢', text:'لاختيار أي حاجة: حرّك المؤشّر على المكان اللي عايزه واضغط زر العجلة (OK).',
+    kind:'select', headline:'التحديد بالمؤشّر وزر العجلة (OK)',
+    script:'«حرّك المؤشّر لحد ما يقف على الحاجة اللي عايزها، وبعدين اضغط زر العجلة — الـ OK. وملحوظة: لو المؤشّر اختفى من الشاشة، هزّ الريموت يمين وشمال وهيرجع تاني.»' },
 
-  { num:'٠٣', text:'تقدر تسجّل الدخول بتطبيق ThinQ أو من متصفح الموبايل أو من الشاشة — في المثال ده نختار «تسجيل الدخول من الشاشة».',
-    kind:'signopts', headline:'اختر طريقة تسجيل الدخول', cta:'تسجيل الدخول من الشاشة',
-    script:'«قدامنا تلات طرق لتسجيل الدخول: بتطبيق LG ThinQ، أو من متصفح الموبايل، أو من الشاشة نفسها. هنختار تسجيل الدخول من الشاشة.»' },
+  { num:'٠٣', text:'تقدر كمان تستخدم العجلة الاتجاهية بدل المؤشّر — اضغط على العجلة في الاتجاه اللي عايزه للتنقّل في الشاشة.',
+    kind:'select', headline:'التنقّل بالعجلة الاتجاهية',
+    script:'«مش لازم المؤشّر — تقدر تستخدم العجلة نفسها كأسهم، اضغط عليها في الاتجاه اللي عايز تتحرّك ناحيته وهتتنقّل بين عناصر الشاشة.»' },
 
-  { num:'٠٤', text:'اختر «تسجيل الدخول بحساب إل جي» — ولو مفيش حساب اختر «إنشاء حساب إل جي».',
-    kind:'signdev', headline:'تسجيل الدخول من الشاشة', cta:'تسجيل الدخول بحساب إل جي',
-    script:'«نختار تسجيل الدخول بحساب إل جي. ولو حضرتك ماعندكش حساب، نختار إنشاء حساب إل جي ونعمل حساب جديد.»' },
+  { num:'٠٤', text:'عشان تعرف أكتر عن استخدام الريموت السحري، افتح الإعدادات (⚙) من الريموت.',
+    kind:'quick', headline:'افتح الإعدادات',
+    script:'«عشان نتعلّم أكتر عن الريموت السحري، اضغط زر الإعدادات — الترس — في الريموت وهتفتح لوحة الإعدادات السريعة.»' },
 
-  { num:'٠٥', text:'أدخل بيانات حساب إل جي (الإيميل وكلمة السر) ثم اختر «تسجيل الدخول».',
-    kind:'signcreds', headline:'بيانات حساب إل جي', cta:'تسجيل الدخول',
-    script:'«ندخل الإيميل وكلمة السر بتاعة حساب إل جي وندوس تسجيل الدخول. ولو حابب تضيف حساب تاني، نعيد نفس الخطوات دي من الأول.»' },
+  { num:'٠٥', text:'اختر «عام» (General) من قائمة الإعدادات.',
+    kind:'general', headline:'اختر عام — General',
+    script:'«من قائمة الإعدادات اختار «عام»، هتلاقي جواها إمكانية الوصول وخدمات الذكاء الاصطناعي والشبكة وغيرها.»' },
 
-  { num:'٠٦', text:'الحساب الجديد هيتضاف للشاشة وهترجع للصفحة الرئيسية — وتقدر تستخدمه لتصفّح التطبيقات والبحث وضبط الإعدادات.',
-    kind:'profiles', headline:'الحساب اتضاف — LG Account',
-    script:'«تمام، الحساب الشخصي اتضاف للشاشة. دلوقتي هترجع للصفحة الرئيسية وتقدر تستخدم الحساب في التطبيقات والبحث وضبط الإعدادات. ولو حابب تضيف حساب تاني اختار «إضافة حساب» وكرّر نفس الخطوات.»' },
+  { num:'٠٦', text:'اختر «إمكانية الوصول» (Accessibility).',
+    kind:'access', headline:'اختر إمكانية الوصول',
+    script:'«اختار «إمكانية الوصول» — جواها اختيارات كتير زي الإرشاد الصوتي وتعلّم الريموت والتباين العالي وغيرها.»' },
 
-  { num:'٠٧', text:'لتغيير الحساب: روح على أيقونة الحساب في أعلى يسار الصفحة الرئيسية واختار الحساب اللي عايز تدخل بيه — وكده خلصنا.',
-    kind:'homeprofile', headline:'تغيير الحساب من أيقونة البروفايل',
-    script:'«لو حابب تغيّر الحساب في أي وقت، ارجع للصفحة الرئيسية واختار أيقونة الحساب في أعلى الشمال، وبعدها اختار الحساب اللي عايز تدخل بيه. وكده خلصنا إضافة الحساب الشخصي.»' },
+  { num:'٠٧', text:'اختر «تعلّم التحكم بالريموت» (Learn Remote Control).',
+    kind:'learn', headline:'تعلّم التحكم بالريموت',
+    script:'«اختار «تعلّم التحكم بالريموت» — من هنا تقدر تعرف وظيفة أي زرار في الريموت بمجرد ما تضغط عليه.»' },
 
-  { num:'٠٨', text:'من قائمة الحسابات اختر الحساب اللي عايز تدخل بيه — وكده خلصنا إضافة الحساب الشخصي.',
-    kind:'switch', headline:'اختر الحساب من القائمة',
-    script:'«هتظهر قائمة الحسابات على الشمال — اختار الحساب اللي عايز تدخل بيه ودوس OK. ولو حابب تضيف حساب جديد اختار «إضافة حساب». وكده خلصنا.»' },
+  { num:'٠٨', text:'اضغط أي زرار في الريموت واتبع التعليمات على الشاشة لتتعرّف على وظيفته.',
+    kind:'learn', headline:'اضغط الزر لتتعرّف على وظيفته',
+    script:'«دلوقتي اضغط أي زرار في الريموت، والشاشة هتقولك الزرار ده بيعمل إيه وإزاي تستخدمه.»' },
 
-  { num:'٠٩', text:'تمام — الحساب الشخصي اتضاف للشاشة وتقدر تستخدمه دلوقتي.',
-    kind:'done', headline:'تمّت إضافة الحساب الشخصي',
-    script:'«مبروك — الحساب الشخصي اتضاف على الشاشة. تقدر دلوقتي تستخدمه في التطبيقات والبحث وضبط الإعدادات، وتقدر تبدّل بين الحسابات في أي وقت من أيقونة الحساب.»' }
+  { num:'٠٩', text:'هتظهر شاشة «تعلّم التحكم بالريموت» — اضغط أي زرار وهيوضّحلك وظيفته. للخروج اضغط زر الرجوع مرتين.',
+    kind:'learnscreen', headline:'شاشة تعلّم التحكم بالريموت',
+    script:'«الشاشة دي بتشرح كل زرار لما تضغطه. وللخروج من الخاصية اضغط زر الرجوع مرتين. وملحوظة: الشاشة بتتقفل لو ضغطت زر الباور، إلا لو خاصية Always Ready مفعّلة.»' },
+
+  { num:'١٠', text:'خلاص كده تعرّفت على الريموت السحري وطريقة استخدامه.',
+    kind:'learnscreen', done:true, headline:'تمّ — Done',
+    script:'«مبروك — كده حضرتك عارف تستخدم الريموت السحري: المؤشّر، والعجلة، وتعرف وظيفة أي زرار من قائمة تعلّم التحكم بالريموت.»' }
+];
+
+const MODES = ['AI Sound Pro','قياسي','سينما','Clear Voice Pro','رياضة','موسيقى','Game Optimizer'];
+const MODE_FX = {};
+const EQ = {
+  'AI Sound Pro': [6,11,8,12,7],
+  'قياسي': [6,8,7,8,6],
+  'سينما': [10,7,6,9,11],
+  'Clear Voice Pro': [4,9,12,9,4],
+  'رياضة': [8,10,9,7,10],
+  'موسيقى': [11,8,10,7,12],
+  'Game Optimizer': [9,6,11,8,9]
+};
+
+const QUICK = [
+  { label:'وضع الصورة', value:'قياسي' },
+  { label:'سطوع بيكسل OLED', value:'توفير الطاقة' },
+  { label:'وضع الصوت', value:'قياسي' },
+  { label:'مخرج الصوت', value:'سماعة الشاشة' },
+  { label:'مؤقت النوم', value:'إيقاف' },
+  { label:'وضع العناية بالعين', value:'إيقاف' },
+  { label:'إطفاء الشاشة', value:'' },
+  { label:'الخصوصية والشروط', value:'' },
+  { label:'العرض المتعدد', value:'' },
+  { label:'استكشاف الموسيقى', value:'' }
 ];
 
 const TILES = ['APPS', 'LG Ch', 'NETFLIX', 'prime', 'Disney+', 'hulu', 'sling', 'tv', 'YouTube', 'max', 'tubi', 'shop'];
 
 class Component extends DCLogic {
-  state = { i: 0, sel: {}, opt: 0 };
+  state = { i: 0, sel: {}, opt: 0, mode: 'AI Sound Pro' };
 
   cur() { return STEPS[this.state.i]; }
 
   setStep(i) {
     const n = Math.max(0, Math.min(STEPS.length - 1, i));
-    this.setState({ i: n, opt: STEPS[n].defIdx || 0 });
+    const st = STEPS[n];
+    this.setState(s => ({ i: n, opt: st.defIdx || 0, mode: st.defMode || s.mode }));
   }
 
   renderVals() {
@@ -769,6 +909,34 @@ class Component extends DCLogic {
       isProgress: st.kind === 'progress',
       isHome: st.kind === 'home',
       isHomeSet: st.kind === 'homeset',
+      isQuick: st.kind === 'quick',
+      isPointer: st.kind === 'pointer',
+      isSelect: st.kind === 'select',
+      isGeneral: st.kind === 'general',
+      isAccess: st.kind === 'access',
+      isLearn: st.kind === 'learn',
+      isLearnScreen: st.kind === 'learnscreen',
+      isSndMenu: st.kind === 'sndmenu',
+      isSndSel: st.kind === 'sndsel',
+      isPicMenu: st.kind === 'picmenu',
+      isSelMode: st.kind === 'selmode',
+      isModeList: st.kind === 'modelist',
+      isLive: st.kind === 'live',
+      showDone: !!st.done,
+      liveImgStyle: 'display:block;width:100%;height:100%;object-fit:cover;transition:filter .3s ease;filter:' + (MODE_FX[this.state.mode] || 'none') + ';',
+      liveNote: this.state.mode ? ('وضع الصوت: ' + this.state.mode) : 'اختر وضعًا',
+      eqBars: (EQ[this.state.mode] || [5,8,6,9,4]).map(h => 'display:block;width:3px;border-radius:1px;background:#2ec46b;height:' + h + 'px;'),
+      modes: MODES.map(m => {
+        const on = this.state.mode === m;
+        return {
+          label: m,
+          style: 'display:flex;align-items:center;gap:8px;width:100%;padding:6px 9px;border:none;border-radius:4px;cursor:pointer;text-align:right;' +
+            "font-family:'Cairo',sans-serif;font-size:11px;color:" + (on ? '#fff' : '#cfd4d8') + ';background:' + (on ? '#3a4046' : 'transparent') + ';',
+          dotStyle: 'width:11px;height:11px;border-radius:50%;flex:none;border:1.5px solid ' + (on ? '#2ec46b' : '#8a8f94') + ';background:' + (on ? '#2ec46b' : 'transparent') + ';',
+          pick: () => this.setState({ mode: m })
+        };
+      }),
+      quickTiles: QUICK,
       isHomeProfile: st.kind === 'homeprofile',
       isSignOpts: st.kind === 'signopts',
       isSignDev: st.kind === 'signdev',
