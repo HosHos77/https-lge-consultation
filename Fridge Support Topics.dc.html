@@ -1,26 +1,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-<script>
-(function(){
-  var KEY = 'csGuideAuth_v1';
-  var USER = 'agent';
-  var PASS = 'LGE@2026';
-  function authed(){ try { return localStorage.getItem(KEY) === '1'; } catch(e){ return false; } }
-  if (authed()) return;
-  var u = window.prompt('اسم المستخدم / Username:');
-  var p = window.prompt('كلمة المرور / Password:');
-  if (u === USER && p === PASS) {
-    try { localStorage.setItem(KEY, '1'); } catch(e){}
-  } else {
-    window.stop();
-    document.open();
-    document.write('<div style="font-family:Tahoma,Arial,sans-serif;text-align:center;margin-top:80px;font-size:22px;color:#c00;">تم رفض الدخول<br>Access Denied</div>');
-    document.close();
-  }
-})();
-</script>
-
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="./support.js"></script>
@@ -28,6 +8,7 @@
 <body>
 <x-dc>
 <helmet>
+<script src="shadow-nav.js"></script>
 <title>الدعم الفني — الثلاجات</title>
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&family=IBM+Plex+Sans+Arabic:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -45,9 +26,7 @@
     <div style="width:9px;height:34px;background:#A50034;border-radius:2px;flex:none;"></div>
     <div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:19px;">الدعم الفني — الثلاجات</div>
     <div style="margin-right:auto;display:flex;gap:10px;">
-      <a href="Installation Guide Home.dc.html" style="padding:8px 16px;border-radius:8px;border:1px solid #3a4043;color:#f0a8bd;font-size:13px;text-decoration:none;white-space:nowrap;flex:none;" style-hover="background:#22282a;">الرئيسية</a>
       <a href="Service Fees Table.dc.html" style="padding:8px 16px;border-radius:8px;border:1px solid #3a4043;color:#f0a8bd;font-size:13px;text-decoration:none;white-space:nowrap;flex:none;" style-hover="background:#22282a;">جدول تكاليف الصيانة</a>
-      <button type="button" onClick="{{ pageBack }}" style="padding:8px 16px;border-radius:8px;border:1px solid #3a4043;color:#e4e7e9;font-size:13px;background:transparent;cursor:pointer;font-family:'IBM Plex Sans Arabic',sans-serif;white-space:nowrap;flex:none;" style-hover="background:#22282a;">رجوع</button>
     </div>
   </div>
 

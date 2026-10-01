@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<title>تنظيف رشاش المية — غسالة الأطباق</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&family=IBM+Plex+Sans+Arabic:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  body { margin:0; background:#f4f3ef; }
+  a { color:#A50034; }
+  a:hover { color:#7d0027; }
+</style>
+<script src="shadow-nav.js"></script>
+</helmet>
+<div dir="rtl" style="min-height:100vh;background:#f4f3ef;color:#191a1c;font-family:'IBM Plex Sans Arabic',system-ui,sans-serif;padding-bottom:70px;">
+  <div style="background:#111314;color:#f4f3ef;padding:16px 28px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
+    <div style="width:9px;height:32px;background:#A50034;border-radius:2px;flex:none;"></div>
+    <div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:18px;">تنظيف رشاش المية — <bdi dir="ltr">How To Clean the Spray</bdi></div>
+  </div>
+
+  <div style="max-width:1080px;margin:0 auto;padding:28px 28px 40px;display:grid;gap:18px;">
+    <div style="background:#fff;border:1px solid #e3e0d8;border-radius:14px;padding:24px 26px;border-top:4px solid #A50034;display:grid;gap:14px;">
+      <div style="padding:14px 18px;border-radius:12px;background:#fdecee;border:2px solid #c8102e;display:flex;gap:12px;align-items:flex-start;">
+        <div style="flex:none;width:28px;height:28px;border-radius:50%;background:#c8102e;color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Cairo',sans-serif;font-weight:900;">!</div>
+        <div style="font-size:15px;line-height:1.9;color:#8a0c20;font-weight:600;"><strong>راجع الموديل الأول:</strong> عدد الرشاشات وطريقة فكّها بتختلف من موديل للتاني — اتأكد من موديل العميل ودليل الاستخدام قبل ما تشرح الخطوات.</div>
+      </div>
+      <div style="background:#1c1a1b;color:#f6f1f2;border-radius:12px;padding:18px 22px;">
+        <div style="font-size:12.5px;color:#f0a8bd;margin-bottom:8px;font-weight:600;">اقرأ للعميل</div>
+        <div style="font-family:'Cairo',sans-serif;font-size:17px;line-height:2;">«رشاش المية هو المسؤول عن التنضيف — ولو فتحاته اتسدّت ببواقي الأكل، الأطباق مش هتنضف كويس وممكن كمان تطلع ريحة وحشة في الغسالة. عشان كده الأفضل تنضّف الرشاش بشكل دوري، وتعمل دورة تنظيف.»</div>
+      </div>
+      <a href="Dishwasher Tub Clean Guide.dc.html" style="justify-self:start;padding:10px 16px;border-radius:10px;background:#eaf3fa;border:1px solid #b9d4e8;color:#123f5e;font-family:'Cairo',sans-serif;font-weight:700;font-size:14.5px;text-decoration:none;" style-hover="border-color:#1f5f8b;">خطوات دورة تنظيف الحوض ←</a>
+    </div>
+
+    <div style="background:#fff;border:1px solid #e3e0d8;border-radius:14px;padding:24px 26px;display:grid;gap:14px;">
+      <div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:19px;">خطوات تنظيف الرشاش</div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px;">
+        <sc-for list="{{ steps }}" as="s" hint-placeholder-count="7">
+          <div style="border:1px solid #e3e0d8;border-radius:12px;overflow:hidden;background:#faf9f6;display:flex;flex-direction:column;">
+            <img src="{{ s.img }}" alt="{{ s.t }}" style="display:block;width:100%;height:190px;object-fit:cover;">
+            <div style="display:flex;gap:10px;align-items:flex-start;padding:12px 14px;">
+              <div style="width:28px;height:28px;border-radius:50%;background:#A50034;color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Cairo',sans-serif;font-weight:900;font-size:14px;flex:none;">{{ s.n }}</div>
+              <div style="font-size:15px;line-height:1.8;">{{ s.t }}</div>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+
+    <div style="padding-top:20px;border-top:1px solid #e3e0d8;display:flex;align-items:center;justify-content:center;gap:10px;">
+      <div style="width:6px;height:16px;border-radius:2px;background:#A50034;"></div>
+      <div style="font-size:13px;color:#A50034;font-weight:600;">Created by ICC QA &amp; Training Team</div>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const STEPS = [
+  [1,'اسحب الرف السفلي لبرّه عشان توصل للرشاش السفلي.'],
+  [2,'بص على فتحات الرشاش واتأكد إنها مش مسدودة ببواقي أكل.'],
+  [3,'فك الرشاش السفلي — ارفعه لفوق من المحور.'],
+  [4,'اغسل الرشاش تحت مية الحنفية، ونضّف الفتحات كويس.'],
+  [5,'رجّع الرشاش مكانه على المحور، واتأكد إنه بيلف بحرية.'],
+  [6,'اسحب الرف العلوي لبرّه عشان توصل للرشاش الأوسط تحته.'],
+  [7,'فك الرشاش الأوسط من تحت الرف، ونضّفه بنفس الطريقة، ورجّعه مكانه.']
+];
+const AR = ['٠','١','٢','٣','٤','٥','٦','٧'];
+const IMG = { 1:6, 2:2, 3:3, 4:4, 5:5, 6:6, 7:7 };
+class Component extends DCLogic {
+  renderVals() {
+    return { steps: STEPS.map(([k, t], i) => ({ n: AR[i + 1], t, img: `assets/dw-spray-${[1,2,3,4,5,6,7][i]}.png` })) };
+  }
+}
+</script>
+</body>
+</html>

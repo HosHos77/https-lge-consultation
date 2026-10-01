@@ -1,26 +1,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-<script>
-(function(){
-  var KEY = 'csGuideAuth_v1';
-  var USER = 'agent';
-  var PASS = 'LGE@2026';
-  function authed(){ try { return localStorage.getItem(KEY) === '1'; } catch(e){ return false; } }
-  if (authed()) return;
-  var u = window.prompt('اسم المستخدم / Username:');
-  var p = window.prompt('كلمة المرور / Password:');
-  if (u === USER && p === PASS) {
-    try { localStorage.setItem(KEY, '1'); } catch(e){}
-  } else {
-    window.stop();
-    document.open();
-    document.write('<div style="font-family:Tahoma,Arial,sans-serif;text-align:center;margin-top:80px;font-size:22px;color:#c00;">تم رفض الدخول<br>Access Denied</div>');
-    document.close();
-  }
-})();
-</script>
-
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="./support.js"></script>
@@ -28,6 +8,7 @@
 <body>
 <x-dc>
 <helmet>
+<script src="shadow-nav.js"></script>
 <title>محاكي أوضاع الصورة — Use Picture modes</title>
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&family=IBM+Plex+Sans+Arabic:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -414,7 +395,7 @@
                 </sc-for>
               </div>
               <div style="flex:1;display:flex;align-items:center;justify-content:center;">
-                <img src="./img/tv/tv-setup-globe.png" alt="" style="width:170px;height:170px;object-fit:contain;" />
+                <img src="assets/tv-setup-globe.png" alt="" style="width:170px;height:170px;object-fit:contain;" />
               </div>
             </div>
             <div style="display:flex;justify-content:center;">
@@ -453,7 +434,7 @@
 
         <sc-if value="{{ isDone }}" hint-placeholder-val="{{ false }}">
           <div style="position:absolute;inset:0;background:#000;animation:fadeIn .3s ease;">
-            <img src="./img/tv/tv-home-profiles.png" alt="الصفحة الرئيسية للشاشة" style="display:block;width:100%;height:100%;object-fit:cover;" />
+            <img src="assets/tv-home-profiles.png" alt="الصفحة الرئيسية للشاشة" style="display:block;width:100%;height:100%;object-fit:cover;" />
             <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;">
               <div style="width:92px;height:92px;border-radius:50%;background:#e8232a;display:flex;align-items:center;justify-content:center;color:#fff;font-size:46px;line-height:1;">✓</div>
             </div>
@@ -462,7 +443,7 @@
 
         <sc-if value="{{ isSwitch }}" hint-placeholder-val="{{ false }}">
           <div style="position:absolute;inset:0;background:#000;animation:fadeIn .3s ease;">
-            <img src="./img/tv/tv-home-profiles.png" alt="الصفحة الرئيسية للشاشة" style="display:block;width:100%;height:100%;object-fit:cover;filter:brightness(.75);" />
+            <img src="assets/tv-home-profiles.png" alt="الصفحة الرئيسية للشاشة" style="display:block;width:100%;height:100%;object-fit:cover;filter:brightness(.75);" />
             <div style="position:absolute;top:4%;left:2%;width:38%;border-radius:8px;background:rgba(24,26,28,.94);padding:12px 14px;box-sizing:border-box;direction:rtl;text-align:right;">
               <div style="display:flex;align-items:center;">
                 <div style="font-family:'Cairo',sans-serif;font-weight:600;font-size:13px;color:#f2f2f2;">حساب إل جي</div>
@@ -566,14 +547,14 @@
 
         <sc-if value="{{ isHomeProfile }}" hint-placeholder-val="{{ false }}">
           <div style="position:absolute;inset:0;background:#000;animation:fadeIn .3s ease;">
-            <img src="./img/tv/tv-home-profiles.png" alt="الصفحة الرئيسية للشاشة" style="display:block;width:100%;height:100%;object-fit:cover;" />
+            <img src="assets/tv-home-profiles.png" alt="الصفحة الرئيسية للشاشة" style="display:block;width:100%;height:100%;object-fit:cover;" />
             <div style="position:absolute;top:1.5%;left:1%;width:29px;height:29px;border-radius:50%;border:2px solid #e8005a;box-shadow:0 0 14px rgba(232,0,90,.85);"></div>
           </div>
         </sc-if>
 
         <sc-if value="{{ isLive }}" hint-placeholder-val="{{ false }}">
           <div style="position:absolute;inset:0;background:#000;overflow:hidden;animation:fadeIn .3s ease;">
-            <img src="./img/tv/tv-home-profiles.png" alt="معاينة وضع الصورة" style="{{ liveImgStyle }}" />
+            <img src="assets/tv-home-profiles.png" alt="معاينة وضع الصورة" style="{{ liveImgStyle }}" />
             <div style="position:absolute;top:0;bottom:0;left:0;width:36%;background:rgba(22,24,26,.92);padding:10px 12px;box-sizing:border-box;direction:rtl;text-align:right;display:flex;flex-direction:column;gap:5px;">
               <div style="display:flex;align-items:center;gap:8px;color:#e2e2e2;font-family:'Cairo',sans-serif;font-size:12px;padding-bottom:6px;">
                 <div>↩</div><div>تحديد الوضع</div>
@@ -586,35 +567,40 @@
               </sc-for>
             </div>
             <div style="position:absolute;bottom:8px;right:12px;padding:5px 12px;border-radius:4px;background:rgba(0,0,0,.6);color:#fff;font-family:'Cairo',sans-serif;font-size:11px;">{{ liveNote }}</div>
+            <sc-if value="{{ showDone }}" hint-placeholder-val="{{ false }}">
+              <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;">
+                <div style="width:86px;height:86px;border-radius:50%;background:#e8232a;display:flex;align-items:center;justify-content:center;color:#fff;font-size:42px;line-height:1;">✓</div>
+              </div>
+            </sc-if>
           </div>
         </sc-if>
 
         <sc-if value="{{ isModeList }}" hint-placeholder-val="{{ false }}">
           <div style="position:absolute;inset:0;background:#000;animation:fadeIn .3s ease;">
-            <img src="./img/tv/tv-mode-list.png" alt="قائمة أوضاع الصورة" style="display:block;width:100%;height:100%;object-fit:cover;" />
+            <img src="assets/tv-mode-list.png" alt="قائمة أوضاع الصورة" style="display:block;width:100%;height:100%;object-fit:cover;" />
           </div>
         </sc-if>
 
         <sc-if value="{{ isSelMode }}" hint-placeholder-val="{{ false }}">
           <div style="position:absolute;inset:0;background:#000;animation:fadeIn .3s ease;">
-            <img src="./img/tv/tv-select-mode.png" alt="اختيار وضع الصورة" style="display:block;width:100%;height:100%;object-fit:cover;" />
+            <img src="assets/tv-select-mode.png" alt="اختيار وضع الصورة" style="display:block;width:100%;height:100%;object-fit:cover;" />
           </div>
         </sc-if>
 
         <sc-if value="{{ isPicMenu }}" hint-placeholder-val="{{ false }}">
           <div style="position:absolute;inset:0;background:#000;animation:fadeIn .3s ease;">
-            <img src="./img/tv/tv-picture-menu.png" alt="قائمة إعدادات الصورة" style="display:block;width:100%;height:100%;object-fit:cover;" />
+            <img src="assets/tv-picture-menu.png" alt="قائمة إعدادات الصورة" style="display:block;width:100%;height:100%;object-fit:cover;" />
           </div>
         </sc-if>
 
         <sc-if value="{{ isQuick }}" hint-placeholder-val="{{ false }}">
           <div style="position:absolute;inset:0;background:#000;animation:fadeIn .3s ease;">
-            <img src="./img/tv/tv-quick-settings.png" alt="لوحة الإعدادات السريعة" style="display:block;width:100%;height:100%;object-fit:cover;" />
+            <img src="assets/tv-quick-settings.png" alt="لوحة الإعدادات السريعة" style="display:block;width:100%;height:100%;object-fit:cover;" />
           </div>
         </sc-if>
         <sc-if value="{{ isHomeSet }}" hint-placeholder-val="{{ false }}">
           <div style="position:absolute;inset:0;background:#000;animation:fadeIn .3s ease;">
-            <img src="./img/tv/tv-home-profiles.png" alt="الصفحة الرئيسية للشاشة" style="display:block;width:100%;height:100%;object-fit:cover;" />
+            <img src="assets/tv-home-profiles.png" alt="الصفحة الرئيسية للشاشة" style="display:block;width:100%;height:100%;object-fit:cover;" />
           </div>
         </sc-if>        <sc-if value="{{ isHome }}" hint-placeholder-val="{{ false }}">
           <div style="position:absolute;inset:0;background:#0b0c0e;display:flex;direction:ltr;animation:fadeIn .3s ease;">
@@ -664,7 +650,7 @@
     </div>
 
     <div style="width:120px;flex:none;display:flex;flex-direction:column;align-items:center;gap:12px;">
-      <img src="./img/tv/sim-remote.png" alt="الريموت السحري" style="display:block;width:100px;height:auto;border-radius:14px;">
+      <img src="assets/sim-remote.png" alt="الريموت السحري" style="display:block;width:100px;height:auto;border-radius:14px;">
       <button onClick="{{ up }}" style="width:72px;height:30px;border-radius:8px;border:1px solid #4a4a4a;background:#242424;color:#e7edf0;font-size:12px;cursor:pointer;" style-hover="background:#303030;">▲</button>
       <button onClick="{{ ok }}" style="{{ wheelStyle }}">OK</button>
       <button onClick="{{ down }}" style="width:72px;height:30px;border-radius:8px;border:1px solid #4a4a4a;background:#242424;color:#e7edf0;font-size:12px;cursor:pointer;" style-hover="background:#303030;">▼</button>
@@ -718,7 +704,27 @@ const STEPS = [
 
   { num:'٠٧', text:'«توفير الطاقة» بيقلّل استهلاك الكهربا عن طريق تخفيف سطوع الشاشة — ومتاح مع الإشارات العادية فقط.',
     kind:'live', defMode:'توفير الطاقة', headline:'توفير الطاقة — Auto Power Save',
-    script:'«الوضع ده بيقلّل سطوع الشاشة فيوفّر في استهلاك الكهربا. ملحوظة مهمة: هو متاح مع الإشارات العادية بس.»' }
+    script:'«الوضع ده بيقلّل سطوع الشاشة فيوفّر في استهلاك الكهربا. ملحوظة مهمة: هو متاح مع الإشارات العادية بس.»' },
+
+  { num:'٠٨', text:'«سينما» مناسب لمشاهدة الأفلام — خصوصًا مع إشارة فيديو HDR.',
+    kind:'live', defMode:'سينما', headline:'سينما — Cinema',
+    script:'«وضع السينما مناسب للأفلام، وبيدي أفضل نتيجة مع إشارة الفيديو HDR — الألوان بتبقى أهدى وأقرب للطبيعية زي ما المخرج عايزها.»' },
+
+  { num:'٠٩', text:'«رياضة» بيحسّن وضوح الحركات السريعة زي رمي الكرة أثناء مشاهدة الماتشات.',
+    kind:'live', defMode:'رياضة', headline:'رياضة — Sports',
+    script:'«وضع الرياضة بيحدّد الحركات السريعة زي الكورة فتبان أوضح. ملحوظة: الوضع ده متاح مع الإشارات العادية بس، واسم الرياضة ممكن يختلف حسب المنطقة.»' },
+
+  { num:'١٠', text:'«FILMMAKER MODE» بيدي صورة بجودة سينمائية معتمدة من UHD Alliance.',
+    kind:'live', defMode:'FILMMAKER', headline:'FILMMAKER MODE',
+    script:'«الوضع ده بيعرض الصورة بجودة سينمائية زي ما المخرج ظبطها بالظبط، وهو معتمد من UHD Alliance — يعني من غير أي معالجة زيادة على الصورة.»' },
+
+  { num:'١١', text:'«الخبير» — نسخة للمكان المضيء نهارًا ونسخة للمكان المظلم ليلًا، مناسبة لمشاهدة الأفلام في إضاءة خافتة.',
+    kind:'live', defMode:'الخبير', headline:'الخبير — Expert',
+    script:'«فيه وضعين للخبير: واحد للمكان المضيء بالنهار، وواحد للمكان المظلم بالليل ومناسب لمشاهدة الأفلام في إضاءة خافتة — ووضع الليل بيستخدم درجة حرارة لون أقل من وضع النهار.»' },
+
+  { num:'١٢', text:'خلاص كده تقدر تستخدم أوضاع الصورة وتختار الأنسب لحضرتك.',
+    kind:'live', defMode:'قياسي', done:true, headline:'تمّ — Done',
+    script:'«مبروك — كده حضرتك عارف تستخدم أوضاع الصورة وتختار الوضع المناسب حسب المحتوى وإضاءة المكان.»' }
 ];
 
 const MODES = ['صورة مخصّصة','زاهي','قياسي','توفير الطاقة','سينما','رياضة','FILMMAKER','الخبير'];
@@ -852,6 +858,7 @@ class Component extends DCLogic {
       isSelMode: st.kind === 'selmode',
       isModeList: st.kind === 'modelist',
       isLive: st.kind === 'live',
+      showDone: !!st.done,
       liveImgStyle: 'display:block;width:100%;height:100%;object-fit:cover;transition:filter .3s ease;filter:' + (MODE_FX[this.state.mode] || 'none') + ';',
       liveNote: this.state.mode ? ('الوضع الحالي: ' + this.state.mode) : 'اختر وضعًا',
       modes: MODES.map(m => {

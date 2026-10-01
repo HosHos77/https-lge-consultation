@@ -1,26 +1,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-<script>
-(function(){
-  var KEY = 'csGuideAuth_v1';
-  var USER = 'agent';
-  var PASS = 'LGE@2026';
-  function authed(){ try { return localStorage.getItem(KEY) === '1'; } catch(e){ return false; } }
-  if (authed()) return;
-  var u = window.prompt('اسم المستخدم / Username:');
-  var p = window.prompt('كلمة المرور / Password:');
-  if (u === USER && p === PASS) {
-    try { localStorage.setItem(KEY, '1'); } catch(e){}
-  } else {
-    window.stop();
-    document.open();
-    document.write('<div style="font-family:Tahoma,Arial,sans-serif;text-align:center;margin-top:80px;font-size:22px;color:#c00;">تم رفض الدخول<br>Access Denied</div>');
-    document.close();
-  }
-})();
-</script>
-
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="./support.js"></script>
@@ -28,6 +8,7 @@
 <body>
 <x-dc>
 <helmet>
+<script src="shadow-nav.js"></script>
 <title>محاكي إعداد الحسابات الشخصية — Personal Profiles</title>
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&family=IBM+Plex+Sans+Arabic:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -414,7 +395,7 @@
                 </sc-for>
               </div>
               <div style="flex:1;display:flex;align-items:center;justify-content:center;">
-                <img src="./img/tv/tv-setup-globe.png" alt="" style="width:170px;height:170px;object-fit:contain;" />
+                <img src="assets/tv-setup-globe.png" alt="" style="width:170px;height:170px;object-fit:contain;" />
               </div>
             </div>
             <div style="display:flex;justify-content:center;">
@@ -453,7 +434,7 @@
 
         <sc-if value="{{ isDone }}" hint-placeholder-val="{{ false }}">
           <div style="position:absolute;inset:0;background:#000;animation:fadeIn .3s ease;">
-            <img src="./img/tv/tv-home-profiles.png" alt="الصفحة الرئيسية للشاشة" style="display:block;width:100%;height:100%;object-fit:cover;" />
+            <img src="assets/tv-home-profiles.png" alt="الصفحة الرئيسية للشاشة" style="display:block;width:100%;height:100%;object-fit:cover;" />
             <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;">
               <div style="width:92px;height:92px;border-radius:50%;background:#e8232a;display:flex;align-items:center;justify-content:center;color:#fff;font-size:46px;line-height:1;">✓</div>
             </div>
@@ -462,7 +443,7 @@
 
         <sc-if value="{{ isSwitch }}" hint-placeholder-val="{{ false }}">
           <div style="position:absolute;inset:0;background:#000;animation:fadeIn .3s ease;">
-            <img src="./img/tv/tv-home-profiles.png" alt="الصفحة الرئيسية للشاشة" style="display:block;width:100%;height:100%;object-fit:cover;filter:brightness(.75);" />
+            <img src="assets/tv-home-profiles.png" alt="الصفحة الرئيسية للشاشة" style="display:block;width:100%;height:100%;object-fit:cover;filter:brightness(.75);" />
             <div style="position:absolute;top:4%;left:2%;width:38%;border-radius:8px;background:rgba(24,26,28,.94);padding:12px 14px;box-sizing:border-box;direction:rtl;text-align:right;">
               <div style="display:flex;align-items:center;">
                 <div style="font-family:'Cairo',sans-serif;font-weight:600;font-size:13px;color:#f2f2f2;">حساب إل جي</div>
@@ -566,14 +547,14 @@
 
         <sc-if value="{{ isHomeProfile }}" hint-placeholder-val="{{ false }}">
           <div style="position:absolute;inset:0;background:#000;animation:fadeIn .3s ease;">
-            <img src="./img/tv/tv-home-profiles.png" alt="الصفحة الرئيسية للشاشة" style="display:block;width:100%;height:100%;object-fit:cover;" />
+            <img src="assets/tv-home-profiles.png" alt="الصفحة الرئيسية للشاشة" style="display:block;width:100%;height:100%;object-fit:cover;" />
             <div style="position:absolute;top:1.5%;left:1%;width:29px;height:29px;border-radius:50%;border:2px solid #e8005a;box-shadow:0 0 14px rgba(232,0,90,.85);"></div>
           </div>
         </sc-if>
 
         <sc-if value="{{ isHomeSet }}" hint-placeholder-val="{{ false }}">
           <div style="position:absolute;inset:0;background:#000;animation:fadeIn .3s ease;">
-            <img src="./img/tv/tv-home-profiles.png" alt="الصفحة الرئيسية للشاشة" style="display:block;width:100%;height:100%;object-fit:cover;" />
+            <img src="assets/tv-home-profiles.png" alt="الصفحة الرئيسية للشاشة" style="display:block;width:100%;height:100%;object-fit:cover;" />
           </div>
         </sc-if>        <sc-if value="{{ isHome }}" hint-placeholder-val="{{ false }}">
           <div style="position:absolute;inset:0;background:#0b0c0e;display:flex;direction:ltr;animation:fadeIn .3s ease;">
@@ -623,7 +604,7 @@
     </div>
 
     <div style="width:120px;flex:none;display:flex;flex-direction:column;align-items:center;gap:12px;">
-      <img src="./img/tv/sim-remote.png" alt="الريموت السحري" style="display:block;width:100px;height:auto;border-radius:14px;">
+      <img src="assets/sim-remote.png" alt="الريموت السحري" style="display:block;width:100px;height:auto;border-radius:14px;">
       <button onClick="{{ up }}" style="width:72px;height:30px;border-radius:8px;border:1px solid #4a4a4a;background:#242424;color:#e7edf0;font-size:12px;cursor:pointer;" style-hover="background:#303030;">▲</button>
       <button onClick="{{ ok }}" style="{{ wheelStyle }}">OK</button>
       <button onClick="{{ down }}" style="width:72px;height:30px;border-radius:8px;border:1px solid #4a4a4a;background:#242424;color:#e7edf0;font-size:12px;cursor:pointer;" style-hover="background:#303030;">▼</button>
