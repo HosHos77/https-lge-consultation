@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<title>غسالة الأطباق مش بتنضّف كويس</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&family=IBM+Plex+Sans+Arabic:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  body { margin:0; background:#f4f3ef; }
+  a { color:#A50034; }
+  a:hover { color:#7d0027; }
+</style>
+<script src="shadow-nav.js"></script>
+</helmet>
+<div dir="rtl" style="min-height:100vh;background:#f4f3ef;color:#191a1c;font-family:'IBM Plex Sans Arabic',system-ui,sans-serif;padding-bottom:70px;">
+  <div style="background:#111314;color:#f4f3ef;padding:16px 28px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
+    <div style="width:9px;height:32px;background:#A50034;border-radius:2px;flex:none;"></div>
+    <div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:18px;">غسالة الأطباق مش بتنضّف كويس — Not Cleaning Issue</div>
+  </div>
+
+  <div style="max-width:1080px;margin:0 auto;padding:28px 28px 40px;display:grid;gap:18px;">
+    <div style="background:#fff;border:1px solid #e3e0d8;border-radius:14px;padding:24px 26px;border-top:4px solid #A50034;display:grid;gap:14px;">
+      <div style="background:#1c1a1b;color:#f6f1f2;border-radius:12px;padding:18px 22px;">
+        <div style="font-size:12.5px;color:#f0a8bd;margin-bottom:8px;font-weight:600;">اقرأ للعميل</div>
+        <div style="font-family:'Cairo',sans-serif;font-size:17px;line-height:2;">«هنراجع مع بعض كام حاجة بسيطة خطوة بخطوة — أغلب مشاكل التنضيف بتتحل من غير فني.»</div>
+      </div>
+      <div style="padding:14px 18px;border-radius:12px;background:#fdecee;border:2px solid #c8102e;display:flex;gap:12px;align-items:flex-start;">
+        <div style="flex:none;width:28px;height:28px;border-radius:50%;background:#c8102e;color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Cairo',sans-serif;font-weight:900;">!</div>
+        <div style="font-size:15px;line-height:1.9;color:#8a0c20;font-weight:600;">لو ظهر على الشاشة كود <strong dir="ltr">nE</strong> في آخر الدورة — ده عطل في موتور الفايرو. <strong>سجّل بلاغ صيانة فورًا</strong> من غير ما تكمّل الخطوات.</div>
+      </div>
+      <div style="font-size:13.5px;color:#6b7075;">لكل الموديلات: Basic · Steam · UV · Steam + UV</div>
+    </div>
+
+    <div style="background:#fff;border:1px solid #e3e0d8;border-radius:14px;padding:24px 26px;display:grid;gap:12px;">
+      <sc-for list="{{ steps }}" as="s" hint-placeholder-count="9">
+        <div style="display:flex;gap:12px;align-items:flex-start;padding:14px 16px;border-radius:12px;background:#faf9f6;">
+          <div style="width:30px;height:30px;border-radius:50%;background:#A50034;color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Cairo',sans-serif;font-weight:900;flex:none;">{{ s.n }}</div>
+          <div style="min-width:0;flex:1;">
+            <div style="font-family:'Cairo',sans-serif;font-weight:700;font-size:17px;margin-bottom:4px;">{{ s.title }}</div>
+            <div style="font-size:15px;line-height:1.9;">{{ s.text }}</div>
+            <sc-if value="{{ s.hasImg }}" hint-placeholder-val="{{ false }}">
+              <img src="assets/dw-scrape.png" alt="شيل بواقي الأكل قبل ما تحط الأطباق" style="display:block;margin-top:10px;width:100%;max-width:240px;height:auto;border-radius:10px;border:1px solid #e3e0d8;">
+            </sc-if>
+            <sc-if value="{{ s.hasLink }}" hint-placeholder-val="{{ false }}">
+              <a href="{{ s.href }}" style="display:inline-flex;margin-top:10px;padding:10px 16px;border-radius:10px;background:#eaf3fa;border:1px solid #b9d4e8;color:#123f5e;font-family:'Cairo',sans-serif;font-weight:700;font-size:14.5px;text-decoration:none;" style-hover="border-color:#1f5f8b;">{{ s.linkLabel }}</a>
+            </sc-if>
+          </div>
+        </div>
+      </sc-for>
+      <div style="background:#1c1a1b;color:#f6f1f2;border-radius:12px;padding:16px 20px;">
+        <div style="font-size:12.5px;color:#f0a8bd;margin-bottom:6px;font-weight:600;">اقرأ للعميل</div>
+        <div style="font-family:'Cairo',sans-serif;font-size:16.5px;line-height:1.95;">«جرّب حضرتك الغسلة الجاية بعد ما نضّفنا الفلتر والرشاشات، ورتّبت الأطباق صح، واخترت البرنامج المناسب.»</div>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px;">
+        <a href="Washer Support Topics.dc.html" style="display:block;padding:16px 20px;border-radius:12px;border:1px solid #c6e0d1;background:#eef6f1;color:#0f5132;text-decoration:none;font-family:'Cairo',sans-serif;font-weight:700;font-size:16px;">✓ المشكلة اتحلت</a>
+        <a href="Washer No Spin Support Guide.dc.html#esc" style="display:block;padding:16px 20px;border-radius:12px;background:#A50034;color:#fff;text-decoration:none;font-family:'Cairo',sans-serif;font-weight:700;font-size:16px;">المشكلة مستمرة — تسجيل طلب صيانة</a>
+      </div>
+    </div>
+
+    <div style="padding-top:20px;border-top:1px solid #e3e0d8;display:flex;align-items:center;justify-content:center;gap:10px;">
+      <div style="width:6px;height:16px;border-radius:2px;background:#A50034;"></div>
+      <div style="font-size:13px;color:#A50034;font-weight:600;">Created by ICC QA &amp; Training Team</div>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const STEPS = [
+  ['نضّف فلتر الصرف كويس','اتأكد الأول إن فلتر الصرف اللي في قاع الغسالة متنضّف كويس — الفلتر المسدود بيرجّع البواقي على الأطباق.'],
+  ['نضّف رشاشات المية','اتأكد إن فتحات رشاشات المية مش مسدودة ببواقي أكل أو جير.', { link:'Dishwasher Spray Arm Cleaning Guide.dc.html', label:'خطوات تنظيف الرشاش ←' }],
+  ['ترتيب الأطباق','اتأكد إن الأطباق مترتبة صح ومش مقفلة على بعض أو على الرشاشات — وشيل بواقي الأكل الكبيرة قبل ما تحطها.', { img:true, link:'Dishwasher Loading Guide.dc.html', label:'طريقة ترتيب الأطباق ←' }],
+  ['الغسالة بتسحب المسحوق؟','اسأل العميل: الغسالة بتسحب المسحوق كل مرة ولا لأ؟ لو المسحوق بيفضل في الدرج بعد الدورة — ده سبب مباشر لضعف التنضيف.'],
+  ['البرنامج مناسب لنوع الأطباق؟','اتأكد إن البرنامج اللي العميل بيختاره مناسب لنوع الأطباق ودرجة اتساخها.'],
+  ['صلاحية المسحوق وجودته','اتأكد إن المسحوق مش منتهي الصلاحية، ومناسب لغسالات الأطباق، ونوعه كويس.'],
+  ['متستخدمش Half Load','اتأكد إن العميل مش مشغّل Half Load — لأنه لما بيتختار، الغسالة بتشغّل رشاش واحد بس من غير التاني.'],
+  ['خزان الملح مليان؟','اتأكد إن خزان الملح مليان — لو فاضي هيأثر على جودة التنضيف، لازم يتضاف ملح. لاحظ علامة الملح على الشاشة، وفي بعض الموديلات القديمة بتظهر كلمة Salt.', { link:'Dishwasher White Spots Support Guide.dc.html', label:'طريقة تعبئة الملح ←' }],
+  ['شغّل دورة تنظيف الحوض','لو العميل عمل كل الخطوات اللي فاتت — شغّل دورة تنظيف الحوض.', { link:'Dishwasher Tub Clean Guide.dc.html', label:'خطوات دورة تنظيف الحوض ←' }]
+];
+const AR = ['٠','١','٢','٣','٤','٥','٦','٧','٨','٩'];
+class Component extends DCLogic {
+  renderVals() {
+    return { steps: STEPS.map(([title, text, o = {}], i) => ({ n: AR[i + 1], title, text, hasImg: !!o.img, hasLink: !!o.link, href: o.link || '', linkLabel: o.label || '' })) };
+  }
+}
+</script>
+</body>
+</html>

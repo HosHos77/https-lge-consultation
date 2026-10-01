@@ -1,26 +1,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-<script>
-(function(){
-  var KEY = 'csGuideAuth_v1';
-  var USER = 'agent';
-  var PASS = 'LGE@2026';
-  function authed(){ try { return localStorage.getItem(KEY) === '1'; } catch(e){ return false; } }
-  if (authed()) return;
-  var u = window.prompt('اسم المستخدم / Username:');
-  var p = window.prompt('كلمة المرور / Password:');
-  if (u === USER && p === PASS) {
-    try { localStorage.setItem(KEY, '1'); } catch(e){}
-  } else {
-    window.stop();
-    document.open();
-    document.write('<div style="font-family:Tahoma,Arial,sans-serif;text-align:center;margin-top:80px;font-size:22px;color:#c00;">تم رفض الدخول<br>Access Denied</div>');
-    document.close();
-  }
-})();
-</script>
-
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="./support.js"></script>
@@ -28,6 +8,7 @@
 <body>
 <x-dc>
 <helmet>
+<script src="shadow-nav.js"></script>
 <title>دعم فني — أكواد أخطاء الثلاجة</title>
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&family=IBM+Plex+Sans+Arabic:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -44,10 +25,7 @@
     <div style="width:9px;height:32px;background:#A50034;border-radius:2px;flex:none;"></div>
     <div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:18px;">أكواد أخطاء الثلاجة</div>
     <div style="margin-right:auto;display:flex;flex-wrap:wrap;gap:10px;align-items:center;">
-      <button type="button" onClick="{{ pageBack }}" style="padding:8px 16px;border-radius:8px;border:1px solid #3a4043;color:#f0a8bd;font-size:13px;background:transparent;cursor:pointer;font-family:'IBM Plex Sans Arabic',sans-serif;white-space:nowrap;flex:none;" style-hover="background:#22282a;">رجوع للصفحة السابقة</button>
-      <a href="Installation Guide Home.dc.html" style="padding:8px 16px;border-radius:8px;border:1px solid #3a4043;color:#f0a8bd;font-size:13px;text-decoration:none;white-space:nowrap;flex:none;" style-hover="background:#22282a;">الرئيسية</a>
       <a href="Service Fees Table.dc.html#fridge" style="padding:8px 16px;border-radius:8px;border:1px solid #3a4043;color:#f0a8bd;font-size:13px;text-decoration:none;white-space:nowrap;flex:none;" style-hover="background:#22282a;">جدول تكاليف الصيانة</a>
-      <a href="Fridge Support Topics.dc.html" style="padding:8px 16px;border-radius:8px;border:1px solid #3a4043;color:#e4e7e9;font-size:13px;text-decoration:none;white-space:nowrap;flex:none;" style-hover="background:#22282a;">رجوع</a>
     </div>
   </div>
 
@@ -167,18 +145,6 @@
     </sc-if>
 
     <sc-if value="{{ hasSelection }}" hint-placeholder-val="{{ false }}">
-    <div style="background:#fff;border:1px solid #e3e0d8;border-radius:14px;padding:26px;">
-      <div style="font-family:'Cairo',sans-serif;font-weight:700;font-size:19px;margin-bottom:12px;">بيانات تسجيل طلب الصيانة</div>
-      <div style="display:grid;gap:10px;">
-        <div style="padding:15px 18px;border-radius:12px;background:#fbfaf7;border:1px solid #e9e6de;font-size:15px;line-height:1.85;">الاسم الثلاثي للعميل كما هو مسجل في فاتورة الشراء (لو مش متوفر يتم السؤال عن اسم صاحب الجهاز).</div>
-        <div style="padding:15px 18px;border-radius:12px;background:#fbfaf7;border:1px solid #e9e6de;font-size:15px;line-height:1.85;">رقم الهاتف الأساسي ورقم إضافي إن وجد.</div>
-        <div style="padding:15px 18px;border-radius:12px;background:#fbfaf7;border:1px solid #e9e6de;font-size:15px;line-height:1.85;">العنوان بالتفصيل (المحافظة، المنطقة، اسم الشارع، رقم العمارة، الدور، الشقة، علامة مميزة).</div>
-        <div style="padding:15px 18px;border-radius:12px;background:#fff5f7;border:1px solid #f0c2ce;font-size:15px;line-height:1.85;">يتم توضيح كود الخطأ ورقم الموديل في البلاغ. (لو رقم الموديل مش متوفر يتم تسجيل البلاغ بعد التأكد إن الجهاز إل جي ومشترى من داخل مصر)</div>
-      </div>
-    </div>
-    </sc-if>
-
-
     <div style="background:#fff;border:1px solid #f0c2ce;border-radius:14px;padding:28px;border-top:4px solid #A50034;">
       <div style="background:#1c1a1b;color:#f6f1f2;border-radius:12px;padding:20px 22px;margin-bottom:16px;">
         <div style="font-size:12.5px;color:#f0a8bd;margin-bottom:8px;font-weight:600;">اقرأ للعميل — الرسوم</div>
@@ -191,6 +157,21 @@
         <div style="margin-right:auto;color:#A50034;font-size:18px;">←</div>
       </a>
     </div>
+    </sc-if>
+
+    <sc-if value="{{ hasSelection }}" hint-placeholder-val="{{ false }}">
+    <div style="background:#fff;border:1px solid #e3e0d8;border-radius:14px;padding:26px;">
+      <div style="font-family:'Cairo',sans-serif;font-weight:700;font-size:19px;margin-bottom:12px;">بيانات تسجيل طلب الصيانة</div>
+      <div style="display:grid;gap:10px;">
+        <div style="padding:15px 18px;border-radius:12px;background:#fbfaf7;border:1px solid #e9e6de;font-size:15px;line-height:1.85;">الاسم الثلاثي للعميل كما هو مسجل في فاتورة الشراء (لو مش متوفر يتم السؤال عن اسم صاحب الجهاز).</div>
+        <div style="padding:15px 18px;border-radius:12px;background:#fbfaf7;border:1px solid #e9e6de;font-size:15px;line-height:1.85;">رقم الهاتف الأساسي ورقم إضافي إن وجد.</div>
+        <div style="padding:15px 18px;border-radius:12px;background:#fbfaf7;border:1px solid #e9e6de;font-size:15px;line-height:1.85;">العنوان بالتفصيل (المحافظة، المنطقة، اسم الشارع، رقم العمارة، الدور، الشقة، علامة مميزة).</div>
+        <div style="padding:15px 18px;border-radius:12px;background:#fff5f7;border:1px solid #f0c2ce;font-size:15px;line-height:1.85;">يتم توضيح كود الخطأ ورقم الموديل في البلاغ. (لو رقم الموديل مش متوفر يتم تسجيل البلاغ بعد التأكد إن الجهاز إل جي ومشترى من داخل مصر)</div>
+      </div>
+    </div>
+    </sc-if>
+
+
   </div>
 </div>
 </x-dc>

@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<title>دعم فني المجفف</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&family=IBM+Plex+Sans+Arabic:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  body { margin:0; background:#f4f3ef; }
+  a { color:#A50034; }
+  a:hover { color:#7d0027; }
+</style>
+<script src="shadow-nav.js"></script>
+</helmet>
+<div dir="rtl" style="min-height:100vh;background:#f4f3ef;color:#191a1c;font-family:'IBM Plex Sans Arabic',system-ui,sans-serif;padding-bottom:70px;">
+  <div style="background:#111314;color:#f4f3ef;padding:16px 28px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
+    <div style="width:9px;height:32px;background:#A50034;border-radius:2px;flex:none;"></div>
+    <div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:18px;">{{ t.title }}</div>
+    <sc-if value="{{ hasIcon }}" hint-placeholder-val="{{ false }}"><img src="{{ iconSrc }}" alt="" style="height:38px;width:auto;border-radius:6px;background:#fff;padding:3px;"></sc-if>
+  </div>
+
+  <div style="max-width:1080px;margin:0 auto;padding:28px 28px 40px;display:grid;gap:18px;">
+    <div style="background:#1c1a1b;color:#f6f1f2;border-radius:14px;padding:18px 22px;">
+      <div style="font-size:12.5px;color:#f0a8bd;margin-bottom:8px;font-weight:600;">اقرأ للعميل</div>
+      <div style="font-family:'Cairo',sans-serif;font-size:17px;line-height:2;">{{ t.script }}</div>
+    </div>
+
+    <sc-if value="{{ hasIcon }}" hint-placeholder-val="{{ false }}">
+      <div style="display:flex;align-items:center;gap:14px;flex-wrap:wrap;padding:14px 18px;border-radius:12px;background:#fff;border:1px solid #e3e0d8;">
+        <img src="{{ iconSrc }}" alt="" style="height:56px;width:auto;border:1px solid #e3e0d8;border-radius:8px;">
+        <div style="font-size:15px;line-height:1.8;">على الشاشة هيظهر كلمة <bdi dir="ltr"><strong>{{ iconWord }}</strong></bdi> — أو العلامة دي في الموديلات الجديدة.</div>
+      </div>
+    </sc-if>
+    <sc-if value="{{ hasNote }}" hint-placeholder-val="{{ false }}">
+      <div style="padding:14px 18px;border-radius:12px;background:#fdecee;border:2px solid #c8102e;display:flex;gap:12px;align-items:flex-start;">
+        <div style="flex:none;width:28px;height:28px;border-radius:50%;background:#c8102e;color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Cairo',sans-serif;font-weight:900;">!</div>
+        <div style="font-size:15px;line-height:1.9;color:#8a0c20;font-weight:600;">{{ t.note }}</div>
+      </div>
+    </sc-if>
+
+    <div style="background:#fff;border:1px solid #e3e0d8;border-radius:14px;padding:24px 26px;display:grid;gap:12px;">
+      <sc-for list="{{ steps }}" as="s" hint-placeholder-count="5">
+        <div style="{{ s.box }}">
+          <div style="{{ s.num }}">{{ s.n }}</div>
+          <div style="min-width:0;flex:1;">
+            <div style="font-family:'Cairo',sans-serif;font-weight:700;font-size:17px;margin-bottom:4px;">{{ s.title }}</div>
+            <div style="font-size:15px;line-height:1.9;white-space:pre-line;">{{ s.text }}</div>
+            <sc-if value="{{ s.hasImg }}" hint-placeholder-val="{{ false }}">
+              <img src="{{ s.img }}" alt="{{ s.title }}" style="{{ s.imgStyle }}">
+            </sc-if>
+            <sc-if value="{{ s.hasLink }}" hint-placeholder-val="{{ false }}">
+              <a href="{{ s.href }}" style="display:inline-flex;margin-top:10px;padding:10px 16px;border-radius:10px;background:#eaf3fa;border:1px solid #b9d4e8;color:#123f5e;font-family:'Cairo',sans-serif;font-weight:700;font-size:14.5px;text-decoration:none;" style-hover="border-color:#1f5f8b;">{{ s.linkLabel }}</a>
+            </sc-if>
+          </div>
+        </div>
+      </sc-for>
+
+      <sc-if value="{{ hasEnd }}" hint-placeholder-val="{{ true }}">
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px;margin-top:6px;">
+          <a href="Washer Support Topics.dc.html" style="display:block;padding:16px 20px;border-radius:12px;border:1px solid #c6e0d1;background:#eef6f1;color:#0f5132;text-decoration:none;font-family:'Cairo',sans-serif;font-weight:700;font-size:16px;">✓ المشكلة اتحلت</a>
+          <a href="Washer No Spin Support Guide.dc.html#esc" style="display:block;padding:16px 20px;border-radius:12px;background:#A50034;color:#fff;text-decoration:none;font-family:'Cairo',sans-serif;font-weight:700;font-size:16px;">المشكلة مستمرة — تسجيل طلب صيانة</a>
+        </div>
+      </sc-if>
+    </div>
+
+    <div style="padding-top:20px;border-top:1px solid #e3e0d8;display:flex;align-items:center;justify-content:center;gap:10px;">
+      <div style="width:6px;height:16px;border-radius:2px;background:#A50034;"></div>
+      <div style="font-size:13px;color:#A50034;font-weight:600;">Created by ICC QA &amp; Training Team</div>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const G = 'Dryer Support Guide.dc.html#';
+const T = {
+  weak: { title:'التجفيف ضعيف أو بياخد وقت طويل', end:true,
+    script:'«ممكن حضرتك تقولّي المجفف بيكمّل التجفيف لآخره، ولا بيظهر على الشاشة علامة أو كلمة معيّنة؟»',
+    steps:[
+      ['المجفف بيكمّل التجفيف ولا بيظهر عطل؟','بص على الشاشة — في الموديلات القديمة (RC9041C3Z) بتظهر كلمة: Clean Filter أو Empty Water أو Clean Condenser.\nوفي الموديلات الجديدة (RC9066C3F) بتظهر علامات بدل الكلام.','dry-old.png'],
+      ['','','dry-new.png',{ link:G+'filter', label:'Clean Filter — تنظيف فلتر الوبر ←' }],
+      ['','','',{ link:G+'water', label:'Empty Water — تفريغ خزان المية ←' }],
+      ['','','',{ link:G+'cond', label:'Clean Condenser — تنظيف الكوندنسر ←' }],
+      ['الهدوم معصورة كويس؟','الهدوم اللي مش معصورة كويس هتاخد وقت طويل جدًا في التجفيف، أو مش هتنشف كويس خالص.'],
+      ['نوع القماش واحد؟','لو العميل حط هدوم كثافتها مختلفة — المجفف ممكن يشتغل وقت طويل، ويقف عند رقم 11 فترة طويلة عشان يتأكد إن كل الهدوم وصلت لدرجة التجفيف المطلوبة.'],
+      ['كمية الهدوم مناسبة؟','لو الكمية كبيرة جدًا — التجفيف مش هيبقى كويس وهياخد وقت طويل.'],
+      ['درجة التجفيف صح؟','Cupboard Dry: تجفيف كامل — الهدوم بتطلع ناشفة خالص.\nIron Dry: الهدوم بتطلع مندّية شوية عشان تتكوي.\nLow Temp Dry: حرارة واطية للهدوم الناعمة جدًا — بياخد وقت أطول.'],
+      ['الكمية قليلة جدًا؟','الكمية القليلة جدًا بتاخد وقت طويل ومش بتنشف بالشكل المثالي — استخدم Time Dry، لأنه مخصوص للقطع القليلة.','dry-timetbl.png'],
+      ['المجفف مايل لورا؟','لو المجفف متركّب من فترة قريبة ومش بينشف كويس من الأول — اتأكد إنه مش مايل لورا. لو مايل، الهدوم بتبعد عن حساس الرطوبة وبتطلع مبلولة.','dry-tilt.png'],
+      ['نضّف فتحات الهوا ورا المجفف','اتأكد إن فتحات الهوا اللي ورا المجفف متنضّفة كويس بأي مكنسة كهربا.','dry-vents.png']
+    ] },
+  filter: { icon:'dry-ic2-filter.png', word:'Clean Filter', title:'Clean Filter — تنظيف فلتر الوبر', end:true,
+    script:'«العلامة دي معناها إن فلتر الوبر محتاج يتنضّف — الوبر بيوقّف المجفف. هننضّفه مع بعض بالمية أو بالمكنسة.»',
+    steps:[
+      ['افتح باب المجفف',''],['اسحب الفلتر لفوق وطلّعه',''],['نضّف الفلتر بالمكنسة، أو اغسله تحت الحنفية',''],['رجّع الفلتر مكانه','ادفعه لتحت لآخره عشان ميعطّلش قفل الباب.'],['اقفل الباب','','dry-filter.png']
+    ] },
+  water: { icon:'dry-ic2-water.png', word:'Empty Water', title:'Empty Water — تفريغ خزان المية', end:true,
+    note:'ده لو العميل مش موصل خرطوم صرف، ومعتمد على الخزان اللي في المجفف.',
+    script:'«العلامة دي معناها إن خزان المية اللي في المجفف اتملى — هنفضّيه مع بعض.»',
+    steps:[
+      ['اسحب خزان المية لبرّه',''],['فضّي الخزان في الحوض',''],['رجّع الخزان مكانه',''],['دوس Start/Pause','','dry-water.png']
+    ] },
+  cond: { icon:'dry-ic2-cond.png', word:'Clean Condenser', title:'Clean Condenser — تنظيف الكوندنسر', end:true,
+    script:'«العلامة دي معناها إن الكوندنسر محتاج يتنضّف — هنفتح الباب اللي تحت ونطلّعه ونغسله كويس بالمية.»',
+    steps:[
+      ['افتح غطا الكوندنسر','دوس على الغطا اللي تحت وافتحه.'],['افتح القفل','لف أذرع القفل عشان تفتح غطا العزل.'],['اسحب الكوندنسر','حط صباعك في المسكة اللي قدّام واسحبه بالراحة — متشدّوش بالعافية.'],['اغسل الكوندنسر كويس تحت الحنفية','سيب المية تعدّي جواه من قدّام ومن الجنب.'],['رجّع كل حاجة مكانها بالعكس','','dry-cond.png']
+    ],
+    warn:'لازم تقفل أذرع القفل بعد التنظيف. • تشغيل المجفف والكوندنسر مسدود بالوبر بيبوّظه وبيزوّد استهلاك الكهربا. • متستخدمش حاجة حادة في التنظيف — ممكن تبوّظه وتعمل تسريب. • متشغّلش المجفف من غير الكوندنسر أبدًا.' },
+  leak: { title:'تسريب مية من ورا المجفف', end:true,
+    script:'«حضرتك موصل المجفف بخرطوم على الحوض أو الصرف، ولا معتمد على الخزان اللي فيه؟»',
+    steps:[
+      ['لو موصل بالصرف','اتأكد إن الخرطوم اللي ورا المجفف متوصّل كويس بخرطوم الصرف.'],
+      ['لو مش موصل بالصرف','اتأكد إن الخرطوم اللي ورا المجفف متوصّل كويس بخرطوم الخزان.']
+    ] },
+  crease: { title:'الهدوم بتطلع مكرمشة بعد التجفيف', end:true,
+    script:'«هنراجع مع بعض كمية الهدوم ونوعها ودرجة التجفيف — وأهم حاجة إن الهدوم تطلع أول ما التجفيف يخلص.»',
+    steps:[
+      ['كمية الهدوم مش كبيرة',''],['افرز الهدوم',''],['درجة التجفيف مناسبة للهدوم','راجع التيكت اللي على الهدوم.','dry-care.png'],['طلّع الهدوم على طول بعد التجفيف','لو الهدوم فضلت جوه — هتتكرمش جامد وهتبقى صعبة في الكي.']
+    ] },
+  lint: { title:'وبر كتير على الهدوم', end:true,
+    script:'«ممكن حضرتك تتأكد من التيكت اللي على الهدوم — هي ينفع تدخل المجفف أصلًا؟»',
+    steps:[
+      ['نوع القماش ينفع يدخل المجفف؟','راجع التيكت اللي على الهدوم.','dry-lint.png'],
+      ['افرز الهدوم','الوبر الصناعي بيسيب أثر على أنواع الهدوم التانية، ووبر الصوف بيسيب أثر على الصوف نفسه.'],
+      ['فضّي الجيوب','اتأكد إن مفيش مناديل ورق جوه الجيوب — بتعمل وبر.'],
+      ['البرنامج مناسب لنوع الهدوم',''],
+      ['نضّف فلتر الوبر','',  '', { link:G+'filter', label:'خطوات تنظيف فلتر الوبر ←' }]
+    ] },
+  noise: { title:'أصوات من المجفف', end:true,
+    script:'«ممكن حضرتك توصفلي الصوت؟ هو زنّة أو صوت مية، ولا خبط، ولا صوت صفير زي حديد بيحتك في حديد؟»',
+    note:'لو في صوت صفير حاد أو صوت حديد بيحتك في حديد طول الدورة — ممكن يكون في جزء جوه اتآكل أو فيه مشكلة. سجّل طلب صيانة.',
+    steps:[
+      ['أصوات طبيعية','زنّة واطية أو صوت قرقرة مية — ده طبيعي من الكمبروسر وطلمبة الصرف وهي بتضخ المية عشان تنضّف الكوندنسر أو تصرّفها، وبيستمر من ٣٠ ثانية لـ ٣ دقايق.\nخبطة خفيفة من البكر الكاوتش اللي بيلف عليه الحلة — طبيعي.\nصوت صفير قصير أول التشغيل أو لما الحلة تعكس اتجاهها — طبيعي من السير وهو بيشد.\nالأصوات دي ممكن تبان أكتر لو المجفف متشغّلش من فترة.'],
+      ['في البرد الصوت بيعلى','في الجو البارد الكمبروسر بيشتغل أسرع عشان يسخّن المجفف بسرعة — فالصوت بيبقى أعلى من العادي. ده طبيعي.'],
+      ['فضّي كل الجيوب','قبل ما تحط الهدوم، شيل أي فلوس معدن أو مفاتيح أو ولاعات — بتعمل صوت عالي وممكن تبوّظ المجفف أو تعمل حريقة.'],
+      ['اقفل السوست والزراير واقلب الهدوم','اقفل كل السوست والزراير، واقلب الهدوم على الوش التاني قبل ما تحطها — عشان تقلل الاحتكاك بالحلة.'],
+      ['وزّع الحمولة','الحمولة المش متوزعة ممكن تعمل صوت مؤقت لأن الحلة بتضغط على البكر الكاوتش.']
+    ] },
+  cycles: { title:'برامج التجفيف لكل نوع قماش', end:false,
+    script:'«ممكن حضرتك تقولّي بتنشّف هدوم نوعها إيه؟ هقولّك البرنامج المناسب عشان الهدوم متتبوّظش.»',
+    note:'البرامج بتختلف حسب الموديل — اتأكد من البرامج اللي على مجفف العميل.',
+    steps:[
+      ['برامج Sensor Dry (الحساس)','البرامج دي بتقيس رطوبة الهدوم والحرارة جوه المجفف، وبتظبط وقت التجفيف والحرارة لوحدها.'],
+      ['Normal — الهدوم اليومية','الهدوم العادية، الملابس الداخلية، القطن، الشرابات، كيس المخدة، والتيشيرتات.\nStrong: للهدوم التقيلة.\nNormal+: بينشّف أكتر من Normal.\nNormal: للغسيل العادي.\nGentle: أهدى من Normal — عشان انكماش الملابس.\nDelicates: بيسيب الهدوم مندّية شوية عشان الكي يبقى أسهل.'],
+      ['Sterilization — التعقيم','بينشّف هدوم القطن والملابس الداخلية بشكل صحي.'],
+      ['Small Load Quick — كمية صغيرة بسرعة','للكميات الصغيرة من الكتان والأقمشة الصناعية، أو أي حاجة محتاجة تنشف بسرعة.'],
+      ['Towels — الفوط','فوط الإيد وفوط الحمام.'],
+      ['Shirts — القمصان','القمصان، البناطيل الصناعية، الملابس الداخلية، والبلوزات.\nNormal: بتطلع جاهزة للبس.\nGentle: أهدى — عشان الهدوم متنكمشش.'],
+      ['Wool/Delicates — الصوف','الهدوم الصوف والهدوم المخلوطة بصوف.'],
+      ['Active Wear — الهدوم الرياضية','هدوم الجيم والهدوم الكاجوال.'],
+      ['Bedding — المفارش','اللحاف، البطاطين، والملايات. (راجع التيكت الأول قبل التجفيف)'],
+      ['Bedding Refresh — تجديد المفارش','بينعّش اللحاف والبطاطين وبيشيل التراب بالهوا من غير غسيل.'],
+      ['Outdoor Refresh — هدوم الخروج','بيرجّع خاصية طرد المية لهدوم الخروج (Outdoor).'],
+      ['Padding Refresh — الجواكت المنفوخة','بيرجّع حجم الجواكت المنفوخة (Down) والهدوم الموسمية بالهوا من غير غسيل.'],
+      ['برامج Timed Dry (بالوقت)','برامج يدوية — المجفف بيشتغل الوقت اللي العميل بيحدده، من غير ما يقيس الرطوبة أو الحرارة.\nAir Fluff: لكل الهدوم — بينفش الهدوم بالهوا من غير حرارة.\nWarm Air: للفوط والبُرانس — للكميات الصغيرة، أو تجفيف زيادة بعد برنامج Normal.'],
+      ['نصايح','في الشتا — وقت التجفيف اللي على الشاشة ممكن يزيد حسب حرارة الجو.\nعشان التجفيف يبقى كويس — نشّف ٥٠–٦٠٪ من أقصى حمولة.\nالقطع الكبيرة — نشّفها لوحدها.']
+    ] },
+  faq: { title:'أسئلة شائعة وحاجات طبيعية في المجفف', end:false,
+    script:'«ده مش عطل حضرتك — خليني أوضّحلك.»',
+    steps:[
+      ['المجفف مش بيخلّص البرنامج وبيظهر CE3','مش عطل — دي خاصية Anti Crease: بعد التجفيف، الحلة بتلف ١٠ ثواني وتقف، ولمدة ٣ ساعات، عشان الهدوم متتكرمش. لو العميل عايز يوقفها — يوقّف المجفف ويطلّع الهدوم.'],
+      ['الحلة بتلف عكس الاتجاه كل شوية','طبيعي جدًا — الحلة بترجع لورا ١٠ ثواني كل ٧ دقايق عشان الهدوم متتشابكش.','dry-reverse.png'],
+      ['وظيفة Cool Air','لتجفيف الهدوم الخفيفة اللي بتتغسل بمية باردة — لو اتعرضت لحرارة هتبوظ. ويقدر العميل يتحكم في وقت التجفيف.'],
+      ['وظيفة Warm Air','لتجفيف كمية صغيرة جدًا من الهدوم ومش مبلولة أوي.'],
+      ['ينفع أغيّر اتجاه باب المجفف؟','لا — مينفعش تغيير اتجاه باب المجفف خالص.','dry-door.png'],
+      ['ريحة شياط وكاوتش الباب سخن','طبيعي جدًا — الحرارة في الحلة بتوصل لـ ١٠٠ درجة من سخان المجفف، فكاوتش الباب بيسخن. مفيش داعي للقلق.'],
+      ['إزاي أستخدم الرف (Rack)؟','الرف بييجي مع المجفف ويتثبّت جوه الحلة — للهدوم اللي متستحملش التقليب، أو اللي عليها علامة "لا يُجفّف بالتقليب". دخّل طرف السلك في نص الحلة، وثبّت الطرف التاني على حرف الحلة، واختار برنامج Rack Dry.','dry-rack.png'],
+      ['الوقت بيقل ويزيد لوحده','مش عطل — ده معناه إن الحساس لقى هدوم لسه موصلتش لدرجة التجفيف المطلوبة، فبيزوّد الوقت.'],
+      ['صوت الموسيقى مش شغال أو واطي','دوس زرار Buzzer عشان تلغي الصوت، أو تخليه واطي، أو عالي.','dry-buzzer.png']
+    ] }
+};
+T.faq.steps.forEach(([title, text, img], i) => { T['faq' + (i + 1)] = { title, end:false, script: [4,6,8].includes(i) ? '«خليني أوضّحلك حضرتك.»' : '«ده مش عطل حضرتك — خليني أوضّحلك.»', steps:[['الإجابة', text, img]], ...(i === 4 ? { note:'ملحوظة: بعض الموديلات خارج مصر تدعم تغيير اتجاه الباب.' } : {}) }; });
+const AR = ['٠','١','٢','٣','٤','٥','٦','٧','٨','٩','١٠','١١','١٢'];
+class Component extends DCLogic {
+  state = { k: 'weak' };
+  componentDidMount() { this.h = () => this.setState({ k: (location.hash || '#weak').slice(1) }); this.h(); window.addEventListener('hashchange', this.h); }
+  componentWillUnmount() { window.removeEventListener('hashchange', this.h); }
+  renderVals() {
+    const t = T[this.state.k] || T.weak;
+    let n = 0;
+    const steps = t.steps.map(([title, text, img, o = {}]) => {
+      const sub = !title; if (!sub) n++;
+      return { n: sub ? '' : AR[n], title, text: text || '', hasImg: !!img, img: img ? 'assets/' + img : '', hasLink: !!o.link, href: o.link || '', linkLabel: o.label || '',
+        imgStyle: { display:'block', marginTop:'10px', width:'100%', maxWidth: img === 'dry-filter.png' || img === 'dry-water.png' || img === 'dry-cond.png' ? '560px' : '520px', height:'auto', borderRadius:'10px', border:'1px solid #e3e0d8', background:'#fff' },
+        box: { display:'flex', gap:'12px', alignItems:'flex-start', padding: sub ? '0 16px 6px 58px' : '14px 16px', borderRadius:'12px', background: sub ? 'transparent' : '#faf9f6', marginTop: sub ? '-8px' : '0' },
+        num: { width:'30px', height:'30px', borderRadius:'50%', background:'#A50034', color:'#fff', display: sub ? 'none' : 'flex', alignItems:'center', justifyContent:'center', fontFamily:"'Cairo',sans-serif", fontWeight:900, flex:'none' } };
+    });
+    return { hasIcon: !!t.icon, iconSrc: t.icon ? 'assets/' + t.icon : '', iconWord: t.word || '', t, steps, hasNote: !!(t.note || t.warn), hasEnd: t.end, tNote: 0, ...(t.warn ? { t: { ...t, note: 'تنبيه: ' + t.warn } } : {}) };
+  }
+}
+</script>
+</body>
+</html>

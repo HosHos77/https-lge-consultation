@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<script src="shadow-nav.js"></script>
+<title>شرح الريموت والخصائص الإضافية</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&family=IBM+Plex+Sans+Arabic:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  body { margin:0; background:#f4f3ef; }
+  a { color:#A50034; }
+  a:hover { color:#7d0027; }
+</style>
+</helmet>
+<div dir="rtl" style="min-height:100vh;background:#f4f3ef;color:#191a1c;font-family:'IBM Plex Sans Arabic',system-ui,sans-serif;">
+  <div style="background:#111314;color:#f4f3ef;padding:18px 28px;display:flex;align-items:center;gap:14px;flex-wrap:wrap;">
+    <div style="width:9px;height:34px;background:#A50034;border-radius:2px;flex:none;"></div>
+    <div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:19px;">شرح الريموت والخصائص الإضافية — Remote &amp; Special Functions</div>
+    <div style="margin-right:auto;display:flex;gap:10px;">
+    </div>
+  </div>
+
+  <div style="max-width:1080px;margin:0 auto;padding:28px 28px 60px;">
+    <div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:26px;margin-bottom:6px;">دوس على أي زرار في الريموت</div>
+    <div style="font-size:15px;color:#6b7075;line-height:1.8;margin-bottom:24px;max-width:62ch;">هتظهر وظيفة الزرار والجملة اللي تقولها للعميل. زرار MODE والحرارة وسرعة المروحة بيتغيّروا على الشاشة مع كل ضغطة.</div>
+
+    <div style="display:flex;gap:28px;align-items:flex-start;flex-wrap:wrap;">
+      <div dir="ltr" style="flex:none;width:250px;margin:0 auto;padding:22px 18px 26px;border-radius:34px 34px 44px 44px;background:linear-gradient(#fbfbfa,#e9e8e5);border:1px solid #d6d4cf;box-shadow:0 14px 30px rgba(0,0,0,.12);">
+        <div style="height:120px;border-radius:10px;background:#c9d3c2;border:3px solid #9aa194;padding:10px 12px;display:flex;flex-direction:column;justify-content:space-between;font-family:'Cairo',sans-serif;color:#1f2a1c;">
+          <div style="display:flex;justify-content:space-between;font-size:13px;font-weight:700;">
+            <sc-if value="{{ showModeIcon }}" hint-placeholder-val="{{ false }}"><img src="{{ dispModeImg }}" alt="{{ dispMode }}" style="height:18px;width:auto;mix-blend-mode:multiply;display:block;"></sc-if><div>{{ dispPower }}</div>
+          </div>
+          <div style="display:flex;justify-content:center;align-items:center;min-height:44px;"><sc-if value="{{ showTemp }}" hint-placeholder-val="{{ true }}"><div style="font-size:44px;font-weight:900;line-height:1;">{{ dispTemp }}</div></sc-if><sc-if value="{{ showFuncs }}" hint-placeholder-val="{{ false }}"><img src="{{ funcImg }}" alt="" style="height:40px;mix-blend-mode:multiply;display:block;"></sc-if></div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;font-weight:700;">
+            <div>FAN {{ dispFan }}</div><div>{{ dispExtra }}</div>
+          </div>
+        </div>
+        <div style="height:18px;"></div>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px 14px;">
+          <sc-for list="{{ keys }}" as="k" hint-placeholder-count="18">
+            <button type="button" onClick="{{ k.press }}" style="{{ k.style }}">{{ k.label }}</button>
+          </sc-for>
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-top:18px;padding:0 6px;">
+          <div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:20px;color:#A50034;">LG</div>
+          <button type="button" onClick="{{ pressReset }}" style="{{ resetStyle }}"></button>
+        </div>
+        <div style="text-align:right;font-size:10px;color:#8a8f94;margin-top:2px;padding-right:0;">RESET</div>
+      </div>
+
+      <div style="flex:1;min-width:280px;display:grid;gap:14px;">
+        <div style="background:#fff;border:1px solid #f0c2ce;border-radius:16px;padding:24px 26px;">
+          <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:10px;">
+            <div dir="ltr" style="padding:6px 14px;border-radius:8px;background:#111314;color:#fff;font-family:'Cairo',sans-serif;font-weight:700;font-size:15px;">{{ cur.en }}</div>
+            <div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:22px;">{{ cur.ar }}</div>
+          </div>
+          <div style="font-size:16px;line-height:1.9;text-wrap:pretty;">{{ cur.desc }}</div>
+          <sc-if value="{{ hasModes }}" hint-placeholder-val="{{ false }}"><div dir="ltr" style="display:flex;align-items:center;justify-content:flex-end;gap:10px;margin-top:10px;flex-wrap:wrap;"><img src="assets/mode-cool.png" alt="COOL" style="height:30px;"><div>→</div><img src="assets/mode-auto.png" alt="AUTO" style="height:30px;"><div>→</div><img src="assets/mode-dry.png" alt="DRY" style="height:30px;"><div>→</div><img src="assets/mode-heat.png" alt="HEAT" style="height:30px;"><div>→</div><img src="assets/mode-fan.png" alt="FAN" style="height:30px;"></div></sc-if>
+          <sc-if value="{{ hasState }}" hint-placeholder-val="{{ false }}">
+            <div style="margin-top:12px;padding:10px 14px;border-radius:10px;background:#f4f3ef;font-size:15px;font-weight:600;">{{ stateText }}</div>
+          </sc-if>
+        </div>
+        <div style="background:#fff5f7;border:1px solid #f0c2ce;border-radius:16px;padding:18px 22px;">
+          <div style="font-size:13px;font-weight:700;color:#A50034;margin-bottom:6px;">قول للعميل</div>
+          <div style="font-size:16px;line-height:1.9;">{{ cur.script }}</div>
+        </div>
+        <sc-if value="{{ hasModes }}" hint-placeholder-val="{{ false }}">
+          <div style="background:#fff;border:1px solid #e3e0d8;border-radius:16px;padding:18px 22px;display:grid;gap:8px;">
+            <div style="font-size:13px;font-weight:700;color:#6b7075;">أوضاع التشغيل (بالترتيب مع كل ضغطة)</div>
+            <sc-for list="{{ modes }}" as="m" hint-placeholder-count="5">
+              <div style="{{ m.style }}"><img src="{{ m.img }}" alt="{{ m.en }}" style="height:26px;width:auto;flex:none;mix-blend-mode:multiply;"><div style="font-weight:700;min-width:90px;">{{ m.ar }}</div><div>{{ m.desc }}</div></div>
+            </sc-for>
+          </div>
+        </sc-if>
+        <sc-if value="{{ hasExtras }}" hint-placeholder-val="{{ false }}">
+          <div style="background:#fff;border:1px solid #e3e0d8;border-radius:16px;padding:18px 22px;display:grid;gap:8px;">
+            <div style="font-size:13px;font-weight:700;color:#6b7075;">{{ extraTitle }}</div>
+            <sc-for list="{{ extras }}" as="x" hint-placeholder-count="2">
+              <div style="display:flex;gap:12px;flex-wrap:wrap;font-size:14.5px;line-height:1.7;padding:8px 10px;border-radius:8px;background:#faf9f6;"><div style="font-weight:700;min-width:150px;">{{ x.ar }}</div><div style="flex:1;min-width:180px;">{{ x.desc }}</div></div>
+            </sc-for>
+          </div>
+        </sc-if>
+        <sc-if value="{{ showFuncs }}" hint-placeholder-val="{{ false }}">
+          <div style="background:#fff;border:1px solid #e3e0d8;border-radius:16px;padding:18px 22px;display:grid;gap:8px;">
+            <div style="font-size:13px;font-weight:700;color:#6b7075;">الخصائص الإضافية (حسب الموديل) — ١. شغّل التكييف ٢. دوس FUNC. لحد ما تختار ٣. دوس SET/CANCEL</div>
+            <div style="font-size:14px;font-weight:600;color:#A50034;">{{ funcStatus }}</div>
+            <sc-for list="{{ funcs }}" as="x" hint-placeholder-count="6">
+              <button type="button" onClick="{{ x.pick }}" style="{{ x.style }}"><div style="min-width:56px;display:flex;justify-content:center;"><img src="{{ x.img }}" alt="" style="height:26px;display:block;mix-blend-mode:multiply;"></div><div style="font-weight:700;min-width:140px;">{{ x.ar }}</div><div style="flex:1;min-width:160px;">{{ x.desc }}</div><div style="font-size:12px;font-weight:700;color:#A50034;">{{ x.badge }}</div></button>
+            </sc-for>
+            <div style="font-size:12.5px;color:#8a8f94;">بعض الخصائص ممكن تشتغل بشكل مختلف عن اللي ظاهر على شاشة الريموت.</div>
+          </div>
+        </sc-if>
+        <div style="font-size:13px;color:#8a8f94;line-height:1.8;">بعض الوظايف مش موجودة في كل الموديلات، والزراير اللي عليها * ممكن تختلف حسب نوع الموديل.</div>
+      </div>
+    </div>
+
+    <div style="margin-top:40px;padding-top:20px;border-top:1px solid #e3e0d8;display:flex;align-items:center;justify-content:center;gap:10px;">
+      <div style="width:6px;height:16px;border-radius:2px;background:#A50034;"></div>
+      <div style="font-size:13px;color:#A50034;font-weight:600;">Created by ICC QA &amp; Training Team</div>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const MODES = [
+  { en:'COOL', ar:'تبريد', desc:'بيبرّد الأوضة.', img:'assets/mode-cool.png' },
+  { en:'AUTO', ar:'أوتوماتيك', desc:'بيختار تبريد أو تدفئة لوحده على حسب حرارة الأوضة.', img:'assets/mode-auto.png' },
+  { en:'DRY', ar:'إزالة رطوبة', desc:'بيسحب الرطوبة من الجو.', img:'assets/mode-dry.png' },
+  { en:'HEAT', ar:'تدفئة', desc:'بيدفّي الأوضة (في الموديلات اللي فيها تدفئة).', img:'assets/mode-heat.png' },
+  { en:'FAN', ar:'مروحة', desc:'بيحرّك الهوا من غير تبريد.', img:'assets/mode-fan.png' }
+];
+const FANS = ['LOW','MED','HIGH','AUTO'];
+const K = {
+  comfort:{ label:'COMFORT AIR', en:'Comfort Air', ar:'الهوا المريح', desc:'بيظبط اتجاه الهوا عشان يحوّده بعيد — الهوا البارد ميضربش في الجسم مباشرة. (الزرار ده ممكن يختلف حسب الموديل)', script:'«لو الهوا بيضايق حضرتك وهو نازل عليك، دوس COMFORT AIR والهوا هيتوجّه بعيد عنك.»' },
+  power:{ label:'⏻', en:'Power', ar:'تشغيل / إطفاء', desc:'بيشغّل التكييف أو يطفيه.', script:'«دوس على الزرار البرتقالي اللي في النص فوق — ده زرار التشغيل والإطفاء.»' },
+  light:{ label:'LIGHT OFF', en:'Light Off', ar:'إطفاء نور الشاشة', desc:'بيظبط إضاءة الشاشة اللي على الوحدة الداخلية (يعلّيها أو يوطّيها أو يطفيها) — مفيد وقت النوم. (الزرار ده ممكن يختلف حسب الموديل)', script:'«لو نور التكييف مضايق حضرتك بالليل، دوس LIGHT OFF والشاشة هتطفي والتكييف شغال عادي.»' },
+  mode:{ label:'MODE', en:'Mode', ar:'وضع التشغيل', desc:'كل ضغطة بتنقل للوضع اللي بعده — والرمز بيظهر على شاشة الريموت:', modeIcons:true, script:'«دوس MODE أكتر من مرة لحد ما تلاقي علامة التلج (COOL) على الشاشة، كده هو على التبريد.»' },
+  up:{ label:'▲', en:'Temp ▲', ar:'رفع درجة الحرارة', desc:'بيرفع درجة الحرارة المطلوبة درجة مع كل ضغطة (في وضع التبريد أو التدفئة أو الأوتوماتيك).', script:'«دوس على السهم لفوق عشان ترفع الدرجة.»' },
+  fan:{ label:'FAN SPEED', en:'Fan Speed', ar:'سرعة المروحة', desc:'بيغيّر سرعة المروحة: هادية ← متوسطة ← عالية ← أوتوماتيك.', script:'«لو عايز الهوا أقوى أو أهدى، دوس FAN SPEED وهتلاقي السرعة بتتغيّر على الشاشة.»' },
+  energy:{ label:'ENERGY SAVING', en:'Energy Saving', ar:'توفير الكهربا', desc:'بيشغّل وضع توفير الطاقة عشان يقلل استهلاك الكهربا لأقل حد.', script:'«عشان توفّر في الكهربا، دوس ENERGY SAVING وهو على التبريد.»',
+    extraTitle:'وظايف تانية على الزرار ده (حسب الموديل)',
+    extras:[
+      { ar:'kW — ضغطة ٣ ثواني', desc:'بيحدد تظهر ولا لأ معلومات استهلاك الكهربا على الشاشة.' },
+      { ar:'Energy Ctrl.', desc:'بيحدد نسبة توفير الكهربا اللي عايزها وبتظهر على الشاشة بالنسبة %.' }
+    ] },
+  down:{ label:'▼', en:'Temp ▼', ar:'تقليل درجة الحرارة', desc:'بيقلل درجة الحرارة المطلوبة درجة مع كل ضغطة.', script:'«دوس على السهم لتحت عشان تقلل الدرجة. الأفضل حضرتك تخليها ما بين ٢٤ و٢٦ درجة.»' },
+  jet:{ label:'JET MODE', en:'Jet Mode', ar:'التبريد السريع', desc:'بيغيّر حرارة الأوضة بسرعة — بيشتغل على أقل درجة وأعلى سرعة مروحة لفترة (الشاشة بتعرض Po).', script:'«لو الأوضة حر جدًا وعايز تبرد بسرعة، دوس JET MODE.»',
+    extraTitle:'ضغطة مطولة (حسب الموديل)',
+    extras:[{ ar:'UVnano — ضغطة ٣ ثواني', desc:'بيحافظ على نضافة المروحة من جوه.' }] },
+  swingV:{ label:'SWING ↕', en:'Swing (Vertical)', ar:'اتجاه الهوا — فوق وتحت', desc:'بيحرّك ريش الهوا لفوق ولتحت، أو يثبّتها في اتجاه معيّن.', script:'«عشان الهوا يتوزّع فوق وتحت، دوس زرار SWING اللي عليه السهم الطولي.»',
+    extraTitle:'ضغطة مطولة (حسب الموديل)',
+    extras:[{ ar:'°C ↔ °F — ضغطة ٥ ثواني', desc:'بيغيّر وحدة الحرارة ما بين سيليزيوس وفهرنهايت.' }] },
+  swingH:{ label:'SWING ↔', en:'Swing (Horizontal)', ar:'اتجاه الهوا — يمين وشمال', desc:'بيحرّك ريش الهوا يمين وشمال (في الموديلات اللي فيها الخاصية دي).', script:'«عشان الهوا يتوزّع يمين وشمال، دوس زرار SWING التاني.»' },
+  room:{ label:'ROOM TEMP', en:'Room Temp', ar:'حرارة الأوضة', desc:'بيعرض درجة حرارة الأوضة الحالية على الشاشة بدل الدرجة المطلوبة.', script:'«لو عايز تعرف الأوضة درجتها كام دلوقتي، دوس ROOM TEMP.»',
+    extraTitle:'ضغطة مطولة',
+    extras:[{ ar:'Diagnosis — ضغطة ٥ ثواني', desc:'بيعرض معلومات الصيانة والحالة الفنية للجهاز بسهولة — مفيد للفني.' }] },
+  func:{ label:'FUNC.', en:'Func.', ar:'الوظايف الإضافية', desc:'بيفتح الوظايف الإضافية — كل ضغطة بتنقل لوظيفة، وبعدين دوس SET/CANCEL عشان تشغّلها. بعض الوظايف مش موجودة في كل الموديلات.', script:'«دوس FUNC. لحد ما تظهر الوظيفة اللي عايزها على الشاشة، وبعدين دوس SET/CANCEL عشان تشتغل.»',
+    extraTitle:'الوظايف الإضافية (حسب الموديل)',
+    extras:[
+      { ar:'مولّد الأيونات (Ion)', img:'assets/ac-func-1.png', desc:'بيطلّع ملايين الأيونات عشان يحسّن جودة الهوا جوه الأوضة.' },
+      { ar:'تقليل الصوت', img:'assets/ac-func-2.png', desc:'بيقلل صوت الوحدة الخارجية.' },
+      { ar:'إزالة الرطوبة السريعة (Po)', img:'assets/ac-func-4.png', desc:'بيقلل الرطوبة جوه الأوضة بسرعة.' },
+      { ar:'تدفئة منخفضة (LH)', img:'assets/ac-func-5.png', desc:'بيحافظ على أقل درجة حرارة في الأوضة عشان الحاجات متتجمدش.' },
+      { ar:'التنظيف الذاتي (Auto Clean)', img:'assets/ac-func-7.png', desc:'بينشّف الرطوبة اللي جوه الوحدة الداخلية عشان متتكوّنش فطريات وروايح.' },
+      { ar:'النوم المريح (SL)', img:'assets/ac-func-8.png', desc:'بيخلي الجو مريح وقت النوم.' }
+    ] },
+  up2:{ label:'▲', en:'▲ (Set Up)', ar:'سهم الاختيار لفوق', desc:'بيظبط الوقت في التايمر (يزوّد).', script:'«استخدم السهم لفوق عشان تزوّد الوقت.»' },
+  set:{ label:'SET/ CANCEL', en:'Set / Cancel', ar:'تأكيد / إلغاء', desc:'بيشغّل أو يلغي الوظايف الإضافية (FUNC.) والتايمر.', script:'«بعد ما تختار، دوس SET/CANCEL عشان تأكّد.»' },
+  timer:{ label:'TIMER', en:'Timer', ar:'التايمر', desc:'بيظبط التكييف يشتغل أو يطفي لوحده في الوقت اللي تحدده — الشاشة بتعرض ON أو OFF.', script:'«لو عايز التكييف يطفي لوحده بعد ما تنام، دوس TIMER وحدد الوقت بالأسهم وأكّد بـ SET.»' },
+  down2:{ label:'▼', en:'▼ (Set Up)', ar:'سهم الاختيار لتحت', desc:'بيظبط الوقت في التايمر (يقلل).', script:'«استخدم السهم لتحت عشان تقلل الوقت.»' },
+  cancel:{ label:'CANCEL', en:'Cancel', ar:'إلغاء', desc:'بيلغي إعدادات التايمر.', script:'«لو عايز تلغي التايمر، دوس CANCEL.»' },
+  reset:{ en:'Reset', ar:'إعادة ضبط الريموت', desc:'فتحة صغيرة تحت الريموت — بتتداس بسن قلم أو دبوس، وبترجّع إعدادات الريموت للأول لو مش بيستجيب صح.', script:'«لو الريموت مش بيستجيب صح، اضغط على فتحة RESET الصغيرة تحت بسن قلم، ولو لسه كده غيّر البطاريات.»' }
+};
+const ORDER = ['comfort','power','light','mode','up','fan','energy','down','jet','swingV','swingH','room','func','up2','set','timer','down2','cancel'];
+class Component extends DCLogic {
+  state = { sel:'power', on:true, mode:0, temp:24, fan:1, extra:'', room:false, fsel:0, factive:{} };
+  press(id) {
+    this.setState(s => {
+      const n = { sel:id, room:false };
+      if (id === 'power') n.on = !s.on;
+      if (id === 'func' && s.sel === 'func') n.fsel = (s.fsel + 1) % K.func.extras.length;
+      if (id === 'set' && (s.sel === 'func' || s.sel === 'set')) n.factive = { ...s.factive, [s.fsel]: !s.factive[s.fsel] };
+      if (id === 'mode') n.mode = (s.mode + 1) % MODES.length;
+      if (id === 'up' && s.mode !== 4) n.temp = Math.min(30, s.temp + 1);
+      if (id === 'down' && s.mode !== 4) n.temp = Math.max(16, s.temp - 1);
+      if (id === 'fan') n.fan = (s.fan + 1) % FANS.length;
+      if (id === 'jet') { n.extra = 'JET'; n.temp = 18; n.fan = 2; }
+      else if (['energy','timer','comfort','swingV','swingH'].includes(id)) n.extra = { energy:'SAVE', timer:'TIMER', comfort:'COMFORT', swingV:'SWING ↕', swingH:'SWING ↔' }[id];
+      else if (['cancel','set'].includes(id)) n.extra = '';
+      if (id === 'room') n.room = true;
+      if (id === 'reset') Object.assign(n, { on:true, mode:0, temp:24, fan:1, extra:'' });
+      return n;
+    });
+  }
+  renderVals() {
+    const s = this.state, cur = K[s.sel];
+    const keys = ORDER.map(id => {
+      const k = K[id], active = s.sel === id, isPower = id === 'power', round = ['up','down','up2','down2'].includes(id);
+      return { label:k.label, press:() => this.press(id), style:{
+        height: round ? '46px' : '42px', borderRadius: round ? '50%' : '14px', width: round ? '46px' : '100%', justifySelf:'center',
+        border: active ? '2px solid #A50034' : '1px solid #cfccc6',
+        background: isPower ? '#ee6b2f' : (active ? '#fde7ee' : '#fff'), color: isPower ? '#fff' : '#2b2e30',
+        fontFamily:"'Cairo',sans-serif", fontWeight:700, fontSize: isPower ? '18px' : (k.label.length > 9 ? '9px' : '11px'), lineHeight:1.1,
+        cursor:'pointer', padding:'2px 4px', boxShadow: active ? '0 0 0 3px rgba(165,0,52,.18)' : '0 2px 3px rgba(0,0,0,.08)' } };
+    });
+    const m = MODES[s.mode];
+    const hasState = ['power','mode','up','down','fan','jet','room','reset'].includes(s.sel);
+    const stateText = !s.on ? 'التكييف دلوقتي: مطفي' :
+      s.sel === 'mode' ? `الوضع الحالي: ${m.ar} (${m.en})` :
+      s.sel === 'fan' ? `سرعة المروحة: ${FANS[s.fan]}` :
+      s.sel === 'room' ? 'الشاشة بتعرض حرارة الأوضة الحالية (مثال: 29°)' :
+      s.sel === 'up' || s.sel === 'down' ? (s.mode === 4 ? 'في وضع المروحة الدرجة مش بتتغيّر' : `الدرجة المطلوبة: ${s.temp}°`) :
+      s.sel === 'jet' ? 'تبريد سريع — 18° والمروحة HIGH' : s.sel === 'reset' ? 'الريموت رجع لإعدادات المصنع' : 'التكييف دلوقتي: شغال';
+    return {
+      keys, cur, hasState, stateText, hasModes: s.sel === 'mode', hasExtras: !!cur.extras && s.sel !== 'func', showFuncs: s.on && (s.sel === 'func' || s.sel === 'set'), showTemp: !(s.on && (s.sel === 'func' || s.sel === 'set')), funcImg: K.func.extras[s.fsel].img, funcStatus: s.factive[s.fsel] ? 'الخاصية دي شغّالة — دوس SET/CANCEL تاني عشان تلغيها.' : 'دوس FUNC. تاني عشان تنتقل للخاصية اللي بعدها، أو SET/CANCEL عشان تشغّلها.', funcs: (K.func.extras || []).map((x, i) => ({ ...x, pick: () => this.setState({ sel:'func', fsel:i, on:true }), style:{ display:'flex', alignItems:'center', gap:'12px', flexWrap:'wrap', width:'100%', textAlign:'right', padding:'8px 10px', borderRadius:'8px', cursor:'pointer', fontFamily:"'IBM Plex Sans Arabic',sans-serif", fontSize:'14.5px', lineHeight:1.7, color:'#191a1c', border: i === s.fsel ? '1px solid #A50034' : '1px solid transparent', background: i === s.fsel ? '#fde7ee' : (s.factive[i] ? '#f4f3ef' : '#faf9f6') }, badge: s.factive[i] ? 'شغّالة' : '' })), extras: cur.extras || [], extraTitle: cur.extraTitle || '',
+      modes: MODES.map((x, i) => ({ ...x, style:{ display:'flex', gap:'10px', fontSize:'14.5px', lineHeight:1.7, padding:'6px 10px', borderRadius:'8px', background: i === s.mode ? '#fde7ee' : 'transparent', color: i === s.mode ? '#A50034' : '#191a1c' } })),
+      dispMode: s.on ? m.en : '', dispModeImg: m.img, showModeIcon: s.on, dispPower: s.on ? 'ON' : 'OFF',
+      dispTemp: !s.on ? '--' : (s.room ? '29°' : (s.mode === 4 ? '--' : s.temp + '°')),
+      dispFan: s.on ? FANS[s.fan] : '', dispExtra: s.on ? s.extra : '',
+      pressReset: () => this.press('reset'),
+      resetStyle:{ width:'14px', height:'14px', borderRadius:'50%', background:'#2b2e30', border: s.sel === 'reset' ? '3px solid #A50034' : '2px solid #bbb', cursor:'pointer', padding:0 }
+    };
+  }
+}
+</script>
+</body>
+</html>

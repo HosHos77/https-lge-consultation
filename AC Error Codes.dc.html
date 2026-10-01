@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<script src="shadow-nav.js"></script>
+<title>دعم فني — أكواد الأعطال</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&family=IBM+Plex+Sans+Arabic:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  body { margin:0; background:#f4f3ef; }
+  a { color:#A50034; }
+  a:hover { color:#7d0027; }
+</style>
+</helmet>
+<div dir="rtl" style="min-height:100vh;background:#f4f3ef;color:#191a1c;font-family:'IBM Plex Sans Arabic',system-ui,sans-serif;">
+  <div style="background:#111314;color:#f4f3ef;padding:16px 28px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;position:sticky;top:0;z-index:20;">
+    <div style="width:9px;height:32px;background:#A50034;border-radius:2px;flex:none;"></div>
+    <div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:18px;">أكواد الأعطال — Error Codes</div>
+    <div style="margin-right:auto;display:flex;gap:10px;flex-wrap:wrap;">
+      <a href="Service Fees Table.dc.html#ac" style="padding:8px 16px;border-radius:8px;border:1px solid #3a4043;color:#f0a8bd;font-size:13px;text-decoration:none;white-space:nowrap;" style-hover="background:#22282a;">جدول تكاليف الصيانة</a>
+    </div>
+  </div>
+
+  <div style="max-width:1080px;margin:0 auto;padding:28px 28px 60px;display:grid;gap:18px;">
+    <div style="background:#fff;border:1px solid #e3e0d8;border-radius:14px;padding:26px 28px;border-top:4px solid #A50034;">
+      <div style="background:#1c1a1b;color:#f6f1f2;border-radius:12px;padding:18px 22px;margin-bottom:16px;">
+        <div style="font-size:12.5px;color:#f0a8bd;margin-bottom:8px;font-weight:600;">اقرأ للعميل</div>
+        <div style="font-family:'Cairo',sans-serif;font-size:17px;line-height:2;">«ممكن حضرتك تقولّي الكود اللي ظاهر على شاشة التكييف؟ هيبقى حرف CH وجنبه رقم.»</div>
+      </div>
+      <div style="padding:14px 18px;border-radius:12px;background:#fff5f7;border:1px solid #f0c2ce;font-size:15px;line-height:1.9;">
+        <strong>تنبيه:</strong> كل أكواد الأعطال محتاجة فني — متخليش العميل يفك أو يصلّح حاجة. اكتب الكود في البلاغ وسجّل طلب صيانة. لو في كود عطل — ممنوع تسجيل صيانة وقائية.
+      </div>
+    </div>
+
+    <div style="background:#fff;border:1px solid #e3e0d8;border-radius:14px;padding:22px 24px;">
+      <input value="{{ q }}" onInput="{{ onQ }}" placeholder="اكتب رقم الكود… مثال: 38" style="width:100%;box-sizing:border-box;padding:13px 16px;border-radius:10px;border:1px solid #d9d5cb;font-size:16px;font-family:'IBM Plex Sans Arabic',sans-serif;margin-bottom:14px;outline:none;">
+      <div style="display:flex;flex-wrap:wrap;gap:8px;">
+        <sc-for list="{{ list }}" as="c" hint-placeholder-count="20">
+          <button type="button" onClick="{{ c.pick }}" style="{{ c.style }}">{{ c.codes }}</button>
+        </sc-for>
+      </div>
+    </div>
+
+    <sc-if value="{{ hasSel }}" hint-placeholder-val="{{ false }}">
+      <div style="background:#fff;border:1px solid #f0c2ce;border-radius:14px;padding:26px 28px;">
+        <div dir="ltr" style="text-align:right;font-family:'Cairo',sans-serif;font-weight:900;font-size:24px;color:#A50034;">{{ sel.codes }}</div>
+        <div style="font-family:'Cairo',sans-serif;font-weight:700;font-size:21px;margin:4px 0 4px;">{{ sel.ar }}</div>
+        <div dir="ltr" style="text-align:right;font-size:13.5px;color:#8a8f94;margin-bottom:16px;">{{ sel.en }}</div>
+        <div style="font-size:14px;font-weight:700;color:#6b7075;margin-bottom:8px;">الأسباب المحتملة (للفني)</div>
+        <div style="display:grid;gap:6px;margin-bottom:20px;">
+          <sc-for list="{{ sel.causes }}" as="x" hint-placeholder-count="3">
+            <div style="display:flex;gap:10px;align-items:flex-start;font-size:15px;line-height:1.8;"><div style="flex:none;width:6px;height:6px;border-radius:50%;background:#A50034;margin-top:11px;"></div><div>{{ x }}</div></div>
+          </sc-for>
+        </div>
+        <div style="background:#1c1a1b;color:#f6f1f2;border-radius:12px;padding:18px 22px;margin-bottom:16px;">
+          <div style="font-size:12.5px;color:#f0a8bd;margin-bottom:8px;font-weight:600;">اقرأ للعميل</div>
+          <div style="font-family:'Cairo',sans-serif;font-size:17px;line-height:2;">«الكود ده معناه إن الجهاز محتاج كشف من فني متخصص. هسجّل لحضرتك طلب صيانة دلوقتي، والفني هيتواصل معاك لتحديد الميعاد.»</div>
+        </div>
+        <div style="padding:14px 18px;border-radius:12px;background:#fdf6e8;border:1px solid #ecd9ae;font-size:14.5px;line-height:1.85;color:#7a5410;"><strong>في البلاغ:</strong> اكتب الكود ({{ sel.codes }}) في وصف المشكلة.</div>
+        <sc-if value="{{ notLogged }}" hint-placeholder-val="{{ true }}">
+          <button type="button" onClick="{{ logIt }}" style="margin-top:16px;width:100%;text-align:right;padding:18px 22px;border-radius:12px;border:1px solid #f0c2ce;background:#fff5f7;cursor:pointer;font-family:'IBM Plex Sans Arabic',sans-serif;" style-hover="border-color:#A50034;"><div style="font-family:'Cairo',sans-serif;font-weight:700;font-size:18px;margin-bottom:4px;color:#191a1c;">تسجيل طلب صيانة</div><div style="font-size:14px;color:#8a5555;">افتح سكريبت وخطوات تسجيل البلاغ.</div></button>
+        </sc-if>
+
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ logged }}" hint-placeholder-val="{{ false }}">
+      <div id="esc-anchor" style="background:#fff;border:1px solid #f0c2ce;border-radius:14px;padding:32px;border-top:4px solid #A50034;">
+        <div style="font-size:12.5px;font-weight:600;color:#A50034;letter-spacing:.04em;margin-bottom:10px;">الخطوة الأخيرة — تسجيل طلب صيانة</div>
+        <div style="font-family:'Cairo',sans-serif;font-weight:700;font-size:26px;line-height:1.5;margin-bottom:18px;">الجهاز يحتاج زيارة فني</div>
+        <div style="background:#1c1a1b;color:#f6f1f2;border-radius:12px;padding:20px 22px;margin-bottom:20px;">
+          <div style="font-size:12.5px;color:#f0a8bd;margin-bottom:8px;font-weight:600;">اقرأ للعميل</div>
+          <div style="font-family:'Cairo',sans-serif;font-size:17px;line-height:2.05;">«هسجّل لحضرتك طلب صيانة وزيارة فني. الصيانة داخل فترة الضمان مجانية تمامًا. ولو ظهر إن السبب مش عطل فني في الجهاز، أو إن العطل خارج نطاق الضمان، بتكون في تكلفة زيارة ومعاينة ١٨٢ جنيه لأول زيارة، وأي زيارة بعدها ٣٠٠ جنيه — وتكلفة الصيانة نفسها بتتحدد بعد ما الفني يعاين الجهاز، وهتُعرض على حضرتك للموافقة قبل أي إصلاح.»</div>
+        </div>
+
+        <a href="Service Fees Table.dc.html#ac" style="display:flex;align-items:center;gap:14px;padding:18px 22px;border-radius:12px;border:1px solid #f0c2ce;background:#fff5f7;text-decoration:none;margin-bottom:20px;" style-hover="border-color:#A50034;">
+          <div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:17px;color:#A50034;">رسوم التكييفات</div>
+          <div style="font-size:14px;color:#3f4447;line-height:1.7;">اضغط لعرض رسوم الصيانة والزيارة الخاصة بالمنتج — صباحي ومسائي.</div>
+          <div style="margin-right:auto;color:#A50034;font-size:18px;">←</div>
+        </a>
+
+
+        <div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:18px;margin-bottom:12px;">نظام تسجيل الطلب</div>
+        <div style="display:grid;gap:10px;margin-bottom:20px;">
+          <div style="display:flex;gap:14px;padding:15px 18px;border-radius:12px;background:#fbfaf7;border:1px solid #e9e6de;"><div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:16px;color:#A50034;min-width:20px;">١</div><div style="font-size:15px;line-height:1.9;">يتم تسجيل <strong>المشكلة اللي العميل وصفها</strong> و<strong>كل الخطوات اللي تمت مع العميل</strong> في البلاغ، مع <strong>رقم الموديل</strong>. (لو رقم الموديل مش متوفر يتم تسجيل البلاغ بعد التأكد إن الجهاز إل جي ومشترى من داخل مصر)</div></div>
+          <div style="display:flex;gap:14px;padding:15px 18px;border-radius:12px;background:#fbfaf7;border:1px solid #e9e6de;"><div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:16px;color:#A50034;min-width:20px;">٢</div><div style="font-size:15px;line-height:1.9;">الاسم الثلاثي للعميل كما هو مسجل في فاتورة الشراء (لو مش متوفر يتم السؤال عن اسم صاحب الجهاز).</div></div>
+          <div style="display:flex;gap:14px;padding:15px 18px;border-radius:12px;background:#fbfaf7;border:1px solid #e9e6de;"><div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:16px;color:#A50034;min-width:20px;">٣</div><div style="font-size:15px;line-height:1.9;">رقم الهاتف الأساسي ورقم إضافي إن وجد.</div></div>
+          <div style="display:flex;gap:14px;padding:15px 18px;border-radius:12px;background:#fbfaf7;border:1px solid #e9e6de;"><div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:16px;color:#A50034;min-width:20px;">٤</div><div style="font-size:15px;line-height:1.9;">العنوان بالتفصيل (المحافظة، المنطقة، اسم الشارع، رقم العمارة، الدور، الشقة، علامة مميزة).</div></div>
+          <div style="display:flex;gap:14px;padding:15px 18px;border-radius:12px;background:#fbfaf7;border:1px solid #e9e6de;"><div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:16px;color:#A50034;min-width:20px;">٥</div><div style="font-size:15px;line-height:1.9;">استفسر منه عن الموعد المفضل وسجّله على الأوردر. (لو لم يرد على السؤال يتم اختيار أقرب موعد متاح وإبلاغ العميل به)</div></div>
+        </div>
+
+
+        <a href="AC Support Topics.dc.html" style="display:inline-block;padding:14px 22px;border-radius:10px;background:#A50034;color:#fff;font-family:'Cairo',sans-serif;font-weight:700;font-size:15px;text-decoration:none;" style-hover="background:#7d0027;">تم تسجيل البلاغ — إنهاء المكالمة</a>
+      </div>
+    </sc-if>
+
+    <div style="margin-top:20px;padding-top:20px;border-top:1px solid #e3e0d8;display:flex;align-items:center;justify-content:center;gap:10px;">
+      <div style="width:6px;height:16px;border-radius:2px;background:#A50034;"></div>
+      <div style="font-size:13px;color:#A50034;font-weight:600;">Created by ICC QA &amp; Training Team</div>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const CODES = [
+  ['CH01 · CH02 · CH06 · CH12','خطأ في حساس حرارة الأوضة أو فيه قفلة','Room temperature sensor open / short',['توصيل الحساس غلط أو فيه قفلة (Short)','رطوبة دخلت الوحدة وغطّت الحساس','عزل الوحدة (Canning sheath) تالف','غطا الحساس اتشال']],
+  ['CH03','مشكلة في اتصال الريموت السلكي','Bad communication of wired remote',['سلك الريموت ملفوف أو مفصول','السلك مش متوصل أو سلك البوردة (PCBA) مفصول','البوردة فيها صدأ ومحتاجة تتغيّر','الريموت أو البوردة فيهم عطل ومحتاجين تغيير']],
+  ['CH05 · CH53','خطأ في الاتصال بين الوحدة الداخلية والخارجية','Indoor / Outdoor communication error',['مفيش كابل كهربا متركب بين الوحدتين','تشويش خارجي بيقطع الاتصال','أجزاء في دايرة الوحدات محروقة']],
+  ['CH21 · CH29','خطأ في تيار الكمبروسر','Compressor current error',['الكمبروسر عليه فولت عالي أو واطي','الكمبروسر عليه حمل زيادة أو فيه قفلة','ممكن يكون في أجزاء محروقة في البوردة']],
+  ['CH22','تيار الدخول أعلى من الحد','AC input current higher than limit',['المروحة مش بتلف (في حاجة مانعاها)','الفولت الواصل للتكييف عالي جدًا','ممكن يكون في أجزاء محروقة في البوردة']],
+  ['CH23','تيار الدخول أقل من الحد','AC input current lower than limit',['المروحة مش بتلف (في حاجة مانعاها)','الفولت الواصل للتكييف منخفض جدًا','البوردة ممكن تكون بايظة']],
+  ['CH24','مفتاح الضغط بيقيس ضغط عالي أو منخفض','Pressure switch high / low',['ممكن يكون في تسريب فريون','ضغط الفريون في الكمبروسر عالي جدًا','المروحة ممكن تكون متعطلة بحاجة غريبة','مفتاح الضغط متوصل وحش']],
+  ['CH26','خطأ في وضع الكمبروسر','Compressor position error',['وصلة الكمبروسر مش متركبة صح','الكمبروسر ممكن يكون بايظ','عطل في البوردة']],
+  ['CH27','خطأ في المكثف (PSC)','PSC error',['المروحة مش بتلف (في حاجة مانعاها)','تثبيت الـ Reactor مفكوك','ممكن يكون في أجزاء محروقة في البوردة']],
+  ['CH32','حرارة عالية في ماسورة طرد الكمبروسر','High discharge pipe temperature',['مروحة الوحدة الخارجية مسدودة أو متعطلة','حساس الكمبروسر بايظ','الفريون في ماسورة الكمبروسر ناقص','صمام التمدد الإلكتروني متركب وحش']],
+  ['CH34 · CH35','حساس الضغط قاس ضغط عالي أو منخفض','High / low pressure sensor',['مروحة الوحدة الخارجية مسدودة أو متعطلة','حساس الكمبروسر بايظ','الفريون في ماسورة الكمبروسر ناقص','البوردة بايظة']],
+  ['CH36 · CH38','تسريب في فريون الكمبروسر','Refrigerant leakage',['ماسورة مشروخة أو تالفة','وصلة ماسورة وحشة','صدأ في الماسورة','ممكن يكون عطل في الحساس']],
+  ['CH37','خطأ في نسبة الضغط (Compressing ratio)','Compressing ratio error',['المروحة مش بتلف (في حاجة مانعاها)','محبس الخدمة (SVC valve) مقفول','الكمبروسر تالف','ممكن يكون عطل في الحساس']],
+  ['CH40','حساس الـ CT في الإنفرتر مفتوح أو فيه قفلة','Inverter CT sensor open / short',['البوردة فيها أجزاء محروقة ومحتاجة تتغيّر']],
+  ['CH41 · CH44 · CH45 · CH46 · CH48','رطوبة جوه الوحدة','Moisture detected inside the unit',['رطوبة دخلت الوحدة بسبب عزل تالف','توصيل الحساس غلط أو فيه قفلة']],
+  ['CH42 · CH43','حساس الضغط قاس ضغط منخفض أو عالي','Low / high pressure detected by sensor',['توصيل حساس الضغط وحش','حساس الضغط بايظ']],
+  ['CH51','عدد وحدات زيادة عن السعة','Overcapacity',['توصيل الوحدة الداخلية أو الخارجية وحش','حساس الضغط بايظ','عطل في البوردة']],
+  ['CH60','خطأ في الـ EEPROM','EEPROM sum error',['البوردة محروقة أو فيها أجزاء محروقة ومحتاجة تتغيّر']],
+  ['CH61','حرارة عالية في ماسورة المكثف','High condenser pipe temperature',['المروحة مش بتلف (في حاجة مانعاها)','حساس ماسورة المكثف محروق أو بايظ','تلوث في المبادل الحراري مع الكمبروسر','وصلة الـ EEV وحشة']],
+  ['CH62','حرارة عالية في مشتت حرارة البوردة','High PCBA heat sink temperature',['المروحة مش بتلف (في حاجة مانعاها)','تركيب مشتت الحرارة أو الحساس وحش']],
+  ['CH65','خطأ في مشتت حرارة البوردة','Heat sink error on PCBA',['البوردة فيها أجزاء محروقة ومحتاجة تتغيّر']],
+  ['CH67','مروحة الوحدة الخارجية واقفة (Fan locking)','Outdoor fan locking',['المروحة مش بتلف (في حاجة مانعاها)','توصيل موتور المروحة وحش أو الموتور بايظ','تركيب مشتت الحرارة أو الحساس وحش']],
+  ['CH72','عطل في مفتاح الصمام الرباعي (4 way valve)','4 way valve switch failed',['أسلاك الصمام مفتوحة أو فيها قفلة','حساس الوحدة الداخلية أو الخارجية بايظ','البوردة فيها أجزاء محروقة ومحتاجة تتغيّر']]
+].map(([codes, ar, en, causes]) => ({ codes, ar, en, causes }));
+class Component extends DCLogic {
+  state = { q: '', sel: null };
+  renderVals() {
+    const q = this.state.q.replace(/\D/g, '');
+    const list = CODES.filter(c => !q || c.codes.replace(/CH/g, ' ').split(/\D+/).some(n => n && (n === q || n.startsWith(q) || String(Number(n)) === q)));
+    return {
+      q: this.state.q,
+      onQ: e => this.setState({ q: e.target.value }),
+      list: list.map(c => ({ codes: c.codes, pick: () => this.setState({ sel: c.codes, logged: false }), style: { padding:'9px 14px', borderRadius:'10px', cursor:'pointer', direction:'ltr', fontFamily:"'Cairo',sans-serif", fontWeight:700, fontSize:'14px', border: this.state.sel === c.codes ? '2px solid #A50034' : '1px solid #e0dcd4', background: this.state.sel === c.codes ? '#A50034' : '#fbfaf7', color: this.state.sel === c.codes ? '#fff' : '#191a1c' } })),
+      hasSel: !!this.state.sel,
+      logged: !!this.state.logged, notLogged: !this.state.logged,
+      logIt: () => { this.setState({ logged: true }); setTimeout(() => { const el = document.getElementById('esc-anchor'); if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - 80, behavior: 'smooth' }); }, 50); },
+      sel: CODES.find(c => c.codes === this.state.sel) || { codes:'', ar:'', en:'', causes:[] }
+    };
+  }
+}
+</script>
+</body>
+</html>

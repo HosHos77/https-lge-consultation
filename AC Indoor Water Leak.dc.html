@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<script src="shadow-nav.js"></script>
+<title>دعم فني — مشاكل تسريب المياه</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&family=IBM+Plex+Sans+Arabic:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  body { margin:0; background:#f4f3ef; }
+  a { color:#A50034; }
+  a:hover { color:#7d0027; }
+  @keyframes cardIn { from { opacity:0; transform:translateY(6px); } to { opacity:1; transform:none; } }
+</style>
+</helmet>
+<template id="__bundler_thumbnail"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><rect width="200" height="200" fill="#A50034"/><rect x="54" y="48" width="92" height="104" rx="8" fill="#fff"/><circle cx="100" cy="108" r="28" fill="none" stroke="#A50034" stroke-width="5"/><path d="M100 88a20 20 0 1 1-20 20" fill="none" stroke="#f0a8bd" stroke-width="5"/></svg></template>
+
+<div dir="rtl" style="min-height:100vh;background:#f4f3ef;color:#191a1c;font-family:'IBM Plex Sans Arabic',system-ui,sans-serif;">
+
+  <div style="background:#111314;color:#f4f3ef;padding:16px 28px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;position:sticky;top:0;z-index:20;">
+    <div style="width:9px;height:32px;background:#A50034;border-radius:2px;flex:none;"></div>
+    <div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:18px;">مشاكل تسريب المياه — Water Leak</div>
+    <div style="margin-right:auto;display:flex;flex-wrap:wrap;gap:10px;align-items:center;">
+      <div style="padding:7px 14px;border-radius:999px;background:#1e2224;font-size:12.5px;color:#c8cdd0;white-space:nowrap;flex:none;">{{ stepLabel }}</div>
+      <a href="AC Filter Cleaning Support Guide.dc.html" style="padding:8px 16px;border-radius:8px;border:1px solid #3a4043;color:#f0a8bd;font-size:13px;text-decoration:none;white-space:nowrap;flex:none;" style-hover="background:#22282a;">تنظيف فلتر التكييف</a>
+      
+    </div>
+  </div>
+
+  <div style="max-width:1080px;margin:0 auto;padding:30px 28px 70px;display:flex;flex-direction:column;gap:18px;">
+
+    <sc-if value="{{ isIntro }}" hint-placeholder-val="{{ true }}">
+      <div style="background:#fff;border:1px solid #e3e0d8;border-radius:14px;padding:32px;border-top:4px solid #A50034;animation:cardIn .25s ease;">
+        <div style="font-size:12.5px;font-weight:600;color:#A50034;letter-spacing:.04em;margin-bottom:10px;">الخطوة ١ — تفسير المشكلة للعميل</div>
+        <div style="font-family:'Cairo',sans-serif;font-weight:700;font-size:26px;line-height:1.5;margin-bottom:14px;">حدد مكان التسريب مع العميل</div>
+        <div style="background:#1c1a1b;color:#f6f1f2;border-radius:12px;padding:22px 24px;margin-bottom:20px;">
+          <div style="font-size:12.5px;color:#f0a8bd;margin-bottom:10px;font-weight:600;">افتتاح المكالمة — اقرأ للعميل</div>
+          <div style="font-family:'Cairo',sans-serif;font-size:17.5px;line-height:2.1;">«بعتذرلك عن الإزعاج. قبل ما نلجأ لأي إجراء تاني، أحب أراجع معاك كام خطوة بسيطة ممكن تساعدنا نحدد سبب المشكلة ونحلها في الحال. لو تسمحلي أتابع معاك ده هيوفر عليك الوقت وأي تكاليف أو زيارة غير ضرورية.»</div>
+        </div>
+        <div style="background:#1c1a1b;color:#f6f1f2;border-radius:12px;padding:20px 22px;margin-bottom:20px;">
+          <div style="font-size:12.5px;color:#f0a8bd;margin-bottom:8px;font-weight:600;">اقرأ للعميل</div>
+          <div style="font-family:'Cairo',sans-serif;font-size:17px;line-height:2.05;">«ممكن حضرتك تقولّي المية بتنزل منين بالظبط؟ من الوحدة اللي جوه ولا اللي برا؟»</div>
+        </div>
+
+        <div style="padding:18px 22px;border-radius:12px;background:#fff5f7;border:1px solid #f0c2ce;font-size:15.5px;line-height:1.95;margin-bottom:20px;">
+          <strong>تنبيه:</strong> قبل أي فحص: افصل التكييف عن الكهرباء عشان المية متوصلش للكهربا. اختار مكان التسريب وراجع الخطوات بالترتيب — لو كله سليم والمية لسه بتنزل، سجّل طلب صيانة.
+        </div>
+
+        
+        <div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:18px;margin-bottom:12px;">المية بتنزل منين؟</div>
+                <div style="font-size:14.5px;color:#6b7075;line-height:1.8;margin-bottom:20px;">لو المشكلة لسه موجودة بعد الحل — سجّل طلب صيانة.</div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px;margin-bottom:18px;">
+          <sc-for list="{{ cats }}" as="k" hint-placeholder-count="4">
+            <button onClick="{{ k.pick }}" style="{{ k.style }}">
+              <div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:18px;line-height:1.3;">{{ k.title }}</div>
+              <div style="font-size:13px;line-height:1.6;margin-top:4px;opacity:.8;">{{ k.hint }}</div>
+            </button>
+          </sc-for>
+        </div>
+        <sc-if value="{{ hasCat }}" hint-placeholder-val="{{ false }}">
+        <div style="font-size:14px;font-weight:700;color:#6b7075;margin-bottom:10px;">الأسباب المحتملة</div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px;">
+          <sc-for list="{{ checks }}" as="c" hint-placeholder-count="3">
+            <button onClick="{{ c.open }}" style="{{ c.style }}">
+              <div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:18px;line-height:1.3;">{{ c.title }}</div>
+              <div style="font-size:13.5px;line-height:1.6;margin-top:6px;color:#6b7075;">{{ c.hint }}</div>
+            </button>
+          </sc-for>
+        </div>
+        </sc-if>
+        <sc-if value="{{ showAll }}" hint-placeholder-val="{{ false }}">
+          <div style="font-size:14px;font-weight:700;color:#6b7075;margin-bottom:10px;">راجع مع العميل بالترتيب</div>
+          <div style="display:grid;gap:10px;margin-bottom:18px;">
+            <sc-for list="{{ allList }}" as="a" hint-placeholder-count="3">
+              <div style="display:flex;gap:14px;padding:16px 18px;border-radius:12px;background:#fbfaf7;border:1px solid #e9e6de;">
+                <div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:18px;color:#A50034;min-width:22px;">{{ a.n }}</div>
+                <div style="min-width:0;flex:1;">
+                  <div style="font-family:'Cairo',sans-serif;font-weight:700;font-size:17px;margin-bottom:6px;">{{ a.title }}</div>
+                  <div style="display:grid;gap:4px;">
+                    <sc-for list="{{ a.steps }}" as="t" hint-placeholder-count="2">
+                      <div>
+                        <div style="display:flex;gap:8px;align-items:flex-start;font-size:14.5px;line-height:1.75;color:#3f4447;"><div style="flex:none;width:5px;height:5px;border-radius:50%;background:#A50034;margin-top:10px;"></div><div>{{ t.text }}</div></div>
+                        <sc-if value="{{ t.link }}" hint-placeholder-val="{{ false }}">
+                          <a href="{{ t.link }}" style="display:inline-flex;margin:6px 13px 0 0;padding:8px 14px;border-radius:9px;background:#A50034;color:#fff;font-family:'Cairo',sans-serif;font-weight:700;font-size:13.5px;text-decoration:none;" style-hover="background:#7d0027;">{{ t.linkText }} ←</a>
+                        </sc-if>
+                      </div>
+                    </sc-for>
+                  </div>
+                </div>
+              </div>
+            </sc-for>
+          </div>
+          <div style="display:grid;gap:12px;">
+            <button onClick="{{ toDone }}" style="text-align:right;padding:18px 22px;border-radius:12px;border:1px solid #c6e0d1;background:#eef6f1;cursor:pointer;font-family:'IBM Plex Sans Arabic',sans-serif;" style-hover="border-color:#0f5132;"><div style="font-family:'Cairo',sans-serif;font-weight:700;font-size:17px;">اتحلّت المشكلة أو سيجرب العميل الحل</div></button>
+            <button onClick="{{ toEsc }}" style="text-align:right;padding:18px 22px;border-radius:12px;border:1px solid #f0c2ce;background:#fff5f7;cursor:pointer;font-family:'IBM Plex Sans Arabic',sans-serif;" style-hover="border-color:#A50034;"><div style="font-family:'Cairo',sans-serif;font-weight:700;font-size:17px;">المشكلة مستمرة — تسجيل طلب صيانة</div></button>
+          </div>
+        </sc-if>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ isDetail }}" hint-placeholder-val="{{ false }}">
+      <div style="background:#fff;border:1px solid #e3e0d8;border-radius:14px;padding:32px;border-top:4px solid #A50034;animation:cardIn .25s ease;">
+        <div style="font-size:12.5px;font-weight:600;color:#A50034;letter-spacing:.04em;margin-bottom:10px;">الخطوات الإرشادية</div>
+        <div style="font-family:'Cairo',sans-serif;font-weight:700;font-size:26px;line-height:1.4;margin-bottom:10px;">{{ sel.title }}</div>
+        <div style="background:#1c1a1b;color:#f6f1f2;border-radius:12px;padding:20px 22px;margin-bottom:20px;">
+          <div style="font-size:12.5px;color:#f0a8bd;margin-bottom:8px;font-weight:600;">اقرأ للعميل</div>
+          <div style="font-family:'Cairo',sans-serif;font-size:17px;line-height:2.05;">{{ sel.script }}</div>
+        </div>
+
+        <div style="font-size:15px;color:#6b7075;line-height:1.85;margin-bottom:20px;max-width:70ch;text-wrap:pretty;">{{ sel.cause }}</div>
+
+        <div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:18px;margin-bottom:12px;">الخطوات</div>
+        <div style="display:grid;gap:12px;margin-bottom:20px;">
+          <sc-for list="{{ sel.steps }}" as="t" hint-placeholder-count="4">
+            <div style="display:flex;gap:16px;padding:17px 20px;border-radius:12px;background:#fbfaf7;border:1px solid #e9e6de;">
+              <div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:16px;color:#A50034;min-width:22px;">{{ t.n }}</div>
+              <div style="min-width:0;">
+                <div style="font-size:15.5px;line-height:1.9;color:#3f4447;">{{ t.text }}</div>
+                <sc-if value="{{ t.note }}" hint-placeholder-val="{{ false }}">
+                  <div style="margin-top:10px;padding:12px 16px;border-radius:10px;background:#fdf6e8;border:1px solid #ecd9ae;font-size:14.5px;line-height:1.85;color:#7a5410;"><strong>تنبيه:</strong> {{ t.note }}</div>
+                </sc-if>
+                <sc-if value="{{ t.link }}" hint-placeholder-val="{{ false }}">
+                  <a href="{{ t.link }}" style="display:inline-flex;align-items:center;gap:8px;margin-top:10px;padding:10px 18px;border-radius:10px;background:#A50034;color:#fff;font-family:'Cairo',sans-serif;font-weight:700;font-size:14.5px;text-decoration:none;" style-hover="background:#7d0027;">{{ t.linkText }} ←</a>
+                </sc-if>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+
+        <div style="display:grid;gap:12px;">
+          <sc-if value="{{ showDone }}" hint-placeholder-val="{{ true }}">
+          <button onClick="{{ toDone }}" style="text-align:right;padding:20px 22px;border-radius:12px;border:1px solid #c6e0d1;background:#eef6f1;cursor:pointer;font-family:'IBM Plex Sans Arabic',sans-serif;" style-hover="border-color:#0f5132;">
+            <div style="font-family:'Cairo',sans-serif;font-weight:700;font-size:18px;margin-bottom:4px;">اتحلّت المشكلة أو سيجرب العميل الحل</div>
+            <div style="font-size:14px;color:#6b7075;">إنهاء المكالمة بدون تسجيل طلب صيانة.</div>
+          </button>
+          </sc-if>
+          <sc-if value="{{ showEsc }}" hint-placeholder-val="{{ true }}">
+          <button onClick="{{ toEsc }}" style="text-align:right;padding:20px 22px;border-radius:12px;border:1px solid #f0c2ce;background:#fff5f7;cursor:pointer;font-family:'IBM Plex Sans Arabic',sans-serif;" style-hover="border-color:#A50034;">
+            <div style="font-family:'Cairo',sans-serif;font-weight:700;font-size:18px;margin-bottom:4px;">المشكلة مستمرة — تسجيل طلب صيانة</div>
+            <div style="font-size:14px;color:#8a5555;">لو الخطوات كلها اتعملت والمشكلة لسه موجودة.</div>
+          </button>
+          </sc-if>
+          <sc-if value="{{ showHM }}" hint-placeholder-val="{{ false }}">
+          <button onClick="{{ toHM }}" style="text-align:right;padding:20px 22px;border-radius:12px;border:1px solid #f0c2ce;background:#fff5f7;cursor:pointer;font-family:'IBM Plex Sans Arabic',sans-serif;" style-hover="border-color:#A50034;">
+            <div style="font-family:'Cairo',sans-serif;font-weight:700;font-size:18px;margin-bottom:4px;">المشكلة مستمرة — تسجيل بلاغ صيانة وقائية</div>
+            <div style="font-size:14px;color:#8a5555;">لو الريحة لسه موجودة بعد تنظيف الفلتر.</div>
+          </button>
+          </sc-if>
+          <button onClick="{{ toPick }}" style="text-align:right;padding:16px 22px;border-radius:12px;border:1px solid #d9d5cb;background:#fbfaf7;cursor:pointer;font-family:'IBM Plex Sans Arabic',sans-serif;font-size:15px;color:#191a1c;" style-hover="border-color:#A50034;">فحص مختلف — رجوع لقائمة الفحوصات</button>
+        </div>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ isDone }}" hint-placeholder-val="{{ false }}">
+      <div style="background:#fff;border:1px solid #c6e0d1;border-radius:14px;padding:32px;border-top:4px solid #0f5132;animation:cardIn .25s ease;">
+        <div style="font-family:'Cairo',sans-serif;font-weight:700;font-size:26px;line-height:1.5;margin-bottom:18px;">اتحلّت المشكلة أو سيجرب العميل الحل — إنهاء المكالمة</div>
+        <div style="padding:18px 22px;border-radius:12px;background:#eef6f1;border:1px solid #c6e0d1;font-size:15.5px;line-height:1.95;margin-bottom:20px;">
+          تأكد من فهم العميل للخطوات وأنه سيجربها، — ثم أنهِ المكالمة بدون تسجيل طلب صيانة.
+        </div>
+        <a href="AC Support Topics.dc.html" style="display:inline-block;padding:14px 22px;border-radius:10px;background:#A50034;color:#fff;font-family:'Cairo',sans-serif;font-weight:700;font-size:15px;text-decoration:none;" style-hover="background:#7d0027;">إنهاء المكالمة</a>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ isHM }}" hint-placeholder-val="{{ false }}">
+      <div style="background:#fff;border:1px solid #f0c2ce;border-radius:14px;padding:32px;border-top:4px solid #A50034;animation:cardIn .25s ease;">
+        <div style="font-size:12.5px;font-weight:600;color:#A50034;letter-spacing:.04em;margin-bottom:10px;">الخطوة الأخيرة — تسجيل بلاغ صيانة وقائية</div>
+        <div style="font-family:'Cairo',sans-serif;font-weight:700;font-size:26px;line-height:1.5;margin-bottom:18px;">التكييف محتاج تنظيف من جوه</div>
+        <div style="background:#1c1a1b;color:#f6f1f2;border-radius:12px;padding:20px 22px;margin-bottom:20px;">
+          <div style="font-size:12.5px;color:#f0a8bd;margin-bottom:8px;font-weight:600;">اقرأ للعميل</div>
+          <div style="font-family:'Cairo',sans-serif;font-size:17px;line-height:2.05;">«الريحة دي محتاجة تنظيف للتكييف من جوه. هسجّل لحضرتك بلاغ صيانة وقائية، وفني متخصص هيتواصل معاك لتحديد الميعاد.»</div>
+        </div>
+        <div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:18px;margin-bottom:12px;">تعليمات تسجيل البلاغ</div>
+        <div style="display:grid;gap:10px;margin-bottom:22px;">
+          <sc-for list="{{ hmRules }}" as="r" hint-placeholder-count="5">
+            <div style="display:flex;gap:14px;padding:14px 18px;border-radius:12px;background:#fbfaf7;border:1px solid #e9e6de;">
+              <div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:16px;color:#A50034;min-width:22px;">{{ r.n }}</div>
+              <div style="min-width:0;flex:1;">
+                <div style="font-family:'Cairo',sans-serif;font-weight:700;font-size:16px;color:#191a1c;margin-bottom:6px;">{{ r.t }}</div>
+                <div style="display:grid;gap:4px;">
+                  <sc-for list="{{ r.items }}" as="it" hint-placeholder-count="3">
+                    <div style="display:flex;gap:8px;align-items:flex-start;font-size:14.5px;line-height:1.75;color:#3f4447;"><div style="flex:none;width:5px;height:5px;border-radius:50%;background:#A50034;margin-top:10px;"></div><div>{{ it }}</div></div>
+                  </sc-for>
+                </div>
+                <sc-if value="{{ r.link }}" hint-placeholder-val="{{ false }}">
+                  <a href="{{ r.link }}" style="display:inline-flex;align-items:center;gap:8px;margin-top:4px;padding:10px 18px;border-radius:10px;background:#A50034;color:#fff;font-family:'Cairo',sans-serif;font-weight:700;font-size:14.5px;text-decoration:none;" style-hover="background:#7d0027;">{{ r.linkText }} ←</a>
+                </sc-if>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+        <div style="display:flex;gap:12px;flex-wrap:wrap;align-items:center;">
+          <a href="AC Support Topics.dc.html" style="display:inline-block;padding:14px 22px;border-radius:10px;background:#A50034;color:#fff;font-family:'Cairo',sans-serif;font-weight:700;font-size:15px;text-decoration:none;" style-hover="background:#7d0027;">تم تسجيل البلاغ — إنهاء المكالمة</a>
+          <a href="HM AC Cleaning Guide.dc.html" style="font-size:14px;font-weight:600;color:#A50034;text-decoration:underline;" style-hover="color:#7d0027;">خطوات الصيانة الوقائية بالتفصيل</a>
+          <a href="HM Fees.dc.html#ac" style="font-size:14px;font-weight:600;color:#A50034;text-decoration:underline;" style-hover="color:#7d0027;">رسوم الصيانة الوقائية للتكييف</a>
+        </div>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ isEsc }}" hint-placeholder-val="{{ false }}">
+      <div style="background:#fff;border:1px solid #f0c2ce;border-radius:14px;padding:32px;border-top:4px solid #A50034;animation:cardIn .25s ease;">
+        <div style="font-size:12.5px;font-weight:600;color:#A50034;letter-spacing:.04em;margin-bottom:10px;">الخطوة الأخيرة — تسجيل طلب صيانة</div>
+        <div style="font-family:'Cairo',sans-serif;font-weight:700;font-size:26px;line-height:1.5;margin-bottom:18px;">الجهاز يحتاج زيارة فني</div>
+        <div style="background:#1c1a1b;color:#f6f1f2;border-radius:12px;padding:20px 22px;margin-bottom:20px;">
+          <div style="font-size:12.5px;color:#f0a8bd;margin-bottom:8px;font-weight:600;">اقرأ للعميل</div>
+          <div style="font-family:'Cairo',sans-serif;font-size:17px;line-height:2.05;">«هسجّل لحضرتك طلب صيانة وزيارة فني. الصيانة داخل فترة الضمان مجانية تمامًا. ولو ظهر إن السبب مش عطل فني في الجهاز، أو إن العطل خارج نطاق الضمان، بتكون في تكلفة زيارة ومعاينة ١٨٢ جنيه لأول زيارة، وأي زيارة بعدها ٣٠٠ جنيه — وتكلفة الصيانة نفسها بتتحدد بعد ما الفني يعاين الجهاز، وهتُعرض على حضرتك للموافقة قبل أي إصلاح.»</div>
+        </div>
+
+        <a href="Service Fees Table.dc.html#ac" style="display:flex;align-items:center;gap:14px;padding:18px 22px;border-radius:12px;border:1px solid #f0c2ce;background:#fff5f7;text-decoration:none;margin-bottom:20px;" style-hover="border-color:#A50034;">
+          <div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:17px;color:#A50034;">رسوم التكييفات</div>
+          <div style="font-size:14px;color:#3f4447;line-height:1.7;">اضغط لعرض رسوم الصيانة والزيارة الخاصة بالمنتج — صباحي ومسائي.</div>
+          <div style="margin-right:auto;color:#A50034;font-size:18px;">←</div>
+        </a>
+
+
+        <div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:18px;margin-bottom:12px;">نظام تسجيل الطلب</div>
+        <div style="display:grid;gap:10px;margin-bottom:20px;">
+          <div style="display:flex;gap:14px;padding:15px 18px;border-radius:12px;background:#fbfaf7;border:1px solid #e9e6de;"><div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:16px;color:#A50034;min-width:20px;">١</div><div style="font-size:15px;line-height:1.9;">يتم تسجيل <strong>المشكلة اللي العميل وصفها</strong> و<strong>كل الخطوات اللي تمت مع العميل</strong> في البلاغ، مع <strong>رقم الموديل</strong>. (لو رقم الموديل مش متوفر يتم تسجيل البلاغ بعد التأكد إن الجهاز إل جي ومشترى من داخل مصر)</div></div>
+          <div style="display:flex;gap:14px;padding:15px 18px;border-radius:12px;background:#fbfaf7;border:1px solid #e9e6de;"><div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:16px;color:#A50034;min-width:20px;">٢</div><div style="font-size:15px;line-height:1.9;">الاسم الثلاثي للعميل كما هو مسجل في فاتورة الشراء (لو مش متوفر يتم السؤال عن اسم صاحب الجهاز).</div></div>
+          <div style="display:flex;gap:14px;padding:15px 18px;border-radius:12px;background:#fbfaf7;border:1px solid #e9e6de;"><div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:16px;color:#A50034;min-width:20px;">٣</div><div style="font-size:15px;line-height:1.9;">رقم الهاتف الأساسي ورقم إضافي إن وجد.</div></div>
+          <div style="display:flex;gap:14px;padding:15px 18px;border-radius:12px;background:#fbfaf7;border:1px solid #e9e6de;"><div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:16px;color:#A50034;min-width:20px;">٤</div><div style="font-size:15px;line-height:1.9;">العنوان بالتفصيل (المحافظة، المنطقة، اسم الشارع، رقم العمارة، الدور، الشقة، علامة مميزة).</div></div>
+          <div style="display:flex;gap:14px;padding:15px 18px;border-radius:12px;background:#fbfaf7;border:1px solid #e9e6de;"><div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:16px;color:#A50034;min-width:20px;">٥</div><div style="font-size:15px;line-height:1.9;">استفسر منه عن الموعد المفضل وسجّله على الأوردر. (لو لم يرد على السؤال يتم اختيار أقرب موعد متاح وإبلاغ العميل به)</div></div>
+        </div>
+
+
+        <a href="AC Support Topics.dc.html" style="display:inline-block;padding:14px 22px;border-radius:10px;background:#A50034;color:#fff;font-family:'Cairo',sans-serif;font-weight:700;font-size:15px;text-decoration:none;" style-hover="background:#7d0027;">تم تسجيل البلاغ — إنهاء المكالمة</a>
+      </div>
+    </sc-if>
+
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const AR = ['٠','١','٢','٣','٤','٥','٦','٧','٨','٩','١٠'];
+const CHECKS = [
+ {
+  "key": "filter",
+  "title": "الفلتر مسدود أو متسخ",
+  "hint": "أول حاجة نراجعها",
+  "cause": "الفلتر لما يتسد بالتراب، الهوا مبيعديش كويس والملف بيتلّج، ولما التلج يسيح المية بتنزل برا الصينية.",
+  "script": "«آخر مرة الفلاتر اتنضفت امتى؟ الفلتر المسدود من أشهر أسباب نزول المية.»",
+  "steps": [
+   {
+    "text": "اطفي التكييف وافصل الكهربا."
+   },
+   {
+    "text": "طلّع الفلاتر واتأكد إنها مش مسدودة ومتنضفة."
+   },
+   {
+    "text": "لو متسخة — نضّفها واغسلها وسيبها تنشف في الضل، وبعدين رجّعها.",
+    "link": "AC Filter Cleaning Support Guide.dc.html",
+    "linkText": "افتح خطوات تنظيف فلتر التكييف"
+   }
+  ]
+ },
+ {
+  "key": "hose",
+  "title": "خرطوم الصرف مسدود أو ملتوي",
+  "hint": "خرطوم الصرف",
+  "cause": "لو خرطوم الصرف مسدود أو متني أو ملتوي، المية مبتعرفش تصرّف وبترجع تنزل من الوحدة الداخلية.",
+  "script": "«ممكن حضرتك تبص على الخرطوم اللي طالع من التكييف لبرا؟ نتأكد إنه مش متني ولا مسدود.»",
+  "steps": [
+   {
+    "text": "اتأكد إن خرطوم الصرف مش ملتوي أو متني أو مضغوط في أي حتة."
+   },
+   {
+    "text": "اتأكد إن الخرطوم ماشي في ميل لتحت من أوله لآخره — لو في أي جزء منه عالي عن الوحدة أو عامل «كوع» لفوق، المية مش هتعرف تنزل وهترجع للتكييف."
+   },
+   {
+    "text": "اتأكد إن آخر الخرطوم مش مسدود بتراب أو حشرات أو طين.",
+    "note": "لو الخرطوم مسدود من جوه ومش باين — سجّل طلب صيانة."
+   }
+  ]
+ },
+ {
+  "key": "bucket",
+  "title": "الخرطوم في جردل أو قارورة مليانة",
+  "hint": "آخر الخرطوم مغمور",
+  "cause": "لو آخر الخرطوم حاطينه في جردل أو قارورة واتملت، أو آخره مغمور في المية، المية مبتعرفش تنزل وبترجع للوحدة.",
+  "script": "«آخر الخرطوم حضرتك حاطه فين؟ لو في جردل أو قارورة، ممكن تكون اتملت.»",
+  "steps": [
+   {
+    "text": "لو آخر الخرطوم في جردل أو قارورة — فضّيها."
+   },
+   {
+    "text": "اتأكد إن آخر الخرطوم فوق مستوى المية ومش مغمور فيها."
+   },
+   {
+    "text": "الأفضل الخرطوم يصرّف في مكان مفتوح أو في صرف، مش في وعاء بيتملي."
+   }
+  ]
+ },
+ {
+  "key": "tilt",
+  "noDone": true,
+  "title": "الوحدة الداخلية متركبة مايلة",
+  "hint": "التركيب",
+  "cause": "لو الوحدة الداخلية متركبة مايلة على الحيطة، المية بتتجمع في ناحية من الصينية ومبتوصلش لفتحة الصرف فبتنزل برا.",
+  "script": "«ممكن تبص على التكييف من قدام؟ حاسس إنه مايل ناحية أكتر من التانية؟»",
+  "steps": [
+   {
+    "text": "بص على الوحدة الداخلية من قدام واتأكد إنها مستوية ومش مايلة."
+   },
+   {
+    "text": "لو مايلة — متحاولش تفكها أو تعدّلها بنفسك، وهنسجّل لحضرتك طلب زيارة فني يعدّل التركيب.",
+    "note": "سجّل طلب صيانة أو تواصل مع الفني اللي ركّب عشان يعدّل التركيب."
+   }
+  ]
+ },
+ {
+  "key": "outdoor",
+  "title": "مية بتنزل من الوحدة الخارجية",
+  "hint": "في وضع التدفئة",
+  "cause": "في التدفئة، نقط المية بتتكثّف من المبادل الحراري.",
+  "script": "«المية دي طبيعية — التكييف بيشيل التلج اللي اتكوّن على الوحدة اللي برا من البرد، وبعد حوالي ربع ساعة هيرجع يدفّي عادي.»",
+  "steps": [
+   {
+    "text": "ده طبيعي في وضع التدفئة."
+   },
+   {
+    "text": "لما الجو برا يبقى بارد، بيتكوّن تلج على ملف الوحدة الخارجية. التكييف بيوقف التدفئة شوية ويشغّل عملية إذابة التلج (Defrost) لوحده — التلج بيسيح وينزل مية من الوحدة الخارجية، وممكن يطلع بخار خفيف."
+   },
+   {
+    "text": "العملية دي بتاخد حوالي ١٥ دقيقة، وبعدها التكييف بيرجع يدفّي عادي."
+   }
+  ]
+ }
+];
+const CATS = [{"key":"in","all":true,"title":"تسريب من الوحدة الداخلية","hint":"المية بتنزل من التكييف اللي جوه","keys":["filter","hose","bucket","tilt"]},{"key":"out","all":true,"title":"تسريب من الوحدة الخارجية","hint":"المية بتنزل من الوحدة اللي برا","keys":["outdoor"]}];
+
+class Component extends DCLogic {
+  state = { node: 'intro', sel: null, cat: null, history: [] };
+  go(n, extra) { this.setState(s => Object.assign({ node: n, history: [...s.history, s.node] }, extra || {})); window.scrollTo(0, 0); }
+  renderVals() {
+    const n = this.state.node;
+    const sel = CHECKS.find(c => c.key === this.state.sel) || null;
+    const labels = { intro: sel ? 'خطوة ٢' : 'خطوة ١', pick: sel ? 'خطوة ٢' : 'خطوة ١', detail:'خطوة ٣', done:'إنهاء', esc:'تسجيل بلاغ', hm:'صيانة وقائية' };
+    return { pageBack: () => { if (history.length > 1) history.back(); else location.href = 'Installation Guide Home.dc.html'; },
+      stepLabel: labels[n] || '',
+      isIntro: n === 'intro' || n === 'pick', isPick: n === 'intro' || n === 'pick', isDetail: (n === 'intro' || n === 'pick') && !!sel,
+      isDone: n === 'done', isEsc: n === 'esc', isHM: n === 'hm',
+      cats: CATS.map(k => ({ title: k.title, hint: k.hint, pick: () => this.setState({ cat: k.key, sel: null }), style: { textAlign:'right', padding:'16px 18px', borderRadius:'12px', cursor:'pointer', width:'100%', fontFamily:"'IBM Plex Sans Arabic',sans-serif", border: this.state.cat === k.key ? '2px solid #A50034' : '1px solid #e3e0d8', background: this.state.cat === k.key ? '#A50034' : '#fff', color: this.state.cat === k.key ? '#fff' : '#191a1c' } })),
+      hasCat: !!this.state.cat && !(CATS.find(k => k.key === this.state.cat) || {}).all,
+      showAll: !!(CATS.find(k => k.key === this.state.cat) || {}).all,
+      allList: ((CATS.find(k => k.key === this.state.cat) || {}).all ? CATS.find(k => k.key === this.state.cat).keys : []).map((key, i) => { const c = CHECKS.find(x => x.key === key); return { n: AR[i + 1], title: c.title, steps: c.steps.map(t => ({ text: t.text, link: t.link || '', linkText: t.linkText || '' })) }; }),
+      checks: CHECKS.filter(c => this.state.cat && CATS.find(k => k.key === this.state.cat).keys.includes(c.key)).sort((a, b) => { const ks = (CATS.find(k => k.key === this.state.cat) || {keys:[]}).keys; return ks.indexOf(a.key) - ks.indexOf(b.key); }).map(c => ({
+        title: c.title,
+        hint: c.hint,
+        style: { textAlign:'right', padding:'18px 20px', borderRadius:'12px', cursor:'pointer', width:'100%', fontFamily:"'IBM Plex Sans Arabic',sans-serif", border: this.state.sel === c.key ? '2px solid #A50034' : '1px solid #e3e0d8', background: this.state.sel === c.key ? '#fdf5f7' : '#fff', color:'#191a1c' },
+        open: () => this.setState({ sel: c.key })
+      })),
+      sel: sel ? {
+        title: sel.title,
+        cause: sel.cause,
+        script: sel.script,
+        steps: sel.steps.map((t, i) => ({ n: AR[i + 1], text: t.text, note: t.note || '', link: t.link || '', linkText: t.linkText || '' }))
+      } : { title:'', cause:'', script:'', steps:[] },
+      showDone: !(sel && sel.noDone),
+      showEsc: !(sel && sel.hm), showHM: !!(sel && sel.hm),
+      toPick: () => this.setState({ node: 'intro', sel: null }),
+      toDone: () => this.go('done'),
+      toEsc: () => this.go('esc'),
+      toHM: () => this.go('hm'),
+      hmRules: [
+        ['راجع البيانات', ['الرقم الأساسي والاحتياطي — لو رقم واحد بس، اطلب رقم تاني.', 'العنوان بالكامل — وحدّثه لو العميل طلب.']],
+        ['سجّل الطلب', ['المنتج: Air cleaner', 'SVC type: Cleaning', 'المركز: LGEEG CC&S Profit & Marketing Team', 'Symptom: Cleaning Service', 'Symptom Detail: Filter Cleaning (بسيطة) — أو Appliance Cleaning Service (شاملة)']],
+        ['لو المركز مظهرش', ['المنتج: تكييف العميل (مش Air cleaner)', 'SVC type: Hygienic care maintenance', 'سجّل على أي مركز عادي (مش على الـ DR).']],
+        ['لو مفيش مواعيد في المركز', [], 'ref-no-capacity.dc.html', 'افتح خطوات لا يوجد كباستي (No Capacity)']
+      ].map(([t, items, link, linkText], i) => ({ n: AR[i + 1], t, items, link: link || '', linkText: linkText || '' })),
+      back: () => this.setState(s => s.history.length ? { node: s.history[s.history.length - 1], history: s.history.slice(0, -1) } : {}),
+      restart: () => this.setState({ node: 'intro', sel: null, cat: null, history: [] })
+    };
+  }
+}
+</script>
+</body>
+</html>

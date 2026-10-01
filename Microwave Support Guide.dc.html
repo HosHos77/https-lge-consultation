@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<script src="shadow-nav.js"></script>
+<title>دعم فني — الميكروويف</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&family=IBM+Plex+Sans+Arabic:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  body { margin:0; background:#f4f3ef; }
+  a { color:#A50034; }
+  a:hover { color:#7d0027; }
+  @keyframes cardIn { from { opacity:0; transform:translateY(6px); } to { opacity:1; transform:none; } }
+</style>
+</helmet>
+<template id="__bundler_thumbnail"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><rect width="200" height="200" fill="#A50034"/><rect x="54" y="48" width="92" height="104" rx="8" fill="#fff"/><circle cx="100" cy="108" r="28" fill="none" stroke="#A50034" stroke-width="5"/><path d="M100 88a20 20 0 1 1-20 20" fill="none" stroke="#f0a8bd" stroke-width="5"/></svg></template>
+
+<div dir="rtl" style="min-height:100vh;background:#f4f3ef;color:#191a1c;font-family:'IBM Plex Sans Arabic',system-ui,sans-serif;">
+
+  <div style="background:#111314;color:#f4f3ef;padding:16px 28px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;position:sticky;top:0;z-index:20;">
+    <div style="width:9px;height:32px;background:#A50034;border-radius:2px;flex:none;"></div>
+    <div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:18px;">دعم فني الميكروويف — Microwave Oven</div>
+    <div style="margin-right:auto;display:flex;flex-wrap:wrap;gap:10px;align-items:center;">
+      <div style="padding:7px 14px;border-radius:999px;background:#1e2224;font-size:12.5px;color:#c8cdd0;white-space:nowrap;flex:none;">{{ stepLabel }}</div>
+      <a href="Service Fees Table.dc.html#mw" style="padding:8px 16px;border-radius:8px;border:1px solid #3a4043;color:#f0a8bd;font-size:13px;text-decoration:none;white-space:nowrap;flex:none;" style-hover="background:#22282a;">جدول تكاليف الصيانة</a>
+    </div>
+  </div>
+
+  <div style="max-width:1080px;margin:0 auto;padding:30px 28px 70px;display:flex;flex-direction:column;gap:18px;">
+
+    <sc-if value="{{ isIntro }}" hint-placeholder-val="{{ true }}">
+      <div style="background:#fff;border:1px solid #e3e0d8;border-radius:14px;padding:32px;border-top:4px solid #A50034;animation:cardIn .25s ease;">
+        <div style="font-size:12.5px;font-weight:600;color:#A50034;letter-spacing:.04em;margin-bottom:10px;">الخطوة ١ — تفسير المشكلة للعميل</div>
+        <div style="font-family:'Cairo',sans-serif;font-weight:700;font-size:26px;line-height:1.5;margin-bottom:14px;">أغلب مشاكل الميكروويف مش عطل — وبتتحل من غير فني</div>
+        <div style="background:#1c1a1b;color:#f6f1f2;border-radius:12px;padding:22px 24px;margin-bottom:20px;">
+          <div style="font-size:12.5px;color:#f0a8bd;margin-bottom:10px;font-weight:600;">افتتاح المكالمة — اقرأ للعميل</div>
+          <div style="font-family:'Cairo',sans-serif;font-size:17.5px;line-height:2.1;">«بعتذرلك عن الإزعاج. قبل ما نلجأ لأي إجراء تاني، أحب أراجع معاك كام خطوة بسيطة ممكن تساعدنا نحدد سبب المشكلة ونحلها في الحال. لو تسمحلي أتابع معاك ده هيوفر عليك الوقت وأي تكاليف أو زيارة غير ضرورية.»</div>
+        </div>
+        <div style="background:#1c1a1b;color:#f6f1f2;border-radius:12px;padding:20px 22px;margin-bottom:20px;">
+          <div style="font-size:12.5px;color:#f0a8bd;margin-bottom:8px;font-weight:600;">اقرأ للعميل</div>
+          <div style="font-family:'Cairo',sans-serif;font-size:17px;line-height:2.05;">«في مشاكل بسيطة في الميكروويف ممكن نحلها مع بعض دلوقتي من غير فني. قولّي حضرتك بالظبط إيه اللي بيحصل، وهنراجعه خطوة بخطوة.»</div>
+        </div>
+
+
+        <div style="font-family:'Cairo',sans-serif;font-weight:700;font-size:20px;line-height:1.5;margin-bottom:8px;">اختار المشكلة وراجع الحل مع العميل</div>
+        <div style="font-size:14.5px;color:#6b7075;line-height:1.8;margin-bottom:20px;">لو المشكلة مستمرة بعد الحل، يتم تسجيل طلب صيانة.</div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px;">
+          <sc-for list="{{ checks }}" as="c" hint-placeholder-count="3">
+            <button onClick="{{ c.open }}" style="{{ c.style }}">
+              <div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:18px;line-height:1.3;">{{ c.title }}</div>
+              <div style="font-size:13.5px;line-height:1.6;margin-top:6px;color:#6b7075;">{{ c.hint }}</div>
+            </button>
+          </sc-for>
+        </div>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ isDetail }}" hint-placeholder-val="{{ false }}">
+      <div style="background:#fff;border:1px solid #e3e0d8;border-radius:14px;padding:32px;border-top:4px solid #A50034;animation:cardIn .25s ease;">
+        <div style="font-size:12.5px;font-weight:600;color:#A50034;letter-spacing:.04em;margin-bottom:10px;">الخطوة ٢ — الخطوات الإرشادية</div>
+        <div style="font-family:'Cairo',sans-serif;font-weight:700;font-size:26px;line-height:1.4;margin-bottom:10px;">{{ sel.title }}</div>
+        <div style="background:#1c1a1b;color:#f6f1f2;border-radius:12px;padding:20px 22px;margin-bottom:20px;">
+          <div style="font-size:12.5px;color:#f0a8bd;margin-bottom:8px;font-weight:600;">اقرأ للعميل</div>
+          <div style="font-family:'Cairo',sans-serif;font-size:17px;line-height:2.05;">{{ sel.script }}</div>
+        </div>
+
+        <div style="font-size:15px;color:#6b7075;line-height:1.85;margin-bottom:20px;max-width:70ch;text-wrap:pretty;">{{ sel.cause }}</div>
+
+        <div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:18px;margin-bottom:12px;">الخطوات</div>
+        <div style="display:grid;gap:12px;margin-bottom:20px;">
+          <sc-for list="{{ sel.steps }}" as="t" hint-placeholder-count="4">
+            <div style="display:flex;gap:16px;padding:17px 20px;border-radius:12px;background:#fbfaf7;border:1px solid #e9e6de;">
+              <div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:16px;color:#A50034;min-width:22px;">{{ t.n }}</div>
+              <div style="min-width:0;">
+                <div style="font-size:15.5px;line-height:1.9;color:#3f4447;">{{ t.text }}</div>
+                <sc-if value="{{ t.note }}" hint-placeholder-val="{{ false }}">
+                  <div style="margin-top:10px;padding:12px 16px;border-radius:10px;background:#fdf6e8;border:1px solid #ecd9ae;font-size:14.5px;line-height:1.85;color:#7a5410;"><strong>تنبيه:</strong> {{ t.note }}</div>
+                </sc-if>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+
+        <sc-if value="{{ showDishes }}" hint-placeholder-val="{{ false }}">
+          <div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:18px;margin-bottom:12px;">الأواني المسموحة والممنوعة</div>
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;margin-bottom:12px;">
+            <div style="border:1px solid #c6e0d1;border-radius:12px;overflow:hidden;">
+              <div style="padding:12px 16px;background:#0f5132;color:#fff;font-family:'Cairo',sans-serif;font-weight:700;font-size:16px;">مسموح</div>
+              <div style="padding:12px 16px;border-top:1px solid #e3efe7;font-size:15px;line-height:1.8;">الزجاج المقاوم للحرارة (زي البايركس)</div>
+              <div style="padding:12px 16px;border-top:1px solid #e3efe7;font-size:15px;line-height:1.8;background:#f5faf7;">السيراميك والبورسلين من غير حواف أو نقوش معدنية</div>
+              <div style="padding:12px 16px;border-top:1px solid #e3efe7;font-size:15px;line-height:1.8;">البلاستيك المكتوب عليه Microwave Safe</div>
+              <div style="padding:12px 16px;border-top:1px solid #e3efe7;font-size:15px;line-height:1.8;background:#f5faf7;">ورق الزبدة والمناديل الورق — للتسخين السريع والتغطية بس</div>
+            </div>
+            <div style="border:1px solid #f0c2ce;border-radius:12px;overflow:hidden;">
+              <div style="padding:12px 16px;background:#A50034;color:#fff;font-family:'Cairo',sans-serif;font-weight:700;font-size:16px;">ممنوع</div>
+              <div style="padding:12px 16px;border-top:1px solid #f6e1e7;font-size:15px;line-height:1.8;">أي معدن — حلل، صواني ألومنيوم، معالق وشوك، وفويل (بيعمل شرار)</div>
+              <div style="padding:12px 16px;border-top:1px solid #f6e1e7;font-size:15px;line-height:1.8;background:#fdf6f8;">الأطباق اللي فيها حواف أو نقوش دهب أو فضة</div>
+              <div style="padding:12px 16px;border-top:1px solid #f6e1e7;font-size:15px;line-height:1.8;">البلاستيك العادي، علب الأكل الجاهز، الفوم، الأكياس، والكريستال</div>
+              <div style="padding:12px 16px;border-top:1px solid #f6e1e7;font-size:15px;line-height:1.8;background:#fdf6f8;">البيض بقشره، والعلب والبرطمانات المقفولة — ممكن تنفجر</div>
+            </div>
+          </div>
+          <div style="padding:12px 16px;border-radius:10px;background:#f4f3ef;font-size:14.5px;line-height:1.8;margin-bottom:20px;"><strong>لو مش متأكد من الإناء:</strong> حطه فاضي جنب كوباية مية وشغّل دقيقة على قوة عالية — لو الإناء سخن يبقى متنفعش.</div>
+        </sc-if>
+
+        <div style="display:grid;gap:12px;">
+          <button onClick="{{ toDone }}" style="text-align:right;padding:20px 22px;border-radius:12px;border:1px solid #c6e0d1;background:#eef6f1;cursor:pointer;font-family:'IBM Plex Sans Arabic',sans-serif;" style-hover="border-color:#0f5132;">
+            <div style="font-family:'Cairo',sans-serif;font-weight:700;font-size:18px;margin-bottom:4px;">اتحلّت المشكلة أو سيجرب العميل الحل</div>
+            <div style="font-size:14px;color:#6b7075;">إنهاء المكالمة بدون تسجيل طلب صيانة.</div>
+          </button>
+          <button onClick="{{ toEsc }}" style="text-align:right;padding:20px 22px;border-radius:12px;border:1px solid #f0c2ce;background:#fff5f7;cursor:pointer;font-family:'IBM Plex Sans Arabic',sans-serif;" style-hover="border-color:#A50034;">
+            <div style="font-family:'Cairo',sans-serif;font-weight:700;font-size:18px;margin-bottom:4px;">المشكلة مستمرة — تسجيل طلب صيانة</div>
+            <div style="font-size:14px;color:#8a5555;">لو الخطوات كلها اتعملت والمشكلة لسه موجودة.</div>
+          </button>
+          <button onClick="{{ toPick }}" style="text-align:right;padding:16px 22px;border-radius:12px;border:1px solid #d9d5cb;background:#fbfaf7;cursor:pointer;font-family:'IBM Plex Sans Arabic',sans-serif;font-size:15px;color:#191a1c;" style-hover="border-color:#A50034;">فحص مختلف — رجوع لقائمة الفحوصات</button>
+        </div>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ isDone }}" hint-placeholder-val="{{ false }}">
+      <div style="background:#fff;border:1px solid #c6e0d1;border-radius:14px;padding:32px;border-top:4px solid #0f5132;animation:cardIn .25s ease;">
+        <div style="font-family:'Cairo',sans-serif;font-weight:700;font-size:26px;line-height:1.5;margin-bottom:18px;">اتحلّت المشكلة أو سيجرب العميل الحل — إنهاء المكالمة</div>
+        <div style="padding:18px 22px;border-radius:12px;background:#eef6f1;border:1px solid #c6e0d1;font-size:15.5px;line-height:1.95;margin-bottom:20px;">
+          تأكد من فهم العميل للخطوات وأنه سيجربها، — ثم أنهِ المكالمة بدون تسجيل طلب صيانة.
+        </div>
+        <a href="Microwave Support Topics.dc.html" style="display:inline-block;padding:14px 22px;border-radius:10px;background:#A50034;color:#fff;font-family:'Cairo',sans-serif;font-weight:700;font-size:15px;text-decoration:none;" style-hover="background:#7d0027;">إنهاء المكالمة</a>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ isEsc }}" hint-placeholder-val="{{ false }}">
+      <div style="background:#fff;border:1px solid #f0c2ce;border-radius:14px;padding:32px;border-top:4px solid #A50034;animation:cardIn .25s ease;">
+        <div style="font-size:12.5px;font-weight:600;color:#A50034;letter-spacing:.04em;margin-bottom:10px;">الخطوة الأخيرة — تسجيل طلب صيانة</div>
+        <div style="font-family:'Cairo',sans-serif;font-weight:700;font-size:26px;line-height:1.5;margin-bottom:18px;">الجهاز يحتاج زيارة فني</div>
+        <div style="background:#1c1a1b;color:#f6f1f2;border-radius:12px;padding:20px 22px;margin-bottom:20px;">
+          <div style="font-size:12.5px;color:#f0a8bd;margin-bottom:8px;font-weight:600;">اقرأ للعميل</div>
+          <div style="font-family:'Cairo',sans-serif;font-size:17px;line-height:2.05;">«هسجّل لحضرتك طلب صيانة وزيارة فني. الصيانة داخل فترة الضمان مجانية تمامًا. ولو ظهر إن السبب مش عطل فني في الجهاز، أو إن العطل خارج نطاق الضمان، بتكون في تكلفة زيارة ومعاينة ١٨٢ جنيه لأول زيارة، وأي زيارة بعدها ٣٠٠ جنيه — وتكلفة الصيانة نفسها بتتحدد بعد ما الفني يعاين الجهاز، وهتُعرض على حضرتك للموافقة قبل أي إصلاح.»</div>
+        </div>
+
+        <a href="Service Fees Table.dc.html#mw" style="display:flex;align-items:center;gap:14px;padding:18px 22px;border-radius:12px;border:1px solid #f0c2ce;background:#fff5f7;text-decoration:none;margin-bottom:20px;" style-hover="border-color:#A50034;">
+          <div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:17px;color:#A50034;">رسوم الميكروويف</div>
+          <div style="font-size:14px;color:#3f4447;line-height:1.7;">اضغط لعرض رسوم الصيانة والزيارة الخاصة بالمنتج — صباحي ومسائي.</div>
+          <div style="margin-right:auto;color:#A50034;font-size:18px;">←</div>
+        </a>
+
+
+        <div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:18px;margin-bottom:12px;">نظام تسجيل الطلب</div>
+        <div style="display:grid;gap:10px;margin-bottom:20px;">
+          <div style="display:flex;gap:14px;padding:15px 18px;border-radius:12px;background:#fbfaf7;border:1px solid #e9e6de;"><div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:16px;color:#A50034;min-width:20px;">١</div><div style="font-size:15px;line-height:1.9;">يتم تسجيل <strong>المشكلة اللي العميل وصفها</strong> و<strong>كل الخطوات اللي تمت مع العميل</strong> في البلاغ، مع <strong>رقم الموديل</strong>. (لو رقم الموديل مش متوفر يتم تسجيل البلاغ بعد التأكد إن الجهاز إل جي ومشترى من داخل مصر)</div></div>
+          <div style="display:flex;gap:14px;padding:15px 18px;border-radius:12px;background:#fbfaf7;border:1px solid #e9e6de;"><div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:16px;color:#A50034;min-width:20px;">٢</div><div style="font-size:15px;line-height:1.9;">الاسم الثلاثي للعميل كما هو مسجل في فاتورة الشراء (لو مش متوفر يتم السؤال عن اسم صاحب الجهاز).</div></div>
+          <div style="display:flex;gap:14px;padding:15px 18px;border-radius:12px;background:#fbfaf7;border:1px solid #e9e6de;"><div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:16px;color:#A50034;min-width:20px;">٣</div><div style="font-size:15px;line-height:1.9;">رقم الهاتف الأساسي ورقم إضافي إن وجد.</div></div>
+          <div style="display:flex;gap:14px;padding:15px 18px;border-radius:12px;background:#fbfaf7;border:1px solid #e9e6de;"><div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:16px;color:#A50034;min-width:20px;">٤</div><div style="font-size:15px;line-height:1.9;">العنوان بالتفصيل (المحافظة، المنطقة، اسم الشارع، رقم العمارة، الدور، الشقة، علامة مميزة).</div></div>
+          <div style="display:flex;gap:14px;padding:15px 18px;border-radius:12px;background:#fbfaf7;border:1px solid #e9e6de;"><div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:16px;color:#A50034;min-width:20px;">٥</div><div style="font-size:15px;line-height:1.9;">استفسر منه عن الموعد المفضل وسجّله على الأوردر. (لو لم يرد على السؤال يتم اختيار أقرب موعد متاح وإبلاغ العميل به)</div></div>
+        </div>
+
+
+        <a href="Microwave Support Topics.dc.html" style="display:inline-block;padding:14px 22px;border-radius:10px;background:#A50034;color:#fff;font-family:'Cairo',sans-serif;font-weight:700;font-size:15px;text-decoration:none;" style-hover="background:#7d0027;">تم تسجيل البلاغ — إنهاء المكالمة</a>
+      </div>
+    </sc-if>
+
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const AR = ['٠','١','٢','٣','٤','٥','٦','٧','٨','٩','١٠'];
+const CHECKS = [
+  { key:'nostart', title:'الميكروويف مش بيشتغل', hint:'الفيشة، الباب، الوقت، القاطع',
+    cause:'الفيشة مش متوصلة، أو الباب مفتوح، أو وقت الطبخ مش متظبط — أو فيوز/قاطع في البيت فاصل.',
+    script:'«حضرتك متأكد إن الفيشة داخلة، والباب مقفول كويس، وإنك ظبطت وقت الطبخ؟»',
+    steps:[
+      { text:'وصّل الفيشة بالكهربا.' },
+      { text:'اقفل باب الميكروويف كويس.' },
+      { text:'ظبّط وقت الطبخ.' },
+      { text:'لو لسه مش شغال — راجع لوحة الكهربا الرئيسية، رجّع القاطع أو غيّر الفيوز. ولو متوصل على بريزة GFCI، رجّع القاطع بتاعها.',
+        note:'متزوّدش قدرة الفيوز. لو المشكلة تحميل زيادة على الدائرة أو مستمرة — العميل محتاج كهربائي.' }
+    ] },
+  { key:'spark', title:'شرار أو فرقعة جوه الميكروويف', hint:'الأواني أو تشغيله فاضي',
+    cause:'الأواني مش مناسبة للميكروويف، أو الميكروويف اشتغل وهو فاضي.',
+    script:'«الشرار ده غالبًا من الإناء نفسه — لو فيه معدن أو مش مخصص للميكروويف. وكمان الميكروويف ميشتغلش وهو فاضي خالص.»',
+    steps:[
+      { text:'استخدم أواني مخصصة للميكروويف — ولو مش متأكد، جرّب الإناء قبل الاستخدام.' },
+      { text:'متشغّلش الميكروويف وهو فاضي أبدًا — ده بيبوّظه.' }
+    ] },
+  { key:'cooking', title:'الأكل مش بيستوي مظبوط', hint:'مش مستوي / زيادة / ناقص / التسييح',
+    cause:'الأواني مش مناسبة، أو إعدادات الوقت والقوة غلط، أو طريقة الطبخ محتاجة تتظبط.',
+    script:'«هنراجع مع بعض نوع الإناء، والوقت والقوة اللي حضرتك بتستخدمهم.»',
+    steps:[
+      { text:'اتأكد إن الإناء مناسب للميكروويف.' },
+      { text:'متطبخش من غير الطبق الإزاز الدوّار.' },
+      { text:'قلّب الأكل أو لفّه في نص الطبخ أو التسييح.' },
+      { text:'سيّح الأكل كويس قبل ما تطبخه.' },
+      { text:'ظبّط الوقت ومستوى القوة — قلّلهم لو الأكل بيستوي زيادة، وزوّدهم لو ناقص. وفي التسييح ظبّط وقت أو وزن التسييح.' },
+      { text:'اتأكد إن فتحات التهوية مش مسدودة.' }
+    ] },
+  { key:'clock', title:'الساعة غلط', hint:'بعد انقطاع الكهربا',
+    cause:'الكهربا قطعت.',
+    script:'«الساعة بتتمسح لما الكهربا تقطع — هنظبطها تاني مع بعض.»',
+    steps:[
+      { text:'بعد توصيل الكهربا، الساعة بتبقى على نظام ١٢ ساعة وبيظهر 12H على الشاشة.' },
+      { text:'افتح الباب ودوس START/Enter عشان تأكّد نظام 12H.', note:'لو عايز نظام ٢٤ ساعة — استخدم More/Less قبل ما تأكّد.' },
+      { text:'اختار الساعة بـ More/Less، ودوس START/Enter.' },
+      { text:'اختار الدقايق بـ More/Less، ودوس START/Enter.' },
+      { text:'ملحوظات مهمة:', note:'عشان تغيّر نظام الساعة (12H / 24H) لازم تفصل كابل الكهربا وترجّعه تاني. • لو مش عايز الساعة تظهر على الشاشة — دوس STOP/Clear بعد توصيل الكهربا. • لما الميكروويف مش شغال، الشاشة بتطفي لتوفير الكهربا إلا لو الساعة متظبطة تظهر. • ممكن تظبط الوقت كمان بزرار اللمس (Slide touch) بعد قفل الباب.' }
+        ] },
+  { key:'light', title:'لمبة الميكروويف مش بتنور', hint:'اللمبة أو الدائرة',
+    cause:'يا إما اللمبة محروقة، يا إما في مشكلة في الدائرة الكهربائية.',
+    script:'«اللمبة ممكن تكون محروقة أو في مشكلة في الكهربا الداخلية — هسجّل لحضرتك طلب صيانة.»',
+    steps:[
+      { text:'يتم تسجيل طلب صيانة لفحص اللمبة والدائرة الكهربائية.' }
+    ] },
+  { key:'normal', title:'حاجات طبيعية مش عطل', hint:'أسئلة شائعة',
+    cause:'حاجات كتير العميل بيسأل عنها وهي طبيعية تمامًا.',
+    script:'«اللي حضرتك بتسأل عليه ده طبيعي جدًا في الميكروويف ومش عطل — هشرحلك ليه.»',
+    steps:[
+      { text:'كلمة Cool أو الوقت الباقي على الشاشة مع صوت مروحة بعد الطبخ — طبيعي، المروحة بتبرّد الميكروويف. ولو فتحت الباب أو دُست STOP قبل ما الوقت يخلص، الوقت الباقي بيظهر.' },
+      { text:'صوت «بيب» لما تدوس زرار — طبيعي، عشان يأكدلك إن الإعداد اتسجل.' },
+      { text:'الموجات مش بتعدّي من شباك الباب — الفتحات بتعدّي النور بس.' },
+      { text:'البيض بيفرقع — من البخار جوه الصفار. اعمل خرم صغير في الصفار بشوكة أو سكينة قبل ما تسخّنه، ومتدخّلش البيض بالقشر في الميكروويف خالص.' },
+      { text:'وقت الانتظار بعد الطبخ مهم — الأكل بيكمّل التسوية فيه بالتساوي، والوقت بيعتمد على كثافة الأكل.',
+        note:'بعد البيع (مصر بس): فترة توفير قطع الغيار سنتين، وإل جي ملتزمة بتوفير كل قطع الغيار خلالها.' }
+    ] }
+];
+
+class Component extends DCLogic {
+  state = { node: 'intro', sel: null, history: [] };
+  go(n, extra) { this.setState(s => Object.assign({ node: n, history: [...s.history, s.node] }, extra || {})); window.scrollTo(0, 0); }
+  renderVals() {
+    const n = this.state.node;
+    const sel = CHECKS.find(c => c.key === this.state.sel) || null;
+    const labels = { intro:'خطوة ١', pick:'خطوة ٢', detail:'خطوة ٣', done:'إنهاء', esc:'تسجيل بلاغ' };
+    return { pageBack: () => { if (history.length > 1) history.back(); else location.href = 'Installation Guide Home.dc.html'; },
+      stepLabel: labels[n] || '',
+      isIntro: n === 'intro' || n === 'pick', isPick: n === 'pick', isDetail: n === 'detail',
+      isDone: n === 'done', isEsc: n === 'esc',
+      checks: CHECKS.map(c => ({
+        title: c.title,
+        hint: c.hint,
+        style: "text-align:right;padding:18px 20px;border-radius:12px;cursor:pointer;width:100%;font-family:'IBM Plex Sans Arabic',sans-serif;border:1px solid #e3e0d8;background:#fff;color:#191a1c;",
+        open: () => this.go('detail', { sel: c.key })
+      })),
+      showDishes: !!sel && sel.key === 'spark',
+      sel: sel ? {
+        title: sel.title,
+        cause: sel.cause,
+        script: sel.script,
+        steps: sel.steps.map((t, i) => ({ n: AR[i + 1], text: t.text, note: t.note || '' }))
+      } : { title:'', cause:'', script:'', steps:[] },
+      toPick: () => this.go('pick'),
+      toDone: () => this.go('done'),
+      toEsc: () => this.go('esc'),
+      back: () => this.setState(s => s.history.length ? { node: s.history[s.history.length - 1], history: s.history.slice(0, -1) } : {}),
+      restart: () => this.setState({ node: 'intro', sel: null, history: [] })
+    };
+  }
+}
+</script>
+</body>
+</html>
