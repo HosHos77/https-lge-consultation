@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<script src="shadow-nav.js"></script>
+<title>تسجيل طلب صيانة — التكييف</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&family=IBM+Plex+Sans+Arabic:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  body { margin:0; background:#f4f3ef; }
+  a { color:#A50034; }
+  a:hover { color:#7d0027; }
+</style>
+</helmet>
+
+<div dir="rtl" style="min-height:100vh;background:#f4f3ef;color:#191a1c;font-family:'IBM Plex Sans Arabic',system-ui,sans-serif;">
+  <div style="background:#111314;color:#f4f3ef;padding:16px 28px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
+    <div style="width:9px;height:32px;background:#A50034;border-radius:2px;flex:none;"></div>
+    <div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:18px;">تسجيل طلب صيانة — التكييف</div>
+  </div>
+
+  <div style="max-width:900px;margin:0 auto;padding:30px 28px 70px;">
+    <div style="background:#fff;border:1px solid #f0c2ce;border-radius:14px;padding:32px;border-top:4px solid #A50034;">
+      <div style="font-size:12.5px;font-weight:600;color:#A50034;letter-spacing:.04em;margin-bottom:10px;">الخطوة الأخيرة — تسجيل طلب صيانة</div>
+      <div style="font-family:'Cairo',sans-serif;font-weight:700;font-size:26px;line-height:1.5;margin-bottom:18px;">الجهاز يحتاج زيارة فني</div>
+      <div style="background:#1c1a1b;color:#f6f1f2;border-radius:12px;padding:20px 22px;margin-bottom:20px;">
+        <div style="font-size:12.5px;color:#f0a8bd;margin-bottom:8px;font-weight:600;">اقرأ للعميل</div>
+        <div style="font-family:'Cairo',sans-serif;font-size:17px;line-height:2.05;">«هسجّل لحضرتك طلب صيانة وزيارة فني. الصيانة داخل فترة الضمان مجانية تمامًا. ولو ظهر إن السبب مش عطل فني في الجهاز، أو إن العطل خارج نطاق الضمان، بتكون في تكلفة زيارة ومعاينة ١٨٢ جنيه لأول زيارة، وأي زيارة بعدها ٣٠٠ جنيه — وتكلفة الصيانة نفسها بتتحدد بعد ما الفني يعاين الجهاز، وهتُعرض على حضرتك للموافقة قبل أي إصلاح.»</div>
+      </div>
+
+      <a href="Service Fees Table.dc.html#ac" style="display:flex;align-items:center;gap:14px;padding:18px 22px;border-radius:12px;border:1px solid #f0c2ce;background:#fff5f7;text-decoration:none;margin-bottom:20px;">
+        <div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:17px;color:#A50034;">رسوم التكييفات</div>
+        <div style="font-size:14px;color:#3f4447;line-height:1.7;">اضغط لعرض رسوم الصيانة والزيارة الخاصة بالمنتج — صباحي ومسائي.</div>
+        <div style="margin-right:auto;color:#A50034;font-size:18px;">←</div>
+      </a>
+
+      <div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:18px;margin-bottom:12px;">نظام تسجيل الطلب</div>
+      <div style="display:grid;gap:10px;margin-bottom:22px;">
+        <div style="display:flex;gap:14px;padding:15px 18px;border-radius:12px;background:#fbfaf7;border:1px solid #e9e6de;"><div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:16px;color:#A50034;min-width:20px;">١</div><div style="font-size:15px;line-height:1.9;">سجّل <strong>المشكلة التي وصفها العميل</strong> وكل الخطوات التي تمت معه، مع <strong>رقم الموديل</strong>. إذا لم يتوفر رقم الموديل، تأكد أن الجهاز من LG ومشترى من داخل مصر قبل تسجيل البلاغ.</div></div>
+        <div style="display:flex;gap:14px;padding:15px 18px;border-radius:12px;background:#fbfaf7;border:1px solid #e9e6de;"><div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:16px;color:#A50034;min-width:20px;">٢</div><div style="font-size:15px;line-height:1.9;">سجّل الاسم الثلاثي للعميل كما هو في فاتورة الشراء، أو اسم صاحب الجهاز إذا لم تتوفر الفاتورة.</div></div>
+        <div style="display:flex;gap:14px;padding:15px 18px;border-radius:12px;background:#fbfaf7;border:1px solid #e9e6de;"><div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:16px;color:#A50034;min-width:20px;">٣</div><div style="font-size:15px;line-height:1.9;">سجّل رقم الهاتف الأساسي ورقمًا إضافيًا إن وجد.</div></div>
+        <div style="display:flex;gap:14px;padding:15px 18px;border-radius:12px;background:#fbfaf7;border:1px solid #e9e6de;"><div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:16px;color:#A50034;min-width:20px;">٤</div><div style="font-size:15px;line-height:1.9;">سجّل العنوان بالتفصيل: المحافظة، المنطقة، الشارع، رقم العمارة، الدور، الشقة، وعلامة مميزة.</div></div>
+        <div style="display:flex;gap:14px;padding:15px 18px;border-radius:12px;background:#fbfaf7;border:1px solid #e9e6de;"><div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:16px;color:#A50034;min-width:20px;">٥</div><div style="font-size:15px;line-height:1.9;">اسأل عن الموعد المفضل وسجّله على الطلب. إذا لم يحدد العميل موعدًا، اختر أقرب موعد متاح وأبلغه به.</div></div>
+      </div>
+
+      <a href="AC Support Topics.dc.html" style="display:inline-block;padding:14px 22px;border-radius:10px;background:#A50034;color:#fff;font-family:'Cairo',sans-serif;font-weight:700;font-size:15px;text-decoration:none;">تم تسجيل البلاغ — إنهاء المكالمة</a>
+    </div>
+  </div>
+</div>
+</x-dc>
+</body>
+</html>
