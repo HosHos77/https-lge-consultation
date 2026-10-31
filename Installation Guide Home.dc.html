@@ -472,7 +472,15 @@ class Component extends DCLogic {
     const results = terms.length
       ? searchable.filter(it => {
           const hay = norm([it.title, it.desc, it.k, it.content].filter(Boolean).join(' '));
-          return terms.every(t => hay.includes(t));
+          return terms.every(t => {
+            // Short Latin error codes (IE, OE, UE, etc.) must match as whole codes,
+            // not as accidental fragments inside unrelated words.
+            if (/^[a-z0-9]{2,3}$/i.test(t)) {
+              const escaped = t.replace(/[.*+?^${}()|[\]\\]/g, '\\          return terms.every(t => hay.includes(t));');
+              return new RegExp('(^|[^a-z0-9])' + escaped + '(?=$|[^a-z0-9])', 'i').test(hay);
+            }
+            return hay.includes(t);
+          });
         })
       : [];
     return {
