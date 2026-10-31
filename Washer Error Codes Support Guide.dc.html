@@ -233,7 +233,11 @@ const CODES = [
 ];
 
 class Component extends DCLogic {
-  state = { node: 'pick', code: null, history: [] };
+  state = (() => {
+    const requestedCode = new URLSearchParams(window.location.search).get('code');
+    const validCode = CODES.some(item => item.code === requestedCode);
+    return { node: validCode ? 'code' : 'pick', code: validCode ? requestedCode : null, history: [] };
+  })();
   go(n, extra) { this.setState(s => Object.assign({ node: n, history: [...s.history, s.node] }, extra || {})); window.scrollTo(0, 0); }
   renderVals() {
     const n = this.state.node;
