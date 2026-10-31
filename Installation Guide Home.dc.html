@@ -424,9 +424,13 @@ class Component extends DCLogic {
   renderVals() {
     const q = norm(this.state.query);
     const terms = q ? q.split(/\s+/) : [];
-    const searchable = [...INDEX, ...GLOBAL_PAGES, ...(this.state.fullTextIndex || [])];
+    const searchable = [...new Map([...INDEX, ...GLOBAL_PAGES, ...(this.state.fullTextIndex || [])].map(it => [it.href, it])).values()];
     const results = terms.length
-      ? searchable.filter((it, i, arr) => arr.findIndex(x => x.href === it.href) === i && (() => { const hay = norm(it.title + ' ' + it.desc + ' ' + it.k + ' ' + (it.content || '')); return terms.every(t => t.length <= 2 ? new RegExp('(^|[^a-z0-9])' + t.replace(/[.*+?^${}()|[\\]\\\\]/g, '\\\\const hay = norm(it.title + ' ' + it.desc + ' ' + it.k + ' ' + (it.content || '')); return terms.every(t => hay.includes(t));') + '($|[^a-z0-9])').test(hay) : hay.includes(t)); })())
+      ? searchable.filter(it => {
+          const hay = norm(it.title + ' ' + it.desc + ' ' + it.k + ' ' + (it.content || ''));
+          const words = hay.split(/[^a-z0-9]+/);
+          return terms.every(t => t.length <= 2 ? words.includes(t) : hay.includes(t));
+        })
       : [];
     return {
       query: this.state.query,
