@@ -462,7 +462,7 @@ class Component extends DCLogic {
       const prior = merged.get(it.href) || {};
       merged.set(it.href, {
         ...prior, ...it,
-        title: [prior.title, it.title].filter(Boolean).join(' '),
+        title: it.title || prior.title || '',
         desc: [prior.desc, it.desc].filter(Boolean).join(' '),
         k: [prior.k, it.k].filter(Boolean).join(' '),
         content: [prior.content, it.content].filter(Boolean).join(' ')
