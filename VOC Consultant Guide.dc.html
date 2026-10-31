@@ -74,7 +74,7 @@
   </div>
   </sc-if>
   <sc-if value="{{ showIbMode }}" hint-placeholder-val="{{ false }}">
-  <div style="max-width:900px;margin:0 auto;padding:40px 24px 60px;">
+  <div class="voc-intro-layout"><aside class="voc-intro-nav"><div class="nav-title">اختيار مسار Inbound</div><button onClick="{{ pickIB }}">Inbound Consultant</button><button onClick="{{ pickOB }}">Outbound Consultant</button></aside><main class="voc-intro-main">
     <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:6px;">
       <div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:26px;">العميل متصل بخصوص إيه؟</div>
       <button onClick="{{ clearRole }}" style="white-space:nowrap;padding:9px 16px;border-radius:10px;border:1px solid #d9d5cb;background:#fff;color:#191a1c;font-family:'IBM Plex Sans Arabic',sans-serif;font-size:14px;cursor:pointer;" style-hover="border-color:#A50034;background:#fdf5f7;">→ رجوع لاختيار الدور</button>
@@ -84,10 +84,11 @@
       <button onClick="{{ pickNew }}" style="text-align:right;padding:26px 24px;border-radius:16px;cursor:pointer;font-family:'Cairo',sans-serif;background:#fff;border:1px solid #e3e0d8;border-top:4px solid #A50034;color:#191a1c;display:flex;flex-direction:column;gap:6px;" style-hover="background:#fdf5f7;box-shadow:0 10px 24px rgba(28,26,27,.1);"><div style="font-weight:900;font-size:26px;color:#A50034;line-height:1;">1</div><div style="font-weight:900;font-size:21px;margin-top:6px;">شكوى جديدة</div><div dir="ltr" style="text-align:right;font-weight:700;font-size:13px;color:#6b7075;">New Complaint</div><div style="font-size:14px;line-height:1.75;color:#191a1c;margin-top:4px;">العميل عنده شكوى لأول مرة — اختار نوع الشكوى واتبع الـ Process بتاعها.</div></button>
       <button onClick="{{ pickFollow }}" style="text-align:right;padding:26px 24px;border-radius:16px;cursor:pointer;font-family:'Cairo',sans-serif;background:#fff;border:1px solid #e3e0d8;border-top:4px solid #A50034;color:#191a1c;display:flex;flex-direction:column;gap:6px;" style-hover="background:#fdf5f7;box-shadow:0 10px 24px rgba(28,26,27,.1);"><div style="font-weight:900;font-size:26px;color:#A50034;line-height:1;">2</div><div style="font-weight:900;font-size:21px;margin-top:6px;">متابعة شكوى</div><div dir="ltr" style="text-align:right;font-weight:700;font-size:13px;color:#6b7075;">Complaint Follow-up</div><div style="font-size:14px;line-height:1.75;color:#191a1c;margin-top:4px;">العميل عنده شكوى مسجلة بالفعل ومتصل يستفسر عنها أو يستعجلها.</div></button>
     </div>
+  </main>
   </div>
   </sc-if>
   <sc-if value="{{ showFollow }}" hint-placeholder-val="{{ false }}">
-  <div style="max-width:900px;margin:0 auto;padding:36px 24px 60px;display:flex;flex-direction:column;gap:16px;">
+  <div class="voc-intro-layout"><aside class="voc-intro-nav"><div class="nav-title">اختيار مسار المتابعة</div><button onClick="{{ backMode }}">اختيار نوع المكالمة</button><button onClick="{{ clearRole }}">تغيير الدور</button></aside><main class="voc-intro-main">
     <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;">
       <div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:26px;">متابعة شكوى</div>
       <button onClick="{{ backMode }}" style="white-space:nowrap;padding:9px 16px;border-radius:10px;border:1px solid #d9d5cb;background:#fff;color:#191a1c;font-family:'IBM Plex Sans Arabic',sans-serif;font-size:14px;cursor:pointer;" style-hover="border-color:#A50034;background:#fdf5f7;">→ رجوع</button>
@@ -148,6 +149,7 @@
       <div style="border-radius:12px;padding:14px 18px;background:#e9f4ec;color:#14391f;border:1px solid #b9dcc3;"><div style="font-family:'Cairo',sans-serif;font-size:12.5px;margin-bottom:4px;color:#1d6b35;font-weight:700;">اقرا للعميل</div><div style="font-size:15.5px;line-height:1.95;font-weight:600;">"أنا متفهم جدًا عدم رضا حضرتك عن الرد. أنا رفعت طلب حضرتك لمسؤول أعلى، وهيتم التواصل مع حضرتك على مدار اليوم."</div></div>
     </sc-if>
 
+  </main>
   </div>
   </sc-if>
   <sc-if value="{{ showTypes }}" hint-placeholder-val="{{ false }}">
