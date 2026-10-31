@@ -15,6 +15,17 @@
   body { margin:0; background:#f4f3ef; }
   a { color:#A50034; }
   a:hover { color:#7d0027; }
+  .voc-intro-layout,.voc-types-layout{max-width:1100px;margin:0 auto;padding:36px 24px 60px;display:flex;gap:20px;align-items:flex-start}
+  .voc-intro-main,.voc-types-main{flex:1 1 auto;min-width:0}
+  .voc-intro-nav,.voc-types-nav,.voc-step-nav{flex:0 0 250px;width:250px;box-sizing:border-box;background:#1c1a1b!important;color:#f6f1f2!important;border:1px solid #3a3033!important;border-radius:16px;padding:12px;display:flex;flex-direction:column;gap:6px;position:sticky;top:12px;max-height:calc(100vh - 24px);overflow-y:auto;box-shadow:0 8px 24px rgba(0,0,0,.12)}
+  .voc-intro-nav button,.voc-types-nav button,.voc-step-nav button{width:100%;text-align:right;padding:10px 12px;border:1px solid #494044!important;border-radius:9px;background:#292527!important;color:#f6f1f2!important;cursor:pointer;font-family:'IBM Plex Sans Arabic',sans-serif}
+  .voc-intro-nav button:hover,.voc-types-nav button:hover,.voc-step-nav button:hover{background:#A50034!important;border-color:#A50034!important}
+  .voc-intro-nav .nav-title,.voc-types-nav .nav-title,.voc-step-nav .nav-title{font-family:'Cairo',sans-serif;font-weight:800;font-size:14px;color:#f0a8bd;padding:6px 8px 10px}
+  @media(max-width:800px){
+    .voc-intro-layout,.voc-types-layout{flex-direction:column;padding:20px 14px 44px}
+    .voc-intro-nav,.voc-types-nav,.voc-step-nav{position:relative;top:auto;flex:1 1 auto;width:100%;max-height:260px}
+    .voc-intro-main,.voc-types-main{width:100%}
+  }
 </style>
 </helmet>
 <div dir="rtl" style="min-height:100vh;background:#f4f3ef;font-family:'IBM Plex Sans Arabic',sans-serif;color:#191a1c;">
@@ -28,7 +39,13 @@
   </div>
 
   <sc-if value="{{ noRole }}" hint-placeholder-val="{{ true }}">
-  <div style="max-width:1000px;margin:0 auto;padding:40px 24px 60px;">
+  <div class="voc-intro-layout">
+    <aside class="voc-intro-nav">
+      <div class="nav-title">القائمة الرئيسية — VOC</div>
+      <button onClick="{{ pickIB }}">Inbound Consultant</button>
+      <button onClick="{{ pickOB }}">Outbound Consultant</button>
+    </aside>
+    <main class="voc-intro-main">
     <div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:26px;margin-bottom:6px;">اختار دورك</div>
     <div style="font-size:15px;color:#4b5055;margin-bottom:22px;line-height:1.8;">كل دور ليه خطواته الخاصة في الـ VOC Process.</div>
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:18px;">
@@ -53,6 +70,7 @@
         </div>
       </button>
     </div>
+    </main>
   </div>
   </sc-if>
   <sc-if value="{{ showIbMode }}" hint-placeholder-val="{{ false }}">
@@ -133,7 +151,14 @@
   </div>
   </sc-if>
   <sc-if value="{{ showTypes }}" hint-placeholder-val="{{ false }}">
-  <div style="max-width:1100px;margin:0 auto;padding:36px 24px 60px;">
+  <div class="voc-types-layout">
+    <aside class="voc-types-nav">
+      <div class="nav-title">أنواع الشكاوى — اختصار</div>
+      <sc-for list="{{ types }}" as="t">
+        <button onClick="{{ t.go }}">{{ t.t }}</button>
+      </sc-for>
+    </aside>
+    <main class="voc-types-main">
     <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:6px;">
       <div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:26px;">اختار نوع الشكوى</div>
       <button onClick="{{ backMode }}" style="white-space:nowrap;padding:9px 16px;border-radius:10px;border:1px solid #d9d5cb;background:#fff;color:#191a1c;font-family:'IBM Plex Sans Arabic',sans-serif;font-size:14px;cursor:pointer;" style-hover="border-color:#A50034;background:#fdf5f7;">→ رجوع لاختيار الدور</button>
@@ -165,13 +190,14 @@
         <button onClick="{{ t.go }}" style="white-space:nowrap;padding:11px 18px;border-radius:10px;border:1px solid #d9d5cb;background:#fff;color:#191a1c;font-family:'Cairo',sans-serif;font-weight:700;font-size:14px;cursor:pointer;" style-hover="border-color:#A50034;background:#fdf5f7;">{{ t.t }}</button>
       </sc-for>
     </div>
+    </main>
   </div>
   </sc-if>
   <sc-if value="{{ showLayout }}" hint-placeholder-val="{{ false }}">
   <div style="max-width:1320px;margin:0 auto;padding:26px 20px 60px;display:flex;flex-wrap:nowrap;gap:20px;align-items:flex-start;">
 
-    <div style="background:#fff;border:1px solid #e3e0d8;border-radius:16px;padding:12px;display:flex;flex-direction:column;gap:4px;position:sticky;top:12px;flex:0 0 250px;width:250px;max-height:calc(100vh - 24px);overflow-y:auto;box-sizing:border-box;">
-      <div style="font-family:'Cairo',sans-serif;font-weight:700;font-size:13px;color:#6b7075;padding:6px 10px 8px;">{{ navTitle }}</div>
+    <div class="voc-step-nav" style="padding:12px;display:flex;flex-direction:column;gap:4px;position:sticky;top:12px;flex:0 0 250px;width:250px;max-height:calc(100vh - 24px);overflow-y:auto;box-sizing:border-box;">
+      <div class="nav-title" style="font-family:'Cairo',sans-serif;font-weight:700;font-size:13px;padding:6px 10px 8px;">{{ navTitle }}</div>
       <sc-for list="{{ nav }}" as="s" hint-placeholder-count="10">
         <button onClick="{{ s.go }}" style="display:flex;align-items:center;gap:10px;text-align:right;padding:9px 10px;border-radius:10px;border:none;cursor:pointer;font-family:'IBM Plex Sans Arabic',sans-serif;font-size:14px;background:{{ s.bg }};color:{{ s.fg }};" style-hover="background:#fdf5f7;color:#191a1c;">
           <span style="flex:none;display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:8px;font-family:'Cairo',sans-serif;font-weight:900;font-size:13px;background:{{ s.nbg }};color:{{ s.nfg }};">{{ s.n }}</span>
