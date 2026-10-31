@@ -427,13 +427,35 @@ async function loadGuideTextIndex(onProgress) {
           if (!response.ok) return null;
           const html = await response.text();
           const doc = new DOMParser().parseFromString(html, 'text/html');
+          // Extract structured error codes before removing script elements.
+          const scriptText = Array.from(doc.querySelectorAll('script')).map(node => node.textContent || '').join('\n');
+          const codeItems = [];
+          if (scriptText.includes('const CODES')) {
+            const codePattern = /\{\s*code\s*:\s*'([^']+)'\s*,\s*name\s*:\s*'([^']+)'/g;
+            let match;
+            while ((match = codePattern.exec(scriptText)) !== null) {
+              const code = match[1].trim();
+              const name = match[2].trim();
+              codeItems.push({
+                title: code + ' — ' + name,
+                desc: 'كود عطل غسالة باب أمامي — ' + name,
+                k: code + ' ' + name + ' washer washing machine error code',
+                content: code + ' ' + name,
+                href: page.href + '?code=' + encodeURIComponent(code),
+                searchType: 'error-code'
+              });
+            }
+          }
           doc.querySelectorAll('script,style,template,svg,noscript').forEach(node => node.remove());
           const source = doc.querySelector('x-dc') || doc.body;
           const bodyText = (source?.textContent || '').replace(/\s+/g, ' ').trim();
-          return { ...page, desc: bodyText.slice(0, 180), content: bodyText };
+          return [{ ...page, desc: bodyText.slice(0, 180), content: bodyText }, ...codeItems];
         } catch (_) { return null; }
       }));
-      indexed.push(...found.filter(Boolean));
+      found.filter(Boolean).forEach(item => {
+        if (Array.isArray(item)) indexed.push(...item);
+        else indexed.push(item);
+      });
       if (onProgress) onProgress(indexed.slice());
     }
     return indexed;
@@ -469,19 +491,18 @@ class Component extends DCLogic {
       });
     });
     const searchable = [...merged.values()];
+    const matchesQuery = it => {
+      const hay = norm([it.title, it.desc, it.k, it.content].filter(Boolean).join(' '));
+      return terms.every(t => {
+        if (/^[a-z0-9]{2,3}$/i.test(t)) {
+          return new RegExp('(^|[^a-z0-9])' + t + '(?=$|[^a-z0-9])', 'i').test(hay);
+        }
+        return hay.includes(t);
+      });
+    };
+    const codeResults = (this.state.fullTextIndex || []).filter(it => it.searchType === 'error-code');
     const results = terms.length
-      ? searchable.filter(it => {
-          const hay = norm([it.title, it.desc, it.k, it.content].filter(Boolean).join(' '));
-          return terms.every(t => {
-            // Short Latin error codes (IE, OE, UE, etc.) must match as whole codes,
-            // not as accidental fragments inside unrelated words.
-            if (/^[a-z0-9]{2,3}$/i.test(t)) {
-              const escaped = t; // t is restricted to letters and digits above.
-              return new RegExp('(^|[^a-z0-9])' + escaped + '(?=$|[^a-z0-9])', 'i').test(hay);
-            }
-            return hay.includes(t);
-          });
-        })
+      ? [...searchable.filter(it => !it.searchType && matchesQuery(it)), ...codeResults.filter(matchesQuery)]
       : [];
     return {
       query: this.state.query,
