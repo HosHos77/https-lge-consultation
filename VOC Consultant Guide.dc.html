@@ -17,10 +17,10 @@
   a:hover { color:#7d0027; }
   .voc-intro-layout,.voc-types-layout{max-width:1100px;margin:0 auto;padding:36px 24px 60px;display:flex;gap:20px;align-items:flex-start}
   .voc-intro-main,.voc-types-main{flex:1 1 auto;min-width:0}
-  .voc-intro-nav,.voc-types-nav,.voc-step-nav{flex:0 0 250px;width:250px;box-sizing:border-box;background:#1c1a1b!important;color:#f6f1f2!important;border:1px solid #3a3033!important;border-radius:16px;padding:12px;display:flex;flex-direction:column;gap:6px;position:sticky;top:12px;max-height:calc(100vh - 24px);overflow-y:auto;box-shadow:0 8px 24px rgba(0,0,0,.12)}
-  .voc-intro-nav button,.voc-types-nav button{width:100%;text-align:right;padding:10px 12px;border:1px solid #494044!important;border-radius:9px;background:#292527!important;color:#f6f1f2!important;cursor:pointer;font-family:'IBM Plex Sans Arabic',sans-serif}\n  .voc-step-nav button{color:#f6f1f2!important;border:1px solid #494044!important}
-  .voc-intro-nav button:hover,.voc-types-nav button:hover,.voc-step-nav button:hover{background:#A50034!important;border-color:#A50034!important}
-  .voc-intro-nav .nav-title,.voc-types-nav .nav-title,.voc-step-nav .nav-title{font-family:'Cairo',sans-serif;font-weight:800;font-size:14px;color:#f0a8bd;padding:6px 8px 10px}
+  .voc-intro-nav,.voc-types-nav,.voc-step-nav{flex:0 0 250px;width:250px;box-sizing:border-box;background:#fff!important;color:#191a1c!important;border:1px solid #e3e0d8!important;border-radius:16px;padding:12px;display:flex;flex-direction:column;gap:6px;position:sticky;top:12px;max-height:calc(100vh - 24px);overflow-y:auto;box-shadow:0 8px 24px rgba(0,0,0,.08)}
+  .voc-intro-nav button,.voc-types-nav button,.voc-step-nav button{width:100%;text-align:right;padding:10px 12px;border:1px solid #e3e0d8!important;border-radius:9px;background:#fff!important;color:#191a1c!important;cursor:pointer;font-family:'IBM Plex Sans Arabic',sans-serif}
+  .voc-intro-nav button:hover,.voc-types-nav button:hover,.voc-step-nav button:hover{background:#fdf5f7!important;border-color:#A50034!important;color:#191a1c!important}
+  .voc-intro-nav .nav-title,.voc-types-nav .nav-title,.voc-step-nav .nav-title{font-family:'Cairo',sans-serif;font-weight:800;font-size:14px;color:#A50034;padding:6px 8px 10px}
   @media(max-width:800px){
     .voc-intro-layout,.voc-types-layout{flex-direction:column;padding:20px 14px 44px}
     .voc-intro-nav,.voc-types-nav,.voc-step-nav{position:relative;top:auto;flex:1 1 auto;width:100%;max-height:260px}
@@ -1713,7 +1713,7 @@ class Component extends DCLogic {
       typeGroups: [['طوارئ', ['pl']], ['الزيارة والإصلاح', ['visit', 'delayrep', 'reclaim', 'skill', 'attitude']], ['قطع الغيار', ['partdelay', 'discmodel']], ['التكلفة والضمان وسياسة الشركة', ['cost', 'warranty', 'misuse', 'nonlg']], ['المبيعات والاستبدال', ['sales', 'obs', 'refund']], ['مراكز الخدمة', ['asc']]].map(([g, ids]) => { const items = ids.map(id => TYPES.find(x => x.id === id)).filter(Boolean).map(x => ({ t: x.t, ar: x.ar || '', d: x.d, em: x.id === 'pl', go: () => pickType(x) })); return { g, items, count: items.length }; }),
       refs: REFS.map(x => ({ t: x.t, go: () => pickType(x) })),
       backTypes: () => this.setState({ ctype: null, sched: false }),
-      nav: T ? ALL_T.map((x, i) => { const on = x.id === T.id; return { n: n(i), t: x.t, go: () => pickType(x), bg: on ? '#1c1a1b' : 'transparent', fg: on ? '#fff' : '#191a1c', nbg: on ? '#A50034' : '#f4f3ef', nfg: on ? '#fff' : '#A50034' }; }) : STEPS.map((x, i) => { const on = i === s.step; return { n: n(i), t: x.t, go: () => this.go(i), bg: on ? '#1c1a1b' : 'transparent', fg: on ? '#fff' : '#191a1c', nbg: on ? '#A50034' : '#f4f3ef', nfg: on ? '#fff' : '#A50034' }; }),
+      nav: T ? ALL_T.map((x, i) => { const on = x.id === T.id; return { n: n(i), t: x.t, go: () => pickType(x), bg: on ? '#fdf5f7' : '#fff', fg: '#191a1c', nbg: on ? '#A50034' : '#f4f3ef', nfg: on ? '#fff' : '#A50034' }; }) : STEPS.map((x, i) => { const on = i === s.step; return { n: n(i), t: x.t, go: () => this.go(i), bg: on ? '#fdf5f7' : '#fff', fg: '#191a1c', nbg: on ? '#A50034' : '#f4f3ef', nfg: on ? '#fff' : '#A50034' }; }),
       hasRole: !!s.role, noRole: !s.role, isOB: role === 'ob', roleName: role === 'ob' ? 'Outbound Consultant' : 'Inbound Consultant',
       pickIB: () => this.setState({ role: 'ib', step: 0 }), pickOB: () => this.setState({ role: 'ob', step: 0 }), clearRole: () => this.setState({ role: null, ibMode: null, ctype: null, sched: false, step: 0 }),
       cur: T ? { n: '', t: T.t, d: T.ds } : { n: n(s.step), t: cur.t, d: cur.d }, total: String(STEPS.length), is,
