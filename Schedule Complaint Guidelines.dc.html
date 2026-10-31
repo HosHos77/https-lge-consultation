@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<script src="shadow-nav.js"></script>
+<title>تعليمات الـ Schedule Complaint</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  body { margin:0; background:#f4f3ef; }
+  a { color:#A50034; }
+  a:hover { color:#7d0027; }
+</style>
+</helmet>
+<div dir="rtl" style="min-height:100vh;background:#f4f3ef;font-family:'IBM Plex Sans Arabic',sans-serif;color:#191a1c;">
+  <div style="background:#1c1a1b;color:#f6f1f2;padding:22px 32px;display:flex;align-items:center;gap:16px;flex-wrap:wrap;">
+    <div style="width:10px;height:34px;border-radius:2px;background:#A50034;"></div>
+    <div style="flex:1;min-width:260px;">
+      <div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:24px;">تعليمات الـ Schedule Complaint</div>
+      <div style="font-size:13.5px;opacity:.75;margin-top:2px;">Scheduling Complaint · Delay &amp; Schedule Change</div>
+    </div>
+  </div>
+  <div style="max-width:1100px;margin:0 auto;padding:26px 24px 60px;display:flex;flex-direction:column;gap:18px;">
+
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:14px;">
+          <div style="background:#fff;border:1px solid #e3e0d8;border-radius:16px;padding:22px;">
+            <div style="display:inline-block;padding:5px 14px;border-radius:999px;background:#A50034;color:#fff;font-family:'Cairo',sans-serif;font-weight:700;font-size:13px;margin-bottom:10px;">Type: Delay</div>
+            <div style="font-family:'Cairo',sans-serif;font-weight:700;font-size:18px;margin-bottom:12px;">أولًا: التأخير</div>
+            <div style="font-size:14.5px;line-height:1.8;color:#4b5055;margin-bottom:12px;">العميل بيتصل بعد تسجيل بلاغ (تركيب أو صيانة) غير مرتبط بالـ Request Date — خلال فترة الزيارة أو بعدها — عشان:</div>
+            <div style="display:flex;flex-direction:column;gap:10px;">
+            <sc-for list="{{ scDelay }}" as="r" hint-placeholder-count="4">
+              <div style="display:flex;gap:14px;align-items:flex-start;">
+                <span style="flex:none;width:30px;height:30px;border-radius:8px;background:#A50034;color:#fff;display:inline-flex;align-items:center;justify-content:center;font-family:'Cairo',sans-serif;font-weight:700;font-size:13px;">{{ r.n }}</span>
+                <div style="font-size:15px;line-height:1.85;padding-top:2px;text-wrap:pretty;">{{ r.t }}</div>
+              </div>
+            </sc-for>
+          </div>
+          </div>
+          <div style="background:#fff;border:1px solid #e3e0d8;border-radius:16px;padding:22px;">
+            <div style="display:inline-block;padding:5px 14px;border-radius:999px;background:#1c1a1b;color:#fff;font-family:'Cairo',sans-serif;font-weight:700;font-size:13px;margin-bottom:10px;">Type: Schedule Change</div>
+            <div style="font-family:'Cairo',sans-serif;font-weight:700;font-size:18px;margin-bottom:12px;">ثانيًا: تغيير الموعد</div>
+            <div style="display:flex;flex-direction:column;gap:10px;">
+            <sc-for list="{{ scChange }}" as="r" hint-placeholder-count="4">
+              <div style="display:flex;gap:14px;align-items:flex-start;">
+                <span style="flex:none;width:30px;height:30px;border-radius:8px;background:#1c1a1b;color:#fff;display:inline-flex;align-items:center;justify-content:center;font-family:'Cairo',sans-serif;font-weight:700;font-size:13px;">{{ r.n }}</span>
+                <div style="font-size:15px;line-height:1.85;padding-top:2px;text-wrap:pretty;">{{ r.t }}</div>
+              </div>
+            </sc-for>
+          </div>
+          </div>
+        </div>
+
+        <div style="background:#fff3b0;border:2px solid #f2c200;border-radius:14px;padding:20px 22px;">
+          <div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:17px;color:#7a5a00;margin-bottom:10px;">⚠ تقوله إيه في المكالمة</div>
+          <div style="display:flex;flex-direction:column;gap:8px;">
+            <sc-for list="{{ scAlerts }}" as="e" hint-placeholder-count="5">
+              <div style="font-size:15px;line-height:1.8;color:#3d2e00;font-weight:600;">• {{ e }}</div>
+            </sc-for>
+          </div>
+        </div>
+
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:14px;">
+          <div style="background:#fff;border:1px solid #e3e0d8;border-radius:16px;padding:22px;">
+            <div style="font-family:'Cairo',sans-serif;font-weight:700;font-size:18px;margin-bottom:12px;">تسجيل Scheduling Complaint على GSFS</div>
+            <div style="display:flex;flex-direction:column;gap:10px;">
+            <sc-for list="{{ scReg }}" as="r" hint-placeholder-count="4">
+              <div style="display:flex;gap:14px;align-items:flex-start;">
+                <span style="flex:none;width:30px;height:30px;border-radius:8px;background:#A50034;color:#fff;display:inline-flex;align-items:center;justify-content:center;font-family:'Cairo',sans-serif;font-weight:700;font-size:13px;">{{ r.n }}</span>
+                <div style="font-size:15px;line-height:1.85;padding-top:2px;text-wrap:pretty;">{{ r.t }}</div>
+              </div>
+            </sc-for>
+          </div>
+          </div>
+          <div style="background:#fff;border:1px solid #e3e0d8;border-radius:16px;padding:22px;">
+            <div style="font-family:'Cairo',sans-serif;font-weight:700;font-size:18px;margin-bottom:12px;">تحديث Scheduling Complaint</div>
+            <div style="display:flex;flex-direction:column;gap:10px;">
+            <sc-for list="{{ scUpd }}" as="r" hint-placeholder-count="4">
+              <div style="display:flex;gap:14px;align-items:flex-start;">
+                <span style="flex:none;width:30px;height:30px;border-radius:8px;background:#A50034;color:#fff;display:inline-flex;align-items:center;justify-content:center;font-family:'Cairo',sans-serif;font-weight:700;font-size:13px;">{{ r.n }}</span>
+                <div style="font-size:15px;line-height:1.85;padding-top:2px;text-wrap:pretty;">{{ r.t }}</div>
+              </div>
+            </sc-for>
+          </div>
+          </div>
+        </div>
+        <div style="background:#fff;border:1px solid #e3e0d8;border-radius:16px;padding:22px;display:flex;gap:14px;align-items:center;flex-wrap:wrap;">
+          <div style="font-family:'Cairo',sans-serif;font-weight:700;font-size:16px;">إغلاق الـ Ticket على واتساب</div>
+          <div style="font-size:14.5px;line-height:1.8;flex:1;min-width:240px;">في حالة الـ Scheduling Complaint اقفل الـ Ticket باختيار الحالة:</div>
+          <span dir="ltr" style="padding:8px 16px;border-radius:10px;background:#1c1a1b;color:#fff;font-family:'Cairo',sans-serif;font-weight:700;font-size:15px;">Completed - VOC</span>
+        </div>
+        <div style="font-size:13.5px;color:#4b5055;background:#fff;border:1px dashed #d9d5cb;border-radius:12px;padding:12px 16px;">ملحوظة: لن يتم استخدام الـ Call Code الخاص بـ Installation Schedule - Check Repair Schedule.</div>
+
+        <div style="background:#fbeef1;border:1px solid #ecc0cb;border-radius:16px;padding:22px;">
+          <div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:17px;color:#A50034;margin-bottom:12px;">✗ هنا مايتسجلش Schedule Complaint</div>
+          <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,280px),1fr));gap:10px;">
+            <sc-for list="{{ scNot }}" as="x" hint-placeholder-count="5">
+              <div style="background:#fff;border-radius:12px;padding:14px 16px;">
+                <div style="font-size:14.5px;line-height:1.75;color:#33373a;">{{ x.c }}</div>
+                <div style="font-family:'Cairo',sans-serif;font-weight:700;font-size:14.5px;color:#A50034;margin-top:6px;">← {{ x.a }}</div>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const num = arr => arr.map((t, i) => ({ n: String(i + 1), t }));
+class Component extends DCLogic {
+  renderVals() {
+    return {
+      scDelay: num(['استعجال الزيارة.', 'تأكيد موعد الزيارة.', 'الفني ماتصلش بالعميل، والعميل بيستعجل التواصل.', 'استعجال موقف الصيانة أو التقرير الفني بعد الزيارة (لو طالب استبدال جهاز جديد ← VOC مش Scheduling Complaint).', 'استعجال قطعة الغيار، وGSFS بيوضح إن المركز طلبها أو اتبعتت خلال 48 ساعة (من غير يوم الجمعة). بعد 48 ساعة (من غير الجمعة) من تأخر القطعة ← VOC.']),
+      scChange: num(['العميل بيتصل بعد تسجيل البلاغ (غير مرتبط بالـ Request Date) يبلغ إن الفني كلمه عشان يغيّر ميعاد الزيارة ← Scheduling Complaint / Schedule Change.', 'العميل عايز يغيّر الفترة في نفس اليوم المسجل (مثال: الزيارة على الفترة الأولى وعايزها على الفترة التالتة) ← Scheduling Complaint.', 'مايتسجلش VOC إلا بعد إغلاق الـ Scheduling Complaint التانية على السيستم.']),
+      scAlerts: ['بلّغ العميل إنه تم استعجال الزيارة، واعتذر له، وإنه هيتم التواصل معاه خلال ساعتين لتحديد الموعد.', 'مكالمة يوم الجمعة: بلّغه إنه هيتم الاستعجال والتواصل معاه في اليوم التالي — مش خلال ساعتين.', 'في استعجال زيارة الفني: راجع بيانات العميل وتأكد من صحتها (أرقام التليفون — العنوان).', 'ماتبلغش العميل بالسيرفاي في مكالمة الاستعجال — مش هيوصله سيرفاي.', 'لو العميل اتواصل على واتساب: اقفل الـ Ticket كـ VOC.'],
+      scBO: [
+        { c:'القطعة هتوصل بعد فترة طويلة حسب الـ Back Order Sheet والعميل اعترض أو اشتكى', a:'سجّل VOC مع كتابة التفاصيل' },
+        { c:'العميل وافق يستنى القطعة حسب الـ Back Order Sheet', a:'Call Code: Check part order status' },
+        { c:'خانة الـ PO فيها Backorder ومفيش موعد وصول في الـ Back Order Sheet', a:'سجّل شكوى، وبلّغ العميل إن الإدارة هتتواصل معاه بموعد توفر القطعة' },
+      ],
+      scReg: num(['اضغط على خانة Scheduling Complaint في السيستم.', 'اختار الـ Scheduling Complaint Type حسب استفسار العميل (Delay / Schedule Change).', 'اضغط على البلاغ المسجل عشان تظهر بياناته.', 'اكتب ملاحظاتك في خانة Scheduling Complaint Notes — مثال: "العميل يستعجل الزيارة...".']),
+      scUpd: num(['اضغط على خانة Scheduling Complaint في السيستم.', 'اختار الطلب (Order).', 'راجع الـ Reply Remark لو المركز حدّث الـ Scheduling Complaint.', 'لو مفيش تحديث: اكتب تعليقك واضغط Save.', 'راجع الـ Close Date: لو فيه تاريخ، الـ Scheduling Complaint مقفولة ومينفعش تكتب جواها.']),
+      scNot: [
+        { c:'العميل طالب استبدال جهاز جديد بعد بلاغ الصيانة', a:'VOC' },
+        { c:'فيه طلب مسجل والعميل بيشتكي من أسلوب الفني وتأخير الزيارة', a:'VOC — Depth: Technician attitude أو Visit Delay' },
+        { c:'العميل بيشتكي من تأخير الزيارة وفيه شكوى مسجلة (حتى لو مش متعلقة بالأوردر)', a:'استفسار مفتوح حسب إجراءات الـ VOC' },
+        { c:'أوردر Pending والمركز كاتب إنه بلّغ العميل بالتكلفة من غير المبلغ، أو العميل عايز يتأكد من المبلغ اللي الفني قاله', a:'VOC' },
+        { c:'الفني صلّح والعطل لسه موجود أو ظهر عطل تاني بعد ما مشي', a:'VOC' },
+        { c:'تالت اتصال والـ Scheduling Complaint التانية مقفولة', a:'VOC' },
+      ],
+    };
+  }
+}
+</script>
+</body>
+</html>

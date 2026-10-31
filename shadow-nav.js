@@ -1,5 +1,5 @@
 (function () {
-  var HOME = 'Installation Guide Home.dc.html';
+  var HOME = '../Installation Guide Home.dc.html';
   function isHome() { return decodeURIComponent(location.pathname).indexOf(HOME) >= 0; }
   function goBack(fallback) {
     var sameSite = document.referrer && document.referrer.indexOf(location.origin) === 0;
