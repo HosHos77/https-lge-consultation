@@ -72,6 +72,18 @@
   @media(max-width:480px){.primary-cards{grid-template-columns:1fr!important}.primary-cards>a,.primary-cards>button{min-height:185px}}
 
 
+
+  /* Restore the bottom action on all four landing cards */
+  .primary-cards>a>div[style*="position:relative"]>div:last-child,
+  .primary-cards>button>div[style*="position:relative"]>div:last-child{
+    display:inline-flex!important;align-items:center!important;gap:8px!important;
+    margin-top:auto!important;margin-bottom:0!important;align-self:flex-start!important;
+    flex-shrink:0!important;visibility:visible!important;opacity:1!important;
+    position:relative!important;z-index:3!important;line-height:1.5!important;
+    color:#f0a8bd!important;font-family:'Cairo',sans-serif!important;
+    font-weight:700!important;font-size:13px!important;
+  }
+
   /* Fine sizing pass: match reference card proportions at desktop widths */
   @media(min-width:801px){
     .primary-cards>a,.primary-cards>button{
@@ -212,7 +224,7 @@
             <span style="padding:6px 13px;border-radius:999px;background:rgba(255,255,255,.09);font-size:12.5px;">Inbound / Outbound</span>
             <span style="padding:6px 13px;border-radius:999px;background:rgba(255,255,255,.09);font-size:12.5px;">VOC</span>
           </div>
-          <div style="display:inline-flex;align-items:center;gap:8px;font-family:'Cairo',sans-serif;font-weight:700;font-size:15px;color:#f0a8bd;">افتح الدليل <span style="font-size:18px;">←</span></div>
+          <div style="display:inline-flex;align-items:center;gap:8px;font-family:'Cairo',sans-serif;font-weight:700;font-size:15px;color:#f0a8bd;">ابدأ <span style="font-size:18px;">←</span></div>
         </div>
       </a>
     </div>
