@@ -48,75 +48,28 @@
   }
   @media(max-width:560px){.primary-cards{grid-template-columns:1fr}.primary-cards>a,.primary-cards>button{padding:24px!important}}
 
-  /* Landing page refresh: match the compact four-card reference design */
-  body:has(.primary-cards) { background:#f4f3ef !important; }
-  body:has(.primary-cards) .site-header,
-  body:has(.primary-cards) .right-nav { display:none !important; }
-  body:has(.primary-cards) .site-layout {
-    display:block !important; max-width:760px !important;
-    padding:0 20px 28px !important; margin:0 auto !important;
-  }
-  body:has(.primary-cards) .main-content { width:100%; }
-  body:has(.primary-cards) .main-content > div[style*="padding:46px 0 8px"] {
-    padding:10px 0 0 !important; text-align:center;
-  }
-  body:has(.primary-cards) .main-content > div[style*="padding:46px 0 8px"] > div:first-child {
-    display:none !important;
-  }
-  body:has(.primary-cards) .main-content > div[style*="padding:46px 0 8px"] > div:nth-child(2) {
-    font-size:30px !important; line-height:1.35 !important;
-    margin:0 0 8px !important; color:#191a1c;
-  }
-  body:has(.primary-cards) .main-content > div[style*="padding:46px 0 8px"] > div:nth-child(3) {
-    max-width:58ch; font-size:13px !important; line-height:1.8 !important;
-    color:#77736f !important;
-  }
-  body:has(.primary-cards) .primary-cards {
-    grid-template-columns:repeat(4,minmax(0,1fr)) !important;
-    gap:9px !important; padding:22px 0 0 !important;
-  }
-  body:has(.primary-cards) .primary-cards > button,
-  body:has(.primary-cards) .primary-cards > a {
-    box-sizing:border-box; min-height:200px;
-    padding:22px 16px 18px !important; border-radius:14px !important;
-    text-align:right !important;
-  }
-  body:has(.primary-cards) .primary-cards > button div[style*="width:46px"],
-  body:has(.primary-cards) .primary-cards > a div[style*="width:46px"] {
-    width:30px !important; height:30px !important; border-radius:8px !important;
-    font-size:14px !important; margin-bottom:12px !important;
-  }
-  body:has(.primary-cards) .primary-cards > button div[style*="font-size:32px"],
-  body:has(.primary-cards) .primary-cards > a div[style*="font-size:32px"] {
-    font-size:19px !important; line-height:1.45 !important; margin-bottom:7px !important;
-  }
-  body:has(.primary-cards) .primary-cards > button div[style*="font-size:15px"],
-  body:has(.primary-cards) .primary-cards > a div[style*="font-size:15px"] {
-    font-size:11px !important; line-height:1.7 !important; margin-bottom:12px !important;
-  }
-  body:has(.primary-cards) .primary-cards span[style*="font-size:12.5px"] {
-    font-size:9px !important; padding:4px 7px !important;
-  }
-  body:has(.primary-cards) .primary-cards > a {
-    background:#A50034 !important; border-color:#A50034 !important; color:#fff !important;
-  }
-  body:has(.primary-cards) .primary-cards > a > div:first-child {
-    background:rgba(70,0,25,.22) !important;
-  }
-  body:has(.primary-cards) .primary-cards > a div[style*="background:#A50034"] {
-    background:#4d001c !important;
-  }
-  @media(max-width:700px) {
-    body:has(.primary-cards) .site-layout { padding:0 14px 24px !important; }
-    body:has(.primary-cards) .primary-cards { grid-template-columns:repeat(2,minmax(0,1fr)) !important; }
-  }
-  @media(max-width:420px) {
-    body:has(.primary-cards) .main-content > div[style*="padding:46px 0 8px"] > div:nth-child(2) {
-      font-size:25px !important;
-    }
-    body:has(.primary-cards) .primary-cards > button,
-    body:has(.primary-cards) .primary-cards > a { min-height:190px; padding:18px 13px 15px !important; }
-  }
+
+  /* Compact four-card landing layout; keep header, search and right navigation visible */
+  .site-layout{max-width:1280px!important;padding:24px 28px 48px!important;grid-template-columns:210px minmax(0,1fr)!important;gap:18px!important}
+  .site-layout .right-nav{display:block!important}
+  .site-header{display:flex!important}
+  .main-content>div[style*="padding:46px 0 8px"]{padding:8px 0 0!important;text-align:center}
+  .main-content>div[style*="padding:46px 0 8px"]>div:first-child{display:none!important}
+  .main-content>div[style*="padding:46px 0 8px"]>div:nth-child(2){font-size:30px!important;line-height:1.35!important;margin:0 0 7px!important}
+  .main-content>div[style*="padding:46px 0 8px"]>div:nth-child(3){font-size:13px!important;line-height:1.7!important;max-width:58ch}
+  .primary-cards{grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:9px!important;padding:20px 0 8px!important}
+  .primary-cards>a,.primary-cards>button{box-sizing:border-box;min-width:0;min-height:205px;padding:18px 14px 15px!important;border-radius:14px!important}
+  .primary-cards>a>div[style*="position:relative"],.primary-cards>button>div[style*="position:relative"]{width:100%}
+  .primary-cards>a div[style*="width:46px"],.primary-cards>button div[style*="width:46px"]{width:30px!important;height:30px!important;border-radius:8px!important;font-size:14px!important;margin-bottom:11px!important}
+  .primary-cards>a div[style*="font-size:32px"],.primary-cards>button div[style*="font-size:32px"]{font-size:19px!important;line-height:1.4!important;margin-bottom:7px!important;overflow-wrap:anywhere}
+  .primary-cards>a div[style*="font-size:15px"],.primary-cards>button div[style*="font-size:15px"]{font-size:11.5px!important;line-height:1.65!important;margin-bottom:12px!important}
+  .primary-cards>a span[style*="font-size:12.5px"],.primary-cards>button span[style*="font-size:12.5px"]{font-size:9px!important;padding:4px 7px!important}
+  .primary-cards>a div[style*="font-size:15px"][style*="font-weight:700"],.primary-cards>button div[style*="font-size:15px"][style*="font-weight:700"]{font-size:13px!important}
+  .primary-cards>a[href*="VOC"]{background:#A50034!important;border-color:#A50034!important;color:#fff!important}
+  .primary-cards>a[href*="VOC"]>div:first-child{background:rgba(70,0,25,.22)!important}
+  @media(max-width:1050px){.site-layout{grid-template-columns:180px minmax(0,1fr)!important;gap:12px!important;padding:18px 16px 36px!important}.primary-cards{grid-template-columns:repeat(2,minmax(0,1fr))!important}}
+  @media(max-width:800px){.site-layout{grid-template-columns:1fr!important;padding:18px 14px 40px!important}.site-layout .right-nav{display:flex!important}.primary-cards{grid-template-columns:repeat(2,minmax(0,1fr))!important}}
+  @media(max-width:480px){.primary-cards{grid-template-columns:1fr!important}.primary-cards>a,.primary-cards>button{min-height:185px}}
 
 </style>
 </helmet>
@@ -176,7 +129,7 @@
       <button onClick="{{ showInstall }}" style="position:relative;overflow:hidden;text-align:right;padding:40px 34px 34px;border-radius:20px;cursor:pointer;font-family:'IBM Plex Sans Arabic',sans-serif;background:#1c1a1b;color:#f6f1f2;border:1px solid #1c1a1b;transition:transform .18s ease,box-shadow .18s ease;" style-hover="transform:translateY(-3px);box-shadow:0 16px 34px rgba(28,26,27,.22);">
         <div style="position:absolute;top:-40px;left:-40px;width:150px;height:150px;border-radius:50%;background:rgba(165,0,52,.28);"></div>
         <div style="position:relative;">
-          <div style="display:inline-flex;align-items:center;justify-content:center;width:46px;height:46px;border-radius:13px;background:#A50034;color:#fff;font-family:'Cairo',sans-serif;font-weight:900;font-size:20px;margin-bottom:18px;">١</div>
+          <div style="display:inline-flex;align-items:center;justify-content:center;width:46px;height:46px;border-radius:13px;background:#A50034;color:#fff;font-family:'Cairo',sans-serif;font-weight:900;font-size:20px;margin-bottom:18px;">1</div>
           <div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:32px;margin-bottom:10px;">التركيب</div>
           <div style="font-size:15px;line-height:1.85;opacity:.82;margin-bottom:22px;">مسار مكالمة كامل لكل منتج + التعليمات الفنية والرسوم والمواعيد.</div>
           <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:22px;">
@@ -190,7 +143,7 @@
       <button onClick="{{ showSupport }}" style="position:relative;overflow:hidden;text-align:right;padding:40px 34px 34px;border-radius:20px;cursor:pointer;font-family:'IBM Plex Sans Arabic',sans-serif;background:#1c1a1b;color:#f6f1f2;border:1px solid #1c1a1b;transition:transform .18s ease,box-shadow .18s ease;" style-hover="transform:translateY(-3px);box-shadow:0 16px 34px rgba(28,26,27,.22);">
         <div style="position:absolute;top:-40px;left:-40px;width:150px;height:150px;border-radius:50%;background:rgba(165,0,52,.28);"></div>
         <div style="position:relative;">
-          <div style="display:inline-flex;align-items:center;justify-content:center;width:46px;height:46px;border-radius:13px;background:#A50034;color:#fff;font-family:'Cairo',sans-serif;font-weight:900;font-size:20px;margin-bottom:18px;">٢</div>
+          <div style="display:inline-flex;align-items:center;justify-content:center;width:46px;height:46px;border-radius:13px;background:#A50034;color:#fff;font-family:'Cairo',sans-serif;font-weight:900;font-size:20px;margin-bottom:18px;">2</div>
           <div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:32px;margin-bottom:10px;">الدعم الفني</div>
           <div style="font-size:15px;line-height:1.85;opacity:.82;margin-bottom:22px;">اتبع خطوات الـ Troubleshooting مع العميل بالترتيب — كل إجابة توديك للخطوة الصح لحد تحديد السبب.</div>
           <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:22px;">
@@ -203,7 +156,7 @@
       <button onClick="{{ showHM }}" style="position:relative;overflow:hidden;text-align:right;padding:40px 34px 34px;border-radius:20px;cursor:pointer;font-family:'IBM Plex Sans Arabic',sans-serif;background:#1c1a1b;color:#f6f1f2;border:1px solid #1c1a1b;transition:transform .18s ease,box-shadow .18s ease;" style-hover="transform:translateY(-3px);box-shadow:0 16px 34px rgba(28,26,27,.22);">
         <div style="position:absolute;top:-40px;left:-40px;width:150px;height:150px;border-radius:50%;background:rgba(165,0,52,.28);"></div>
         <div style="position:relative;">
-          <div style="display:inline-flex;align-items:center;justify-content:center;width:46px;height:46px;border-radius:13px;background:#A50034;color:#fff;font-family:'Cairo',sans-serif;font-weight:900;font-size:20px;margin-bottom:18px;">٣</div>
+          <div style="display:inline-flex;align-items:center;justify-content:center;width:46px;height:46px;border-radius:13px;background:#A50034;color:#fff;font-family:'Cairo',sans-serif;font-weight:900;font-size:20px;margin-bottom:18px;">3</div>
           <div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:32px;margin-bottom:10px;">HM — Telesales</div>
           <div style="font-size:15px;line-height:1.85;opacity:.82;margin-bottom:22px;">سكريبت مكالمات بيع الصيانة الوقائية (Hygienic Maintenance) — خطوات الخدمة وفوايدها، الإقناع والرد على الاعتراضات، وقواعد التسجيل.</div>
           <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:22px;">
@@ -217,9 +170,9 @@
       <a href="VOC Consultant Guide.dc.html" style="display:block;position:relative;overflow:hidden;text-align:right;padding:40px 34px 34px;border-radius:20px;cursor:pointer;font-family:'IBM Plex Sans Arabic',sans-serif;background:#1c1a1b;color:#f6f1f2;border:1px solid #1c1a1b;transition:transform .18s ease,box-shadow .18s ease;" style-hover="transform:translateY(-3px);box-shadow:0 16px 34px rgba(28,26,27,.22);">
         <div style="position:absolute;top:-40px;left:-40px;width:150px;height:150px;border-radius:50%;background:rgba(165,0,52,.28);"></div>
         <div style="position:relative;">
-          <div style="display:inline-flex;align-items:center;justify-content:center;width:46px;height:46px;border-radius:13px;background:#A50034;color:#fff;font-family:'Cairo',sans-serif;font-weight:900;font-size:20px;margin-bottom:18px;">٤</div>
-          <div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:32px;margin-bottom:10px;">VOC Consultant Guide</div>
-          <div style="font-size:15px;line-height:1.85;opacity:.82;margin-bottom:22px;">دليل مستشار VOC — متابعة الشكاوى، التسجيل والإغلاق، وإرشادات التعامل مع المكالمات.</div>
+          <div style="display:inline-flex;align-items:center;justify-content:center;width:46px;height:46px;border-radius:13px;background:#A50034;color:#fff;font-family:'Cairo',sans-serif;font-weight:900;font-size:20px;margin-bottom:18px;">4</div>
+          <div style="font-family:'Cairo',sans-serif;font-weight:900;font-size:32px;margin-bottom:10px;">الشكاوى</div>
+          <div style="font-size:15px;line-height:1.85;opacity:.82;margin-bottom:22px;">(VOC &amp; Schedule Complaint) استمع، سجل، ومتابعة شكوى العميل بخطوات واضحة ومنظمة.</div>
           <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:22px;">
             <span style="padding:6px 13px;border-radius:999px;background:rgba(255,255,255,.09);font-size:12.5px;">Inbound / Outbound</span>
             <span style="padding:6px 13px;border-radius:999px;background:rgba(255,255,255,.09);font-size:12.5px;">VOC</span>
