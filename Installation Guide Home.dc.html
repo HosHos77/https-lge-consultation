@@ -73,15 +73,22 @@
 
 
 
-  /* Restore the bottom action on all four landing cards */
+  /* Reliable visible CTA placement: pin Start action inside each card */
+  .primary-cards>a,.primary-cards>button{position:relative!important}
+  .primary-cards>a>div[style*="position:relative"],
+  .primary-cards>button>div[style*="position:relative"]{
+    position:relative!important;box-sizing:border-box!important;
+    min-height:100%!important;padding-bottom:30px!important;
+  }
   .primary-cards>a>div[style*="position:relative"]>div:last-child,
   .primary-cards>button>div[style*="position:relative"]>div:last-child{
     display:inline-flex!important;align-items:center!important;gap:8px!important;
-    margin-top:auto!important;margin-bottom:0!important;align-self:flex-start!important;
-    flex-shrink:0!important;visibility:visible!important;opacity:1!important;
-    position:relative!important;z-index:3!important;line-height:1.5!important;
+    position:absolute!important;right:0!important;bottom:0!important;left:auto!important;
+    margin:0!important;padding:0!important;z-index:5!important;
+    visibility:visible!important;opacity:1!important;transform:none!important;
     color:#f0a8bd!important;font-family:'Cairo',sans-serif!important;
-    font-weight:700!important;font-size:13px!important;
+    font-weight:700!important;font-size:13px!important;line-height:1.5!important;
+    white-space:nowrap!important;
   }
 
   /* Fine sizing pass: match reference card proportions at desktop widths */
